@@ -59,11 +59,11 @@
                         <p class="text-[11px] sm:text-xs text-slate-300 font-medium">O seu comércio local a um clique de distância</p>
                     </div>
                 </div>
-                <button onclick="openModalWithPlan('Parceiro Fundador - R$ 19,90/mês')" class="sm:hidden bg-brand-500 hover:bg-brand-600 text-white font-semibold text-xs px-3 py-2 rounded-lg transition shadow-md flex items-center gap-1">
+                <button type="button" onclick="openModalWithPlan('Parceiro Fundador - R$ 19,90/mês')" class="sm:hidden bg-brand-500 hover:bg-brand-600 text-white font-semibold text-xs px-3 py-2 rounded-lg transition shadow-md flex items-center gap-1 cursor-pointer">
                     <i class="fa-solid fa-plus"></i> Anunciar
                 </button>
             </div>
-            <button onclick="openModalWithPlan('Parceiro Fundador - R$ 19,90/mês')" class="hidden sm:flex items-center gap-2 bg-gradient-to-r from-brand-500 to-orange-600 hover:from-brand-600 hover:to-orange-700 text-white font-bold text-sm px-4 py-2.5 rounded-xl shadow-md transition transform hover:-translate-y-0.5">
+            <button type="button" onclick="openModalWithPlan('Parceiro Fundador - R$ 19,90/mês')" class="hidden sm:flex items-center gap-2 bg-gradient-to-r from-brand-500 to-orange-600 hover:from-brand-600 hover:to-orange-700 text-white font-bold text-sm px-4 py-2.5 rounded-xl shadow-md transition transform hover:-translate-y-0.5 cursor-pointer">
                 <i class="fa-solid fa-star text-amber-300"></i>
                 Seja um Parceiro Fundador
             </button>
@@ -86,7 +86,7 @@
                     Conectamos o seu negócio diretamente com moradores da região via WhatsApp. Sem taxas por venda ou comissões abusivas.
                 </p>
                 <div class="pt-2 flex flex-wrap gap-3">
-                    <button onclick="openModalWithPlan('Parceiro Fundador - R$ 19,90/mês')" class="bg-brand-500 hover:bg-brand-600 text-white font-bold text-xs sm:text-sm px-6 py-3.5 rounded-xl shadow-lg transition transform hover:scale-105 flex items-center gap-2">
+                    <button type="button" onclick="openModalWithPlan('Parceiro Fundador - R$ 19,90/mês')" class="bg-brand-500 hover:bg-brand-600 text-white font-bold text-xs sm:text-sm px-6 py-3.5 rounded-xl shadow-lg transition transform hover:scale-105 flex items-center gap-2 cursor-pointer">
                         <i class="fa-solid fa-rocket"></i> Quero Anunciar Agora
                     </button>
                     <a href="#secaoPlanos" class="bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold text-xs sm:text-sm px-5 py-3.5 rounded-xl transition flex items-center gap-2 border border-slate-700">
@@ -127,7 +127,7 @@
                             <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Zero comissão sobre as vendas</li>
                         </ul>
                     </div>
-                    <button onclick="openModalWithPlan('Parceiro Fundador - R$ 19,90/mês')" class="mt-6 w-full bg-brand-500 hover:bg-brand-600 text-white font-bold py-3 rounded-xl shadow-md text-xs transition cursor-pointer">
+                    <button type="button" onclick="openModalWithPlan('Parceiro Fundador - R$ 19,90/mês')" class="mt-6 w-full bg-brand-500 hover:bg-brand-600 text-white font-bold py-3 rounded-xl shadow-md text-xs transition cursor-pointer">
                         Garantir Vaga de Fundador
                     </button>
                 </div>
@@ -150,7 +150,7 @@
                             <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Zero comissão sobre as vendas</li>
                         </ul>
                     </div>
-                    <button onclick="openModalWithPlan('Plano Regular - R$ 29,90/mês')" class="mt-6 w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-3 rounded-xl transition text-xs cursor-pointer">
+                    <button type="button" onclick="openModalWithPlan('Plano Regular - R$ 29,90/mês')" class="mt-6 w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-3 rounded-xl transition text-xs cursor-pointer">
                         Escolher Regular
                     </button>
                 </div>
@@ -174,7 +174,7 @@
                             <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Botão direto pro WhatsApp no card</li>
                         </ul>
                     </div>
-                    <button onclick="openModalWithPlan('Plano Premium - R$ 59,90/mês')" class="mt-6 w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-3 rounded-xl transition text-xs cursor-pointer">
+                    <button type="button" onclick="openModalWithPlan('Plano Premium - R$ 59,90/mês')" class="mt-6 w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-3 rounded-xl transition text-xs cursor-pointer">
                         Escolher Premium
                     </button>
                 </div>
@@ -284,7 +284,7 @@
     <!-- MODAL DE CADASTRO COM SELEÇÃO DE PLANO -->
     <div id="registerModal" class="fixed inset-0 bg-slate-950/70 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4 overflow-y-auto">
         <div class="bg-white rounded-2xl max-w-lg w-full p-5 sm:p-6 shadow-2xl relative my-8 border border-slate-100">
-            <button onclick="closeModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 bg-slate-100 p-2 rounded-full w-8 h-8 flex items-center justify-center transition">
+            <button type="button" onclick="closeModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 bg-slate-100 p-2 rounded-full w-8 h-8 flex items-center justify-center transition cursor-pointer">
                 <i class="fa-solid fa-xmark"></i>
             </button>
 
@@ -356,10 +356,10 @@
                 </div>
 
                 <div class="pt-2 flex justify-end gap-2">
-                    <button type="button" onclick="closeModal()" class="px-4 py-2 border border-slate-300 rounded-lg text-xs font-semibold text-slate-700 hover:bg-slate-100 transition">
+                    <button type="button" onclick="closeModal()" class="px-4 py-2 border border-slate-300 rounded-lg text-xs font-semibold text-slate-700 hover:bg-slate-100 transition cursor-pointer">
                         Cancelar
                     </button>
-                    <button type="submit" class="px-5 py-2 bg-brand-600 hover:bg-brand-700 text-white rounded-lg text-xs font-bold shadow-md transition flex items-center gap-1.5">
+                    <button type="submit" class="px-5 py-2 bg-brand-600 hover:bg-brand-700 text-white rounded-lg text-xs font-bold shadow-md transition flex items-center gap-1.5 cursor-pointer">
                         <i class="fa-solid fa-check"></i> Concluir e Ir Para Pagamento
                     </button>
                 </div>
@@ -398,7 +398,7 @@
                 <label class="block text-xs font-bold text-slate-700 text-left">Chave PIX (CNPJ do Tem No Bairro):</label>
                 <div class="flex items-center gap-2">
                     <input type="text" id="pixKeyInput" readonly value="69.805.020/0001-36" class="w-full bg-slate-100 border border-slate-200 rounded-lg px-3 py-2 text-xs font-mono font-bold text-slate-800 focus:outline-none text-center">
-                    <button onclick="copyPixKey()" class="bg-slate-800 hover:bg-slate-900 text-white text-xs font-bold px-3 py-2 rounded-lg transition whitespace-nowrap flex items-center gap-1">
+                    <button type="button" onclick="copyPixKey()" class="bg-slate-800 hover:bg-slate-900 text-white text-xs font-bold px-3 py-2 rounded-lg transition whitespace-nowrap flex items-center gap-1 cursor-pointer">
                         <i class="fa-regular fa-copy"></i> Copiar
                     </button>
                 </div>
@@ -409,7 +409,7 @@
                 <a id="sendProofBtn" href="#" target="_blank" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 px-4 rounded-xl shadow-md text-xs sm:text-sm flex items-center justify-center gap-2 transition">
                     <i class="fa-brands fa-whatsapp text-lg"></i> Enviar Comprovante no WhatsApp
                 </a>
-                <button onclick="closePaymentModal()" class="w-full bg-slate-100 hover:bg-slate-200 text-slate-600 text-xs font-semibold py-2 rounded-xl transition">
+                <button type="button" onclick="closePaymentModal()" class="w-full bg-slate-100 hover:bg-slate-200 text-slate-600 text-xs font-semibold py-2 rounded-xl transition cursor-pointer">
                     Concluir
                 </button>
             </div>
@@ -420,7 +420,7 @@
     <!-- MODAL DE PRIVACIDADE E LGPD -->
     <div id="lgpdModal" class="fixed inset-0 bg-slate-950/70 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4 overflow-y-auto">
         <div class="bg-white rounded-2xl max-w-2xl w-full p-6 shadow-2xl relative my-8 border border-slate-100 max-h-[85vh] flex flex-col">
-            <button onclick="closeLgpdModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 bg-slate-100 p-2 rounded-full w-8 h-8 flex items-center justify-center transition">
+            <button type="button" onclick="closeLgpdModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 bg-slate-100 p-2 rounded-full w-8 h-8 flex items-center justify-center transition cursor-pointer">
                 <i class="fa-solid fa-xmark"></i>
             </button>
             <div class="mb-4 pb-3 border-b border-slate-100">
@@ -434,7 +434,7 @@
                 <p><strong>1. TRATAMENTO DE DADOS E CONSENTIMENTO:</strong> Ao realizar o cadastro na plataforma TEM NO BAIRRO, o PARCEIRO autoriza o tratamento dos dados fornecidos estritamente para viabilizar a divulgação comercial e a prestação dos serviços contratados.</p>
             </div>
             <div class="pt-4 border-t border-slate-100 mt-4 flex justify-end">
-                <button onclick="closeLgpdModal()" class="px-5 py-2 bg-slate-900 hover:bg-slate-800 text-white rounded-xl text-xs font-bold transition">Entendi e Concordo</button>
+                <button type="button" onclick="closeLgpdModal()" class="px-5 py-2 bg-slate-900 hover:bg-slate-800 text-white rounded-xl text-xs font-bold transition cursor-pointer">Entendi e Concordo</button>
             </div>
         </div>
     </div>
@@ -442,7 +442,7 @@
     <!-- MODAL DE TERMOS DE PARCERIA -->
     <div id="termsModal" class="fixed inset-0 bg-slate-950/70 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4 overflow-y-auto">
         <div class="bg-white rounded-2xl max-w-2xl w-full p-6 shadow-2xl relative my-8 border border-slate-100 max-h-[85vh] flex flex-col">
-            <button onclick="closeTermsModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 bg-slate-100 p-2 rounded-full w-8 h-8 flex items-center justify-center transition">
+            <button type="button" onclick="closeTermsModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 bg-slate-100 p-2 rounded-full w-8 h-8 flex items-center justify-center transition cursor-pointer">
                 <i class="fa-solid fa-xmark"></i>
             </button>
             <div class="mb-4 pb-3 border-b border-slate-100">
@@ -456,7 +456,7 @@
                 <p><strong>1. OBJETO DO SERVIÇO:</strong> Prestação de serviços de promoção de vendas e divulgação comercial de estabelecimentos na plataforma tecnológica TEM NO BAIRRO.</p>
             </div>
             <div class="pt-4 border-t border-slate-100 mt-4 flex justify-end">
-                <button onclick="closeTermsModal()" class="px-5 py-2 bg-slate-900 hover:bg-slate-800 text-white rounded-xl text-xs font-bold transition">Fechar</button>
+                <button type="button" onclick="closeTermsModal()" class="px-5 py-2 bg-slate-900 hover:bg-slate-800 text-white rounded-xl text-xs font-bold transition cursor-pointer">Fechar</button>
             </div>
         </div>
     </div>
@@ -653,12 +653,21 @@
             if (planSelect) {
                 planSelect.value = planName;
             }
-            document.getElementById('registerModal').classList.remove('hidden');
+            const modal = document.getElementById('registerModal');
+            if (modal) {
+                modal.classList.remove('hidden');
+            }
         }
 
         function closeModal() {
-            document.getElementById('registerModal').classList.add('hidden');
-            document.getElementById('addBusinessForm').reset();
+            const modal = document.getElementById('registerModal');
+            if (modal) {
+                modal.classList.add('hidden');
+            }
+            const form = document.getElementById('addBusinessForm');
+            if (form) {
+                form.reset();
+            }
         }
 
         function openLgpdModal() {
