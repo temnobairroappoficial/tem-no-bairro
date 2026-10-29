@@ -680,4 +680,70 @@
         function openPaymentModal(businessName, selectedPlan) {
             document.getElementById('registeredBusinessName').textContent = businessName;
             document.getElementById('selectedPlanText').textContent = selectedPlan;
-            document.getElementById('selectedPlanBadge').
+            document.getElementById('selectedPlanBadge').textContent = selectedPlan.includes('Fundador') ? '⭐ Parceiro Fundador' : '🚀 Plano Selecionado';
+            
+            const adminPhone = "5585985838144";
+            const message = encodeURIComponent(`Olá! Acabei de cadastrar a minha loja "${businessName}" no plano (${selectedPlan}) no app TEM NO BAIRRO e aqui está o meu comprovante de pagamento via PIX!`);
+            document.getElementById('sendProofBtn').href = `https://api.whatsapp.com/send?phone=${adminPhone}&text=${message}`;
+
+            document.getElementById('paymentModal').classList.remove('hidden');
+        }
+
+        function closePaymentModal() {
+            document.getElementById('paymentModal').classList.add('hidden');
+            document.getElementById('copySuccessMsg').classList.add('hidden');
+        }
+
+        function copyPixKey() {
+            const pixInput = document.getElementById('pixKeyInput');
+            pixInput.select();
+            pixInput.setSelectionRange(0, 99999);
+            navigator.clipboard.writeText(pixInput.value);
+            document.getElementById('copySuccessMsg').classList.remove('hidden');
+        }
+
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            const plan = document.getElementById('formPlan').value;
+            const name = document.getElementById('formName').value;
+            const category = document.getElementById('formCategory').value;
+            const phone = document.getElementById('formPhone').value;
+            const social = document.getElementById('formSocial').value;
+            const address = document.getElementById('formAddress').value;
+            const hours = document.getElementById('formHours').value;
+            const description = document.getElementById('formDescription').value;
+            const image = document.getElementById('formImage').value;
+
+            const newBusiness = {
+                id: Date.now().toString(),
+                plan,
+                name,
+                category,
+                phone,
+                social,
+                address,
+                hours: hours || 'Horário a combinar',
+                description,
+                image: image || '',
+                isFounder: plan.includes('Fundador')
+            };
+
+            businesses.unshift(newBusiness);
+            localStorage.setItem('tem_no_bairro_db', JSON.stringify(businesses));
+            renderBusinesses();
+            closeModal();
+
+            openPaymentModal(name, plan);
+
+            const GOOGLE_SHEETS_URL = "SUA_URL_DO_APPS_SCRIPT_AQUI";
+
+            fetch(GOOGLE_SHEETS_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(newBusiness)
+            }).catch(error => console.error('Erro ao salvar no Sheets:', error));
+        }
+    </script>
+</body>
+</html>
