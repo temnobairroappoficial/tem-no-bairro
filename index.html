@@ -298,3 +298,462 @@
 
             <form id="addBusinessForm" onsubmit="handleFormSubmit(event)" class="space-y-4">
                 <div>
+                    <label class="block text-xs font-semibold text-slate-700 mb-1">Plano Selecionado *</label>
+                    <select id="formPlan" required class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none font-bold text-brand-700 bg-brand-50">
+                        <option value="Parceiro Fundador - R$ 19,90/mês">⭐ Parceiro Fundador — R$ 19,90/mês (Vitalício)</option>
+                        <option value="Plano Regular - R$ 29,90/mês">Plano Regular — R$ 29,90/mês</option>
+                        <option value="Plano Premium - R$ 59,90/mês">🚀 Plano Premium — R$ 59,90/mês</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-slate-700 mb-1">Nome do Estabelecimento / Negócio *</label>
+                    <input type="text" id="formName" required placeholder="Ex: Padaria do João, Lanchonete Silva..." class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none">
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-700 mb-1">Categoria *</label>
+                        <select id="formCategory" required class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none">
+                            <option value="">Selecione...</option>
+                            <option value="Alimentação">Alimentação</option>
+                            <option value="Serviços & Consertos">Serviços & Consertos</option>
+                            <option value="Saúde & Beleza">Saúde & Beleza</option>
+                            <option value="Pet Shop">Pet Shop</option>
+                            <option value="Lojas & Varejo">Lojas & Varejo</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-700 mb-1">WhatsApp de Atendimento *</label>
+                        <input type="tel" id="formPhone" required placeholder="(85) 98583-8144" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-slate-700 mb-1">Instagram ou Rede Social</label>
+                    <input type="text" id="formSocial" placeholder="Ex: @sabordavila_oficial" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none">
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-700 mb-1">Endereço no Bairro *</label>
+                        <input type="text" id="formAddress" required placeholder="Rua / Av., número ou referência" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-700 mb-1">Horário de Funcionamento</label>
+                        <input type="text" id="formHours" placeholder="Ex: Seg a Sáb, 07h às 19h" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-slate-700 mb-1">Descrição Curta do Produto / Serviço *</label>
+                    <textarea id="formDescription" required rows="2" placeholder="O que você vende? Ex: Pães artesanais, bolos por encomenda..." class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none"></textarea>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-slate-700 mb-1">URL de Imagem / Foto do Local (Opcional)</label>
+                    <input type="url" id="formImage" placeholder="https://..." class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none">
+                </div>
+
+                <div class="pt-2 flex justify-end gap-2">
+                    <button type="button" onclick="closeModal()" class="px-4 py-2 border border-slate-300 rounded-lg text-xs font-semibold text-slate-700 hover:bg-slate-100 transition cursor-pointer">
+                        Cancelar
+                    </button>
+                    <button type="submit" class="px-5 py-2 bg-brand-600 hover:bg-brand-700 text-white rounded-lg text-xs font-bold shadow-md transition flex items-center gap-1.5 cursor-pointer">
+                        <i class="fa-solid fa-check"></i> Concluir e Ir Para Pagamento
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL DE PARABÉNS & PAGAMENTO PIX -->
+    <div id="paymentModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md z-50 hidden flex items-center justify-center p-4 overflow-y-auto">
+        <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl relative my-8 border border-slate-100 text-center space-y-4">
+            
+            <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto text-2xl shadow-inner">
+                <i class="fa-solid fa-circle-check"></i>
+            </div>
+
+            <div>
+                <span id="selectedPlanBadge" class="bg-amber-100 text-amber-800 text-[10px] font-extrabold px-3 py-1 rounded-full uppercase tracking-wider">
+                    ⭐ Parceiro Fundador
+                </span>
+                <h3 class="text-xl font-extrabold text-slate-900 mt-2">Parabéns pelo Cadastro!</h3>
+                <p class="text-xs text-slate-600 mt-1">O seu estabelecimento <strong id="registeredBusinessName" class="text-brand-600"></strong> já foi registrado com sucesso!</p>
+            </div>
+
+            <div class="bg-slate-50 border border-slate-200/80 rounded-xl p-4 text-left space-y-3">
+                <div class="flex justify-between items-center text-xs">
+                    <span class="text-slate-500">Plano Escolhido:</span>
+                    <span id="selectedPlanText" class="font-bold text-slate-800">Parceiro Fundador</span>
+                </div>
+                <div class="border-t border-slate-200 pt-2 text-[11px] text-slate-500 leading-relaxed">
+                    <i class="fa-solid fa-lock text-slate-400 mr-1"></i> Zero comissões sobre suas vendas. Pagamento mensal via PIX.
+                </div>
+            </div>
+
+            <!-- CHAVE PIX PARA PAGAMENTO -->
+            <div class="space-y-2">
+                <label class="block text-xs font-bold text-slate-700 text-left">Chave PIX (CNPJ do Tem No Bairro):</label>
+                <div class="flex items-center gap-2">
+                    <input type="text" id="pixKeyInput" readonly value="69.805.020/0001-36" class="w-full bg-slate-100 border border-slate-200 rounded-lg px-3 py-2 text-xs font-mono font-bold text-slate-800 focus:outline-none text-center">
+                    <button type="button" onclick="copyPixKey()" class="bg-slate-800 hover:bg-slate-900 text-white text-xs font-bold px-3 py-2 rounded-lg transition whitespace-nowrap flex items-center gap-1 cursor-pointer">
+                        <i class="fa-regular fa-copy"></i> Copiar
+                    </button>
+                </div>
+                <p id="copySuccessMsg" class="text-[11px] text-emerald-600 font-bold hidden"><i class="fa-solid fa-check"></i> Chave PIX copiada com sucesso!</p>
+            </div>
+
+            <div class="pt-2 space-y-2">
+                <a id="sendProofBtn" href="#" target="_blank" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 px-4 rounded-xl shadow-md text-xs sm:text-sm flex items-center justify-center gap-2 transition">
+                    <i class="fa-brands fa-whatsapp text-lg"></i> Enviar Comprovante no WhatsApp
+                </a>
+                <button type="button" onclick="closePaymentModal()" class="w-full bg-slate-100 hover:bg-slate-200 text-slate-600 text-xs font-semibold py-2 rounded-xl transition cursor-pointer">
+                    Concluir
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- MODAL DE PRIVACIDADE E LGPD -->
+    <div id="lgpdModal" class="fixed inset-0 bg-slate-950/70 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4 overflow-y-auto">
+        <div class="bg-white rounded-2xl max-w-2xl w-full p-6 shadow-2xl relative my-8 border border-slate-100 max-h-[85vh] flex flex-col">
+            <button type="button" onclick="closeLgpdModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 bg-slate-100 p-2 rounded-full w-8 h-8 flex items-center justify-center transition cursor-pointer">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="mb-4 pb-3 border-b border-slate-100">
+                <span class="bg-emerald-100 text-emerald-800 text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider flex items-center gap-1 w-fit">
+                    <i class="fa-solid fa-shield-halved"></i> Conforme Lei nº 13.709/2018 (LGPD)
+                </span>
+                <h3 class="text-lg font-bold text-slate-900 mt-2">Política de Privacidade & Proteção de Dados</h3>
+                <p class="text-xs text-slate-500">TEM NO BAIRRO — CNPJ 69.805.020/0001-36</p>
+            </div>
+            <div class="overflow-y-auto space-y-3 text-xs text-slate-600 pr-2 leading-relaxed">
+                <p><strong>1. TRATAMENTO DE DADOS E CONSENTIMENTO:</strong> Ao realizar o cadastro na plataforma TEM NO BAIRRO, o PARCEIRO autoriza o tratamento dos dados fornecidos estritamente para viabilizar a divulgação comercial e a prestação dos serviços contratados.</p>
+            </div>
+            <div class="pt-4 border-t border-slate-100 mt-4 flex justify-end">
+                <button type="button" onclick="closeLgpdModal()" class="px-5 py-2 bg-slate-900 hover:bg-slate-800 text-white rounded-xl text-xs font-bold transition cursor-pointer">Entendi e Concordo</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL DE TERMOS DE PARCERIA -->
+    <div id="termsModal" class="fixed inset-0 bg-slate-950/70 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4 overflow-y-auto">
+        <div class="bg-white rounded-2xl max-w-2xl w-full p-6 shadow-2xl relative my-8 border border-slate-100 max-h-[85vh] flex flex-col">
+            <button type="button" onclick="closeTermsModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 bg-slate-100 p-2 rounded-full w-8 h-8 flex items-center justify-center transition cursor-pointer">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="mb-4 pb-3 border-b border-slate-100">
+                <span class="bg-amber-100 text-amber-800 text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider flex items-center gap-1 w-fit">
+                    <i class="fa-solid fa-file-contract"></i> Contrato de Parceria Comercial
+                </span>
+                <h3 class="text-lg font-bold text-slate-900 mt-2">Termos de Promoção de Vendas</h3>
+                <p class="text-xs text-slate-500">TEM NO BAIRRO — CNPJ 69.805.020/0001-36</p>
+            </div>
+            <div class="overflow-y-auto space-y-3 text-xs text-slate-600 pr-2 leading-relaxed">
+                <p><strong>1. OBJETO DO SERVIÇO:</strong> Prestação de serviços de promoção de vendas e divulgação comercial de estabelecimentos na plataforma tecnológica TEM NO BAIRRO.</p>
+            </div>
+            <div class="pt-4 border-t border-slate-100 mt-4 flex justify-end">
+                <button type="button" onclick="closeTermsModal()" class="px-5 py-2 bg-slate-900 hover:bg-slate-800 text-white rounded-xl text-xs font-bold transition cursor-pointer">Fechar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        const initialBusinesses = [
+            {
+                id: '1',
+                name: 'Padaria & Confeitaria Sabor da Vila',
+                category: 'Alimentação',
+                phone: '85985838144',
+                social: '@sabordavila',
+                address: 'Rua Principal, 102 - Próximo à Praça',
+                hours: 'Seg a Dom: 06:00 - 20:00',
+                description: 'Pão quentinho a toda hora, bolos caseiros, tapiocas e salgados frescos.',
+                image: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?w=500&auto=format&fit=crop&q=80',
+                isFounder: true
+            },
+            {
+                id: '2',
+                name: 'PetShop Amigo Fiel',
+                category: 'Pet Shop',
+                phone: '85985838144',
+                social: '@petshopamigofiel',
+                address: 'Av. do Contorno, 450',
+                hours: 'Seg a Sáb: 08:00 - 18:00',
+                description: 'Banho e tosa com tele-busca, rações premium, medicamentos e acessórios.',
+                image: 'https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?w=500&auto=format&fit=crop&q=80',
+                isFounder: true
+            },
+            {
+                id: '3',
+                name: 'Barbearia Estilo & Corte',
+                category: 'Saúde & Beleza',
+                phone: '85985838144',
+                social: '@estilocorte',
+                address: 'Rua das Flores, 88 - Sala B',
+                hours: 'Ter a Sáb: 09:00 - 19:30',
+                description: 'Cortes masculinos modernos, barba com toalha quente e atendimento com agendamento.',
+                image: 'https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=500&auto=format&fit=crop&q=80',
+                isFounder: true
+            }
+        ];
+
+        let currentCategory = 'Todos';
+        let businesses = [];
+
+        window.onload = function() {
+            const savedData = localStorage.getItem('tem_no_bairro_db');
+            if (savedData) {
+                try {
+                    businesses = JSON.parse(savedData);
+                } catch(e) {
+                    businesses = initialBusinesses;
+                }
+            } else {
+                businesses = initialBusinesses;
+                localStorage.setItem('tem_no_bairro_db', JSON.stringify(businesses));
+            }
+            renderBusinesses();
+        };
+
+        function renderBusinesses() {
+            const grid = document.getElementById('businessGrid');
+            const emptyState = document.getElementById('emptyState');
+            const searchVal = document.getElementById('searchInput').value.toLowerCase().trim();
+            const resultsCount = document.getElementById('resultsCount');
+
+            grid.innerHTML = '';
+
+            const filtered = businesses.filter(item => {
+                let matchesCategory = true;
+                if (currentCategory === 'Fundadores') {
+                    matchesCategory = item.isFounder === true;
+                } else if (currentCategory !== 'Todos') {
+                    matchesCategory = item.category === currentCategory;
+                }
+
+                const matchesSearch = item.name.toLowerCase().includes(searchVal) || 
+                                      item.description.toLowerCase().includes(searchVal) ||
+                                      item.category.toLowerCase().includes(searchVal) ||
+                                      item.address.toLowerCase().includes(searchVal);
+
+                return matchesCategory && matchesSearch;
+            });
+
+            resultsCount.textContent = `Mostrando ${filtered.length} ${filtered.length === 1 ? 'comércio' : 'comércios'}`;
+
+            if (filtered.length === 0) {
+                grid.classList.add('hidden');
+                emptyState.classList.remove('hidden');
+                return;
+            }
+
+            grid.classList.remove('hidden');
+            emptyState.classList.add('hidden');
+
+            filtered.forEach(item => {
+                const cleanPhone = item.phone.replace(/\D/g, '');
+                const waMessage = encodeURIComponent(`Olá, vi o seu anúncio no app TEM NO BAIRRO e gostaria de mais informações!`);
+                const whatsappUrl = `https://api.whatsapp.com/send?phone=55${cleanPhone}&text=${waMessage}`;
+                const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(item.name + ' ' + item.address)}`;
+
+                let imgUrl = item.image || 'https://images.unsplash.com/photo-1528698827591-e19ccd7bc23d?w=500&auto=format&fit=crop&q=80';
+
+                const cardHTML = `
+                    <div class="bg-white rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col overflow-hidden relative group">
+                        <div class="relative h-44 w-full bg-slate-100 overflow-hidden">
+                            <img src="${imgUrl}" alt="${item.name}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.src='https://images.unsplash.com/photo-1528698827591-e19ccd7bc23d?w=500&auto=format&fit=crop&q=80'">
+                            <span class="absolute top-3 left-3 bg-slate-900/80 backdrop-blur-md text-white text-[11px] font-medium px-2.5 py-1 rounded-lg shadow">
+                                ${item.category}
+                            </span>
+                            ${item.isFounder ? `
+                                <span class="absolute top-3 right-3 bg-amber-400 text-slate-950 text-[10px] font-extrabold px-2.5 py-1 rounded-full shadow flex items-center gap-1 uppercase tracking-wider">
+                                    <i class="fa-solid fa-star text-slate-950"></i> Fundador
+                                </span>
+                            ` : ''}
+                        </div>
+                        <div class="p-4 flex-grow flex flex-col justify-between">
+                            <div>
+                                <h3 class="text-base font-bold text-slate-900 leading-snug group-hover:text-brand-700 transition">
+                                    ${item.name}
+                                </h3>
+                                <p class="text-xs text-slate-600 mt-2 line-clamp-2 leading-relaxed">
+                                    ${item.description}
+                                </p>
+                                <div class="mt-4 pt-3 border-t border-slate-100 space-y-1.5 text-xs text-slate-500">
+                                    <div class="flex items-start gap-2">
+                                        <i class="fa-solid fa-location-dot text-brand-600 mt-0.5"></i>
+                                        <span class="line-clamp-1">${item.address}</span>
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                        <i class="fa-solid fa-clock text-slate-400"></i>
+                                        <span>${item.hours || 'Consulte horário via WhatsApp'}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-5 space-y-2">
+                                <a href="${whatsappUrl}" target="_blank" rel="noopener noreferrer" 
+                                   class="w-full bg-brand-500 hover:bg-brand-600 text-white font-bold py-2.5 px-4 rounded-xl shadow-sm hover:shadow text-xs sm:text-sm flex items-center justify-center gap-2 transition transform active:scale-95">
+                                    <i class="fa-brands fa-whatsapp text-lg"></i> Chamar no WhatsApp
+                                </a>
+                                <a href="${mapsUrl}" target="_blank" rel="noopener noreferrer"
+                                   class="w-full bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold py-2 px-3 rounded-xl text-xs flex items-center justify-center gap-1.5 transition">
+                                    <i class="fa-solid fa-map-location-dot text-slate-500"></i> Como Chegar
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                grid.innerHTML += cardHTML;
+            });
+        }
+
+        function selectCategory(categoryName) {
+            currentCategory = categoryName;
+            const buttons = document.querySelectorAll('.category-btn');
+            buttons.forEach(btn => {
+                if (btn.textContent.includes(categoryName) || (categoryName === 'Fundadores' && btn.textContent.includes('Fundadores'))) {
+                    btn.className = 'category-btn active bg-slate-900 text-white px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap shadow-sm transition';
+                } else {
+                    btn.className = 'category-btn bg-white text-slate-700 border border-slate-200 hover:bg-slate-100 px-4 py-2 rounded-xl text-xs sm:text-sm font-medium whitespace-nowrap shadow-sm transition';
+                }
+            });
+            renderBusinesses();
+        }
+
+        function filterBusinesses() {
+            const searchVal = document.getElementById('searchInput').value;
+            const clearBtn = document.getElementById('clearSearch');
+            if (searchVal.length > 0) {
+                clearBtn.classList.remove('hidden');
+            } else {
+                clearBtn.classList.add('hidden');
+            }
+            renderBusinesses();
+        }
+
+        function clearSearchInput() {
+            document.getElementById('searchInput').value = '';
+            document.getElementById('clearSearch').classList.add('hidden');
+            renderBusinesses();
+        }
+
+        function resetFilters() {
+            document.getElementById('searchInput').value = '';
+            document.getElementById('clearSearch').classList.add('hidden');
+            selectCategory('Todos');
+        }
+
+        function openModalWithPlan(planName) {
+            const planSelect = document.getElementById('formPlan');
+            if (planSelect) {
+                planSelect.value = planName;
+            }
+            const modal = document.getElementById('registerModal');
+            if (modal) {
+                modal.classList.remove('hidden');
+            }
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('registerModal');
+            if (modal) {
+                modal.classList.add('hidden');
+            }
+            const form = document.getElementById('addBusinessForm');
+            if (form) {
+                form.reset();
+            }
+        }
+
+        function openLgpdModal() {
+            document.getElementById('lgpdModal').classList.remove('hidden');
+        }
+
+        function closeLgpdModal() {
+            document.getElementById('lgpdModal').classList.add('hidden');
+        }
+
+        function openTermsModal() {
+            document.getElementById('termsModal').classList.remove('hidden');
+        }
+
+        function closeTermsModal() {
+            document.getElementById('termsModal').classList.add('hidden');
+        }
+
+        function openPaymentModal(businessName, selectedPlan) {
+            document.getElementById('registeredBusinessName').textContent = businessName;
+            document.getElementById('selectedPlanText').textContent = selectedPlan;
+            document.getElementById('selectedPlanBadge').textContent = selectedPlan.includes('Fundador') ? '⭐ Parceiro Fundador' : '🚀 Plano Selecionado';
+            
+            const adminPhone = "5585985838144";
+            const message = encodeURIComponent(`Olá! Acabei de cadastrar a minha loja "${businessName}" no plano (${selectedPlan}) no app TEM NO BAIRRO e aqui está o meu comprovante de pagamento via PIX!`);
+            document.getElementById('sendProofBtn').href = `https://api.whatsapp.com/send?phone=${adminPhone}&text=${message}`;
+
+            document.getElementById('paymentModal').classList.remove('hidden');
+        }
+
+        function closePaymentModal() {
+            document.getElementById('paymentModal').classList.add('hidden');
+            document.getElementById('copySuccessMsg').classList.add('hidden');
+        }
+
+        function copyPixKey() {
+            const pixInput = document.getElementById('pixKeyInput');
+            pixInput.select();
+            pixInput.setSelectionRange(0, 99999);
+            navigator.clipboard.writeText(pixInput.value);
+            document.getElementById('copySuccessMsg').classList.remove('hidden');
+        }
+
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            const plan = document.getElementById('formPlan').value;
+            const name = document.getElementById('formName').value;
+            const category = document.getElementById('formCategory').value;
+            const phone = document.getElementById('formPhone').value;
+            const social = document.getElementById('formSocial').value;
+            const address = document.getElementById('formAddress').value;
+            const hours = document.getElementById('formHours').value;
+            const description = document.getElementById('formDescription').value;
+            const image = document.getElementById('formImage').value;
+
+            const newBusiness = {
+                id: Date.now().toString(),
+                plan,
+                name,
+                category,
+                phone,
+                social,
+                address,
+                hours: hours || 'Horário a combinar',
+                description,
+                image: image || '',
+                isFounder: plan.includes('Fundador')
+            };
+
+            businesses.unshift(newBusiness);
+            localStorage.setItem('tem_no_bairro_db', JSON.stringify(businesses));
+            renderBusinesses();
+            closeModal();
+
+            openPaymentModal(name, plan);
+
+            // URL DO SEU WEBHOOK DO MAKE JÁ INTEGRADA:
+            const WEBHOOK_URL = "https://hook.eu1.make.com/c23pieioyxa22n3yagffdeoocqpwwax2";
+
+            fetch(WEBHOOK_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(newBusiness)
+            }).catch(error => console.error('Erro ao enviar para o Make:', error));
+        }
+    </script>
+</body>
+</html>
