@@ -59,14 +59,24 @@
                         <p class="text-[11px] sm:text-xs text-slate-300 font-medium">O seu comércio local a um clique de distância</p>
                     </div>
                 </div>
-                <button type="button" onclick="openModalWithPlan('Parceiro Fundador - R$ 24,99/mês')" class="sm:hidden bg-brand-500 hover:bg-brand-600 text-white font-semibold text-xs px-3 py-2 rounded-lg transition shadow-md flex items-center gap-1 cursor-pointer">
-                    <i class="fa-solid fa-plus"></i> Anunciar
+                <div class="flex items-center gap-2">
+                    <button type="button" onclick="openModalWithPlan('Parceiro Fundador - R$ 24,99/mês')" class="sm:hidden bg-brand-500 hover:bg-brand-600 text-white font-semibold text-xs px-3 py-2 rounded-lg transition shadow-md flex items-center gap-1 cursor-pointer">
+                        <i class="fa-solid fa-plus"></i> Anunciar
+                    </button>
+                    <button type="button" onclick="openAdminLoginModal()" class="bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white text-xs px-3 py-2 rounded-lg transition border border-slate-700 flex items-center gap-1 cursor-pointer" title="Painel Administrativo">
+                        <i class="fa-solid fa-lock"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="hidden sm:flex items-center gap-3">
+                <button type="button" onclick="openAdminLoginModal()" class="bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white text-xs px-3.5 py-2.5 rounded-xl transition border border-slate-700 flex items-center gap-1.5 cursor-pointer">
+                    <i class="fa-solid fa-lock text-brand-500"></i> Painel Admin
+                </button>
+                <button type="button" onclick="openModalWithPlan('Parceiro Fundador - R$ 24,99/mês')" class="flex items-center gap-2 bg-gradient-to-r from-brand-500 to-orange-600 hover:from-brand-600 hover:to-orange-700 text-white font-bold text-sm px-4 py-2.5 rounded-xl shadow-md transition transform hover:-translate-y-0.5 cursor-pointer">
+                    <i class="fa-solid fa-star text-amber-300"></i>
+                    Seja um Parceiro Fundador
                 </button>
             </div>
-            <button type="button" onclick="openModalWithPlan('Parceiro Fundador - R$ 24,99/mês')" class="hidden sm:flex items-center gap-2 bg-gradient-to-r from-brand-500 to-orange-600 hover:from-brand-600 hover:to-orange-700 text-white font-bold text-sm px-4 py-2.5 rounded-xl shadow-md transition transform hover:-translate-y-0.5 cursor-pointer">
-                <i class="fa-solid fa-star text-amber-300"></i>
-                Seja um Parceiro Fundador
-            </button>
         </div>
     </header>
 
@@ -281,6 +291,71 @@
         </div>
     </footer>
 
+    <!-- MODAL DE LOGIN ADMIN -->
+    <div id="adminLoginModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-sm w-full p-6 shadow-2xl relative border border-slate-100 space-y-4">
+            <button type="button" onclick="closeAdminLoginModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 bg-slate-100 p-2 rounded-full w-8 h-8 flex items-center justify-center transition cursor-pointer">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="text-center">
+                <div class="w-12 h-12 bg-navy-900 text-brand-500 rounded-full flex items-center justify-center mx-auto text-xl mb-2">
+                    <i class="fa-solid fa-lock"></i>
+                </div>
+                <h3 class="text-lg font-bold text-slate-900">Acesso Restrito</h3>
+                <p class="text-xs text-slate-500">Digite a senha do administrador</p>
+            </div>
+            <form onsubmit="handleAdminLogin(event)" class="space-y-3">
+                <input type="password" id="adminPassword" required placeholder="Senha de acesso" class="w-full px-3 py-2.5 border border-slate-300 rounded-xl text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none text-center">
+                <button type="submit" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-2.5 rounded-xl text-xs transition cursor-pointer">
+                    Entrar no Painel
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- PAINEL ADMINISTRATIVO (MODAL GRANDE) -->
+    <div id="adminPanelModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md z-50 hidden flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
+        <div class="bg-white rounded-3xl max-w-4xl w-full p-5 sm:p-8 shadow-2xl relative my-6 border border-slate-100 max-h-[90vh] flex flex-col">
+            <div class="flex items-center justify-between pb-4 border-b border-slate-200 mb-4">
+                <div class="flex items-center gap-2">
+                    <span class="bg-brand-500 text-white p-2 rounded-xl text-sm"><i class="fa-solid fa-sliders"></i></span>
+                    <div>
+                        <h3 class="text-lg font-extrabold text-slate-900">Painel de Controle Administrativo</h3>
+                        <p class="text-xs text-slate-500">Gerencie o status, aprovações e inadimplência dos parceiros</p>
+                    </div>
+                </div>
+                <button type="button" onclick="closeAdminPanel()" class="bg-slate-100 hover:bg-slate-200 text-slate-600 p-2.5 rounded-full w-9 h-9 flex items-center justify-center transition cursor-pointer">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <!-- TABELA DE GESTÃO -->
+            <div class="overflow-y-auto flex-grow pr-1">
+                <table class="w-full text-left border-collapse text-xs">
+                    <thead>
+                        <tr class="bg-slate-100 text-slate-700 uppercase tracking-wider text-[10px]">
+                            <th class="p-3 rounded-l-xl">Estabelecimento</th>
+                            <th class="p-3">Plano</th>
+                            <th class="p-3">WhatsApp</th>
+                            <th class="p-3 text-center">Status / Ação</th>
+                            <th class="p-3 text-right rounded-r-xl">Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody id="adminTableBody" class="divide-y divide-slate-100">
+                        <!-- Inserido via JS -->
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="pt-4 border-t border-slate-200 mt-4 flex justify-between items-center text-xs text-slate-500">
+                <span>Total de parceiros cadastrados: <strong id="adminTotalCount" class="text-slate-900">0</strong></span>
+                <button onclick="closeAdminPanel()" class="bg-slate-900 hover:bg-slate-800 text-white px-5 py-2.5 rounded-xl font-bold transition cursor-pointer">
+                    Fechar Painel
+                </button>
+            </div>
+        </div>
+    </div>
+
     <!-- MODAL DE CADASTRO COM SELEÇÃO DE PLANO -->
     <div id="registerModal" class="fixed inset-0 bg-slate-950/70 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4 overflow-y-auto">
         <div class="bg-white rounded-2xl max-w-lg w-full p-5 sm:p-6 shadow-2xl relative my-8 border border-slate-100">
@@ -308,4 +383,248 @@
 
                 <div>
                     <label class="block text-xs font-semibold text-slate-700 mb-1">Nome do Estabelecimento / Negócio *</label>
-                    <input type="text" id="formName" required placeholder="Ex: Padaria do João, Lanchonete Silva..." class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-brand-
+                    <input type="text" id="formName" required placeholder="Ex: Padaria do João, Lanchonete Silva..." class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none">
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-700 mb-1">Categoria *</label>
+                        <select id="formCategory" required class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none">
+                            <option value="">Selecione...</option>
+                            <option value="Alimentação">Alimentação</option>
+                            <option value="Serviços & Consertos">Serviços & Consertos</option>
+                            <option value="Saúde & Beleza">Saúde & Beleza</option>
+                            <option value="Pet Shop">Pet Shop</option>
+                            <option value="Lojas & Varejo">Lojas & Varejo</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-700 mb-1">WhatsApp de Atendimento *</label>
+                        <input type="tel" id="formPhone" required placeholder="(85) 92103-3841" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-slate-700 mb-1">Instagram ou Rede Social</label>
+                    <input type="text" id="formSocial" placeholder="Ex: @sabordavila_oficial" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none">
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-700 mb-1">Endereço no Bairro *</label>
+                        <input type="text" id="formAddress" required placeholder="Rua / Av., número ou referência" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-700 mb-1">Horário de Funcionamento</label>
+                        <input type="text" id="formHours" placeholder="Ex: Seg a Sáb, 07h às 19h" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-slate-700 mb-1">Descrição Curta do Produto / Serviço *</label>
+                    <textarea id="formDescription" required rows="2" placeholder="O que você vende? Ex: Pães artesanais, bolos por encomenda..." class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none"></textarea>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-slate-700 mb-1">URL de Imagem / Foto do Local (Opcional)</label>
+                    <input type="url" id="formImage" placeholder="https://..." class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none">
+                </div>
+
+                <div class="pt-2 flex justify-end gap-2">
+                    <button type="button" onclick="closeModal()" class="px-4 py-2 border border-slate-300 rounded-lg text-xs font-semibold text-slate-700 hover:bg-slate-100 transition cursor-pointer">
+                        Cancelar
+                    </button>
+                    <button type="submit" class="px-5 py-2 bg-brand-600 hover:bg-brand-700 text-white rounded-lg text-xs font-bold shadow-md transition flex items-center gap-1.5 cursor-pointer">
+                        <i class="fa-solid fa-check"></i> Concluir e Ir Para Pagamento
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL DE PARABÉNS & PAGAMENTO PIX -->
+    <div id="paymentModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md z-50 hidden flex items-center justify-center p-4 overflow-y-auto">
+        <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl relative my-8 border border-slate-100 text-center space-y-4">
+            
+            <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto text-2xl shadow-inner">
+                <i class="fa-solid fa-circle-check"></i>
+            </div>
+
+            <div>
+                <span id="selectedPlanBadge" class="bg-amber-100 text-amber-800 text-[10px] font-extrabold px-3 py-1 rounded-full uppercase tracking-wider">
+                    ⭐ Parceiro Fundador
+                </span>
+                <h3 class="text-xl font-extrabold text-slate-900 mt-2">Parabéns pelo Cadastro!</h3>
+                <p class="text-xs text-slate-600 mt-1">O seu estabelecimento <strong id="registeredBusinessName" class="text-brand-600"></strong> já foi registrado com sucesso!</p>
+            </div>
+
+            <div class="bg-slate-50 border border-slate-200/80 rounded-xl p-4 text-left space-y-3">
+                <div class="flex justify-between items-center text-xs">
+                    <span class="text-slate-500">Plano Escolhido:</span>
+                    <span id="selectedPlanText" class="font-bold text-slate-800">Parceiro Fundador</span>
+                </div>
+                <div class="border-t border-slate-200 pt-2 text-[11px] text-slate-500 leading-relaxed">
+                    <i class="fa-solid fa-lock text-slate-400 mr-1"></i> Zero comissões sobre suas vendas. Pagamento mensal via PIX.
+                </div>
+            </div>
+
+            <!-- CHAVE PIX (E-MAIL) PARA PAGAMENTO -->
+            <div class="space-y-2">
+                <label class="block text-xs font-bold text-slate-700 text-left">Chave PIX (E-mail):</label>
+                <div class="flex items-center gap-2">
+                    <input type="text" id="pixKeyInput" readonly value="temnobairro.pagamentos@gmail.com" class="w-full bg-slate-100 border border-slate-200 rounded-lg px-3 py-2 text-xs font-mono font-bold text-slate-800 focus:outline-none text-center">
+                    <button type="button" onclick="copyPixKey()" class="bg-slate-800 hover:bg-slate-900 text-white text-xs font-bold px-3 py-2 rounded-lg transition whitespace-nowrap flex items-center gap-1 cursor-pointer">
+                        <i class="fa-regular fa-copy"></i> Copiar
+                    </button>
+                </div>
+                <p id="copySuccessMsg" class="text-[11px] text-emerald-600 font-bold hidden"><i class="fa-solid fa-check"></i> Chave PIX copiada com sucesso!</p>
+            </div>
+
+            <div class="pt-2 space-y-2">
+                <a id="sendProofBtn" href="#" target="_blank" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 px-4 rounded-xl shadow-md text-xs sm:text-sm flex items-center justify-center gap-2 transition">
+                    <i class="fa-brands fa-whatsapp text-lg"></i> Enviar Comprovante no WhatsApp
+                </a>
+                <button type="button" onclick="closePaymentModal()" class="w-full bg-slate-100 hover:bg-slate-200 text-slate-600 text-xs font-semibold py-2 rounded-xl transition cursor-pointer">
+                    Concluir
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- MODAL DE PRIVACIDADE E LGPD -->
+    <div id="lgpdModal" class="fixed inset-0 bg-slate-950/70 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4 overflow-y-auto">
+        <div class="bg-white rounded-2xl max-w-2xl w-full p-6 shadow-2xl relative my-8 border border-slate-100 max-h-[85vh] flex flex-col">
+            <button type="button" onclick="closeLgpdModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 bg-slate-100 p-2 rounded-full w-8 h-8 flex items-center justify-center transition cursor-pointer">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="mb-4 pb-3 border-b border-slate-100">
+                <span class="bg-emerald-100 text-emerald-800 text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider flex items-center gap-1 w-fit">
+                    <i class="fa-solid fa-shield-halved"></i> Conforme Lei nº 13.709/2018 (LGPD)
+                </span>
+                <h3 class="text-lg font-bold text-slate-900 mt-2">Política de Privacidade & Proteção de Dados</h3>
+                <p class="text-xs text-slate-500">TEM NO BAIRRO — CNPJ 69.805.020/0001-36</p>
+            </div>
+            <div class="overflow-y-auto space-y-3 text-xs text-slate-600 pr-2 leading-relaxed">
+                <p><strong>1. TRATAMENTO DE DADOS E CONSENTIMENTO:</strong> Ao realizar o cadastro na plataforma TEM NO BAIRRO, o PARCEIRO autoriza o tratamento dos dados fornecidos estritamente para viabilizar a divulgação comercial e a prestação dos serviços contratados.</p>
+            </div>
+            <div class="pt-4 border-t border-slate-100 mt-4 flex justify-end">
+                <button type="button" onclick="closeLgpdModal()" class="px-5 py-2 bg-slate-900 hover:bg-slate-800 text-white rounded-xl text-xs font-bold transition cursor-pointer">Entendi e Concordo</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL DE TERMOS DE PARCERIA -->
+    <div id="termsModal" class="fixed inset-0 bg-slate-950/70 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4 overflow-y-auto">
+        <div class="bg-white rounded-2xl max-w-2xl w-full p-6 shadow-2xl relative my-8 border border-slate-100 max-h-[85vh] flex flex-col">
+            <button type="button" onclick="closeTermsModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 bg-slate-100 p-2 rounded-full w-8 h-8 flex items-center justify-center transition cursor-pointer">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="mb-4 pb-3 border-b border-slate-100">
+                <span class="bg-amber-100 text-amber-800 text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider flex items-center gap-1 w-fit">
+                    <i class="fa-solid fa-file-contract"></i> Contrato de Parceria Comercial
+                </span>
+                <h3 class="text-lg font-bold text-slate-900 mt-2">Termos de Promoção de Vendas</h3>
+                <p class="text-xs text-slate-500">TEM NO BAIRRO — CNPJ 69.805.020/0001-36</p>
+            </div>
+            <div class="overflow-y-auto space-y-3 text-xs text-slate-600 pr-2 leading-relaxed">
+                <p><strong>1. OBJETO DO SERVIÇO:</strong> Prestação de serviços de promoção de vendas e divulgação comercial de estabelecimentos na plataforma tecnológica TEM NO BAIRRO.</p>
+            </div>
+            <div class="pt-4 border-t border-slate-100 mt-4 flex justify-end">
+                <button type="button" onclick="closeTermsModal()" class="px-5 py-2 bg-slate-900 hover:bg-slate-800 text-white rounded-xl text-xs font-bold transition cursor-pointer">Fechar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        const initialBusinesses = [
+            {
+                id: '1',
+                name: 'Padaria & Confeitaria Sabor da Vila',
+                category: 'Alimentação',
+                phone: '85921033841',
+                social: '@sabordavila',
+                address: 'Rua Principal, 102 - Próximo à Praça',
+                hours: 'Seg a Dom: 06:00 - 20:00',
+                description: 'Pão quentinho a toda hora, bolos caseiros, tapiocas e salgados frescos.',
+                image: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?w=500&auto=format&fit=crop&q=80',
+                isFounder: true,
+                status: 'ativo' // status: 'ativo', 'pendente', 'inadimplente'
+            },
+            {
+                id: '2',
+                name: 'PetShop Amigo Fiel',
+                category: 'Pet Shop',
+                phone: '85921033841',
+                social: '@petshopamigofiel',
+                address: 'Av. do Contorno, 450',
+                hours: 'Seg a Sáb: 08:00 - 18:00',
+                description: 'Banho e tosa com tele-busca, rações premium, medicamentos e acessórios.',
+                image: 'https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?w=500&auto=format&fit=crop&q=80',
+                isFounder: true,
+                status: 'ativo'
+            },
+            {
+                id: '3',
+                name: 'Barbearia Estilo & Corte',
+                category: 'Saúde & Beleza',
+                phone: '85921033841',
+                social: '@estilocorte',
+                address: 'Rua das Flores, 88 - Sala B',
+                hours: 'Ter a Sáb: 09:00 - 19:30',
+                description: 'Cortes masculinos modernos, barba com toalha quente e atendimento com agendamento.',
+                image: 'https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=500&auto=format&fit=crop&q=80',
+                isFounder: true,
+                status: 'ativo'
+            }
+        ];
+
+        let currentCategory = 'Todos';
+        let businesses = [];
+
+        window.onload = function() {
+            const savedData = localStorage.getItem('tem_no_bairro_db');
+            if (savedData) {
+                try {
+                    businesses = JSON.parse(savedData);
+                    // Garantir que todos tenham a propriedade status
+                    businesses.forEach(b => { if(!b.status) b.status = 'ativo'; });
+                } catch(e) {
+                    businesses = initialBusinesses;
+                }
+            } else {
+                businesses = initialBusinesses;
+                localStorage.setItem('tem_no_bairro_db', JSON.stringify(businesses));
+            }
+            renderBusinesses();
+        };
+
+        function renderBusinesses() {
+            const grid = document.getElementById('businessGrid');
+            const emptyState = document.getElementById('emptyState');
+            const searchVal = document.getElementById('searchInput').value.toLowerCase().trim();
+            const resultsCount = document.getElementById('resultsCount');
+
+            grid.innerHTML = '';
+
+            // FILTRA APENAS OS COMÉRCIOS COM STATUS 'ATIVO' PARA O PÚBLICO
+            const filtered = businesses.filter(item => {
+                if (item.status !== 'ativo') return false;
+
+                let matchesCategory = true;
+                if (currentCategory === 'Fundadores') {
+                    matchesCategory = item.isFounder === true;
+                } else if (currentCategory !== 'Todos') {
+                    matchesCategory = item.category === currentCategory;
+                }
+
+                const matchesSearch = item.name.toLowerCase().includes(searchVal) || 
+                                    item.description.toLowerCase().includes(searchVal) ||
+                                    item.category.toLowerCase().includes(searchVal) ||
+                                    item.address.toLowerCase().includes(searchVal);
+
+                return matchesCategory && matchesSearch;
+            });
+
+            resultsCount.textContent = `Most
