@@ -891,4 +891,83 @@
             const qrCodeImg = document.getElementById('pixQRCodeImg');
 
             if (nameEl) nameEl.textContent = businessName;
-            if (planTextEl) planTextEl.
+            if (planTextEl) planTextEl.textContent = selectedPlan;
+            if (planBadgeEl) planBadgeEl.textContent = selectedPlan.includes('Fundador') ? '⭐ Parceiro Fundador' : '🚀 Plano Selecionado';
+            
+            // Geração automática do QR Code para a chave Pix de e-mail
+            const pixKey = "temnobairro.pagamentos@gmail.com";
+            if (qrCodeImg) {
+                qrCodeImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=${encodeURIComponent(pixKey)}`;
+            }
+
+            const adminPhone = "5585921033841";
+            const message = encodeURIComponent(`Olá! Acabei de cadastrar a minha loja "${businessName}" no plano (${selectedPlan}) no app TEM NO BAIRRO e aqui está o meu comprovante de pagamento via PIX!`);
+            if (sendProofBtn) sendProofBtn.href = `https://api.whatsapp.com/send?phone=${adminPhone}&text=${message}`;
+
+            if (paymentModal) paymentModal.classList.remove('hidden');
+        }
+
+        function closePaymentModal() {
+            const paymentModal = document.getElementById('paymentModal');
+            const copyMsg = document.getElementById('copySuccessMsg');
+            if (paymentModal) paymentModal.classList.add('hidden');
+            if (copyMsg) copyMsg.classList.add('hidden');
+        }
+
+        function copyPixKey() {
+            const pixInput = document.getElementById('pixKeyInput');
+            const copyMsg = document.getElementById('copySuccessMsg');
+            if (pixInput) {
+                pixInput.select();
+                pixInput.setSelectionRange(0, 99999);
+                navigator.clipboard.writeText(pixInput.value);
+            }
+            if (copyMsg) copyMsg.classList.remove('hidden');
+        }
+
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            const plan = document.getElementById('formPlan').value;
+            const name = document.getElementById('formName').value;
+            const category = document.getElementById('formCategory').value;
+            const phone = document.getElementById('formPhone').value;
+            const social = document.getElementById('formSocial').value;
+            const address = document.getElementById('formAddress').value;
+            const hours = document.getElementById('formHours').value;
+            const description = document.getElementById('formDescription').value;
+            const image = document.getElementById('formImage').value;
+
+            const newBusiness = {
+                id: Date.now().toString(),
+                plan,
+                name,
+                category,
+                phone,
+                social,
+                address,
+                hours: hours || 'Horário a combinar',
+                description,
+                image: image || '',
+                isFounder: plan.includes('Fundador'),
+                status: 'pendente'
+            };
+
+            businesses.unshift(newBusiness);
+            localStorage.setItem('tem_no_bairro_db', JSON.stringify(businesses));
+            renderBusinesses();
+            closeModal();
+
+            openPaymentModal(name, plan);
+
+            const WEBHOOK_URL = "https://hook.eu1.make.com/c23pieioyxa22n3yagffdeoocqpwwax2";
+
+            fetch(WEBHOOK_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(newBusiness)
+            }).catch(error => console.error('Erro ao enviar para o Make:', error));
+        }
+    </script>
+</body>
+</html>
