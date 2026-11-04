@@ -81,34 +81,35 @@
 
     <main class="max-w-6xl mx-auto px-4 py-6 flex-grow w-full space-y-8">
         
-        <!-- BANNER DE DESTAQUE -->
+        <!-- SEÇÃO DE BOAS-VINDAS PARA MORADORES E DESTAQUE -->
         <section class="bg-gradient-to-br from-navy-900 via-slate-900 to-navy-800 rounded-3xl p-6 sm:p-8 text-white shadow-xl border border-orange-500/20 relative overflow-hidden">
+            <div class="absolute -right-10 -bottom-10 w-64 h-64 bg-orange-500/10 rounded-full blur-3xl pointer-events-none"></div>
             <div class="relative z-10 max-w-2xl space-y-4">
-                <span class="bg-amber-400/20 text-amber-300 border border-amber-400/30 text-[10px] sm:text-xs font-extrabold px-3 py-1 rounded-full uppercase tracking-wider inline-flex items-center gap-1.5">
-                    <i class="fa-solid fa-fire text-amber-400"></i> Oportunidade Única • Vagas Limitadas
+                <span class="bg-brand-500/20 text-brand-400 border border-brand-500/30 text-[10px] sm:text-xs font-extrabold px-3 py-1 rounded-full uppercase tracking-wider inline-flex items-center gap-1.5">
+                    <i class="fa-solid fa-house-chimney text-brand-500"></i> Bem-vindo, Morador!
                 </span>
                 <h2 class="text-2xl sm:text-4xl font-extrabold tracking-tight leading-tight">
-                    Divulgue seu comércio para <span class="text-brand-500">milhares de vizinhos!</span>
+                    Encontre o comércio do seu bairro <span class="text-brand-500">direto no WhatsApp!</span>
                 </h2>
                 <p class="text-slate-300 text-xs sm:text-sm leading-relaxed">
-                    Conectamos o seu negócio diretamente com moradores da região via WhatsApp. Sem taxas por venda ou comissões abusivas. É lojista ou morador? Divulgue ou apoie quem está perto de você.
+                    Precisa de gás, pão fresquinho, ração ou prestador de serviço? Pesquise abaixo, chame no WhatsApp e compre de quem está perto de você sem sair de casa.
                 </p>
                 <div class="pt-2 flex flex-wrap gap-3">
-                    <button type="button" onclick="openModalWithPlan('Parceiro Fundador - R$ 39,90/mês')" class="bg-brand-500 hover:bg-brand-600 text-white font-bold text-xs sm:text-sm px-6 py-3.5 rounded-xl shadow-lg transition transform hover:scale-105 flex items-center gap-2 cursor-pointer">
-                        <i class="fa-solid fa-rocket"></i> Quero Anunciar Agora
-                    </button>
+                    <a href="#searchInput" class="bg-brand-500 hover:bg-brand-600 text-white font-bold text-xs sm:text-sm px-6 py-3.5 rounded-xl shadow-lg transition transform hover:scale-105 flex items-center gap-2">
+                        <i class="fa-solid fa-magnifying-glass"></i> Buscar Comércios Agora
+                    </a>
                     <button type="button" onclick="openIndicateModal()" class="bg-slate-800 hover:bg-slate-700 text-amber-300 font-semibold text-xs sm:text-sm px-5 py-3.5 rounded-xl transition flex items-center gap-2 border border-slate-700 cursor-pointer">
-                        <i class="fa-solid fa-gift"></i> Indicar uma Loja
+                        <i class="fa-solid fa-gift"></i> Indicar uma Loja Amiga
                     </button>
                 </div>
             </div>
         </section>
 
-        <!-- SEÇÃO DE PLANOS REFORMULADA -->
+        <!-- SEÇÃO DE PLANOS REFORMULADA (PARA LOJISTAS) -->
         <section id="secaoPlanos" class="space-y-6 pt-2">
             <div class="text-center max-w-xl mx-auto space-y-2">
-                <span class="bg-orange-100 text-brand-700 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Planos e Vantagens</span>
-                <h3 class="text-xl sm:text-3xl font-extrabold text-slate-900">Escolha o plano ideal para o seu negócio</h3>
+                <span class="bg-orange-100 text-brand-700 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Área do Lojista</span>
+                <h3 class="text-xl sm:text-3xl font-extrabold text-slate-900">Quer anunciar o seu negócio aqui?</h3>
                 <p class="text-xs sm:text-sm text-slate-500">Invista em visibilidade profissional e venda diretamente pelo WhatsApp.</p>
             </div>
 
