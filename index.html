@@ -859,4 +859,88 @@
             document.getElementById('addBusinessForm').reset();
         }
 
-        function openLgpdModal
+        function openLgpdModal() { document.getElementById('lgpdModal').classList.remove('hidden'); }
+        function closeLgpdModal() { document.getElementById('lgpdModal').classList.add('hidden'); }
+        function openTermsModal() { document.getElementById('termsModal').classList.remove('hidden'); }
+        function closeTermsModal() { document.getElementById('termsModal').classList.add('hidden'); }
+
+        function openPaymentModal(businessName, selectedPlan) {
+            document.getElementById('registeredBusinessName').textContent = businessName;
+            document.getElementById('selectedPlanText').textContent = selectedPlan;
+            document.getElementById('selectedPlanBadge').textContent = selectedPlan.includes('Fundador') ? '⭐ Parceiro Fundador' : '🚀 Plano Selecionado';
+            
+            const pixKey = "temnobairro.pagamentos@gmail.com";
+            document.getElementById('pixQRCodeImg').src = `https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=${encodeURIComponent(pixKey)}`;
+
+            const adminPhone = "5585921033841";
+            const message = encodeURIComponent(`Olá! Cadastrei a loja "${businessName}" no plano (${selectedPlan}) no TEM NO BAIRRO e envio o comprovante do PIX!`);
+            document.getElementById('sendProofBtn').href = `https://api.whatsapp.com/send?phone=${adminPhone}&text=${message}`;
+
+            document.getElementById('paymentModal').classList.remove('hidden');
+        }
+
+        function closePaymentModal() {
+            document.getElementById('paymentModal').classList.add('hidden');
+            document.getElementById('copySuccessMsg').classList.add('hidden');
+        }
+
+        function copyPixKey() {
+            const pixInput = document.getElementById('pixKeyInput');
+            pixInput.select();
+            pixInput.setSelectionRange(0, 99999);
+            navigator.clipboard.writeText(pixInput.value);
+            document.getElementById('copySuccessMsg').classList.remove('hidden');
+        }
+
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            const plan = document.getElementById('formPlan').value;
+            const name = document.getElementById('formName').value;
+            const category = document.getElementById('formCategory').value;
+            const phone = document.getElementById('formPhone').value;
+            const social = document.getElementById('formSocial').value;
+            const address = document.getElementById('formAddress').value;
+            const hours = document.getElementById('formHours').value;
+            const description = document.getElementById('formDescription').value;
+            const imageInput = document.getElementById('formImage').value;
+
+            let imagesArray = [];
+            if (imageInput.trim() !== '') {
+                imagesArray = imageInput.split(',').map(url => url.trim()).filter(url => url.length > 0);
+            }
+            if (imagesArray.length === 0) {
+                imagesArray = ['https://images.unsplash.com/photo-1528698827591-e19ccd7bc23d?w=500&auto=format&fit=crop&q=80'];
+            }
+
+            const newBusiness = {
+                id: Date.now().toString(),
+                plan,
+                name,
+                category,
+                phone,
+                social,
+                address,
+                hours: hours || 'Horário a combinar',
+                description,
+                images: imagesArray,
+                isFounder: plan.includes('Fundador'),
+                status: 'pendente'
+            };
+
+            businesses.unshift(newBusiness);
+            localStorage.setItem('tem_no_bairro_db', JSON.stringify(businesses));
+            renderBusinesses();
+            closeModal();
+            openPaymentModal(name, plan);
+
+            const WEBHOOK_URL = "https://hook.eu1.make.com/lhg3fim6auara4f4h7puy7isby3rlevn";
+            fetch(WEBHOOK_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(newBusiness)
+            }).catch(error => console.error('Erro ao enviar para o Make:', error));
+        }
+    </script>
+</body>
+</html>
