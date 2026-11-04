@@ -65,6 +65,9 @@
                 </div>
             </div>
             <div class="hidden sm:flex items-center gap-3">
+                <button type="button" onclick="openIndicateModal()" class="bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-500/40 text-xs px-3.5 py-2.5 rounded-xl transition flex items-center gap-1.5 cursor-pointer font-semibold">
+                    <i class="fa-solid fa-gift"></i> Indicar Comércio
+                </button>
                 <button type="button" onclick="openAdminLoginModal()" class="bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white text-xs px-3.5 py-2.5 rounded-xl transition border border-slate-700 flex items-center gap-1.5 cursor-pointer">
                     <i class="fa-solid fa-lock text-brand-500"></i> Painel Admin
                 </button>
@@ -77,6 +80,8 @@
     </header>
 
     <main class="max-w-6xl mx-auto px-4 py-6 flex-grow w-full space-y-8">
+        
+        <!-- BANNER DE PROVA SOCIAL -->
         <section class="bg-gradient-to-br from-navy-900 via-slate-900 to-navy-800 rounded-3xl p-6 sm:p-8 text-white shadow-xl border border-orange-500/20 relative overflow-hidden">
             <div class="relative z-10 max-w-2xl space-y-4">
                 <span class="bg-amber-400/20 text-amber-300 border border-amber-400/30 text-[10px] sm:text-xs font-extrabold px-3 py-1 rounded-full uppercase tracking-wider inline-flex items-center gap-1.5">
@@ -92,13 +97,14 @@
                     <button type="button" onclick="openModalWithPlan('Parceiro Fundador - R$ 24,99/mês')" class="bg-brand-500 hover:bg-brand-600 text-white font-bold text-xs sm:text-sm px-6 py-3.5 rounded-xl shadow-lg transition transform hover:scale-105 flex items-center gap-2 cursor-pointer">
                         <i class="fa-solid fa-rocket"></i> Quero Anunciar Agora
                     </button>
-                    <a href="#secaoPlanos" class="bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold text-xs sm:text-sm px-5 py-3.5 rounded-xl transition flex items-center gap-2 border border-slate-700">
-                        Ver Planos <i class="fa-solid fa-arrow-down"></i>
-                    </a>
+                    <button type="button" onclick="openIndicateModal()" class="bg-slate-800 hover:bg-slate-700 text-amber-300 font-semibold text-xs sm:text-sm px-5 py-3.5 rounded-xl transition flex items-center gap-2 border border-slate-700 cursor-pointer">
+                        <i class="fa-solid fa-gift"></i> Indicar uma Loja
+                    </button>
                 </div>
             </div>
         </section>
 
+        <!-- SEÇÃO DE PLANOS -->
         <section id="secaoPlanos" class="space-y-6 pt-2">
             <div class="text-center max-w-xl mx-auto space-y-2">
                 <span class="bg-orange-100 text-brand-700 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Planos e Vantagens</span>
@@ -244,6 +250,8 @@
             <div class="flex flex-wrap justify-center items-center gap-4 py-2 text-slate-300 font-medium">
                 <a href="https://instagram.com/temnobairro_oficial" target="_blank" class="hover:text-brand-500 transition flex items-center gap-1.5"><i class="fa-brands fa-instagram text-base"></i> @temnobairro_oficial</a>
                 <span class="text-slate-700">•</span>
+                <button type="button" onclick="openIndicateModal()" class="hover:text-amber-400 transition flex items-center gap-1.5 cursor-pointer text-amber-300 font-semibold"><i class="fa-solid fa-gift text-base"></i> Indicar Comércio</button>
+                <span class="text-slate-700">•</span>
                 <button type="button" onclick="openLgpdModal()" class="hover:text-brand-500 transition flex items-center gap-1.5 cursor-pointer"><i class="fa-solid fa-shield-halved text-base text-emerald-500"></i> Privacidade & LGPD</button>
                 <span class="text-slate-700">•</span>
                 <button type="button" onclick="openTermsModal()" class="hover:text-brand-500 transition flex items-center gap-1.5 cursor-pointer"><i class="fa-solid fa-file-contract text-base text-amber-500"></i> Termos de Parceria</button>
@@ -318,6 +326,45 @@
                     Fechar Painel
                 </button>
             </div>
+        </div>
+    </div>
+
+    <!-- MODAL INDICAR COMÉRCIO -->
+    <div id="indicateModal" class="fixed inset-0 bg-slate-950/70 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4 overflow-y-auto">
+        <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl relative my-8 border border-slate-100 space-y-4">
+            <button type="button" onclick="closeIndicateModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 bg-slate-100 p-2 rounded-full w-8 h-8 flex items-center justify-center transition cursor-pointer">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="text-center space-y-1">
+                <span class="bg-amber-100 text-amber-800 text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider">
+                    <i class="fa-solid fa-gift text-amber-600"></i> Indique um Vizinho
+                </span>
+                <h3 class="text-xl font-bold text-slate-900 pt-1">Indicar Comércio Local</h3>
+                <p class="text-xs text-slate-500">Conhece uma lojinha, mercadinho ou prestador de serviço que deveria estar no app? Indique para nós!</p>
+            </div>
+            <form onsubmit="handleIndicateSubmit(event)" class="space-y-3 pt-2">
+                <div>
+                    <label class="block text-xs font-semibold text-slate-700 mb-1">Nome do Estabelecimento *</label>
+                    <input type="text" id="indStoreName" required placeholder="Ex: Mercearia do Bairro" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-amber-500 focus:outline-none">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-slate-700 mb-1">O que vende ou qual o serviço? *</label>
+                    <input type="text" id="indStoreDesc" required placeholder="Ex: Verdura fresca, gás, ração..." class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-amber-500 focus:outline-none">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-slate-700 mb-1">Endereço ou Ponto de Referência</label>
+                    <input type="text" id="indStoreAddress" placeholder="Ex: Próximo à rua 10" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-amber-500 focus:outline-none">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-slate-700 mb-1">Seu Nome (Morador que indicou)</label>
+                    <input type="text" id="indUserName" placeholder="Opcional" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-amber-500 focus:outline-none">
+                </div>
+                <div class="pt-2">
+                    <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 rounded-xl text-xs sm:text-sm shadow-md transition flex items-center justify-center gap-2 cursor-pointer">
+                        <i class="fa-brands fa-whatsapp text-lg"></i> Enviar Indicação no WhatsApp
+                    </button>
+                </div>
+            </form>
         </div>
     </div>
 
@@ -639,6 +686,30 @@
                 `;
                 grid.innerHTML += cardHTML;
             });
+        }
+
+        // Funções do Modal de Indicação
+        function openIndicateModal() {
+            document.getElementById('indicateModal').classList.remove('hidden');
+        }
+        function closeIndicateModal() {
+            document.getElementById('indicateModal').classList.add('hidden');
+        }
+        function handleIndicateSubmit(event) {
+            event.preventDefault();
+            const storeName = document.getElementById('indStoreName').value;
+            const storeDesc = document.getElementById('indStoreDesc').value;
+            const storeAddress = document.getElementById('indStoreAddress').value;
+            const userName = document.getElementById('indUserName').value;
+
+            const adminPhone = "5585921033841";
+            let msg = `Olá! Quero indicar um comércio para o app TEM NO BAIRRO:\n\n🏪 *Loja:* ${storeName}\n🛍️ *O que vende:* ${storeDesc}`;
+            if(storeAddress) msg += `\n📍 *Endereço/Ref:* ${storeAddress}`;
+            if(userName) msg += `\n👤 *Indicado por:* ${userName}`;
+
+            const encodedMsg = encodeURIComponent(msg);
+            window.open(`https://api.whatsapp.com/send?phone=${adminPhone}&text=${encodedMsg}`, '_blank');
+            closeIndicateModal();
         }
 
         function openAdminLoginModal() {
