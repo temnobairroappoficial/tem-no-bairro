@@ -81,6 +81,7 @@
 
     <main class="max-w-6xl mx-auto px-4 py-6 flex-grow w-full space-y-8">
         
+        <!-- BANNER DE DESTAQUE / VALOR PARA LOJISTAS E MORADORES -->
         <section class="bg-gradient-to-br from-navy-900 via-slate-900 to-navy-800 rounded-3xl p-6 sm:p-8 text-white shadow-xl border border-orange-500/20 relative overflow-hidden">
             <div class="relative z-10 max-w-2xl space-y-4">
                 <span class="bg-amber-400/20 text-amber-300 border border-amber-400/30 text-[10px] sm:text-xs font-extrabold px-3 py-1 rounded-full uppercase tracking-wider inline-flex items-center gap-1.5">
@@ -90,7 +91,7 @@
                     Divulgue seu comércio para <span class="text-brand-500">milhares de vizinhos!</span>
                 </h2>
                 <p class="text-slate-300 text-xs sm:text-sm leading-relaxed">
-                    Conectamos o seu negócio diretamente com moradores da região via WhatsApp. Sem taxas por venda ou comissões abusivas.
+                    Conectamos o seu negócio diretamente com moradores da região via WhatsApp. Sem taxas por venda ou comissões abusivas. É lojista ou morador? Divulgue ou apoie quem está perto de você.
                 </p>
                 <div class="pt-2 flex flex-wrap gap-3">
                     <button type="button" onclick="openModalWithPlan('Parceiro Fundador - R$ 24,99/mês')" class="bg-brand-500 hover:bg-brand-600 text-white font-bold text-xs sm:text-sm px-6 py-3.5 rounded-xl shadow-lg transition transform hover:scale-105 flex items-center gap-2 cursor-pointer">
@@ -103,6 +104,7 @@
             </div>
         </section>
 
+        <!-- SEÇÃO DE PLANOS -->
         <section id="secaoPlanos" class="space-y-6 pt-2">
             <div class="text-center max-w-xl mx-auto space-y-2">
                 <span class="bg-orange-100 text-brand-700 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Planos e Vantagens</span>
@@ -125,7 +127,7 @@
                             <span class="text-xs text-slate-500 font-medium">/mês (preço travado)</span>
                         </div>
                         <ul class="space-y-2.5 text-xs text-slate-600">
-                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Ficha completa no site (várias fotos)</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Ficha completa com galeria de fotos</li>
                             <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> 1 Post mensal no Instagram</li>
                             <li class="flex items-center gap-2 font-bold text-slate-900"><i class="fa-solid fa-star text-amber-500"></i> Selo "Parceiro Fundador"</li>
                             <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Zero comissão sobre vendas</li>
@@ -183,6 +185,7 @@
             </div>
         </section>
 
+        <!-- BUSCA E FILTROS -->
         <section class="space-y-4 pt-6 border-t border-slate-200">
             <div class="relative">
                 <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"></i>
@@ -377,7 +380,7 @@
                     <i class="fa-solid fa-star"></i> Cadastro de Parceiro
                 </span>
                 <h3 class="text-xl font-bold text-slate-900 mt-2">Cadastrar Meu Negócio</h3>
-                <p class="text-xs text-slate-500 mt-1">Preencha os dados e confirme o seu plano.</p>
+                <p class="text-xs text-slate-500 mt-1">Preencha os dados essenciais e confirme o seu plano.</p>
             </div>
             <form id="addBusinessForm" onsubmit="handleFormSubmit(event)" class="space-y-4">
                 <div>
@@ -405,32 +408,32 @@
                         </select>
                     </div>
                     <div>
-                        <label class="block text-xs font-semibold text-slate-700 mb-1">WhatsApp *</label>
+                        <label class="block text-xs font-semibold text-slate-700 mb-1">WhatsApp de Atendimento *</label>
                         <input type="tel" id="formPhone" required placeholder="(85) 92103-3841" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none">
                     </div>
                 </div>
                 <div>
-                    <label class="block text-xs font-semibold text-slate-700 mb-1">Instagram</label>
+                    <label class="block text-xs font-semibold text-slate-700 mb-1">Instagram (Opcional)</label>
                     <input type="text" id="formSocial" placeholder="Ex: @sabordavila" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none">
                 </div>
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div>
-                        <label class="block text-xs font-semibold text-slate-700 mb-1">Endereço *</label>
+                        <label class="block text-xs font-semibold text-slate-700 mb-1">Endereço no Bairro *</label>
                         <input type="text" id="formAddress" required placeholder="Rua / Av., número" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none">
                     </div>
                     <div>
-                        <label class="block text-xs font-semibold text-slate-700 mb-1">Horário</label>
+                        <label class="block text-xs font-semibold text-slate-700 mb-1">Horário (Opcional)</label>
                         <input type="text" id="formHours" placeholder="Ex: Seg a Sáb, 07h às 19h" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none">
                     </div>
                 </div>
                 <div>
-                    <label class="block text-xs font-semibold text-slate-700 mb-1">Descrição Curta *</label>
-                    <textarea id="formDescription" required rows="2" placeholder="O que você vende?" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none"></textarea>
+                    <label class="block text-xs font-semibold text-slate-700 mb-1">Descrição Curta do Negócio *</label>
+                    <textarea id="formDescription" required rows="2" placeholder="O que sua loja vende ou oferece?" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none"></textarea>
                 </div>
                 <div>
                     <label class="block text-xs font-semibold text-slate-700 mb-1">URLs das Fotos (Cole uma ou mais separadas por vírgula)</label>
                     <input type="text" id="formImage" placeholder="https://foto1.jpg, https://foto2.jpg" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none">
-                    <p class="text-[10px] text-slate-500 mt-1">Dica: Insira links diretos de imagens (terminados em .jpg ou .png).</p>
+                    <p class="text-[10px] text-slate-500 mt-1">Dica: Use links diretos válidos (terminados em .jpg ou .png).</p>
                 </div>
                 <div class="pt-2 flex justify-end gap-2">
                     <button type="button" onclick="closeModal()" class="px-4 py-2 border border-slate-300 rounded-lg text-xs font-semibold text-slate-700 hover:bg-slate-100 transition cursor-pointer">
@@ -456,7 +459,7 @@
             <div>
                 <span id="selectedPlanBadge" class="bg-amber-100 text-amber-800 text-[10px] font-extrabold px-3 py-1 rounded-full uppercase tracking-wider">⭐ Parceiro Fundador</span>
                 <h3 class="text-xl font-extrabold text-slate-900 mt-2">Parabéns pelo Cadastro!</h3>
-                <p class="text-xs text-slate-600 mt-1">O seu estabelecimento <strong id="registeredBusinessName" class="text-brand-600"></strong> foi registrado!</p>
+                <p class="text-xs text-slate-600 mt-1">O seu estabelecimento <strong id="registeredBusinessName" class="text-brand-600"></strong> foi registrado com sucesso!</p>
             </div>
             <div class="bg-slate-50 border border-slate-200/80 rounded-xl p-4 text-left space-y-2">
                 <div class="flex justify-between items-center text-xs">
@@ -640,7 +643,6 @@
                 const whatsappUrl = `https://api.whatsapp.com/send?phone=55${cleanPhone}&text=${waMessage}`;
                 const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(item.name + ' ' + item.address)}`;
 
-                // Processar array de imagens
                 let imgList = item.images && item.images.length > 0 ? item.images : (item.image ? [item.image] : ['https://images.unsplash.com/photo-1528698827591-e19ccd7bc23d?w=500&auto=format&fit=crop&q=80']);
 
                 let imagesHtml = '';
@@ -703,7 +705,6 @@
             });
         }
 
-        // Funções do Modal de Indicação
         function openIndicateModal() {
             document.getElementById('indicateModal').classList.remove('hidden');
         }
@@ -902,7 +903,6 @@
             const description = document.getElementById('formDescription').value;
             const imageInput = document.getElementById('formImage').value;
 
-            // Converter links separados por vírgula em um array de imagens
             let imagesArray = [];
             if (imageInput.trim() !== '') {
                 imagesArray = imageInput.split(',').map(url => url.trim()).filter(url => url.length > 0);
