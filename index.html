@@ -474,7 +474,8 @@
             <div class="bg-slate-50 border border-slate-200/80 rounded-2xl p-4 flex flex-col items-center space-y-2">
                 <span class="text-xs font-bold text-slate-700"><i class="fa-solid fa-qrcode text-brand-500"></i> Escaneie o QR Code:</span>
                 <div class="bg-white p-2 rounded-xl shadow-sm border border-slate-200 inline-block">
-                    <img src="qrcode-pix.png" alt="QR Code Pix" class="w-40 h-40 object-contain mx-auto">
+                    <!-- Atualizado para o formato .jpg correto -->
+                    <img src="qrcode-pix.jpg" alt="QR Code Pix" class="w-40 h-40 object-contain mx-auto">
                 </div>
             </div>
             <div class="space-y-1.5 text-left">
@@ -618,9 +619,9 @@
                 }
 
                 const matchesSearch = item.name.toLowerCase().includes(searchVal) || 
-                                    item.description.toLowerCase().includes(searchVal) ||
-                                    item.category.toLowerCase().includes(searchVal) ||
-                                    item.address.toLowerCase().includes(searchVal);
+                                      item.description.toLowerCase().includes(searchVal) ||
+                                      item.category.toLowerCase().includes(searchVal) ||
+                                      item.address.toLowerCase().includes(searchVal);
 
                 return matchesCategory && matchesSearch;
             });
