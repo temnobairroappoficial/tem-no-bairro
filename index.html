@@ -448,7 +448,7 @@
         </div>
     </div>
 
-    <!-- MODAL PAGAMENTO PIX -->
+    <!-- MODAL PAGAMENTO PIX ESTÁTICO ATUALIZADO -->
     <div id="paymentModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md z-50 hidden flex items-center justify-center p-4 overflow-y-auto">
         <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl relative my-8 border border-slate-100 text-center space-y-4">
             <button type="button" onclick="closePaymentModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 bg-slate-100 p-2 rounded-full w-8 h-8 flex items-center justify-center transition cursor-pointer">
@@ -468,24 +468,24 @@
                     <span id="selectedPlanText" class="font-bold text-slate-800">Parceiro Fundador</span>
                 </div>
                 <div class="border-t border-slate-200 pt-2 text-[11px] text-slate-500 leading-relaxed">
-                    <i class="fa-solid fa-lock text-slate-400 mr-1"></i> Zero comissões sobre suas vendas. Pagamento mensal via Pix.
+                    <i class="fa-solid fa-lock text-slate-400 mr-1"></i> Zero comissões sobre suas vendas. Pagamento via Pix.
                 </div>
             </div>
             <div class="bg-slate-50 border border-slate-200/80 rounded-2xl p-4 flex flex-col items-center space-y-2">
                 <span class="text-xs font-bold text-slate-700"><i class="fa-solid fa-qrcode text-brand-500"></i> Escaneie o QR Code:</span>
                 <div class="bg-white p-2 rounded-xl shadow-sm border border-slate-200 inline-block">
-                    <img id="pixQRCodeImg" src="" alt="QR Code Pix" class="w-36 h-36 object-contain mx-auto">
+                    <img src="qrcode-pix.png" alt="QR Code Pix" class="w-40 h-40 object-contain mx-auto">
                 </div>
             </div>
             <div class="space-y-1.5 text-left">
-                <label class="block text-xs font-bold text-slate-700">Ou copie a Chave Pix (E-mail):</label>
+                <label class="block text-xs font-bold text-slate-700">Ou copie o Pix Copia e Cola:</label>
                 <div class="flex items-center gap-2">
-                    <input type="text" id="pixKeyInput" readonly value="temnobairro.pagamentos@gmail.com" class="w-full bg-slate-100 border border-slate-200 rounded-lg px-3 py-2 text-xs font-mono font-bold text-slate-800 focus:outline-none text-center">
+                    <input type="text" id="pixKeyInput" readonly value="00020126540014br.gov.bcb.pix0132temnobairro.pagamentos@gmail.com5204000053039865802BR592569805020 JOSE ROBINSON DA6009MARACANAU622605221zJiOv46YYsAL6xVdM7Yvs6304E062" class="w-full bg-slate-100 border border-slate-200 rounded-lg px-3 py-2 text-[10px] font-mono text-slate-800 focus:outline-none select-all">
                     <button type="button" onclick="copyPixKey()" class="bg-slate-800 hover:bg-slate-900 text-white text-xs font-bold px-3 py-2 rounded-lg transition whitespace-nowrap flex items-center gap-1 cursor-pointer">
                         <i class="fa-regular fa-copy"></i> Copiar
                     </button>
                 </div>
-                <p id="copySuccessMsg" class="text-[11px] text-emerald-600 font-bold hidden text-center"><i class="fa-solid fa-check"></i> Chave Pix copiada!</p>
+                <p id="copySuccessMsg" class="text-[11px] text-emerald-600 font-bold hidden text-center"><i class="fa-solid fa-check"></i> Código Pix copiado com sucesso!</p>
             </div>
             <div class="pt-2">
                 <a id="sendProofBtn" href="#" target="_blank" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 px-4 rounded-xl shadow-md text-xs sm:text-sm flex items-center justify-center gap-2 transition">
@@ -868,9 +868,6 @@
             document.getElementById('registeredBusinessName').textContent = businessName;
             document.getElementById('selectedPlanText').textContent = selectedPlan;
             document.getElementById('selectedPlanBadge').textContent = selectedPlan.includes('Fundador') ? '⭐ Parceiro Fundador' : '🚀 Plano Selecionado';
-            
-            const pixKey = "temnobairro.pagamentos@gmail.com";
-            document.getElementById('pixQRCodeImg').src = `https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=${encodeURIComponent(pixKey)}`;
 
             const adminPhone = "5585921033841";
             const message = encodeURIComponent(`Olá! Cadastrei a loja "${businessName}" no plano (${selectedPlan}) no TEM NO BAIRRO e envio o comprovante do PIX!`);
