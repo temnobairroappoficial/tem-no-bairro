@@ -636,7 +636,7 @@
             });
 
             if (resultsCount) {
-                resultsCount.textContent = `Mostrando ${filtered.length}${filtered.length === 1 ? 'comércio' : 'comércios'}`;
+                resultsCount.textContent = `Mostrando ${filtered.length} ${filtered.length === 1 ? 'comércio' : 'comércios'}`;
             }
 
             if (filtered.length === 0) {
@@ -651,7 +651,8 @@
             filtered.forEach(item => {
                 const cleanPhone = item.phone.replace(/\D/g, '');
                 const waMessage = encodeURIComponent(`Olá, vi o seu anúncio no app TEM NO BAIRRO e gostaria de mais informações!`);
-                const whatsappUrl = `https://api.whatsapp.com/send?phone=55${cleanPhone}&text=${waMessage}`; const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(item.name + ' ' + item.address)}`;
+                const whatsappUrl = `https://api.whatsapp.com/send?phone=55${cleanPhone}&text=${waMessage}`;
+                const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(item.name + ' ' + item.address)}`;
 
                 let imgList = item.images && item.images.length > 0 ? item.images : (item.image ? [item.image] : ['https://images.unsplash.com/photo-1528698827591-e19ccd7bc23d?w=500&auto=format&fit=crop&q=80']);
 
@@ -729,4 +730,239 @@
             const userName = document.getElementById('indUserName').value;
 
             const adminPhone = "5585921033841";
-            let msg = `Olá! Quero indicar um comércio para o app TEM NO BAIRRO:\n\n
+            let msg = `Olá! Quero indicar um comércio para o app TEM NO BAIRRO:\n\n🏪 *Loja:* ${storeName}\n🛍️ *O que vende:* ${storeDesc}`;
+            if(storeAddress) msg += `\n📍 *Endereço/Ref:* ${storeAddress}`;
+            if(userName) msg += `\n👤 *Indicado por:* ${userName}`;
+
+            const encodedMsg = encodeURIComponent(msg);
+            window.open(`https://api.whatsapp.com/send?phone=${adminPhone}&text=${encodedMsg}`, '_blank');
+            closeIndicateModal();
+        }
+
+        function openAdminLoginModal() {
+            document.getElementById('adminLoginModal').classList.remove('hidden');
+        }
+        function closeAdminLoginModal() {
+            document.getElementById('adminLoginModal').classList.add('hidden');
+            document.getElementById('adminPassword').value = '';
+        }
+        function handleAdminLogin(event) {
+            event.preventDefault();
+            const pass = document.getElementById('adminPassword').value;
+            if (pass === 'admin123') {
+                closeAdminLoginModal();
+                openAdminPanel();
+            } else {
+                alert('Senha incorreta!');
+            }
+        }
+        function openAdminPanel() {
+            renderAdminTable();
+            document.getElementById('adminPanelModal').classList.remove('hidden');
+        }
+        function closeAdminPanel() {
+            document.getElementById('adminPanelModal').classList.add('hidden');
+            renderBusinesses();
+        }
+        function renderAdminTable() {
+            const tbody = document.getElementById('adminTableBody');
+            const totalCount = document.getElementById('adminTotalCount');
+            if (!tbody) return;
+
+            totalCount.textContent = businesses.length;
+            tbody.innerHTML = '';
+
+            if (businesses.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="5" class="p-6 text-center text-slate-400">Nenhum parceiro cadastrado.</td></tr>`;
+                return;
+            }
+
+            businesses.forEach((item, index) => {
+                let badgeClass = 'bg-yellow-100 text-yellow-800';
+                if (item.status === 'ativo') badgeClass = 'bg-emerald-100 text-emerald-800';
+                if (item.status === 'inadimplente') badgeClass = 'bg-red-100 text-red-800';
+
+                const row = `
+                    <tr class="hover:bg-slate-50 transition">
+                        <td class="p-3">
+                            <div class="font-bold text-slate-900">${item.name}</div>
+                            <div class="text-[10px] text-slate-400">${item.category} • ${item.address}</div>
+                        </td>
+                        <td class="p-3 text-slate-600 font-medium">${item.plan || 'Plano Padrão'}</td>
+                        <td class="p-3 text-slate-600 font-mono">${item.phone}</td>
+                        <td class="p-3 text-center">
+                            <select onchange="updateBusinessStatus(${index}, this.value)" class="text-xs font-bold px-2.5 py-1.5 rounded-lg border border-slate-200 ${badgeClass} cursor-pointer focus:outline-none">
+                                <option value="pendente" ${item.status === 'pendente' ? 'selected' : ''}>⏳ Pendente</option>
+                                <option value="ativo" ${item.status === 'ativo' ? 'selected' : ''}>✅ Ativo</option>
+                                <option value="inadimplente" ${item.status === 'inadimplente' ? 'selected' : ''}>❌ Inadimplente</option>
+                            </select>
+                        </td>
+                        <td class="p-3 text-right">
+                            <button onclick="deleteBusiness(${index})" class="bg-red-50 hover:bg-red-100 text-red-600 p-2 rounded-lg transition" title="Excluir">
+                                <i class="fa-solid fa-trash-can"></i>
+                            </button>
+                        </td>
+                    </tr>
+                `;
+                tbody.innerHTML += row;
+            });
+        }
+        function updateBusinessStatus(index, newStatus) {
+            businesses[index].status = newStatus;
+            localStorage.setItem('tem_no_bairro_db', JSON.stringify(businesses));
+            renderAdminTable();
+        }
+        function deleteBusiness(index) {
+            if (confirm('Deseja realmente remover este parceiro?')) {
+                businesses.splice(index, 1);
+                localStorage.setItem('tem_no_bairro_db', JSON.stringify(businesses));
+                renderAdminTable();
+            }
+        }
+
+        function selectCategory(categoryName) {
+            currentCategory = categoryName;
+            const buttons = document.querySelectorAll('.category-btn');
+            buttons.forEach(btn => {
+                if (btn.textContent.includes(categoryName) || (categoryName === 'Fundadores' && btn.textContent.includes('Fundadores'))) {
+                    btn.className = 'category-btn active bg-slate-900 text-white px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap shadow-sm transition';
+                } else {
+                    btn.className = 'category-btn bg-white text-slate-700 border border-slate-200 hover:bg-slate-100 px-4 py-2 rounded-xl text-xs sm:text-sm font-medium whitespace-nowrap shadow-sm transition';
+                }
+            });
+            renderBusinesses();
+        }
+
+        function filterBusinesses() {
+            const searchInputEl = document.getElementById('searchInput');
+            const clearBtn = document.getElementById('clearSearch');
+            const searchVal = searchInputEl ? searchInputEl.value : '';
+            if (clearBtn) {
+                if (searchVal.length > 0) {
+                    clearBtn.classList.remove('hidden');
+                } else {
+                    clearBtn.classList.add('hidden');
+                }
+            }
+            renderBusinesses();
+        }
+
+        function clearSearchInput() {
+            document.getElementById('searchInput').value = '';
+            document.getElementById('clearSearch').classList.add('hidden');
+            renderBusinesses();
+        }
+
+        function resetFilters() {
+            document.getElementById('searchInput').value = '';
+            document.getElementById('clearSearch').classList.add('hidden');
+            selectCategory('Todos');
+        }
+
+        function openModalWithPlan(planName) {
+            document.getElementById('formPlan').value = planName;
+            document.getElementById('registerModal').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('registerModal').classList.add('hidden');
+            document.getElementById('addBusinessForm').reset();
+        }
+
+        function openLgpdModal() { document.getElementById('lgpdModal').classList.remove('hidden'); }
+        function closeLgpdModal() { document.getElementById('lgpdModal').classList.add('hidden'); }
+        function openTermsModal() { document.getElementById('termsModal').classList.remove('hidden'); }
+        function closeTermsModal() { document.getElementById('termsModal').classList.add('hidden'); }
+
+        function openPaymentModal(businessName, selectedPlan) {
+            document.getElementById('registeredBusinessName').textContent = businessName;
+            document.getElementById('selectedPlanText').textContent = selectedPlan;
+            document.getElementById('selectedPlanBadge').textContent = selectedPlan.includes('Fundador') ? '⭐ Parceiro Fundador' : '🚀 Plano Selecionado';
+
+            const adminPhone = "5585921033841";
+            const message = encodeURIComponent(`Olá! Cadastrei a loja "${businessName}" no plano (${selectedPlan}) no TEM NO BAIRRO e envio o comprovante do PIX!`);
+            document.getElementById('sendProofBtn').href = `https://api.whatsapp.com/send?phone=${adminPhone}&text=${message}`;
+
+            document.getElementById('paymentModal').classList.remove('hidden');
+        }
+
+        function closePaymentModal() {
+            document.getElementById('paymentModal').classList.add('hidden');
+            document.getElementById('copySuccessMsg').classList.add('hidden');
+        }
+
+        function copyPixKey() {
+            const pixInput = document.getElementById('pixKeyInput');
+            pixInput.select();
+            pixInput.setSelectionRange(0, 99999);
+            navigator.clipboard.writeText(pixInput.value);
+            document.getElementById('copySuccessMsg').classList.remove('hidden');
+        }
+
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            const plan = document.getElementById('formPlan').value;
+            const name = document.getElementById('formName').value;
+            const category = document.getElementById('formCategory').value;
+            const phone = document.getElementById('formPhone').value;
+            const social = document.getElementById('formSocial').value;
+            const address = document.getElementById('formAddress').value;
+            const hours = document.getElementById('formHours').value;
+            const description = document.getElementById('formDescription').value;
+            const imageInput = document.getElementById('formImage').value;
+
+            let imagesArray = [];
+            if (imageInput.trim() !== '') {
+                imagesArray = imageInput.split(',').map(url => url.trim()).filter(url => url.length > 0);
+            }
+            if (imagesArray.length === 0) {
+                imagesArray = ['https://images.unsplash.com/photo-1528698827591-e19ccd7bc23d?w=500&auto=format&fit=crop&q=80'];
+            }
+
+            const newBusiness = {
+                id: Date.now().toString(),
+                plan,
+                name,
+                category,
+                phone,
+                social,
+                address,
+                hours: hours || 'Horário a combinar',
+                description,
+                images: imagesArray,
+                isFounder: plan.includes('Fundador'),
+                status: 'pendente'
+            };
+
+            businesses.unshift(newBusiness);
+            localStorage.setItem('tem_no_bairro_db', JSON.stringify(businesses));
+            renderBusinesses();
+            closeModal();
+            openPaymentModal(name, plan);
+
+            const WEBHOOK_URL = "https://hook.eu1.make.com/lhg3fim6auara4f4h7puy7isby3rlevn";
+            fetch(WEBHOOK_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(newBusiness)
+            }).catch(error => console.error('Erro ao enviar para o Make:', error));
+        }
+    </script>
+
+    <!-- INICIALIZAÇÃO E REGISTRO DO SERVICE WORKER (PWA) -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+                navigator.serviceWorker.register('service-worker.js')
+                    .then(function(reg) {
+                        console.log('Service Worker registrado com sucesso para o Aplicativo!', reg);
+                    })
+                    .catch(function(err) {
+                        console.log('Falha ao registrar o Service Worker do Aplicativo:', err);
+                    });
+            });
+        }
+    </script>
+</body>
+</html>
