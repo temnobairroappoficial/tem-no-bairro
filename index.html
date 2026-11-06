@@ -940,10 +940,12 @@
             closeModal();
             openPaymentModal(name, plan);
 
-            const WEBHOOK_URL = "https://hook.eu1.make.com/lhg3fim6auara4f4h7puy7isby3rlevn";
-            fetch(WEBHOOK_URL, {
-                method: 'POST',
-                mode: 'no-cors',
+   fetch(WEBHOOK_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(newBusiness)
+}).catch(error => console.error('Erro ao enviar para o Make:', error));
+
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(newBusiness)
             }).catch(error => console.error('Erro ao enviar para o Make:', error));
