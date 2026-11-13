@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagamento e Confirmação - TEM NO BAIRRO</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>body { font-family: 'Inter', sans-serif; }</style>
+</head>
+<body class="bg-slate-900 text-slate-100 min-h-screen flex items-center justify-center p-4">
+
+    <div class="bg-white text-slate-900 rounded-3xl max-w-md w-full p-6 sm:p-8 shadow-2xl relative border border-slate-100 text-center space-y-6">
+        
+        <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto text-2xl shadow-inner">
+            <i class="fa-solid fa-circle-check"></i>
+        </div>
+
+        <div>
+            <span class="bg-amber-100 text-amber-800 text-[10px] font-extrabold px-3 py-1 rounded-full uppercase tracking-wider">⭐ Cadastro Realizado com Sucesso!</span>
+            <h1 class="text-2xl font-extrabold text-slate-900 mt-3">Ative sua Vitrine Digital</h1>
+            <p class="text-xs text-slate-600 mt-1">Falta apenas a confirmação da sua contribuição via Pix para o seu negócio aparecer em destaque no <strong>Tem No Bairro</strong>.</p>
+        </div>
+
+        <div class="bg-slate-50 border border-slate-200/80 rounded-2xl p-4 flex flex-col items-center space-y-2">
+            <span class="text-xs font-bold text-slate-700"><i class="fa-solid fa-qrcode text-orange-500"></i> Escaneie o QR Code Pix:</span>
+            <div class="bg-white p-2 rounded-xl shadow-sm border border-slate-200 inline-block">
+                <img src="qrcode-pix.jpg" alt="QR Code Pix" class="w-44 h-44 object-contain mx-auto" onerror="this.src='https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=300&auto=format&fit=crop&q=80'">
+            </div>
+        </div>
+
+        <div class="space-y-1.5 text-left">
+            <label class="block text-xs font-bold text-slate-700">Chave Pix (CNPJ):</label>
+            <div class="flex items-center gap-2">
+                <input type="text" id="pixKeyInput" readonly value="69805020000136" class="w-full bg-slate-100 border border-slate-200 rounded-lg px-3 py-2 text-xs font-mono font-bold text-slate-800 focus:outline-none select-all text-center">
+                <button type="button" onclick="copyPixKey()" class="bg-slate-800 hover:bg-slate-900 text-white text-xs font-bold px-3 py-2 rounded-lg transition whitespace-nowrap flex items-center gap-1 cursor-pointer">
+                    <i class="fa-regular fa-copy"></i> Copiar
+                </button>
+            </div>
+            <p id="copySuccessMsg" class="text-[11px] text-emerald-600 font-bold hidden text-center"><i class="fa-solid fa-check"></i> Chave Pix copiada com sucesso!</p>
+        </div>
+
+        <div class="pt-2 space-y-3">
+            <a href="https://wa.me/5585921033841?text=Pronto!%20Meu%20cadastro%20foi%20feito%20e%20estou%20enviando%20o%20comprovante%20do%20Pix!" target="_blank" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3.5 px-4 rounded-xl shadow-md text-xs sm:text-sm flex items-center justify-center gap-2 transition">
+                <i class="fa-brands fa-whatsapp text-lg"></i> Enviar Comprovante no WhatsApp
+            </a>
+            <a href="index.html" class="block text-xs text-slate-500 hover:text-slate-800 font-medium underline">
+                Voltar para a página inicial
+            </a>
+        </div>
+
+    </div>
+
+    <script>
+        function copyPixKey() {
+            const pixInput = document.getElementById('pixKeyInput');
+            pixInput.select();
+            pixInput.setSelectionRange(0, 99999);
+            navigator.clipboard.writeText(pixInput.value);
+            document.getElementById('copySuccessMsg').classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>
