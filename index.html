@@ -584,6 +584,19 @@
     <script>
         const initialBusinesses = [
             {
+                id: 'delicias-deli-1',
+                name: 'Delícias da Deli',
+                category: 'Alimentação',
+                phone: '85921033841',
+                social: '@deliciasdadeli',
+                address: 'Maracanaú - CE',
+                hours: 'Sáb e Dom: 11:00 - 15:00',
+                description: 'Pratinho caseiro e pratos tradicionais nos finais de semana.',
+                images: ['deli-foto.png'],
+                isFounder: true,
+                status: 'ativo'
+            },
+            {
                 id: '1',
                 name: 'Padaria & Confeitaria Sabor da Vila',
                 category: 'Alimentação',
@@ -632,6 +645,10 @@
             if (savedData) {
                 try {
                     businesses = JSON.parse(savedData);
+                    // Força a atualização da Delícias da Deli caso o usuário já tenha dados salvos sem ela
+                    if (!businesses.some(b => b.name === 'Delícias da Deli')) {
+                        businesses.unshift(initialBusinesses[0]);
+                    }
                     businesses.forEach(b => {
                         if(!b.status) b.status = 'ativo';
                         if(!b.images && b.image) b.images = [b.image];
