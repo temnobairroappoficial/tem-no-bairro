@@ -661,7 +661,7 @@
         </div>
     </div>
 
-    <!-- SCRIPTS E LÓGICA DO SITE COM MAPA DIRETO -->
+    <!-- SCRIPTS E LÓGICA DO SITE COM CHAVE V2 (LIMPEZA DE CACHE) -->
     <script>
         const initialBusinesses = [
             {
@@ -672,7 +672,7 @@
                 social: '@deliciasdadeli',
                 address: 'Rua 57, 222, Jereissati II, Maracanaú',
                 hours: 'Sex a Dom: 19h às 22h',
-                mapsUrl: '', // Cole aqui o link exato do Google Maps da Deli quando tiver
+                mapsUrl: '',
                 description: 'PRATINHOS CASEIROS, CANUDÃO, BOLOS, SOBREMESAS E MUITO MAIS FEITOS COM CARINHO PARA VOCÊ!',
                 images: ['deli-foto.png', 'foto-pratos.jpeg', 'foto-sobremesas.jpeg'],
                 isFounder: true,
@@ -709,9 +709,6 @@
                         businesses.unshift(initialBusinesses[0]);
                     } else {
                         businesses[deliIndex].images = ['deli-foto.png', 'foto-pratos.jpeg', 'foto-sobremesas.jpeg'];
-                        if(!businesses[deliIndex].address.includes('Rua 57')) {
-                            businesses[deliIndex].address = 'Rua 57, 222, Jereissati II, Maracanaú';
-                        }
                     }
                     businesses.forEach(b => {
                         if(!b.status) b.status = 'ativo';
@@ -775,7 +772,6 @@
                 const waMessage = encodeURIComponent(`Olá, vi o seu anúncio no app TEM NO BAIRRO e gostaria de mais informações!`);
                 const whatsappUrl = `https://api.whatsapp.com/send?phone=55${cleanPhone}&text=${waMessage}`;
                 
-                // Usa o link personalizado do Maps se houver; caso contrário, faz a busca pelo nome + endereço
                 const mapsUrl = item.mapsUrl && item.mapsUrl.trim() !== '' 
                     ? item.mapsUrl.trim() 
                     : `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(item.name + ' ' + item.address)}`;
@@ -833,7 +829,6 @@
             });
         }
 
-        // FUNÇÕES DO MODAL DE DETALHES E CARROSSEL
         function openDetailModal(id) {
             const item = businesses.find(b => b.id === id);
             if (!item) return;
@@ -977,7 +972,7 @@
                 businesses[index].images = imgsVal.split(',').map(s => s.trim()).filter(s => s.length > 0);
             }
 
-            localStorage.setItem('tem_no_bairro_db', JSON.stringify(businesses));
+            localStorage.setItem('tem_no_bairro_db_v2', JSON.stringify(businesses));
             closeEditModal();
             renderBusinesses();
         }
@@ -985,7 +980,7 @@
         function deleteBusiness(index) {
             if (confirm('Deseja realmente remover este parceiro?')) {
                 businesses.splice(index, 1);
-                localStorage.setItem('tem_no_bairro_db', JSON.stringify(businesses));
+                localStorage.setItem('tem_no_bairro_db_v2', JSON.stringify(businesses));
                 renderAdminTable();
             }
         }
@@ -1032,7 +1027,7 @@
                 status: 'ativo'
             };
             businesses.unshift(newBusiness);
-            localStorage.setItem('tem_no_bairro_db', JSON.stringify(businesses));
+            localStorage.setItem('tem_no_bairro_db_v2', JSON.stringify(businesses));
             renderBusinesses();
             closeModal();
         }
