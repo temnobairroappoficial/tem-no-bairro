@@ -700,7 +700,7 @@
         let currentImageIndex = 0;
 
         window.onload = function() {
-            const savedData = localStorage.getItem('tem_no_bairro_db');
+            const savedData = localStorage.getItem('tem_no_bairro_db_v2');
             if (savedData) {
                 try {
                     businesses = JSON.parse(savedData);
@@ -723,7 +723,7 @@
                 }
             } else {
                 businesses = initialBusinesses;
-                localStorage.setItem('tem_no_bairro_db', JSON.stringify(businesses));
+                localStorage.setItem('tem_no_bairro_db_v2', JSON.stringify(businesses));
             }
             renderBusinesses();
         };
