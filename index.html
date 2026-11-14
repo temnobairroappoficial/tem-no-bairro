@@ -297,20 +297,27 @@
        <i class="fa-brands fa-whatsapp text-xl"></i> Falar com o Fundador
     </a>
 
-    <!-- RODAPÉ -->
+    <!-- RODAPÉ COMPLETO COM TERMOS E LGPD -->
     <footer class="bg-slate-900 text-slate-400 text-xs py-10 border-t border-slate-800 mt-12">
-        <div class="max-w-6xl mx-auto px-4 text-center space-y-4">
+        <div class="max-w-6xl mx-auto px-4 text-center space-y-5">
             <div class="flex items-center justify-center gap-2 text-white font-bold text-lg">
                 <i class="fa-solid fa-store text-brand-500"></i> TEM NO BAIRRO
             </div>
             <p class="max-w-xl mx-auto text-slate-400 leading-relaxed">
                 Iniciativa de apoio e fortalecimento da economia comunitária em Maracanaú, Pacatuba e Maranguape - CE.
             </p>
+            
+            <!-- LINKS ÚTEIS / TERMOS E LGPD -->
             <div class="flex flex-wrap justify-center items-center gap-4 py-2 text-slate-300 font-medium">
                 <a href="https://instagram.com/temnobairro_oficial" target="_blank" class="hover:text-brand-500 transition flex items-center gap-1.5"><i class="fa-brands fa-instagram text-base"></i> @temnobairro_oficial</a>
                 <span class="text-slate-700">•</span>
                 <button type="button" onclick="openIndicateModal()" class="hover:text-amber-400 transition flex items-center gap-1.5 cursor-pointer text-amber-300 font-semibold"><i class="fa-solid fa-gift text-base"></i> Indicar Comércio</button>
+                <span class="text-slate-700">•</span>
+                <button type="button" onclick="openTermsModal()" class="hover:text-white transition cursor-pointer underline">Termos de Uso</button>
+                <span class="text-slate-700">•</span>
+                <button type="button" onclick="openPrivacyModal()" class="hover:text-white transition cursor-pointer underline">Política de Privacidade (LGPD)</button>
             </div>
+
             <div class="bg-slate-950/60 rounded-xl p-4 max-w-2xl mx-auto border border-slate-800/80 text-[11px] text-slate-400 space-y-1.5 text-center sm:text-left">
                 <div class="flex items-center gap-2 justify-center sm:justify-start font-semibold text-slate-300">
                     <i class="fa-solid fa-building text-brand-500"></i>
@@ -320,6 +327,49 @@
             </div>
         </div>
     </footer>
+
+    <!-- MODAL: TERMOS DE USO -->
+    <div id="termsModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md z-50 hidden flex items-center justify-center p-4 overflow-y-auto">
+        <div class="bg-white rounded-3xl max-w-2xl w-full p-6 sm:p-8 shadow-2xl relative my-8 border border-slate-100 text-left space-y-4 max-h-[85vh] flex flex-col">
+            <button type="button" onclick="closeTermsModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 bg-slate-100 p-2 rounded-full w-8 h-8 flex items-center justify-center transition cursor-pointer">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="flex items-center gap-2 border-b pb-3">
+                <i class="fa-solid fa-file-contract text-brand-500 text-xl"></i>
+                <h3 class="text-lg font-bold text-slate-900">Termos e Condições de Uso</h3>
+            </div>
+            <div class="overflow-y-auto pr-2 space-y-3 text-xs text-slate-600 leading-relaxed flex-grow">
+                <p><strong>1. Visão Geral:</strong> O diretório <strong>Tem No Bairro</strong> (CNPJ 69.805.020/0001-36) atua exclusivamente como uma plataforma de conexão digital entre moradores e comércios locais nas regiões de Maracanaú, Pacatuba e Maranguape.</p>
+                <p><strong>2. Relação Comercial:</strong> A plataforma não realiza cobranças de comissão sobre vendas, não intermedeia entregas e não se responsabiliza por transações financeiras realizadas diretamente entre o cliente e o lojista via WhatsApp ou Pix.</p>
+                <p><strong>3. Responsabilidade do Lojista:</strong> É de total responsabilidade do estabelecimento parceiro a veracidade das informações cadastradas (preços, horários, disponibilidade de produtos e atendimento).</p>
+            </div>
+            <div class="pt-3 border-t text-right">
+                <button onclick="closeTermsModal()" class="bg-slate-900 hover:bg-slate-800 text-white font-bold px-5 py-2.5 rounded-xl text-xs transition cursor-pointer">Entendido</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL: POLÍTICA DE PRIVACIDADE / LGPD -->
+    <div id="privacyModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md z-50 hidden flex items-center justify-center p-4 overflow-y-auto">
+        <div class="bg-white rounded-3xl max-w-2xl w-full p-6 sm:p-8 shadow-2xl relative my-8 border border-slate-100 text-left space-y-4 max-h-[85vh] flex flex-col">
+            <button type="button" onclick="closePrivacyModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 bg-slate-100 p-2 rounded-full w-8 h-8 flex items-center justify-center transition cursor-pointer">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="flex items-center gap-2 border-b pb-3">
+                <i class="fa-solid fa-shield-halved text-brand-500 text-xl"></i>
+                <h3 class="text-lg font-bold text-slate-900">Política de Privacidade e LGPD</h3>
+            </div>
+            <div class="overflow-y-auto pr-2 space-y-3 text-xs text-slate-600 leading-relaxed flex-grow">
+                <p><strong>1. Compromisso com a Privacidade:</strong> Em conformidade com a Lei Geral de Proteção de Dados (LGPD - Lei nº 13.709/2018), o <strong>Tem No Bairro</strong> preza pela transparência e segurança no tratamento das informações fornecidas por lojistas e usuários.</p>
+                <p><strong>2. Coleta de Dados:</strong> Coletamos apenas os dados essenciais fornecidos voluntariamente no cadastro (como nome do estabelecimento, telefone/WhatsApp, endereço comercial e categoria) estritamente para exibição na vitrine digital e facilitação do contato direto via WhatsApp.</p>
+                <p><strong>3. Compartilhamento:</strong> Os dados de contato exibidos são públicos para o propósito de fomento ao comércio local. Nenhuma informação de lojistas ou clientes é comercializada ou repassada a terceiros.</p>
+                <p><strong>4. Solicitações e Atualizações:</strong> O lojista parceiro pode solicitar a atualização, correção ou exclusão de seus dados a qualquer momento entrando em contato diretamente com a administração da plataforma.</p>
+            </div>
+            <div class="pt-3 border-t text-right">
+                <button onclick="closePrivacyModal()" class="bg-slate-900 hover:bg-slate-800 text-white font-bold px-5 py-2.5 rounded-xl text-xs transition cursor-pointer">Fechar</button>
+            </div>
+        </div>
+    </div>
 
     <!-- MODAL ADMIN LOGIN -->
     <div id="adminLoginModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
@@ -834,6 +884,12 @@
         function closeModal() { document.getElementById('registerModal').classList.add('hidden'); }
         function openIndicateModal() { document.getElementById('indicateModal').classList.remove('hidden'); }
         function closeIndicateModal() { document.getElementById('indicateModal').classList.add('hidden'); }
+        
+        // Funções para os modais de Termos e Privacidade (LGPD)
+        function openTermsModal() { document.getElementById('termsModal').classList.remove('hidden'); }
+        function closeTermsModal() { document.getElementById('termsModal').classList.add('hidden'); }
+        function openPrivacyModal() { document.getElementById('privacyModal').classList.remove('hidden'); }
+        function closePrivacyModal() { document.getElementById('privacyModal').classList.add('hidden'); }
 
         function handleFormSubmit(event) {
             event.preventDefault();
