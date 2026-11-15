@@ -143,7 +143,7 @@
                 </div>
                 <div>
                     <h3 class="font-bold text-sm">Economia Comunitária</h3>
-                    <p class="text-xs text-orange-100 mt-0.5 leading-relaxed">Valorizando os comércios de Maracanaú, Pacatuba e Maranguape[cite: 6].</p>
+                    <p class="text-xs text-orange-100 mt-0.5 leading-relaxed">Valorizando os comércios de Maracanaú, Pacatuba e Maranguape.</p>
                 </div>
             </div>
 
@@ -687,15 +687,16 @@
                     <button type="button" onclick="closeModal()" class="px-4 py-2 border border-slate-300 rounded-lg text-xs font-semibold text-slate-700 hover:bg-slate-100 transition cursor-pointer">
                         Cancelar
                     </button>
+                    <!-- Agora direciona diretamente para o formulário oficial unificado no Tally.so -->
                     <button type="submit" class="px-5 py-2 bg-brand-600 hover:bg-brand-700 text-white rounded-lg text-xs font-bold shadow-md transition flex items-center gap-1.5 cursor-pointer">
-                        <i class="fa-solid fa-check"></i> Concluir e Ir para Pagamento
+                        <i class="fa-solid fa-check"></i> Concluir e Cadastrar no Sistema
                     </button>
                 </div>
             </form>
         </div>
     </div>
 
-    <!-- SCRIPTS E LÓGICA DO SITE COM PERSISTÊNCIA TOTAL (VERSÃO 12) -->
+    <!-- SCRIPTS E LÓGICA DO SITE COM INTEGRAÇÃO TALLY (VERSÃO 13) -->
     <script>
         const defaultBusinesses = [
             {
@@ -776,7 +777,7 @@
         let currentImageIndex = 0;
 
         window.onload = function() {
-            const savedData = localStorage.getItem('tem_no_bairro_db_v12');
+            const savedData = localStorage.getItem('tem_no_bairro_db_v13');
             
             if (savedData !== null) {
                 try {
@@ -786,7 +787,7 @@
                 }
             } else {
                 businesses = defaultBusinesses;
-                localStorage.setItem('tem_no_bairro_db_v12', JSON.stringify(businesses));
+                localStorage.setItem('tem_no_bairro_db_v13', JSON.stringify(businesses));
             }
 
             renderBusinesses();
@@ -1040,7 +1041,7 @@
                 businesses[index].images = imgsVal.split(',').map(s => s.trim()).filter(s => s.length > 0);
             }
 
-            localStorage.setItem('tem_no_bairro_db_v12', JSON.stringify(businesses));
+            localStorage.setItem('tem_no_bairro_db_v13', JSON.stringify(businesses));
             
             alert('Alterações salvas com sucesso!');
             closeEditModal();
@@ -1050,7 +1051,7 @@
         function deleteBusiness(index) {
             if (confirm('Deseja realmente remover este parceiro?')) {
                 businesses.splice(index, 1);
-                localStorage.setItem('tem_no_bairro_db_v12', JSON.stringify(businesses));
+                localStorage.setItem('tem_no_bairro_db_v13', JSON.stringify(businesses));
                 renderAdminTable();
             }
         }
@@ -1094,31 +1095,9 @@
         function handleFormSubmit(event) {
             event.preventDefault();
             
-            // Foto padrão genérica de fachada comercial para novos cadastros
-            const defaultStoreImage = 'https://images.unsplash.com/photo-1528698827591-e19ccd7bc23d?w=500&auto=format&fit=crop&q=80';
-
-            const newBusiness = {
-                id: Date.now().toString(),
-                name: document.getElementById('formName').value,
-                category: document.getElementById('formCategory').value,
-                phone: document.getElementById('formPhone').value,
-                social: document.getElementById('formSocial').value,
-                address: document.getElementById('formAddress').value,
-                hours: document.getElementById('formHours').value || 'Horário a combinar',
-                mapsUrl: document.getElementById('formMapsUrl').value.trim(),
-                description: document.getElementById('formDescription').value,
-                plan: document.getElementById('formPlan').value,
-                images: [defaultStoreImage],
-                isFounder: true,
-                status: 'ativo'
-            };
-            businesses.unshift(newBusiness);
-            localStorage.setItem('tem_no_bairro_db_v12', JSON.stringify(businesses));
-            renderBusinesses();
-            closeModal();
-            
-            // Redireciona o lojista diretamente para a sua página de pagamento Pix / Sucesso
-            window.location.href = 'sucesso.html';
+            // Redireciona diretamente para o seu formulário oficial unificado no Tally.so
+            // Assim os dados vão direto para o Google Sheets central e o WhatsApp do Whatabot
+            window.location.href = 'https://tally.so/r/SEU-LINK-DO-TALLY';
         }
     </script>
 </body>
