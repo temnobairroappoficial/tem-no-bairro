@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TEM NO BARRIRRO - O seu comércio local a um clique de distância</title>
-
-    <!-- PWA Manifest e Configurações Mobile -->
+    <title>TEM NO BAIRRO - O seu comércio local a um clique de distância</title>
+    
+    <!-- CONEXÃO COM O MANIFEST DO APLICATIVO (PWA) -->
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#F97316">
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -13,18 +13,13 @@
     <meta name="apple-mobile-web-app-title" content="Tem No Bairro">
     <link rel="apple-touch-icon" href="icone-192.png">
 
-    <!-- Tailwind CSS e Ícones -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
     <script>
         tailwind.config = {
             theme: {
                 extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    },
                     colors: {
                         brand: {
                             50: '#fff7ed',
@@ -34,122 +29,1051 @@
                             700: '#c2410c',
                             800: '#9a3412',
                             900: '#7c2d12',
+                        },
+                        navy: {
+                            800: '#1e293b',
+                            900: '#0f172a',
                         }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
                     }
                 }
             }
         }
     </script>
-</head>
-<body class="bg-slate-950 text-slate-100 font-sans antialiased min-h-screen flex flex-col justify-between">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
-    <!-- Cabeçalho Principal -->
-    <header class="w-full bg-slate-900 border-b border-slate-800 sticky top-0 z-50 shadow-md">
-        <div class="max-w-6xl mx-auto px-4 py-3 flex flex-wrap justify-between items-center gap-4">
-            <div class="flex items-center space-x-3">
-                <div class="bg-brand-500 p-2 rounded-xl text-white shadow-lg shadow-brand-500/30">
-                    <i class="fa-solid fa-store text-xl"></i>
+        .parceiro-capa {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            background-color: #fff7ed;
+            border-top-left-radius: 1rem;
+            border-top-right-radius: 1rem;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col">
+
+    <!-- HEADER / TOPO -->
+    <header class="bg-gradient-to-r from-navy-900 via-slate-900 to-navy-800 text-white shadow-md border-b border-orange-500/30 sticky top-0 z-30">
+        <div class="max-w-6xl mx-auto px-4 py-3 sm:py-4 flex flex-col sm:flex-row items-center justify-between gap-3">
+            <div class="flex items-center gap-3 w-full sm:w-auto justify-between">
+                <div class="flex items-center gap-3">
+                    <div class="w-11 h-11 rounded-xl overflow-hidden shadow-lg border border-orange-400/40 bg-slate-800 flex items-center justify-center flex-shrink-0">
+                        <img src="https://i.ibb.co/d0VJkxkv/temnobairr.png" alt="Mascote Tem No Bairro" class="w-full h-full object-cover">
+                    </div>
+                    <div>
+                        <h1 class="text-xl sm:text-2xl font-black tracking-tight flex items-center gap-1.5 text-white">
+                            TEM NO <span class="text-brand-500">BAIRRO</span>
+                        </h1>
+                        <p class="text-[11px] sm:text-xs text-slate-300 font-medium">O seu comércio local a um clique de distância</p>
+                    </div>
                 </div>
-                <div>
-                    <h1 class="text-lg font-bold tracking-tight text-white flex items-center gap-2">
-                        TEM NO BAIRRO
-                    </h1>
-                    <p class="text-xs text-slate-400">O seu comércio local a um clique de distância</p>
+                <div class="flex items-center gap-2">
+                    <a href="https://tally.so/r/VpjbRy" target="_blank" class="sm:hidden bg-brand-500 hover:bg-brand-600 text-white font-semibold text-xs px-3 py-2 rounded-lg transition shadow-md flex items-center gap-1 cursor-pointer">
+                        <i class="fa-solid fa-plus"></i> Anunciar
+                    </a>
+                    <button type="button" onclick="openAdminLoginModal()" class="bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white text-xs px-3 py-2 rounded-lg transition border border-slate-700 flex items-center gap-1 cursor-pointer" title="Painel Administrativo">
+                        <i class="fa-solid fa-lock"></i>
+                    </button>
                 </div>
             </div>
-            
-            <div class="flex items-center gap-3">
-                <a href="https://wa.me/5585921033841?text=Olá!%20Gostaria%20de%20indicar%20um%20comércio%20para%20o%20Tem%20No%20Bairro." target="_blank" class="inline-flex items-center gap-2 text-xs font-medium bg-slate-800 hover:bg-slate-700 text-slate-200 px-3 py-2 rounded-lg border border-slate-700 transition-colors">
-                    <i class="fa-solid fa-bullhorn text-brand-500"></i> Indicar Comércio
-                </a>
-                <a href="https://wa.me/5585921033841?text=Olá!%20Quero%20saber%20mais%20sobre%20o%20plano%20Parceiro%20Fundador." target="_blank" class="inline-flex items-center gap-2 text-xs font-semibold bg-brand-500 hover:bg-brand-600 text-white px-4 py-2 rounded-lg shadow-lg shadow-brand-500/20 transition-all">
-                    <i class="fa-solid fa-star text-amber-300"></i> Seja um Parceiro Fundador
+            <div class="hidden sm:flex items-center gap-3">
+                <button type="button" onclick="openIndicateModal()" class="bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-500/40 text-xs px-3.5 py-2.5 rounded-xl transition flex items-center gap-1.5 cursor-pointer font-semibold">
+                    <i class="fa-solid fa-gift"></i> Indicar Comércio
+                </button>
+                <button type="button" onclick="openAdminLoginModal()" class="bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white text-xs px-3.5 py-2.5 rounded-xl transition border border-slate-700 flex items-center gap-1.5 cursor-pointer">
+                    <i class="fa-solid fa-lock text-brand-500"></i> Painel Admin
+                </button>
+                <a href="https://tally.so/r/VpjbRy" target="_blank" class="flex items-center gap-2 bg-gradient-to-r from-brand-500 to-orange-600 hover:from-brand-600 hover:to-orange-700 text-white font-bold text-sm px-4 py-2.5 rounded-xl shadow-md transition transform hover:-translate-y-0.5 cursor-pointer">
+                    <i class="fa-solid fa-star text-amber-300"></i>
+                    Seja um Parceiro Fundador
                 </a>
             </div>
         </div>
     </header>
 
-    <!-- Conteúdo Principal -->
-    <main class="max-w-6xl mx-auto px-4 py-8 flex-grow w-full space-y-8">
+    <!-- CONTEÚDO PRINCIPAL -->
+    <main class="max-w-6xl mx-auto px-4 py-6 flex-grow w-full space-y-8">
         
-        <!-- Bloco Hero / Boas-Vindas -->
-        <section class="bg-gradient-to-br from-slate-900 via-slate-900 to-slate-900/90 border border-slate-800 rounded-2xl p-6 md:p-10 shadow-2xl relative overflow-hidden">
-            <div class="absolute -right-10 -bottom-10 w-64 h-64 bg-brand-500/10 rounded-full blur-3xl pointer-events-none"></div>
-            
-            <div class="max-w-3xl space-y-4 relative z-10">
-                <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-brand-500/10 text-brand-400 border border-brand-500/20">
-                    <i class="fa-solid fa-location-dot"></i> Maracanaú, Pacatuba e Maranguape
+        <!-- SEÇÃO DE BOAS-VINDAS -->
+        <section class="bg-gradient-to-br from-navy-900 via-slate-900 to-navy-800 rounded-3xl p-6 sm:p-8 text-white shadow-xl border border-orange-500/20 relative overflow-hidden">
+            <div class="absolute -right-10 -bottom-10 w-64 h-64 bg-orange-500/10 rounded-full blur-3xl pointer-events-none"></div>
+            <div class="relative z-10 max-w-2xl space-y-4">
+                <span class="bg-brand-500/20 text-brand-400 border border-brand-500/30 text-[10px] sm:text-xs font-extrabold px-3 py-1 rounded-full uppercase tracking-wider inline-flex items-center gap-1.5">
+                    <i class="fa-solid fa-house-chimney text-brand-500"></i> Bem-vindo, Morador!
                 </span>
-                
-                <h2 class="text-3xl md:text-5xl font-extrabold tracking-tight text-white leading-tight">
+                <h2 class="text-2xl sm:text-4xl font-extrabold tracking-tight leading-tight">
                     Encontre o comércio do seu bairro <span class="text-brand-500">direto no WhatsApp!</span>
                 </h2>
-                
-                <p class="text-slate-300 text-sm md:text-base leading-relaxed">
+                <p class="text-slate-300 text-xs sm:text-sm leading-relaxed">
                     Precisa de gás, pão fresquinho, ração ou prestador de serviço? Pesquise abaixo, chame no WhatsApp e compre de quem está perto de você sem sair de casa.
                 </p>
-
-                <div class="pt-4 flex flex-wrap gap-3">
-                    <a href="https://wa.me/5585921033841?text=Olá!%20Vim%20pelo%20site%20e%20quero%20buscar%20comércios." target="_blank" class="inline-flex items-center gap-2 bg-brand-500 hover:bg-brand-600 text-white text-sm font-semibold px-6 py-3 rounded-xl shadow-lg shadow-brand-500/25 transition-all">
+                <div class="pt-2 flex flex-wrap gap-3">
+                    <a href="#searchInput" class="bg-brand-500 hover:bg-brand-600 text-white font-bold text-xs sm:text-sm px-6 py-3.5 rounded-xl shadow-lg transition transform hover:scale-105 flex items-center gap-2">
                         <i class="fa-solid fa-magnifying-glass"></i> Buscar Comércios Agora
                     </a>
-                    <a href="https://wa.me/5585921033841?text=Olá!%20Quero%20cadastrar%20minha%20loja%20parceira." target="_blank" class="inline-flex items-center gap-2 bg-slate-800 hover:bg-slate-700 text-slate-200 text-sm font-medium px-6 py-3 rounded-xl border border-slate-700 transition-colors">
-                        <i class="fa-solid fa-store text-brand-400"></i> Indicar uma Loja Amiga
+                    <button type="button" onclick="openIndicateModal()" class="bg-slate-800 hover:bg-slate-700 text-amber-300 font-semibold text-xs sm:text-sm px-5 py-3.5 rounded-xl transition flex items-center gap-2 border border-slate-700 cursor-pointer">
+                        <i class="fa-solid fa-gift"></i> Indicar uma Loja Amiga
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- BANNERS DE BENEFÍCIOS -->
+        <section class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div class="bg-gradient-to-r from-emerald-600 to-teal-700 rounded-2xl p-5 text-white shadow-md flex items-center gap-4">
+                <div class="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center flex-shrink-0 text-xl">
+                    <i class="fa-solid fa-handshake-simple text-emerald-200"></i>
+                </div>
+                <div>
+                    <h3 class="font-bold text-sm">Zero Comissão</h3>
+                    <p class="text-xs text-emerald-100 mt-0.5 leading-relaxed">Compre direto com o lojista via WhatsApp sem pagar nenhuma taxa extra.</p>
+                </div>
+            </div>
+
+            <div class="bg-gradient-to-r from-brand-600 to-orange-600 rounded-2xl p-5 text-white shadow-md flex items-center gap-4">
+                <div class="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center flex-shrink-0 text-xl">
+                    <i class="fa-solid fa-store text-orange-200"></i>
+                </div>
+                <div>
+                    <h3 class="font-bold text-sm">Economia Comunitária</h3>
+                    <p class="text-xs text-orange-100 mt-0.5 leading-relaxed">Valorizando os comércios de Maracanaú, Pacatuba e Maranguape[cite: 6].</p>
+                </div>
+            </div>
+
+            <div class="bg-gradient-to-r from-navy-900 to-slate-800 rounded-2xl p-5 text-white shadow-md flex items-center gap-4 border border-orange-500/30">
+                <div class="w-12 h-12 bg-orange-500/20 rounded-xl flex items-center justify-center flex-shrink-0 text-xl text-amber-400">
+                    <i class="fa-solid fa-star"></i>
+                </div>
+                <div>
+                    <h3 class="font-bold text-sm text-amber-300">Seja Parceiro Fundador</h3>
+                    <p class="text-xs text-slate-300 mt-0.5 leading-relaxed">Apenas R$ 39,90/mês com benefícios exclusivos e vitrine em destaque.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SEÇÃO: COMO FUNCIONA -->
+        <section class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/80 shadow-sm space-y-6">
+            <div class="text-center max-w-xl mx-auto space-y-2">
+                <span class="bg-orange-100 text-brand-700 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Simples e Rápido</span>
+                <h3 class="text-xl sm:text-2xl font-extrabold text-slate-900">Como funciona para o morador?</h3>
+                <p class="text-xs sm:text-sm text-slate-500">Apoie a economia de Maracanaú, Pacatuba e Maranguape sem complicações.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-slate-50 rounded-2xl p-5 border border-slate-200/60 text-center space-y-3">
+                    <div class="w-12 h-12 bg-brand-500 text-white rounded-2xl flex items-center justify-center mx-auto text-lg shadow-md font-bold">1</div>
+                    <h4 class="font-bold text-slate-900 text-sm">Busque o que precisa</h4>
+                    <p class="text-xs text-slate-600 leading-relaxed">Digite o produto ou serviço (gás, pão, marmita, farmácia ou prestador).</p>
+                </div>
+                <div class="bg-slate-50 rounded-2xl p-5 border border-slate-200/60 text-center space-y-3">
+                    <div class="w-12 h-12 bg-brand-500 text-white rounded-2xl flex items-center justify-center mx-auto text-lg shadow-md font-bold">2</div>
+                    <h4 class="font-bold text-slate-900 text-sm">Escolha o comércio</h4>
+                    <p class="text-xs text-slate-600 leading-relaxed">Veja as lojinhas do seu bairro organizadas por categorias, com fotos e endereço.</p>
+                </div>
+                <div class="bg-slate-50 rounded-2xl p-5 border border-slate-200/60 text-center space-y-3">
+                    <div class="w-12 h-12 bg-brand-500 text-white rounded-2xl flex items-center justify-center mx-auto text-lg shadow-md font-bold">3</div>
+                    <h4 class="font-bold text-slate-900 text-sm">Chame no WhatsApp</h4>
+                    <p class="text-xs text-slate-600 leading-relaxed">Fale diretamente com o lojista, feche o pedido e compre sem pagar nenhuma comissão[cite: 6]!</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SEÇÃO DE PLANOS (PARA LOJISTAS - DIRETO PARA O TALLY.SO) -->
+        <section id="secaoPlanos" class="space-y-6 pt-2">
+            <div class="text-center max-w-xl mx-auto space-y-2">
+                <span class="bg-orange-100 text-brand-700 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Área do Lojista</span>
+                <h3 class="text-xl sm:text-3xl font-extrabold text-slate-900">Quer anunciar o seu negócio aqui?</h3>
+                <p class="text-xs sm:text-sm text-slate-500">Invista em visibilidade profissional e venda diretamente pelo WhatsApp.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
+                <!-- Plano Fundador -->
+                <div class="bg-white rounded-3xl p-6 border-2 border-brand-500 shadow-xl flex flex-col justify-between relative transform md:-translate-y-2">
+                    <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-brand-500 text-white text-[10px] font-extrabold px-4 py-1 rounded-full uppercase tracking-wider shadow">
+                        ⭐ Só os 15 Primeiros (Vitalício)
+                    </div>
+                    <div class="space-y-4 pt-2">
+                        <div>
+                            <h4 class="text-lg font-black text-slate-900">Parceiro Fundador</h4>
+                            <p class="text-xs text-slate-500">Para lojistas visionários que entram no início.</p>
+                        </div>
+                        <div class="py-2">
+                            <span class="text-3xl sm:text-4xl font-black text-brand-600">R$ 39,90</span>
+                            <span class="text-xs text-slate-500 font-medium">/mês (preço travado)</span>
+                        </div>
+                        <ul class="space-y-2.5 text-xs text-slate-600">
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Ficha com carrossel de fotos/produtos</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> 1 Post mensal no Instagram</li>
+                            <li class="flex items-center gap-2 font-bold text-slate-900"><i class="fa-solid fa-star text-amber-500"></i> Selo "Parceiro Fundador"</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Zero comissão sobre vendas[cite: 6]</li>
+                        </ul>
+                    </div>
+                    <a href="https://tally.so/r/VpjbRy" target="_blank" class="mt-6 w-full text-center bg-brand-500 hover:bg-brand-600 text-white font-bold py-3 rounded-xl shadow-md text-xs transition cursor-pointer block">
+                        Garantir Vaga de Fundador
+                    </a>
+                </div>
+
+                <!-- Plano Regular -->
+                <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm flex flex-col justify-between">
+                    <div class="space-y-4">
+                        <div>
+                            <h4 class="text-lg font-bold text-slate-900">Plano Regular</h4>
+                            <p class="text-xs text-slate-500">Ideal para comércios consolidados.</p>
+                        </div>
+                        <div class="py-2">
+                            <span class="text-3xl font-black text-slate-900">R$ 59,90</span>
+                            <span class="text-xs text-slate-500 font-medium">/mês</span>
+                        </div>
+                        <ul class="space-y-2.5 text-xs text-slate-600">
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Ficha completa no site</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> 1 Post mensal no Instagram</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Inclusão em divulgações gerais</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Zero comissão sobre vendas[cite: 6]</li>
+                        </ul>
+                    </div>
+                    <a href="https://tally.so/r/VpjbRy" target="_blank" class="mt-6 w-full text-center bg-slate-900 hover:bg-slate-800 text-white font-bold py-3 rounded-xl transition text-xs cursor-pointer block">
+                        Escolher Regular
+                    </a>
+                </div>
+
+                <!-- Plano Premium -->
+                <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm flex flex-col justify-between">
+                    <div class="space-y-4">
+                        <div>
+                            <span class="text-[10px] font-extrabold text-purple-600 bg-purple-50 px-2.5 py-0.5 rounded-full">MAIS VISIBILIDADE</span>
+                            <h4 class="text-lg font-bold text-slate-900 mt-1">Plano Premium</h4>
+                            <p class="text-xs text-slate-500">Destaque máximo na região.</p>
+                        </div>
+                        <div class="py-2">
+                            <span class="text-3xl font-black text-slate-900">R$ 97,00</span>
+                            <span class="text-xs text-slate-500 font-medium">/mês</span>
+                        </div>
+                        <ul class="space-y-2.5 text-xs text-slate-600">
+                            <li class="flex items-center gap-2 font-bold text-purple-700"><i class="fa-solid fa-bolt text-purple-500"></i> Destaque no topo da categoria</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> 2 Posts + Stories semanais</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Divulgação de novidades</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Botão direto pro WhatsApp</li>
+                        </ul>
+                    </div>
+                    <a href="https://tally.so/r/VpjbRy" target="_blank" class="mt-6 w-full text-center bg-slate-900 hover:bg-slate-800 text-white font-bold py-3 rounded-xl transition text-xs cursor-pointer block">
+                        Escolher Premium
                     </a>
                 </div>
             </div>
         </section>
 
-        <!-- Grade de Vantagens e Pilares -->
-        <section class="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div class="bg-slate-900 border border-slate-800 p-5 rounded-xl hover:border-slate-700 transition-colors">
-                <div class="w-10 h-10 rounded-lg bg-emerald-500/10 text-emerald-400 flex items-center justify-center font-bold mb-3">
-                    <i class="fa-solid fa-handshake-simple text-lg"></i>
-                </div>
-                <h3 class="text-white font-semibold text-base mb-1">Zero Comissão</h3>
-                <p class="text-xs text-slate-400 leading-relaxed">Compre direto com o lojista via WhatsApp, sem pagar nenhuma taxa extra por pedido.</p>
+        <!-- BUSCA E FILTROS -->
+        <section class="space-y-4 pt-4 border-t border-slate-200">
+            <div class="relative">
+                <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                <input type="text" id="searchInput" oninput="filterBusinesses()" placeholder="Buscar por nome da loja, produto ou serviço (ex: pão, corte de cabelo, ração)..." 
+                    class="w-full pl-11 pr-10 py-3 bg-white border border-slate-200 rounded-xl shadow-sm text-slate-800 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 transition">
+                <button id="clearSearch" onclick="clearSearchInput()" class="hidden absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 p-1">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
             </div>
 
-            <div class="bg-slate-900 border border-slate-800 p-5 rounded-xl hover:border-slate-700 transition-colors">
-                <div class="w-10 h-10 rounded-lg bg-brand-500/10 text-brand-400 flex items-center justify-center font-bold mb-3">
-                    <i class="fa-solid fa-people-roof text-lg"></i>
-                </div>
-                <h3 class="text-white font-semibold text-base mb-1">Economia Comunitária</h3>
-                <p class="text-xs text-slate-400 leading-relaxed">Valorizando os comércios de Maracanaú, Pacatuba, Maranguape e arredores.</p>
-            </div>
-
-            <div class="bg-slate-900 border border-slate-800 p-5 rounded-xl hover:border-slate-700 transition-colors">
-                <div class="w-10 h-10 rounded-lg bg-amber-500/10 text-amber-400 flex items-center justify-center font-bold mb-3">
-                    <i class="fa-solid fa-award text-lg"></i>
-                </div>
-                <h3 class="text-white font-semibold text-base mb-1">Seja Parceiro Fundador</h3>
-                <p class="text-xs text-slate-400 leading-relaxed">Apenas R$ 39,90/mês com benefícios exclusivos e vitrine em destaque para o seu negócio.</p>
+            <div class="flex items-center gap-2 overflow-x-auto pb-2 hide-scrollbar -mx-4 px-4 sm:mx-0 sm:px-0">
+                <button onclick="selectCategory('Todos')" class="category-btn active bg-slate-900 text-white px-4 py-2 rounded-xl text-xs sm:text-sm font-medium whitespace-nowrap shadow-sm transition">
+                    <i class="fa-solid fa-border-all mr-1.5"></i> Todos
+                </button>
+                <button onclick="selectCategory('Fundadores')" class="category-btn bg-white text-slate-700 border border-slate-200 hover:bg-slate-100 px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap shadow-sm transition">
+                    <i class="fa-solid fa-award text-amber-500 mr-1.5"></i> ⭐ Parceiros Fundadores
+                </button>
+                <button onclick="selectCategory('Alimentação')" class="category-btn bg-white text-slate-700 border border-slate-200 hover:bg-slate-100 px-4 py-2 rounded-xl text-xs sm:text-sm font-medium whitespace-nowrap shadow-sm transition">
+                    <i class="fa-solid fa-utensils text-orange-500 mr-1.5"></i> Alimentação
+                </button>
+                <button onclick="selectCategory('Serviços & Consertos')" class="category-btn bg-white text-slate-700 border border-slate-200 hover:bg-slate-100 px-4 py-2 rounded-xl text-xs sm:text-sm font-medium whitespace-nowrap shadow-sm transition">
+                    <i class="fa-solid fa-wrench text-blue-500 mr-1.5"></i> Serviços & Consertos
+                </button>
+                <button onclick="selectCategory('Saúde & Beleza')" class="category-btn bg-white text-slate-700 border border-slate-200 hover:bg-slate-100 px-4 py-2 rounded-xl text-xs sm:text-sm font-medium whitespace-nowrap shadow-sm transition">
+                    <i class="fa-solid fa-scissors text-pink-500 mr-1.5"></i> Saúde & Beleza
+                </button>
+                <button onclick="selectCategory('Pet Shop')" class="category-btn bg-white text-slate-700 border border-slate-200 hover:bg-slate-100 px-4 py-2 rounded-xl text-xs sm:text-sm font-medium whitespace-nowrap shadow-sm transition">
+                    <i class="fa-solid fa-paw text-amber-700 mr-1.5"></i> Pet Shop
+                </button>
+                <button onclick="selectCategory('Lojas & Varejo')" class="category-btn bg-white text-slate-700 border border-slate-200 hover:bg-slate-100 px-4 py-2 rounded-xl text-xs sm:text-sm font-medium whitespace-nowrap shadow-sm transition">
+                    <i class="fa-solid fa-bag-shopping text-purple-500 mr-1.5"></i> Lojas & Varejo
+                </button>
             </div>
         </section>
 
+        <div class="flex items-center justify-between mb-4">
+            <span id="resultsCount" class="text-xs sm:text-sm text-slate-500 font-medium">Mostrando todos os comércios</span>
+            <span class="text-xs text-brand-700 font-semibold bg-brand-50 border border-brand-100 px-2.5 py-1 rounded-md">
+                <i class="fa-solid fa-location-dot"></i> Região: Maracanaú, Pacatuba e Maranguape - CE[cite: 6]
+            </span>
+        </div>
+
+        <div id="businessGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"></div>
+
+        <div id="emptyState" class="hidden text-center py-12 bg-white rounded-2xl border border-dashed border-slate-300 p-6 mt-4">
+            <i class="fa-solid fa-store-slash text-slate-300 text-5xl mb-3"></i>
+            <h3 class="text-base font-bold text-slate-700">Nenhum comércio encontrado</h3>
+            <p class="text-xs text-slate-500 mt-1 max-w-md mx-auto">Não encontramos negócios para os termos pesquisados.</p>
+            <button onclick="resetFilters()" class="mt-4 bg-slate-800 hover:bg-slate-900 text-white font-medium text-xs px-4 py-2 rounded-lg transition">
+                Ver todos os comércios
+            </button>
+        </div>
     </main>
 
-    <!-- Rodapé -->
-    <footer class="w-full bg-slate-900 border-t border-slate-800 py-6 mt-12">
-        <div class="max-w-6xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-400">
-            <p>&copy; 2026 Tem No Bairro. Todos os direitos reservados.</p>
-            <div class="flex items-center gap-4">
-                <a href="https://wa.me/5585921033841?text=Olá!%20Preciso%20de%20suporte%20no%20Tem%20No%20Bairro." target="_blank" class="hover:text-white transition-colors flex items-center gap-1.5 text-brand-400 font-medium">
-                    <i class="fa-brands fa-whatsapp text-sm"></i> Falar com o Fundador
-                </a>
+    <!-- BOTÃO FLUTUANTE WHATSAPP -->
+    <a href="https://wa.me/5585921033841?text=Olá%20Robinson!%20Tenho%20dúvidas%20sobre%20o%20cadastro%20no%20Tem%20No%20Bairro." 
+       target="_blank" 
+       class="fixed bottom-5 right-5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 px-4 rounded-full shadow-2xl flex items-center gap-2 z-40 transition transform hover:scale-105 text-xs sm:text-sm">
+       <i class="fa-brands fa-whatsapp text-xl"></i> Falar com o Fundador
+    </a>
+
+    <!-- RODAPÉ COMPLETO -->
+    <footer class="bg-slate-900 text-slate-400 text-xs py-10 border-t border-slate-800 mt-12">
+        <div class="max-w-6xl mx-auto px-4 text-center space-y-5">
+            <div class="flex items-center justify-center gap-2 text-white font-bold text-lg">
+                <i class="fa-solid fa-store text-brand-500"></i> TEM NO BAIRRO
+            </div>
+            <p class="max-w-xl mx-auto text-slate-400 leading-relaxed">
+                Iniciativa de apoio e fortalecimento da economia comunitária em Maracanaú, Pacatuba e Maranguape - CE[cite: 6].
+            </p>
+            
+            <div class="flex flex-wrap justify-center items-center gap-4 py-2 text-slate-300 font-medium">
+                <a href="https://instagram.com/temnobairro_oficial" target="_blank" class="hover:text-brand-500 transition flex items-center gap-1.5"><i class="fa-brands fa-instagram text-base"></i> @temnobairro_oficial</a>
+                <span class="text-slate-700">•</span>
+                <button type="button" onclick="openIndicateModal()" class="hover:text-amber-400 transition flex items-center gap-1.5 cursor-pointer text-amber-300 font-semibold"><i class="fa-solid fa-gift text-base"></i> Indicar Comércio</button>
+                <span class="text-slate-700">•</span>
+                <button type="button" onclick="openTermsModal()" class="hover:text-white transition cursor-pointer underline">Termos de Uso</button>
+                <span class="text-slate-700">•</span>
+                <button type="button" onclick="openPrivacyModal()" class="hover:text-white transition cursor-pointer underline">Política de Privacidade (LGPD)</button>
+            </div>
+
+            <div class="bg-slate-950/60 rounded-xl p-4 max-w-2xl mx-auto border border-slate-800/80 text-[11px] text-slate-400 space-y-1.5 text-center sm:text-left">
+                <div class="flex items-center gap-2 justify-center sm:justify-start font-semibold text-slate-300">
+                    <i class="fa-solid fa-building text-brand-500"></i>
+                    <span>TEM NO BAIRRO — PLATAFORMA DIGITAL</span>
+                </div>
+                <p><strong class="text-slate-300">CNPJ:</strong> 69.805.020/0001-36 | Maracanaú - CE[cite: 6]</p>
             </div>
         </div>
     </footer>
 
-    <!-- Script Service Worker (PWA) -->
+    <!-- MODAL DE DETALHES / CARROSSEL DE FOTOS -->
+    <div id="detailModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md z-50 hidden flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
+        <div class="bg-white rounded-3xl max-w-lg w-full p-6 shadow-2xl relative my-8 border border-slate-100 space-y-4">
+            <button type="button" onclick="closeDetailModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 bg-slate-100 p-2 rounded-full w-8 h-8 flex items-center justify-center transition cursor-pointer z-10">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            
+            <div class="relative h-64 w-full bg-slate-100 rounded-2xl overflow-hidden shadow-inner">
+                <img id="detailImage" src="" alt="Foto do Estabelecimento" class="w-full h-full object-cover transition duration-300">
+                <div id="carouselNav" class="absolute inset-0 flex items-center justify-between p-2 hidden">
+                    <button onclick="prevImage()" class="bg-slate-900/60 hover:bg-slate-900 text-white w-9 h-9 rounded-full flex items-center justify-center transition cursor-pointer shadow">
+                        <i class="fa-solid fa-chevron-left"></i>
+                    </button>
+                    <button onclick="nextImage()" class="bg-slate-900/60 hover:bg-slate-900 text-white w-9 h-9 rounded-full flex items-center justify-center transition cursor-pointer shadow">
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </button>
+                </div>
+                <span id="detailCategoryBadge" class="absolute top-3 left-3 bg-slate-900/80 backdrop-blur-md text-white text-xs font-medium px-3 py-1 rounded-lg"></span>
+            </div>
+
+            <div class="space-y-2">
+                <h3 id="detailName" class="text-xl font-black text-slate-900"></h3>
+                <p id="detailDescription" class="text-xs sm:text-sm text-slate-600 leading-relaxed"></p>
+            </div>
+
+            <div class="bg-slate-50 border border-slate-200/80 rounded-2xl p-4 space-y-2 text-xs text-slate-600">
+                <div class="flex items-center gap-2">
+                    <i class="fa-solid fa-location-dot text-brand-600"></i>
+                    <span id="detailAddress"></span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <i class="fa-solid fa-clock text-slate-400"></i>
+                    <span id="detailHours"></span>
+                </div>
+            </div>
+
+            <div class="pt-2 space-y-2">
+                <a id="detailWhatsApp" href="#" target="_blank" class="w-full bg-brand-500 hover:bg-brand-600 text-white font-bold py-3 px-4 rounded-xl shadow-md text-xs sm:text-sm flex items-center justify-center gap-2 transition">
+                    <i class="fa-brands fa-whatsapp text-lg"></i> Chamar no WhatsApp
+                </a>
+                <a id="detailMaps" href="#" target="_blank" class="w-full bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold py-2.5 px-3 rounded-xl text-xs flex items-center justify-center gap-1.5 transition">
+                    <i class="fa-solid fa-map-location-dot text-slate-500"></i> Como Chegar (Abrir no Mapa)
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL: TERMOS DE USO -->
+    <div id="termsModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md z-50 hidden flex items-center justify-center p-4 overflow-y-auto">
+        <div class="bg-white rounded-3xl max-w-2xl w-full p-6 sm:p-8 shadow-2xl relative my-8 border border-slate-100 text-left space-y-4 max-h-[85vh] flex flex-col">
+            <button type="button" onclick="closeTermsModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 bg-slate-100 p-2 rounded-full w-8 h-8 flex items-center justify-center transition cursor-pointer">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="flex items-center gap-2 border-b pb-3">
+                <i class="fa-solid fa-file-contract text-brand-500 text-xl"></i>
+                <h3 class="text-lg font-bold text-slate-900">Termos e Condições de Uso</h3>
+            </div>
+            <div class="overflow-y-auto pr-2 space-y-3 text-xs text-slate-600 leading-relaxed flex-grow">
+                <p><strong>1. Visão Geral:</strong> O diretório <strong>Tem No Bairro</strong> (CNPJ 69.805.020/0001-36) atua exclusivamente como uma plataforma de conexão digital entre moradores e comércios locais nas regiões de Maracanaú, Pacatuba e Maranguape[cite: 6].</p>
+                <p><strong>2. Relação Comercial:</strong> A plataforma não realiza cobranças de comissão sobre vendas e não se responsabiliza por transações financeiras realizadas diretamente entre o cliente e o lojista via WhatsApp ou Pix.</p>
+            </div>
+            <div class="pt-3 border-t text-right">
+                <button onclick="closeTermsModal()" class="bg-slate-900 hover:bg-slate-800 text-white font-bold px-5 py-2.5 rounded-xl text-xs transition cursor-pointer">Entendido</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL: POLÍTICA DE PRIVACIDADE / LGPD -->
+    <div id="privacyModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md z-50 hidden flex items-center justify-center p-4 overflow-y-auto">
+        <div class="bg-white rounded-3xl max-w-2xl w-full p-6 sm:p-8 shadow-2xl relative my-8 border border-slate-100 text-left space-y-4 max-h-[85vh] flex flex-col">
+            <button type="button" onclick="closePrivacyModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 bg-slate-100 p-2 rounded-full w-8 h-8 flex items-center justify-center transition cursor-pointer">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="flex items-center gap-2 border-b pb-3">
+                <i class="fa-solid fa-shield-halved text-brand-500 text-xl"></i>
+                <h3 class="text-lg font-bold text-slate-900">Política de Privacidade e LGPD</h3>
+            </div>
+            <div class="overflow-y-auto pr-2 space-y-3 text-xs text-slate-600 leading-relaxed flex-grow">
+                <p><strong>1. Compromisso com a Privacidade:</strong> Em conformidade com a Lei Geral de Proteção de Dados (LGPD - Lei nº 13.709/2018), o <strong>Tem No Bairro</strong> preza pela transparência e segurança no tratamento das informações.</p>
+                <p><strong>2. Coleta de Dados:</strong> Coletamos apenas os dados essenciais fornecidos voluntariamente no cadastro para exibição na vitrine digital e facilitação do contato direto via WhatsApp.</p>
+            </div>
+            <div class="pt-3 border-t text-right">
+                <button onclick="closePrivacyModal()" class="bg-slate-900 hover:bg-slate-800 text-white font-bold px-5 py-2.5 rounded-xl text-xs transition cursor-pointer">Fechar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL ADMIN LOGIN -->
+    <div id="adminLoginModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-sm w-full p-6 shadow-2xl relative border border-slate-100 space-y-4">
+            <button type="button" onclick="closeAdminLoginModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 bg-slate-100 p-2 rounded-full w-8 h-8 flex items-center justify-center transition cursor-pointer">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="text-center">
+                <div class="w-12 h-12 bg-navy-900 text-brand-500 rounded-full flex items-center justify-center mx-auto text-xl mb-2">
+                    <i class="fa-solid fa-lock"></i>
+                </div>
+                <h3 class="text-lg font-bold text-slate-900">Acesso Restrito</h3>
+                <p class="text-xs text-slate-500">Digite a senha do administrador</p>
+            </div>
+            <form onsubmit="handleAdminLogin(event)" class="space-y-3">
+                <input type="password" id="adminPassword" required placeholder="Senha de acesso" class="w-full px-3 py-2.5 border border-slate-300 rounded-xl text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none text-center">
+                <button type="submit" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-2.5 rounded-xl text-xs transition cursor-pointer">
+                    Entrar no Painel
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- PAINEL ADMIN -->
+    <div id="adminPanelModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md z-50 hidden flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
+        <div class="bg-white rounded-3xl max-w-5xl w-full p-5 sm:p-8 shadow-2xl relative my-6 border border-slate-100 max-h-[90vh] flex flex-col">
+            <div class="flex items-center justify-between pb-4 border-b border-slate-200 mb-4 flex-wrap gap-3">
+                <div class="flex items-center gap-2">
+                    <span class="bg-brand-500 text-white p-2 rounded-xl text-sm"><i class="fa-solid fa-sliders"></i></span>
+                    <div>
+                        <h3 class="text-lg font-extrabold text-slate-900">Painel de Controle Administrativo</h3>
+                        <p class="text-xs text-slate-500">Gerencie e adicione novos parceiros à vitrine</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-2">
+                    <!-- BOTÃO ADICIONAR NOVO LOJISTA -->
+                    <button type="button" onclick="openAddBusinessModal()" class="bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold px-4 py-2.5 rounded-xl shadow transition flex items-center gap-1.5 cursor-pointer">
+                        <i class="fa-solid fa-plus"></i> Adicionar Novo Lojista
+                    </button>
+                    <button type="button" onclick="closeAdminPanel()" class="bg-slate-100 hover:bg-slate-200 text-slate-600 p-2.5 rounded-full w-9 h-9 flex items-center justify-center transition cursor-pointer">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="overflow-y-auto flex-grow pr-1">
+                <table class="w-full text-left border-collapse text-xs">
+                    <thead>
+                        <tr class="bg-slate-100 text-slate-700 uppercase tracking-wider text-[10px]">
+                            <th class="p-3 rounded-l-xl">Estabelecimento</th>
+                            <th class="p-3">Plano</th>
+                            <th class="p-3">WhatsApp</th>
+                            <th class="p-3 text-center">Status</th>
+                            <th class="p-3 text-right rounded-r-xl">Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody id="adminTableBody" class="divide-y divide-slate-100"></tbody>
+                </table>
+            </div>
+            <div class="pt-4 border-t border-slate-200 mt-4 flex justify-between items-center text-xs text-slate-500">
+                <span>Total de parceiros: <strong id="adminTotalCount" class="text-slate-900">0</strong></span>
+                <button onclick="closeAdminPanel()" class="bg-slate-900 hover:bg-slate-800 text-white px-5 py-2.5 rounded-xl font-bold transition cursor-pointer">
+                    Fechar Painel
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL ADICIONAR / EDITAR LOJISTA -->
+    <div id="editModal" class="fixed inset-0 bg-slate-950/70 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4 overflow-y-auto">
+        <div class="bg-white rounded-2xl max-w-lg w-full p-5 sm:p-6 shadow-2xl relative my-8 border border-slate-100">
+            <button type="button" onclick="closeEditModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 bg-slate-100 p-2 rounded-full w-8 h-8 flex items-center justify-center transition cursor-pointer">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="mb-5">
+                <span class="bg-emerald-100 text-emerald-800 text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider">
+                    <i class="fa-solid fa-store"></i> Painel Admin
+                </span>
+                <h3 id="modalTitle" class="text-xl font-bold text-slate-900 mt-2">Adicionar Novo Lojista</h3>
+                <p class="text-xs text-slate-500 mt-1">Preencha os dados do parceiro confirmado para exibi-lo instantaneamente na vitrine.</p>
+            </div>
+            <form id="editBusinessForm" onsubmit="handleEditSubmit(event)" class="space-y-4">
+                <input type="hidden" id="editIndex" value="-1">
+                <div>
+                    <label class="block text-xs font-semibold text-slate-700 mb-1">Nome do Estabelecimento *</label>
+                    <input type="text" id="editName" required placeholder="Ex: Mercearia do Bairro" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none">
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-700 mb-1">Categoria *</label>
+                        <select id="editCategory" required class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none">
+                            <option value="Alimentação">Alimentação</option>
+                            <option value="Serviços & Consertos">Serviços & Consertos</option>
+                            <option value="Saúde & Beleza">Saúde & Beleza</option>
+                            <option value="Pet Shop">Pet Shop</option>
+                            <option value="Lojas & Varejo">Lojas & Varejo</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-700 mb-1">WhatsApp (Só números com DDD) *</label>
+                        <input type="tel" id="editPhone" required placeholder="85921033841" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none">
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-700 mb-1">Plano *</label>
+                        <select id="editPlan" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none font-bold text-brand-700">
+                            <option value="Parceiro Fundador - R$ 39,90/mês">⭐ Parceiro Fundador</option>
+                            <option value="Plano Regular - R$ 59,90/mês">Plano Regular</option>
+                            <option value="Plano Premium - R$ 97,00/mês">🚀 Plano Premium</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-700 mb-1">É Parceiro Fundador (Selo Dourado)?</label>
+                        <select id="editIsFounder" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none">
+                            <option value="true">Sim (Com Selo Fundador)</option>
+                            <option value="false">Não (Plano Normal)</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-700 mb-1">Endereço Visível (Por extenso) *</label>
+                        <input type="text" id="editAddress" required placeholder="Ex: Rua 57, 222, Jereissati II" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-700 mb-1">Horário</label>
+                        <input type="text" id="editHours" placeholder="Ex: Sex a Dom: 19h às 22h" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none">
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-slate-700 mb-1">Link Direto do Google Maps (URL)</label>
+                    <input type="text" id="editMapsUrl" placeholder="Ex: https://maps.app.goo.gl/..." class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-slate-700 mb-1">Descrição Curta *</label>
+                    <textarea id="editDescription" required rows="2" placeholder="O que o estabelecimento oferece..." class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none"></textarea>
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-slate-700 mb-1">URL da Foto de Capa (Link ou nome de arquivo)</label>
+                    <input type="text" id="editImages" placeholder="Ex: https://images.unsplash.com/... ou deli-foto.png" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none">
+                </div>
+                <div class="pt-2 flex justify-end gap-2">
+                    <button type="button" onclick="closeEditModal()" class="px-4 py-2 border border-slate-300 rounded-lg text-xs font-semibold text-slate-700 hover:bg-slate-100 transition cursor-pointer">
+                        Cancelar
+                    </button>
+                    <button type="submit" class="px-6 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg text-xs font-bold shadow-md transition flex items-center gap-1.5 cursor-pointer">
+                        <i class="fa-solid fa-floppy-disk"></i> Salvar e Publicar
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL INDICAR COMÉRCIO -->
+    <div id="indicateModal" class="fixed inset-0 bg-slate-950/70 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4 overflow-y-auto">
+        <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl relative my-8 border border-slate-100 space-y-4">
+            <button type="button" onclick="closeIndicateModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 bg-slate-100 p-2 rounded-full w-8 h-8 flex items-center justify-center transition cursor-pointer">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="text-center space-y-1">
+                <span class="bg-amber-100 text-amber-800 text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider">
+                    <i class="fa-solid fa-gift text-amber-600"></i> Indique um Vizinho
+                </span>
+                <h3 class="text-xl font-bold text-slate-900 pt-1">Indicar Comércio Local</h3>
+                <p class="text-xs text-slate-500">Conhece uma lojinha ou mercadinho que deveria estar no app?</p>
+            </div>
+            <form onsubmit="handleIndicateSubmit(event)" class="space-y-3 pt-2">
+                <div>
+                    <label class="block text-xs font-semibold text-slate-700 mb-1">Nome do Estabelecimento *</label>
+                    <input type="text" id="indStoreName" required placeholder="Ex: Mercearia do Bairro" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-amber-500 focus:outline-none">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-slate-700 mb-1">O que vende ou qual o serviço? *</label>
+                    <input type="text" id="indStoreDesc" required placeholder="Ex: Verdura fresca, gás, ração..." class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-amber-500 focus:outline-none">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-slate-700 mb-1">Endereço ou Ponto de Referência</label>
+                    <input type="text" id="indStoreAddress" placeholder="Ex: Próximo à rua 10" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-amber-500 focus:outline-none">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-slate-700 mb-1">Seu Nome (Morador que indicou)</label>
+                    <input type="text" id="indUserName" placeholder="Opcional" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-amber-500 focus:outline-none">
+                </div>
+                <div class="pt-2">
+                    <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 rounded-xl text-xs sm:text-sm shadow-md transition flex items-center justify-center gap-2 cursor-pointer">
+                        <i class="fa-brands fa-whatsapp text-lg"></i> Enviar Indicação no WhatsApp
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- SCRIPTS E LÓGICA DO SITE -->
     <script>
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('service-worker.js')
-                    .then(reg => console.log('Service Worker registrado com sucesso!', reg))
-                    .catch(err => console.log('Erro ao registrar Service Worker:', err));
+        const defaultBusinesses = [
+            {
+                id: 'delicias-dely-1',
+                name: 'Delícias da Dely',
+                category: 'Alimentação',
+                phone: '85989305017',
+                social: '@deliciasdadely',
+                address: 'Rua 57, 222, Jereissati II, Maracanaú',
+                hours: 'Sex a Dom: 19h às 22h',
+                mapsUrl: 'https://maps.app.goo.gl/goGdYGUznRwrVKvD7',
+                description: 'PRATINHOS CASEIROS, CANUDÃO, BOLOS, SOBREMESAS E MUITO MAIS FEITOS COM CARINHO PARA VOCÊ!',
+                images: ['deli-foto.png', 'foto-pratos.jpeg', 'foto-sobremesas.jpeg'],
+                isFounder: true,
+                status: 'ativo'
+            },
+            {
+                id: 'sabor-da-vila-1',
+                name: 'Padaria & Confeitaria Sabor da Vila',
+                category: 'Alimentação',
+                phone: '85921033841',
+                social: '@sabordavila',
+                address: 'Rua Principal, 102, Maracanaú',
+                hours: 'Seg a Dom: 06:00 - 20:00',
+                mapsUrl: '',
+                description: 'Pão quentinho a toda hora, bolos caseiros e salgados frescos.',
+                images: ['https://images.unsplash.com/photo-1509440159596-0249088772ff?w=500&auto=format&fit=crop&q=80'],
+                isFounder: true,
+                status: 'ativo'
+            },
+            {
+                id: 'pet-shop-amigo',
+                name: 'Pet Shop Amigo Fiel',
+                category: 'Pet Shop',
+                phone: '85921033841',
+                social: '@amigofielpet',
+                address: 'Av. Central, 450, Maracanaú',
+                hours: 'Seg a Sáb: 08:00 - 18:00',
+                mapsUrl: '',
+                description: 'Ração de qualidade, acessórios, banho e tosa para o seu melhor amigo.',
+                images: ['https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?w=500&auto=format&fit=crop&q=80'],
+                isFounder: true,
+                status: 'ativo'
+            },
+            {
+                id: 'barbearia-estilo',
+                name: 'Barbearia Estilo & Corte',
+                category: 'Saúde & Beleza',
+                phone: '85921033841',
+                social: '@estilocortebarber',
+                address: 'Rua 12, 85, Pacatuba',
+                hours: 'Ter a Sáb: 09:00 - 20:00',
+                mapsUrl: '',
+                description: 'Corte moderno, barba alinhada e ambiente climatizado com aquela cerveja gelada.',
+                images: ['https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=500&auto=format&fit=crop&q=80'],
+                isFounder: false,
+                status: 'ativo'
+            },
+            {
+                id: 'gas-agua-express',
+                name: 'Discar Gás & Água Express',
+                category: 'Serviços & Consertos',
+                phone: '85921033841',
+                social: '@gasaguaexpress',
+                address: 'Rua Maranguape, 300, Maranguape',
+                hours: 'Seg a Dom: 07:00 - 21:00',
+                mapsUrl: '',
+                description: 'Entrega rápida de botijão de gás e galão de água mineral direto na sua porta.',
+                images: ['https://images.unsplash.com/photo-1585421514284-efb74c2b69ba?w=500&auto=format&fit=crop&q=80'],
+                isFounder: true,
+                status: 'ativo'
+            }
+        ];
+
+        let currentCategory = 'Todos';
+        let businesses = [];
+        let currentActiveImages = [];
+        let currentImageIndex = 0;
+
+        window.onload = function() {
+            const savedData = localStorage.getItem('tem_no_bairro_db_v13');
+            
+            if (savedData !== null) {
+                try {
+                    businesses = JSON.parse(savedData);
+                } catch(e) {
+                    businesses = defaultBusinesses;
+                }
+            } else {
+                businesses = defaultBusinesses;
+                localStorage.setItem('tem_no_bairro_db_v13', JSON.stringify(businesses));
+            }
+
+            renderBusinesses();
+        };
+
+        function renderBusinesses() {
+            const grid = document.getElementById('businessGrid');
+            const emptyState = document.getElementById('emptyState');
+            const searchInputEl = document.getElementById('searchInput');
+            const resultsCount = document.getElementById('resultsCount');
+
+            if (!grid) return;
+
+            const searchVal = searchInputEl ? searchInputEl.value.toLowerCase().trim() : '';
+            grid.innerHTML = '';
+
+            const filtered = businesses.filter(item => {
+                if (item.status && item.status !== 'ativo') return false;
+
+                let matchesCategory = true;
+                if (currentCategory === 'Fundadores') {
+                    matchesCategory = item.isFounder === true;
+                } else if (currentCategory !== 'Todos') {
+                    matchesCategory = item.category === currentCategory;
+                }
+
+                const matchesSearch = item.name.toLowerCase().includes(searchVal) || 
+                                      item.description.toLowerCase().includes(searchVal) ||
+                                      item.category.toLowerCase().includes(searchVal) ||
+                                      item.address.toLowerCase().includes(searchVal);
+
+                return matchesCategory && matchesSearch;
+            });
+
+            if (resultsCount) {
+                resultsCount.textContent = `Mostrando ${filtered.length} ${filtered.length === 1 ? 'comércio' : 'comércios'}`;
+            }
+
+            if (filtered.length === 0) {
+                grid.classList.add('hidden');
+                if (emptyState) emptyState.classList.remove('hidden');
+                return;
+            }
+
+            grid.classList.remove('hidden');
+            if (emptyState) emptyState.classList.add('hidden');
+
+            filtered.forEach((item, index) => {
+                const cleanPhone = item.phone ? item.phone.replace(/\D/g, '') : '85921033841';
+                const waMessage = encodeURIComponent(`Olá, vi o seu anúncio no app TEM NO BAIRRO e gostaria de mais informações!`);
+                const whatsappUrl = `https://api.whatsapp.com/send?phone=55${cleanPhone}&text=${waMessage}`;
+                
+                const mapsUrl = item.mapsUrl && item.mapsUrl.trim() !== '' 
+                    ? item.mapsUrl.trim() 
+                    : `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(item.name + ' ' + item.address)}`;
+
+                let imgList = item.images && item.images.length > 0 ? item.images : (item.image ? [item.image] : ['https://images.unsplash.com/photo-1528698827591-e19ccd7bc23d?w=500&auto=format&fit=crop&q=80']);
+
+                let imagesHtml = `<div class="relative h-40 w-full bg-slate-100 overflow-hidden cursor-pointer" onclick="openDetailModal('${item.id}')"><img src="${imgList[0]}" alt="${item.name}" class="parceiro-capa group-hover:scale-105 transition duration-500" onerror="this.src='https://images.unsplash.com/photo-1528698827591-e19ccd7bc23d?w=500&auto=format&fit=crop&q=80'"></div>`;
+
+                const cardHTML = `
+                    <div class="bg-white rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col overflow-hidden relative group">
+                        <div class="relative">
+                            ${imagesHtml}
+                            <span class="absolute top-3 left-3 bg-slate-900/80 backdrop-blur-md text-white text-[11px] font-medium px-2.5 py-1 rounded-lg shadow pointer-events-none">
+                                ${item.category}
+                            </span>
+                            ${item.isFounder ? `
+                                <span class="absolute top-3 right-3 bg-amber-400 text-slate-950 text-[10px] font-extrabold px-2.5 py-1 rounded-full shadow flex items-center gap-1 uppercase tracking-wider pointer-events-none">
+                                    <i class="fa-solid fa-star text-slate-950"></i> Fundador
+                                </span>
+                            ` : ''}
+                        </div>
+                        <div class="p-4 flex-grow flex flex-col justify-between">
+                            <div>
+                                <h3 onclick="openDetailModal('${item.id}')" class="text-base font-bold text-slate-900 leading-snug group-hover:text-brand-700 transition cursor-pointer">
+                                    ${item.name} <i class="fa-solid fa-circle-info text-brand-500 text-xs ml-1" title="Ver fotos e novidades"></i>
+                                </h3>
+                                <p class="text-xs text-slate-600 mt-2 line-clamp-2 leading-relaxed">
+                                    ${item.description}
+                                </p>
+                                <div class="mt-4 pt-3 border-t border-slate-100 space-y-1.5 text-xs text-slate-500">
+                                    <div class="flex items-start gap-2">
+                                        <i class="fa-solid fa-location-dot text-brand-600 mt-0.5"></i>
+                                        <span class="font-medium text-slate-700">${item.address}</span>
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                        <i class="fa-solid fa-clock text-slate-400"></i>
+                                        <span>${item.hours || 'Consulte horário'}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-5 space-y-2">
+                                <a href="${whatsappUrl}" target="_blank" rel="noopener noreferrer" 
+                                   class="w-full bg-brand-500 hover:bg-brand-600 text-white font-bold py-2.5 px-4 rounded-xl shadow-sm hover:shadow text-xs sm:text-sm flex items-center justify-center gap-2 transition">
+                                    <i class="fa-brands fa-whatsapp text-lg"></i> Chamar no WhatsApp
+                                </a>
+                                <a href="${mapsUrl}" target="_blank" rel="noopener noreferrer"
+                                   class="w-full bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold py-2 px-3 rounded-xl text-xs flex items-center justify-center gap-1.5 transition">
+                                    <i class="fa-solid fa-map-location-dot text-slate-500"></i> Como Chegar
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                grid.innerHTML += cardHTML;
             });
         }
+
+        function openDetailModal(id) {
+            const item = businesses.find(b => b.id === id);
+            if (!item) return;
+
+            currentActiveImages = item.images && item.images.length > 0 ? item.images : (item.image ? [item.image] : ['https://images.unsplash.com/photo-1528698827591-e19ccd7bc23d?w=500&auto=format&fit=crop&q=80']);
+            currentImageIndex = 0;
+
+            updateCarouselImage();
+
+            document.getElementById('detailName').textContent = item.name;
+            document.getElementById('detailCategoryBadge').textContent = item.category;
+            document.getElementById('detailDescription').textContent = item.description;
+            document.getElementById('detailAddress').textContent = item.address;
+            document.getElementById('detailHours').textContent = item.hours || 'Consulte horário de atendimento';
+
+            const cleanPhone = item.phone ? item.phone.replace(/\D/g, '') : '85921033841';
+            const waMessage = encodeURIComponent(`Olá, vi o seu anúncio no app TEM NO BAIRRO e gostaria de mais informações!`);
+            document.getElementById('detailWhatsApp').href = `https://api.whatsapp.com/send?phone=55${cleanPhone}&text=${waMessage}`;
+            
+            const mapsUrl = item.mapsUrl && item.mapsUrl.trim() !== '' 
+                ? item.mapsUrl.trim() 
+                : `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(item.name + ' ' + item.address)}`;
+            document.getElementById('detailMaps').href = mapsUrl;
+
+            const nav = document.getElementById('carouselNav');
+            if (currentActiveImages.length > 1) {
+                nav.classList.remove('hidden');
+            } else {
+                nav.classList.add('hidden');
+            }
+
+            document.getElementById('detailModal').classList.remove('hidden');
+        }
+
+        function closeDetailModal() {
+            document.getElementById('detailModal').classList.add('hidden');
+        }
+
+        function updateCarouselImage() {
+            const imgEl = document.getElementById('detailImage');
+            if (currentActiveImages.length > 0) {
+                imgEl.src = currentActiveImages[currentImageIndex];
+            }
+        }
+
+        function nextImage() {
+            if (currentActiveImages.length <= 1) return;
+            currentImageIndex = (currentImageIndex + 1) % currentActiveImages.length;
+            updateCarouselImage();
+        }
+
+        function prevImage() {
+            if (currentActiveImages.length <= 1) return;
+            currentImageIndex = (currentImageIndex - 1 + currentActiveImages.length) % currentActiveImages.length;
+            updateCarouselImage();
+        }
+
+        function openAdminLoginModal() { document.getElementById('adminLoginModal').classList.remove('hidden'); }
+        function closeAdminLoginModal() { document.getElementById('adminLoginModal').classList.add('hidden'); document.getElementById('adminPassword').value = ''; }
+        function handleAdminLogin(event) {
+            event.preventDefault();
+            if (document.getElementById('adminPassword').value === 'admin123') {
+                closeAdminLoginModal();
+                openAdminPanel();
+            } else { alert('Senha incorreta!'); }
+        }
+        function openAdminPanel() { renderAdminTable(); document.getElementById('adminPanelModal').classList.remove('hidden'); }
+        function closeAdminPanel() { document.getElementById('adminPanelModal').classList.add('hidden'); renderBusinesses(); }
+
+        function renderAdminTable() {
+            const tbody = document.getElementById('adminTableBody');
+            const totalCount = document.getElementById('adminTotalCount');
+            if (!tbody) return;
+            totalCount.textContent = businesses.length;
+            tbody.innerHTML = '';
+
+            businesses.forEach((item, index) => {
+                let statusVal = item.status || 'ativo';
+                let badgeClass = statusVal === 'ativo' ? 'bg-emerald-100 text-emerald-800' : 'bg-yellow-100 text-yellow-800';
+                const row = `
+                    <tr class="hover:bg-slate-50 transition">
+                        <td class="p-3">
+                            <div class="font-bold text-slate-900">${item.name}</div>
+                            <div class="text-[10px] text-slate-400">${item.category} • ${item.address}</div>
+                        </td>
+                        <td class="p-3 text-slate-600 font-medium">${item.plan || 'Plano Fundador'}</td>
+                        <td class="p-3 text-slate-600 font-mono">${item.phone}</td>
+                        <td class="p-3 text-center">
+                            <span class="text-xs font-bold px-2.5 py-1 rounded-lg ${badgeClass}">${statusVal}</span>
+                        </td>
+                        <td class="p-3 text-right space-x-1">
+                            <button onclick="openEditModal(${index})" class="bg-blue-50 hover:bg-blue-100 text-blue-600 p-2 rounded-lg transition" title="Editar">
+                                <i class="fa-solid fa-pen"></i>
+                            </button>
+                            <button onclick="deleteBusiness(${index})" class="bg-red-50 hover:bg-red-100 text-red-600 p-2 rounded-lg transition" title="Excluir">
+                                <i class="fa-solid fa-trash-can"></i>
+                            </button>
+                        </td>
+                    </tr>
+                `;
+                tbody.innerHTML += row;
+            });
+        }
+
+        // ABRIR MODAL PARA ADICIONAR NOVO LOJISTA
+        function openAddBusinessModal() {
+            document.getElementById('editIndex').value = '-1';
+            document.getElementById('modalTitle').textContent = 'Adicionar Novo Lojista';
+            document.getElementById('editName').value = '';
+            document.getElementById('editCategory').value = 'Alimentação';
+            document.getElementById('editPhone').value = '';
+            document.getElementById('editPlan').value = 'Parceiro Fundador - R$ 39,90/mês';
+            document.getElementById('editIsFounder').value = 'true';
+            document.getElementById('editAddress').value = '';
+            document.getElementById('editHours').value = '';
+            document.getElementById('editMapsUrl').value = '';
+            document.getElementById('editDescription').value = '';
+            document.getElementById('editImages').value = '';
+
+            document.getElementById('adminPanelModal').classList.add('hidden');
+            document.getElementById('editModal').classList.remove('hidden');
+        }
+
+        function openEditModal(index) {
+            const item = businesses[index];
+            document.getElementById('editIndex').value = index;
+            document.getElementById('modalTitle').textContent = 'Editar Estabelecimento';
+            document.getElementById('editName').value = item.name;
+            document.getElementById('editCategory').value = item.category;
+            document.getElementById('editPhone').value = item.phone;
+            document.getElementById('editPlan').value = item.plan || 'Parceiro Fundador - R$ 39,90/mês';
+            document.getElementById('editIsFounder').value = item.isFounder ? 'true' : 'false';
+            document.getElementById('editAddress').value = item.address;
+            document.getElementById('editHours').value = item.hours || '';
+            document.getElementById('editMapsUrl').value = item.mapsUrl || '';
+            document.getElementById('editDescription').value = item.description;
+            
+            let imgStr = item.images && item.images.length > 0 ? item.images.join(', ') : (item.image || '');
+            document.getElementById('editImages').value = imgStr;
+            
+            document.getElementById('adminPanelModal').classList.add('hidden');
+            document.getElementById('editModal').classList.remove('hidden');
+        }
+
+        function closeEditModal() {
+            document.getElementById('editModal').classList.add('hidden');
+            openAdminPanel();
+        }
+
+        // SALVAR NOVO OU EDITAR EXISTENTE
+        function handleEditSubmit(event) {
+            event.preventDefault();
+            const index = parseInt(document.getElementById('editIndex').value);
+            
+            const name = document.getElementById('editName').value.trim();
+            const category = document.getElementById('editCategory').value;
+            const phone = document.getElementById('editPhone').value.trim();
+            const plan = document.getElementById('editPlan').value;
+            const isFounder = document.getElementById('editIsFounder').value === 'true';
+            const address = document.getElementById('editAddress').value.trim();
+            const hours = document.getElementById('editHours').value.trim();
+            const mapsUrl = document.getElementById('editMapsUrl').value.trim();
+            const description = document.getElementById('editDescription').value.trim();
+            
+            const imgsVal = document.getElementById('editImages').value.trim();
+            let images = imgsVal ? imgsVal.split(',').map(s => s.trim()).filter(s => s.length > 0) : ['https://images.unsplash.com/photo-1528698827591-e19ccd7bc23d?w=500&auto=format&fit=crop&q=80'];
+
+            if (index === -1) {
+                // CRIAR NOVO LOJISTA
+                const newId = 'loja-' + Date.now();
+                const newBusiness = {
+                    id: newId,
+                    name: name,
+                    category: category,
+                    phone: phone,
+                    plan: plan,
+                    isFounder: isFounder,
+                    address: address,
+                    hours: hours,
+                    mapsUrl: mapsUrl,
+                    description: description,
+                    images: images,
+                    status: 'ativo'
+                };
+                businesses.unshift(newBusiness); // Adiciona no topo da lista
+                alert('Novo lojista adicionado com sucesso!');
+            } else {
+                // EDITAR LOJISTA EXISTENTE
+                businesses[index].name = name;
+                businesses[index].category = category;
+                businesses[index].phone = phone;
+                businesses[index].plan = plan;
+                businesses[index].isFounder = isFounder;
+                businesses[index].address = address;
+                businesses[index].hours = hours;
+                businesses[index].mapsUrl = mapsUrl;
+                businesses[index].description = description;
+                businesses[index].images = images;
+                alert('Alterações salvas com sucesso!');
+            }
+
+            localStorage.setItem('tem_no_bairro_db_v13', JSON.stringify(businesses));
+            closeEditModal();
+            renderBusinesses();
+        }
+
+        function deleteBusiness(index) {
+            if (confirm('Deseja realmente remover este parceiro?')) {
+                businesses.splice(index, 1);
+                localStorage.setItem('tem_no_bairro_db_v13', JSON.stringify(businesses));
+                renderAdminTable();
+            }
+        }
+
+        function selectCategory(categoryName) {
+            currentCategory = categoryName;
+            document.querySelectorAll('.category-btn').forEach(btn => {
+                if (btn.textContent.includes(categoryName)) {
+                    btn.className = 'category-btn active bg-slate-900 text-white px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap shadow-sm transition';
+                } else {
+                    btn.className = 'category-btn bg-white text-slate-700 border border-slate-200 hover:bg-slate-100 px-4 py-2 rounded-xl text-xs sm:text-sm font-medium whitespace-nowrap shadow-sm transition';
+                }
+            });
+            renderBusinesses();
+        }
+
+        function filterBusinesses() { renderBusinesses(); }
+        function clearSearchInput() { document.getElementById('searchInput').value = ''; renderBusinesses(); }
+        function resetFilters() { document.getElementById('searchInput').value = ''; selectCategory('Todos'); }
+        function openIndicateModal() { document.getElementById('indicateModal').classList.remove('hidden'); }
+        function closeIndicateModal() { document.getElementById('indicateModal').classList.add('hidden'); }
+        function openTermsModal() { document.getElementById('termsModal').classList.remove('hidden'); }
+        function closeTermsModal() { document.getElementById('termsModal').classList.add('hidden'); }
+        function openPrivacyModal() { document.getElementById('privacyModal').classList.remove('hidden'); }
+        function closePrivacyModal() { document.getElementById('privacyModal').classList.add('hidden'); }
     </script>
 </body>
 </html>
