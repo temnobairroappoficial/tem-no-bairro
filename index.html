@@ -695,7 +695,7 @@
         </div>
     </div>
 
-    <!-- SCRIPTS E LÓGICA DO SITE COM PERSISTÊNCIA TOTAL (VERSÃO 9) -->
+    <!-- SCRIPTS E LÓGICA DO SITE COM PERSISTÊNCIA TOTAL (VERSÃO 10) -->
     <script>
         const defaultBusinesses = [
             {
@@ -706,7 +706,7 @@
                 social: '@deliciasdadely',
                 address: 'Rua 57, 222, Jereissati II, Maracanaú',
                 hours: 'Sex a Dom: 19h às 22h',
-                mapsUrl: 'mapsUrl:'https://maps.app.goo.gl/goGdYGUznRwrVKvD7',
+                mapsUrl: 'https://maps.app.goo.gl/goGdYGUznRwrVKvD7',
                 description: 'PRATINHOS CASEIROS, CANUDÃO, BOLOS, SOBREMESAS E MUITO MAIS FEITOS COM CARINHO PARA VOCÊ!',
                 images: ['deli-foto.png', 'foto-pratos.jpeg', 'foto-sobremesas.jpeg'],
                 isFounder: true,
@@ -776,7 +776,8 @@
         let currentImageIndex = 0;
 
         window.onload = function() {
-            const savedData = localStorage.getItem('tem_no_bairro_db_v9');
+            // Se houver dados salvos antigos no navegador, limpa ou força a atualização para carregar os novos
+            const savedData = localStorage.getItem('tem_no_bairro_db_v10');
             
             if (savedData !== null) {
                 try {
@@ -786,7 +787,7 @@
                 }
             } else {
                 businesses = defaultBusinesses;
-                localStorage.setItem('tem_no_bairro_db_v9', JSON.stringify(businesses));
+                localStorage.setItem('tem_no_bairro_db_v10', JSON.stringify(businesses));
             }
 
             renderBusinesses();
@@ -1040,8 +1041,7 @@
                 businesses[index].images = imgsVal.split(',').map(s => s.trim()).filter(s => s.length > 0);
             }
 
-            // SALVA DEFINITIVAMENTE NO NAVEGADOR
-            localStorage.setItem('tem_no_bairro_db_v9', JSON.stringify(businesses));
+            localStorage.setItem('tem_no_bairro_db_v10', JSON.stringify(businesses));
             
             alert('Alterações salvas com sucesso!');
             closeEditModal();
@@ -1051,7 +1051,7 @@
         function deleteBusiness(index) {
             if (confirm('Deseja realmente remover este parceiro?')) {
                 businesses.splice(index, 1);
-                localStorage.setItem('tem_no_bairro_db_v9', JSON.stringify(businesses));
+                localStorage.setItem('tem_no_bairro_db_v10', JSON.stringify(businesses));
                 renderAdminTable();
             }
         }
@@ -1098,7 +1098,7 @@
                 status: 'ativo'
             };
             businesses.unshift(newBusiness);
-            localStorage.setItem('tem_no_bairro_db_v9', JSON.stringify(businesses));
+            localStorage.setItem('tem_no_bairro_db_v10', JSON.stringify(businesses));
             renderBusinesses();
             closeModal();
         }
