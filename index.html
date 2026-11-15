@@ -367,6 +367,7 @@
                 <i class="fa-solid fa-xmark"></i>
             </button>
             
+            <!-- Carrossel de Imagens -->
             <div class="relative h-64 w-full bg-slate-100 rounded-2xl overflow-hidden shadow-inner">
                 <img id="detailImage" src="" alt="Foto do Estabelecimento" class="w-full h-full object-cover transition duration-300">
                 <div id="carouselNav" class="absolute inset-0 flex items-center justify-between p-2 hidden">
@@ -380,6 +381,7 @@
                 <span id="detailCategoryBadge" class="absolute top-3 left-3 bg-slate-900/80 backdrop-blur-md text-white text-xs font-medium px-3 py-1 rounded-lg"></span>
             </div>
 
+            <!-- Informações do Comércio -->
             <div class="space-y-2">
                 <h3 id="detailName" class="text-xl font-black text-slate-900"></h3>
                 <p id="detailDescription" class="text-xs sm:text-sm text-slate-600 leading-relaxed"></p>
@@ -692,7 +694,7 @@
         </div>
     </div>
 
-    <!-- SCRIPTS E LÓGICA DO SITE COM LIMPEZA AUTOMÁTICA DE DUPLICADAS -->
+    <!-- SCRIPTS E LÓGICA DO SITE COM FILTRAGEM ANTI-DUPLICAÇÃO (VERSÃO 5) -->
     <script>
         const initialBusinesses = [
             {
@@ -731,41 +733,37 @@
         let currentImageIndex = 0;
 
         window.onload = function() {
-            // Usamos a versão _v6 para forçar a limpeza em todos os aparelhos
-            const savedData = localStorage.getItem('tem_no_bairro_db_v6');
+            const savedData = localStorage.getItem('tem_no_bairro_db_v5');
             if (savedData) {
                 try {
-                    let loaded = JSON.parse(savedData);
-                    
-                    // FILTRO DE SEGURANÇA: Remove qualquer duplicata e unifica pelo nome correto "Delícias da Deli"
-                    let uniqueMap = new Map();
-                    loaded.forEach(item => {
-                        let cleanName = item.name.trim().toLowerCase();
-                        // Padroniza o nome da Deli para evitar duplicatas por variação de maiúsculas/minúsculas
-                        if (cleanName.includes('delícia') || cleanName.includes('delicia')) {
-                            item.name = 'Delícias da Deli';
-                            item.id = 'delicias-deli-1';
-                            item.images = ['deli-foto.png', 'foto-pratos.jpeg', 'foto-sobremesas.jpeg'];
-                            uniqueMap.set('delicias-deli-1', item);
-                        } else {
-                            uniqueMap.set(item.id || item.name, item);
-                        }
-                    });
-
-                    businesses = Array.from(uniqueMap.values());
-
-                    // Garante que a Sabor da Vila também está presente
-                    const vilaIndex = businesses.findIndex(b => b.name.includes('Sabor da Vila'));
-                    if (vilaIndex === -1) {
-                        businesses.push(initialBusinesses[1]);
-                    }
+                    businesses = JSON.parse(savedData);
                 } catch(e) {
                     businesses = initialBusinesses;
                 }
             } else {
                 businesses = initialBusinesses;
-                localStorage.setItem('tem_no_bairro_db_v6', JSON.stringify(businesses));
             }
+
+            // BLINDAGEM CONTRA DUPLICAÇÃO: Remove qualquer registro duplicado por nome e mantém um limpo
+            const uniqueMap = new Map();
+            businesses.forEach(item => {
+                // Padroniza a chave pelo nome em minúsculas para pegar variações como "delicias da deli" e "delicias da dely"
+                const cleanKey = item.name.toLowerCase().replace(/[^a-z0-9]/g, '').trim();
+                if (cleanKey.includes('delicias')) {
+                    // Força unificar no nome oficial correto
+                    item.name = 'Delícias da Deli';
+                    item.images = ['deli-foto.png', 'foto-pratos.jpeg', 'foto-sobremesas.jpeg'];
+                    uniqueMap.set('deliciasdadeli', item);
+                } else if (cleanKey.includes('sabordavila')) {
+                    uniqueMap.set('sabordavila', item);
+                } else {
+                    uniqueMap.set(cleanKey, item);
+                }
+            });
+
+            businesses = Array.from(uniqueMap.values());
+            localStorage.setItem('tem_no_bairro_db_v5', JSON.stringify(businesses));
+
             renderBusinesses();
         };
 
@@ -904,6 +902,7 @@
                 nav.classList.add('hidden');
             }
 
+            document.getElementById('detailModal').classList.add('hidden'); // Ajustado para garantir inicialização limpa
             document.getElementById('detailModal').classList.remove('hidden');
         }
 
@@ -1017,7 +1016,7 @@
                 businesses[index].images = imgsVal.split(',').map(s => s.trim()).filter(s => s.length > 0);
             }
 
-            localStorage.setItem('tem_no_bairro_db_v6', JSON.stringify(businesses));
+            localStorage.setItem('tem_no_bairro_db_v5', JSON.stringify(businesses));
             closeEditModal();
             renderBusinesses();
         }
@@ -1025,7 +1024,7 @@
         function deleteBusiness(index) {
             if (confirm('Deseja realmente remover este parceiro?')) {
                 businesses.splice(index, 1);
-                localStorage.setItem('tem_no_bairro_db_v6', JSON.stringify(businesses));
+                localStorage.setItem('tem_no_bairro_db_v5', JSON.stringify(businesses));
                 renderAdminTable();
             }
         }
@@ -1061,9 +1060,9 @@
                 id: Date.now().toString(),
                 name: document.getElementById('formName').value,
                 category: document.getElementById('formCategory').value,
-                phone: document.getElementById('formPhone').value,
+                phone: document.getElementById('formPhone'].value,
                 social: document.getElementById('formSocial').value,
-                address: document.getElementById('formAddress').address,
+                address: document.getElementById('formAddress').value,
                 hours: document.getElementById('formHours').value || 'Horário a combinar',
                 mapsUrl: document.getElementById('formMapsUrl').value.trim(),
                 description: document.getElementById('formDescription').value,
@@ -1072,7 +1071,7 @@
                 status: 'ativo'
             };
             businesses.unshift(newBusiness);
-            localStorage.setItem('tem_no_bairro_db_v6', JSON.stringify(businesses));
+            localStorage.setItem('tem_no_bairro_db_v5', JSON.stringify(businesses));
             renderBusinesses();
             closeModal();
         }
