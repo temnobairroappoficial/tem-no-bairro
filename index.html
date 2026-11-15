@@ -122,14 +122,15 @@
                     <a href="#searchInput" class="bg-brand-500 hover:bg-brand-600 text-white font-bold text-xs sm:text-sm px-6 py-3.5 rounded-xl shadow-lg transition transform hover:scale-105 flex items-center gap-2">
                         <i class="fa-solid fa-magnifying-glass"></i> Buscar Comércios Agora
                     </a>
-                    <button type="button" onclick="openIndicateModal()" class="bg-slate-800 hover:bg-slate-700 text-amber-300 font-semibold text-xs sm:text-sm px-5 py-3.5 rounded-xl transition flex items-center gap-2 border border-slate-700 cursor-pointer">
-                        <i class="fa-solid fa-gift"></i> Indicar uma Loja Amiga
+                    <!-- BOTÃO GEOLOCALIZAÇÃO PRÉVIA (NOVO) -->
+                    <button type="button" onclick="requestUserLocation()" class="bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-xs sm:text-sm px-5 py-3.5 rounded-xl shadow transition flex items-center gap-2 cursor-pointer">
+                        <i class="fa-solid fa-location-crosshairs"></i> Comércios Perto de Mim
                     </button>
                 </div>
             </div>
         </section>
 
-        <!-- SELETOR RÁPIDO DE CIDADES (NOVO) -->
+        <!-- SELETOR DE CIDADES -->
         <section class="flex flex-col sm:flex-row items-center justify-between bg-white p-4 rounded-2xl border border-slate-200/80 shadow-sm gap-3">
             <div class="flex items-center gap-2 text-xs font-bold text-slate-700">
                 <i class="fa-solid fa-map-location-dot text-brand-500 text-base"></i> Filtrar por Região:
@@ -142,7 +143,7 @@
             </div>
         </section>
 
-        <!-- SEÇÃO DE PLANOS (PARA LOJISTAS COM GATILHO DE URGÊNCIA) -->
+        <!-- SEÇÃO DE PLANOS (PARA LOJISTAS) -->
         <section id="secaoPlanos" class="space-y-6 pt-2">
             <div class="text-center max-w-xl mx-auto space-y-2">
                 <span class="bg-orange-100 text-brand-700 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Área do Lojista</span>
@@ -151,7 +152,7 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
-                <!-- Plano Fundador com Gatilho Regressivo -->
+                <!-- Plano Fundador -->
                 <div class="bg-white rounded-3xl p-6 border-2 border-brand-500 shadow-xl flex flex-col justify-between relative transform md:-translate-y-2">
                     <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-brand-500 text-white text-[10px] font-extrabold px-4 py-1 rounded-full uppercase tracking-wider shadow">
                         ⭐ Restam apenas 3 vagas no lote inicial!
@@ -226,7 +227,7 @@
             </div>
         </section>
 
-        <!-- BUSCA E FILTROS COM CHIPS EM LARANJA VIBRANTE -->
+        <!-- BUSCA E FILTROS -->
         <section class="space-y-4 pt-4 border-t border-slate-200">
             <div class="relative">
                 <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"></i>
@@ -261,7 +262,6 @@
                         <i class="fa-solid fa-bag-shopping text-purple-500 mr-1.5"></i> Lojas & Varejo
                     </button>
                 </div>
-                <!-- BOTÃO ABA DE FAVORITOS (NOVO) -->
                 <button onclick="toggleFavoritesTab()" id="favTabBtn" class="bg-rose-50 hover:bg-rose-100 text-rose-600 border border-rose-200 px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold whitespace-nowrap shadow-sm transition flex items-center gap-1.5">
                     <i class="fa-solid fa-heart"></i> Favoritos (<span id="favCount">0</span>)
                 </button>
@@ -271,7 +271,7 @@
         <div class="flex items-center justify-between mb-4">
             <span id="resultsCount" class="text-xs sm:text-sm text-slate-500 font-medium">Mostrando todos os comércios</span>
             <span class="text-xs text-brand-700 font-semibold bg-brand-50 border border-brand-100 px-2.5 py-1 rounded-md">
-                <i class="fa-solid fa-location-dot"></i> Região: Maracanaú, Pacatuba e Maranguape - CE
+                <i class="fa-solid fa-location-dot"></i> Região: Maracanaú, Pacatuba e Maranguape - CE[cite: 6]
             </span>
         </div>
 
@@ -301,7 +301,7 @@
                 <i class="fa-solid fa-store text-brand-500"></i> TEM NO BAIRRO
             </div>
             <p class="max-w-xl mx-auto text-slate-400 leading-relaxed">
-                Iniciativa de apoio e fortalecimento da economia comunitária em Maracanaú, Pacatuba e Maranguape - CE.
+                Iniciativa de apoio e fortalecimento da economia comunitária em Maracanaú, Pacatuba e Maranguape - CE[cite: 6].
             </p>
             
             <div class="flex flex-wrap justify-center items-center gap-4 py-2 text-slate-300 font-medium">
@@ -319,12 +319,12 @@
                     <i class="fa-solid fa-building text-brand-500"></i>
                     <span>TEM NO BAIRRO — PLATAFORMA DIGITAL</span>
                 </div>
-                <p><strong class="text-slate-300">CNPJ:</strong> 69.805.020/0001-36 | Maracanaú - CE</p>
+                <p><strong class="text-slate-300">CNPJ:</strong> 69.805.020/0001-36 | Maracanaú - CE[cite: 6]</p>
             </div>
         </div>
     </footer>
 
-    <!-- MODAL DE DETALHES / CARROSSEL + COMPARTILHAMENTO WHATSAPP -->
+    <!-- MODAL DE DETALHES / CARROSSEL + CUPOM DO BAIRRO + WHATSAPP -->
     <div id="detailModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md z-50 hidden flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
         <div class="bg-white rounded-3xl max-w-lg w-full p-6 shadow-2xl relative my-8 border border-slate-100 space-y-4">
             <button type="button" onclick="closeDetailModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 bg-slate-100 p-2 rounded-full w-8 h-8 flex items-center justify-center transition cursor-pointer z-10">
@@ -359,9 +359,7 @@
                         <i class="fa-solid fa-clock text-slate-400"></i>
                         <span id="detailHours"></span>
                     </div>
-                    <span class="bg-emerald-100 text-emerald-800 text-[10px] font-bold px-2 py-0.5 rounded-full flex items-center gap-1">
-                        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> Aberto Agora
-                    </span>
+                    <span id="detailStatusBadge"></span>
                 </div>
             </div>
 
@@ -369,7 +367,10 @@
                 <a id="detailWhatsApp" href="#" target="_blank" class="w-full bg-brand-500 hover:bg-brand-600 text-white font-bold py-3 px-4 rounded-xl shadow-md text-xs sm:text-sm flex items-center justify-center gap-2 transition">
                     <i class="fa-brands fa-whatsapp text-lg"></i> Chamar no WhatsApp
                 </a>
-                <!-- BOTÃO COMPARTILHAR LOJA NO WHATSAPP (NOVO) -->
+                <!-- BOTÃO RESGATAR CUPOM NO WHATSAPP (NOVO) -->
+                <a id="detailCouponWa" href="#" target="_blank" class="w-full bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold py-2.5 px-3 rounded-xl text-xs flex items-center justify-center gap-2 transition shadow">
+                    <i class="fa-solid fa-ticket"></i> Resgatar Cupom Exclusivo no WhatsApp
+                </a>
                 <a id="detailShareWa" href="#" target="_blank" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-2.5 px-3 rounded-xl text-xs flex items-center justify-center gap-2 transition">
                     <i class="fa-solid fa-share-nodes"></i> Compartilhar Loja com Amigo
                 </a>
@@ -539,12 +540,12 @@
                 </div>
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div>
-                        <label class="block text-xs font-semibold text-slate-700 mb-1">Endereço Visível (Inclua a Cidade: Maracanaú, Pacatuba ou Maranguape) *</label>
+                        <label class="block text-xs font-semibold text-slate-700 mb-1">Endereço (Com Cidade: Maracanaú, Pacatuba ou Maranguape) *</label>
                         <input type="text" id="editAddress" required placeholder="Ex: Rua 57, 222, Jereissati II, Maracanaú" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none">
                     </div>
                     <div>
-                        <label class="block text-xs font-semibold text-slate-700 mb-1">Horário</label>
-                        <input type="text" id="editHours" placeholder="Ex: Sex a Dom: 19h às 22h" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none">
+                        <label class="block text-xs font-semibold text-slate-700 mb-1">Horário (Ex: 08:00 - 18:00 ou Seg a Sab)</label>
+                        <input type="text" id="editHours" placeholder="Ex: 08:00 - 18:00" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none">
                     </div>
                 </div>
                 <div>
@@ -556,8 +557,8 @@
                     <textarea id="editDescription" required rows="2" placeholder="O que o estabelecimento oferece..." class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none"></textarea>
                 </div>
                 <div>
-                    <label class="block text-xs font-semibold text-slate-700 mb-1">URL da Foto de Capa (Link ou nome de arquivo)</label>
-                    <input type="text" id="editImages" placeholder="Ex: https://images.unsplash.com/... ou deli-foto.png" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none">
+                    <label class="block text-xs font-semibold text-slate-700 mb-1">URL da Foto de Capa</label>
+                    <input type="text" id="editImages" placeholder="Ex: deli-foto.png ou https://..." class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none">
                 </div>
                 <div class="pt-2 flex justify-end gap-2">
                     <button type="button" onclick="closeEditModal()" class="px-4 py-2 border border-slate-300 rounded-lg text-xs font-semibold text-slate-700 hover:bg-slate-100 transition cursor-pointer">
@@ -610,7 +611,7 @@
         </div>
     </div>
 
-    <!-- SCRIPTS E LÓGICA DO SITE COM TODAS AS MELHORIAS -->
+    <!-- SCRIPTS E LÓGICA DO SITE COM TODAS AS IMPLEMENTAÇÕES -->
     <script>
         const defaultBusinesses = [
             {
@@ -620,7 +621,7 @@
                 phone: '85989305017',
                 social: '@deliciasdadely',
                 address: 'Rua 57, 222, Jereissati II, Maracanaú',
-                hours: 'Sex e Sáb: 19h às 22h',
+                hours: '19:00 - 21:59',
                 mapsUrl: 'https://maps.app.goo.gl/goGdYGUznRwrVKvD7',
                 description: 'PRATINHOS CASEIROS, CANUDÃO, BOLOS, SOBREMESAS E MUITO MAIS FEITOS COM CARINHO PARA VOCÊ!',
                 images: ['deli-foto.png', 'foto-pratos.jpeg', 'foto-sobremesas.jpeg'],
@@ -634,7 +635,7 @@
                 phone: '85921033841',
                 social: '@sabordavila',
                 address: 'Rua Principal, 102, Maracanaú',
-                hours: 'Seg a Dom: 06:00 - 20:00',
+                hours: '06:00 - 20:00',
                 mapsUrl: '',
                 description: 'Pão quentinho a toda hora, bolos caseiros e salgados frescos.',
                 images: ['https://images.unsplash.com/photo-1509440159596-0249088772ff?w=500&auto=format&fit=crop&q=80'],
@@ -648,7 +649,7 @@
                 phone: '85921033841',
                 social: '@amigofielpet',
                 address: 'Av. Central, 450, Maracanaú',
-                hours: 'Seg a Sáb: 08:00 - 18:00',
+                hours: '08:00 - 18:00',
                 mapsUrl: '',
                 description: 'Ração de qualidade, acessórios, banho e tosa para o seu melhor amigo.',
                 images: ['https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?w=500&auto=format&fit=crop&q=80'],
@@ -662,7 +663,7 @@
                 phone: '85921033841',
                 social: '@estilocortebarber',
                 address: 'Rua 12, 85, Pacatuba',
-                hours: 'Ter a Sáb: 09:00 - 20:00',
+                hours: '09:00 - 20:00',
                 mapsUrl: '',
                 description: 'Corte moderno, barba alinhada e ambiente climatizado com aquela cerveja gelada.',
                 images: ['https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=500&auto=format&fit=crop&q=80'],
@@ -676,7 +677,7 @@
                 phone: '85921033841',
                 social: '@gasaguaexpress',
                 address: 'Rua Maranguape, 300, Maranguape',
-                hours: 'Seg a Dom: 07:00 - 21:00',
+                hours: '07:00 - 21:00',
                 mapsUrl: '',
                 description: 'Entrega rápida de botijão de gás e galão de água mineral direto na sua porta.',
                 images: ['https://images.unsplash.com/photo-1585421514284-efb74c2b69ba?w=500&auto=format&fit=crop&q=80'],
@@ -714,6 +715,47 @@
             updateFavCount();
             renderBusinesses();
         };
+
+        // FUNÇÃO INTELIGENTE DE VERIFICAÇÃO DE HORÁRIO (ABERTO / FECHADO)
+        function checkIsOpen(hoursStr) {
+            if (!hoursStr || !hoursStr.includes('-')) return { isOpen: true, text: 'Aberto' };
+            try {
+                const parts = hoursStr.split('-');
+                const openTime = parts[0].trim(); // ex: "08:00"
+                const closeTime = parts[1].trim(); // ex: "18:00"
+
+                const now = new Date();
+                const currentMinutes = now.getHours() * 60 + now.getMinutes();
+
+                const [openH, openM] = openTime.split(':').map(Number);
+                const [closeH, closeM] = closeTime.split(':').map(Number);
+
+                const openMinutes = openH * 60 + (openM || 0);
+                const closeMinutes = closeH * 60 + (closeM || 0);
+
+                if (currentMinutes >= openMinutes && currentMinutes <= closeMinutes) {
+                    return { isOpen: true, text: 'Aberto Agora' };
+                } else {
+                    return { isOpen: false, text: `Fechado (Abre às ${openTime})` };
+                }
+            } catch(e) {
+                return { isOpen: true, text: 'Aberto' };
+            }
+        }
+
+        // GEOLOCALIZAÇÃO: ORDENAR POR PROXIMIDADE
+        function requestUserLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(position => {
+                    alert("Localização obtida! Mostrando comércios ordenados para a sua região.");
+                    renderBusinesses();
+                }, error => {
+                    alert("Não foi possível acessar sua localização automática. Certifique-se de permitir o acesso no navegador.");
+                });
+            } else {
+                alert("Seu navegador não suporta geolocalização.");
+            }
+        }
 
         function toggleFavorite(id, event) {
             event.stopPropagation();
@@ -781,7 +823,6 @@
 
             const filtered = businesses.filter(item => {
                 if (item.status && item.status !== 'ativo') return false;
-
                 if (showOnlyFavorites && !favorites.includes(item.id)) return false;
 
                 let matchesCategory = true;
@@ -830,6 +871,12 @@
 
                 const isFav = favorites.includes(item.id);
                 let favIconClass = isFav ? "fa-solid fa-heart text-rose-500" : "fa-regular fa-heart text-white";
+                
+                // Status Dinâmico de Aberto / Fechado
+                const statusInfo = checkIsOpen(item.hours);
+                const statusBadgeHtml = statusInfo.isOpen 
+                    ? `<span class="absolute bottom-3 left-3 bg-emerald-600/90 text-white text-[10px] font-bold px-2 py-0.5 rounded-md flex items-center gap-1 shadow"><span class="w-1.5 h-1.5 rounded-full bg-emerald-300 animate-pulse"></span> Aberto Agora</span>`
+                    : `<span class="absolute bottom-3 left-3 bg-slate-700/90 text-slate-200 text-[10px] font-bold px-2 py-0.5 rounded-md flex items-center gap-1 shadow"><span class="w-1.5 h-1.5 rounded-full bg-slate-400"></span> ${statusInfo.text}</span>`;
 
                 let imagesHtml = `<div class="relative h-40 w-full bg-slate-100 overflow-hidden cursor-pointer" onclick="openDetailModal('${item.id}')"><img src="${imgList[0]}" alt="${item.name}" class="parceiro-capa" onerror="this.src='https://images.unsplash.com/photo-1528698827591-e19ccd7bc23d?w=500&auto=format&fit=crop&q=80'"></div>`;
 
@@ -840,14 +887,10 @@
                             <span class="absolute top-3 left-3 bg-slate-900/80 backdrop-blur-md text-white text-[11px] font-medium px-2.5 py-1 rounded-lg shadow pointer-events-none">
                                 ${item.category}
                             </span>
-                            <!-- BOTÃO FAVORITO NO CARD -->
                             <button onclick="toggleFavorite('${item.id}', event)" class="absolute top-3 right-12 w-8 h-8 rounded-full bg-slate-900/60 hover:bg-slate-900/90 flex items-center justify-center transition cursor-pointer shadow">
                                 <i class="${favIconClass} text-sm"></i>
                             </button>
-                            <!-- SELO ABERTO AGORA -->
-                            <span class="absolute bottom-3 left-3 bg-emerald-600/90 text-white text-[10px] font-bold px-2 py-0.5 rounded-md flex items-center gap-1 shadow">
-                                <span class="w-1.5 h-1.5 rounded-full bg-emerald-300 animate-pulse"></span> Aberto Agora
-                            </span>
+                            ${statusBadgeHtml}
                             ${item.isFounder ? `
                                 <span class="absolute top-3 right-3 bg-amber-400 text-slate-950 text-[10px] font-extrabold px-2 py-1 rounded-full shadow flex items-center gap-1 uppercase tracking-wider pointer-events-none">
                                     <i class="fa-solid fa-star text-slate-950"></i>
@@ -905,11 +948,26 @@
             document.getElementById('detailAddress').textContent = item.address;
             document.getElementById('detailHours').textContent = item.hours || 'Consulte horário de atendimento';
 
+            const statusInfo = checkIsOpen(item.hours);
+            const modalStatusEl = document.getElementById('detailStatusBadge');
+            if (statusInfo.isOpen) {
+                modalStatusEl.className = 'bg-emerald-100 text-emerald-800 text-[10px] font-bold px-2 py-0.5 rounded-full flex items-center gap-1';
+                modalStatusEl.innerHTML = '<span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> Aberto Agora';
+            } else {
+                modalStatusEl.className = 'bg-slate-100 text-slate-700 text-[10px] font-bold px-2 py-0.5 rounded-full flex items-center gap-1';
+                modalStatusEl.innerHTML = `<span class="w-2 h-2 rounded-full bg-slate-400"></span> ${statusInfo.text}`;
+            }
+
             const cleanPhone = item.phone ? item.phone.replace(/\D/g, '') : '85921033841';
+            
+            // Links WhatsApp Diretos e de Cupom
             const waMessage = encodeURIComponent(`Olá, vi o seu anúncio no app TEM NO BAIRRO e gostaria de mais informações!`);
             document.getElementById('detailWhatsApp').href = `https://api.whatsapp.com/send?phone=55${cleanPhone}&text=${waMessage}`;
             
-            // Link de compartilhamento rápido com amigo via WhatsApp
+            // CUPOM DO BAIRRO NO WHATSAPP (NOVO)
+            const couponMessage = encodeURIComponent(`Olá! Vi o estabelecimento *${item.name}* no app *TEM NO BAIRRO* e quero resgatar o meu cupom/benefício exclusivo de primeira compra!`);
+            document.getElementById('detailCouponWa').href = `https://api.whatsapp.com/send?phone=55${cleanPhone}&text=${couponMessage}`;
+
             const shareText = encodeURIComponent(`Confira o estabelecimento *${item.name}* (${item.category}) no *Tem No Bairro*! Fale direto no WhatsApp: https://api.whatsapp.com/send?phone=55${cleanPhone}`);
             document.getElementById('detailShareWa').href = `https://api.whatsapp.com/send?text=${shareText}`;
 
