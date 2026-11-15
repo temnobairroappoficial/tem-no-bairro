@@ -641,7 +641,7 @@
                 </div>
                 <div>
                     <label class="block text-xs font-semibold text-slate-700 mb-1">Nome do Estabelecimento *</label>
-                    <input type="text" id="formName" required placeholder="Ex: Delícias da Deli" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none">
+                    <input type="text" id="formName" required placeholder="Ex: Delícias da Dely" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none">
                 </div>
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div>
@@ -662,7 +662,7 @@
                 </div>
                 <div>
                     <label class="block text-xs font-semibold text-slate-700 mb-1">Instagram (Opcional)</label>
-                    <input type="text" id="formSocial" placeholder="Ex: @deliciasdadeli" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none">
+                    <input type="text" id="formSocial" placeholder="Ex: @deliciasdadely" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none">
                 </div>
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div>
@@ -694,15 +694,16 @@
         </div>
     </div>
 
-    <!-- SCRIPTS E LÓGICA DO SITE COM VERSÃO 6 (GARANTIA DE EXIBIÇÃO) -->
+    <!-- SCRIPTS E LÓGICA DO SITE COM PERSISTÊNCIA REAL DE EXCLUSÃO (VERSÃO 7) -->
     <script>
-        const initialBusinesses = [
+        // Nome oficial correto travado com 'Y' (Delícias da Dely)
+        const defaultBusinesses = [
             {
-                id: 'delicias-deli-1',
-                name: 'Delícias da Deli',
+                id: 'delicias-dely-1',
+                name: 'Delícias da Dely',
                 category: 'Alimentação',
                 phone: '85921033841',
-                social: '@deliciasdadeli',
+                social: '@deliciasdadely',
                 address: 'Rua 57, 222, Jereissati II, Maracanaú',
                 hours: 'Sex a Dom: 19h às 22h',
                 mapsUrl: '',
@@ -733,44 +734,42 @@
         let currentImageIndex = 0;
 
         window.onload = function() {
-            const savedData = localStorage.getItem('tem_no_bairro_db_v6');
-            if (savedData) {
+            const savedData = localStorage.getItem('tem_no_bairro_db_v7');
+            
+            if (savedData !== null) {
                 try {
                     businesses = JSON.parse(savedData);
                 } catch(e) {
-                    businesses = initialBusinesses;
+                    businesses = defaultBusinesses;
                 }
             } else {
-                businesses = initialBusinesses;
+                // Primeira vez que abre no navegador: carrega os padrões oficiais
+                businesses = defaultBusinesses;
+                localStorage.setItem('tem_no_bairro_db_v7', JSON.stringify(businesses));
             }
 
-            // Garante que os comércios essenciais estejam presentes sem duplicar variações de nomes
-            const uniqueMap = new Map();
-            
-            // Adiciona primeiro os padrões garantidos
-            initialBusinesses.forEach(item => {
-                uniqueMap.set(item.id, item);
-            });
-
-            // Adiciona os demais salvos pelo usuário (se houver novos cadastros)
-            businesses.forEach(item => {
-                const cleanKey = item.name.toLowerCase().replace(/[^a-z0-9]/g, '').trim();
-                if (cleanKey.includes('deliciasdadeli') || cleanKey.includes('deliciasdadely')) {
-                    // Mantém a Deli unificada e perfeita
-                    const deli = uniqueMap.get('delicias-deli-1') || item;
-                    deli.name = 'Delícias da Deli';
-                    deli.images = ['deli-foto.png', 'foto-pratos.jpeg', 'foto-sobremesas.jpeg'];
-                    uniqueMap.set('delicias-deli-1', deli);
-                } else if (cleanKey.includes('sabordavila')) {
-                    uniqueMap.set('sabor-da-vila-1', item);
-                } else {
-                    uniqueMap.set(item.id || cleanKey, item);
+            // Garante que a Delícias da Dely use o nome correto com Y e evite duplicados gerados anteriormente
+            let foundDely = false;
+            businesses = businesses.filter(item => {
+                const nameLower = item.name.toLowerCase();
+                if (nameLower.includes('delícias da deli') || nameLower.includes('delicias da deli') || nameLower.includes('delícias da dely') || nameLower.includes('delicias da dely')) {
+                    if (!foundDely) {
+                        item.name = 'Delícias da Dely';
+                        item.images = ['deli-foto.png', 'foto-pratos.jpeg', 'foto-sobremesas.jpeg'];
+                        foundDely = true;
+                        return true;
+                    }
+                    return false; // Remove duplicatas extras
                 }
+                return true;
             });
 
-            businesses = Array.from(uniqueMap.values());
-            localStorage.setItem('tem_no_bairro_db_v6', JSON.stringify(businesses));
+            // Se por acaso a Dely não estiver na lista (excluída por engano), reinsere a correta
+            if (!foundDely) {
+                businesses.unshift(defaultBusinesses[0]);
+            }
 
+            localStorage.setItem('tem_no_bairro_db_v7', JSON.stringify(businesses));
             renderBusinesses();
         };
 
@@ -1022,7 +1021,7 @@
                 businesses[index].images = imgsVal.split(',').map(s => s.trim()).filter(s => s.length > 0);
             }
 
-            localStorage.setItem('tem_no_bairro_db_v6', JSON.stringify(businesses));
+            localStorage.setItem('tem_no_bairro_db_v7', JSON.stringify(businesses));
             closeEditModal();
             renderBusinesses();
         }
@@ -1030,7 +1029,8 @@
         function deleteBusiness(index) {
             if (confirm('Deseja realmente remover este parceiro?')) {
                 businesses.splice(index, 1);
-                localStorage.setItem('tem_no_bairro_db_v6', JSON.stringify(businesses));
+                // Salva permanentemente no navegador. Se você excluir, ele não volta mais sozinho!
+                localStorage.setItem('tem_no_bairro_db_v7', JSON.stringify(businesses));
                 renderAdminTable();
             }
         }
@@ -1077,7 +1077,7 @@
                 status: 'ativo'
             };
             businesses.unshift(newBusiness);
-            localStorage.setItem('tem_no_bairro_db_v6', JSON.stringify(businesses));
+            localStorage.setItem('tem_no_bairro_db_v7', JSON.stringify(businesses));
             renderBusinesses();
             closeModal();
         }
