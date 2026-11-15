@@ -661,7 +661,7 @@
         </div>
     </div>
 
-    <!-- SCRIPTS E LÓGICA DO SITE COM CHAVE V2 (LIMPEZA DE CACHE) -->
+    <!-- SCRIPTS E LÓGICA DO SITE COM CORREÇÃO ROBUSTA -->
     <script>
         const initialBusinesses = [
             {
@@ -700,27 +700,28 @@
         let currentImageIndex = 0;
 
         window.onload = function() {
-            const savedData = localStorage.getItem('tem_no_bairro_db_v2');
+            const savedData = localStorage.getItem('tem_no_bairro_db_v3');
             if (savedData) {
                 try {
                     businesses = JSON.parse(savedData);
+                    // Garante que a Deli está sempre na lista com os dados certos
                     const deliIndex = businesses.findIndex(b => b.name === 'Delícias da Deli');
                     if (deliIndex === -1) {
                         businesses.unshift(initialBusinesses[0]);
                     } else {
                         businesses[deliIndex].images = ['deli-foto.png', 'foto-pratos.jpeg', 'foto-sobremesas.jpeg'];
                     }
-                    businesses.forEach(b => {
-                        if(!b.status) b.status = 'ativo';
-                        if(!b.images && b.image) b.images = [b.image];
-                        if(!b.images) b.images = ['https://images.unsplash.com/photo-1528698827591-e19ccd7bc23d?w=500&auto=format&fit=crop&q=80'];
-                    });
+                    // Garante que a Sabor da Vila também está presente
+                    const vilaIndex = businesses.findIndex(b => b.name.includes('Sabor da Vila'));
+                    if (vilaIndex === -1) {
+                        businesses.push(initialBusinesses[1]);
+                    }
                 } catch(e) {
                     businesses = initialBusinesses;
                 }
             } else {
                 businesses = initialBusinesses;
-                localStorage.setItem('tem_no_bairro_db_v2', JSON.stringify(businesses));
+                localStorage.setItem('tem_no_bairro_db_v3', JSON.stringify(businesses));
             }
             renderBusinesses();
         };
@@ -737,7 +738,7 @@
             grid.innerHTML = '';
 
             const filtered = businesses.filter(item => {
-                if (item.status !== 'ativo') return false;
+                if (item.status && item.status !== 'ativo') return false;
 
                 let matchesCategory = true;
                 if (currentCategory === 'Fundadores') {
@@ -768,7 +769,7 @@
             if (emptyState) emptyState.classList.add('hidden');
 
             filtered.forEach((item, index) => {
-                const cleanPhone = item.phone.replace(/\D/g, '');
+                const cleanPhone = item.phone ? item.phone.replace(/\D/g, '') : '85921033841';
                 const waMessage = encodeURIComponent(`Olá, vi o seu anúncio no app TEM NO BAIRRO e gostaria de mais informações!`);
                 const whatsappUrl = `https://api.whatsapp.com/send?phone=55${cleanPhone}&text=${waMessage}`;
                 
@@ -844,7 +845,7 @@
             document.getElementById('detailAddress').textContent = item.address;
             document.getElementById('detailHours').textContent = item.hours || 'Consulte horário de atendimento';
 
-            const cleanPhone = item.phone.replace(/\D/g, '');
+            const cleanPhone = item.phone ? item.phone.replace(/\D/g, '') : '85921033841';
             const waMessage = encodeURIComponent(`Olá, vi o seu anúncio no app TEM NO BAIRRO e gostaria de mais informações!`);
             document.getElementById('detailWhatsApp').href = `https://api.whatsapp.com/send?phone=55${cleanPhone}&text=${waMessage}`;
             
@@ -906,7 +907,8 @@
             tbody.innerHTML = '';
 
             businesses.forEach((item, index) => {
-                let badgeClass = item.status === 'ativo' ? 'bg-emerald-100 text-emerald-800' : 'bg-yellow-100 text-yellow-800';
+                let statusVal = item.status || 'ativo';
+                let badgeClass = statusVal === 'ativo' ? 'bg-emerald-100 text-emerald-800' : 'bg-yellow-100 text-yellow-800';
                 const row = `
                     <tr class="hover:bg-slate-50 transition">
                         <td class="p-3">
@@ -916,7 +918,7 @@
                         <td class="p-3 text-slate-600 font-medium">${item.plan || 'Plano Fundador'}</td>
                         <td class="p-3 text-slate-600 font-mono">${item.phone}</td>
                         <td class="p-3 text-center">
-                            <span class="text-xs font-bold px-2.5 py-1 rounded-lg ${badgeClass}">${item.status}</span>
+                            <span class="text-xs font-bold px-2.5 py-1 rounded-lg ${badgeClass}">${statusVal}</span>
                         </td>
                         <td class="p-3 text-right space-x-1">
                             <button onclick="openEditModal(${index})" class="bg-blue-50 hover:bg-blue-100 text-blue-600 p-2 rounded-lg transition" title="Editar">
@@ -972,7 +974,7 @@
                 businesses[index].images = imgsVal.split(',').map(s => s.trim()).filter(s => s.length > 0);
             }
 
-            localStorage.setItem('tem_no_bairro_db_v2', JSON.stringify(businesses));
+            localStorage.setItem('tem_no_bairro_db_v3', JSON.stringify(businesses));
             closeEditModal();
             renderBusinesses();
         }
@@ -980,7 +982,7 @@
         function deleteBusiness(index) {
             if (confirm('Deseja realmente remover este parceiro?')) {
                 businesses.splice(index, 1);
-                localStorage.setItem('tem_no_bairro_db_v2', JSON.stringify(businesses));
+                localStorage.setItem('tem_no_bairro_db_v3', JSON.stringify(businesses));
                 renderAdminTable();
             }
         }
@@ -1020,14 +1022,14 @@
                 social: document.getElementById('formSocial').value,
                 address: document.getElementById('formAddress').value,
                 hours: document.getElementById('formHours').value || 'Horário a combinar',
-                mapsUrl: document.getElementById('formMapsUrl').value.trim(),
+                mapsUrl: document.getElementById('formMapsUrl'].value.trim(),
                 description: document.getElementById('formDescription').value,
                 images: ['deli-foto.png'],
                 isFounder: true,
                 status: 'ativo'
             };
             businesses.unshift(newBusiness);
-            localStorage.setItem('tem_no_bairro_db_v2', JSON.stringify(businesses));
+            localStorage.setItem('tem_no_bairro_db_v3', JSON.stringify(businesses));
             renderBusinesses();
             closeModal();
         }
