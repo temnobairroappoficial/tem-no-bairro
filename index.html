@@ -520,7 +520,7 @@
                     <i class="fa-solid fa-pen-to-square"></i> Painel Admin
                 </span>
                 <h3 class="text-xl font-bold text-slate-900 mt-2">Editar Estabelecimento</h3>
-                <p class="text-xs text-slate-500 mt-1">Altere as informações, o endereço por extenso e o link exato do Google Maps.</p>
+                <p class="text-xs text-slate-500 mt-1">Altere as informações e clique em Salvar Alterações para manter tudo guardado.</p>
             </div>
             <form id="editBusinessForm" onsubmit="handleEditSubmit(event)" class="space-y-4">
                 <input type="hidden" id="editIndex">
@@ -570,8 +570,9 @@
                     <button type="button" onclick="closeEditModal()" class="px-4 py-2 border border-slate-300 rounded-lg text-xs font-semibold text-slate-700 hover:bg-slate-100 transition cursor-pointer">
                         Cancelar
                     </button>
-                    <button type="submit" class="px-5 py-2 bg-brand-600 hover:bg-brand-700 text-white rounded-lg text-xs font-bold shadow-md transition flex items-center gap-1.5 cursor-pointer">
-                        <i class="fa-solid fa-check"></i> Salvar Alterações
+                    <!-- BOTÃO EXPLÍCITO DE SALVAR ALTERAÇÕES -->
+                    <button type="submit" class="px-6 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg text-xs font-bold shadow-md transition flex items-center gap-1.5 cursor-pointer">
+                        <i class="fa-solid fa-floppy-disk"></i> Salvar Alterações
                     </button>
                 </div>
             </form>
@@ -694,7 +695,7 @@
         </div>
     </div>
 
-    <!-- SCRIPTS E LÓGICA DO SITE COM CATEGORIAS VARIADAS (VERSÃO 8) -->
+    <!-- SCRIPTS E LÓGICA DO SITE COM PERSISTÊNCIA TOTAL (VERSÃO 9) -->
     <script>
         const defaultBusinesses = [
             {
@@ -775,7 +776,7 @@
         let currentImageIndex = 0;
 
         window.onload = function() {
-            const savedData = localStorage.getItem('tem_no_bairro_db_v8');
+            const savedData = localStorage.getItem('tem_no_bairro_db_v9');
             
             if (savedData !== null) {
                 try {
@@ -785,30 +786,9 @@
                 }
             } else {
                 businesses = defaultBusinesses;
-                localStorage.setItem('tem_no_bairro_db_v8', JSON.stringify(businesses));
+                localStorage.setItem('tem_no_bairro_db_v9', JSON.stringify(businesses));
             }
 
-            // Garante que a Delícias da Dely use sempre o nome oficial com 'Y' e sem duplicatas
-            let foundDely = false;
-            businesses = businesses.filter(item => {
-                const nameLower = item.name.toLowerCase();
-                if (nameLower.includes('delícias da deli') || nameLower.includes('delicias da deli') || nameLower.includes('delícias da dely') || nameLower.includes('delicias da dely')) {
-                    if (!foundDely) {
-                        item.name = 'Delícias da Dely';
-                        item.images = ['deli-foto.png', 'foto-pratos.jpeg', 'foto-sobremesas.jpeg'];
-                        foundDely = true;
-                        return true;
-                    }
-                    return false;
-                }
-                return true;
-            });
-
-            if (!foundDely) {
-                businesses.unshift(defaultBusinesses[0]);
-            }
-
-            localStorage.setItem('tem_no_bairro_db_v8', JSON.stringify(businesses));
             renderBusinesses();
         };
 
@@ -1060,7 +1040,10 @@
                 businesses[index].images = imgsVal.split(',').map(s => s.trim()).filter(s => s.length > 0);
             }
 
-            localStorage.setItem('tem_no_bairro_db_v8', JSON.stringify(businesses));
+            // SALVA DEFINITIVAMENTE NO NAVEGADOR
+            localStorage.setItem('tem_no_bairro_db_v9', JSON.stringify(businesses));
+            
+            alert('Alterações salvas com sucesso!');
             closeEditModal();
             renderBusinesses();
         }
@@ -1068,7 +1051,7 @@
         function deleteBusiness(index) {
             if (confirm('Deseja realmente remover este parceiro?')) {
                 businesses.splice(index, 1);
-                localStorage.setItem('tem_no_bairro_db_v8', JSON.stringify(businesses));
+                localStorage.setItem('tem_no_bairro_db_v9', JSON.stringify(businesses));
                 renderAdminTable();
             }
         }
@@ -1115,7 +1098,7 @@
                 status: 'ativo'
             };
             businesses.unshift(newBusiness);
-            localStorage.setItem('tem_no_bairro_db_v8', JSON.stringify(businesses));
+            localStorage.setItem('tem_no_bairro_db_v9', JSON.stringify(businesses));
             renderBusinesses();
             closeModal();
         }
