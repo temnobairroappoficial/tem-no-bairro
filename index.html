@@ -63,12 +63,11 @@
 </head>
 <body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col">
 
-    <!-- HEADER / TOPO COM A NOVA LOGO -->
+    <!-- HEADER / TOPO -->
     <header class="bg-gradient-to-r from-navy-900 via-slate-900 to-navy-800 text-white shadow-md border-b border-orange-500/30 sticky top-0 z-30">
         <div class="max-w-6xl mx-auto px-4 py-3 sm:py-4 flex flex-col sm:flex-row items-center justify-between gap-3">
             <div class="flex items-center gap-3 w-full sm:w-auto justify-between">
                 <div class="flex items-center gap-3">
-                    <!-- LOGO ATUALIZADA COM .jpeg -->
                     <div class="w-11 h-11 rounded-xl overflow-hidden shadow-lg border border-orange-400/40 bg-slate-800 flex items-center justify-center flex-shrink-0">
                         <img src="logo-casa-pino.jpeg" alt="Logo Tem No Bairro" class="w-full h-full object-cover">
                     </div>
@@ -117,7 +116,7 @@
                     Encontre o comércio do seu bairro <span class="text-brand-500">direto no WhatsApp!</span>
                 </h2>
                 <p class="text-slate-300 text-xs sm:text-sm leading-relaxed">
-                    Precisa de gás, pão fresquinho, ração ou prestador de serviço? Pesquise abaixo, chame no WhatsApp e compre de quem está perto de você sem sair de casa.
+                    Precisa de gás, pão fresquinho, ração ou prestador de serviço? Pesquise abaixo, chame no WhatsApp e aproveite os cupons exclusivos de quem está perto de você.
                 </p>
                 <div class="pt-2 flex flex-wrap gap-3">
                     <a href="#searchInput" class="bg-brand-500 hover:bg-brand-600 text-white font-bold text-xs sm:text-sm px-6 py-3.5 rounded-xl shadow-lg transition transform hover:scale-105 flex items-center gap-2">
@@ -168,7 +167,7 @@
                         </div>
                         <ul class="space-y-2.5 text-xs text-slate-600">
                             <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Ficha com carrossel de fotos/produtos</li>
-                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> 1 Post mensal no Instagram</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Painel de Promoções e Brindes exclusivos</li>
                             <li class="flex items-center gap-2 font-bold text-slate-900"><i class="fa-solid fa-star text-amber-500"></i> Selo "Parceiro Fundador"</li>
                             <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Zero comissão sobre vendas[cite: 6]</li>
                         </ul>
@@ -216,7 +215,7 @@
                         <ul class="space-y-2.5 text-xs text-slate-600">
                             <li class="flex items-center gap-2 font-bold text-purple-700"><i class="fa-solid fa-bolt text-purple-500"></i> Destaque no topo da categoria</li>
                             <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> 2 Posts + Stories semanais</li>
-                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Divulgação de novidades</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Gestão de Campanhas e Brindes</li>
                             <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Botão direto pro WhatsApp</li>
                         </ul>
                     </div>
@@ -349,6 +348,17 @@
                 <p id="detailDescription" class="text-xs sm:text-sm text-slate-600 leading-relaxed"></p>
             </div>
 
+            <!-- BLOCO DE PROMOÇÃO / BRINDE ATIVO -->
+            <div id="detailPromoBox" class="hidden bg-amber-50 border border-amber-300 rounded-2xl p-3.5 flex items-center gap-3 text-xs text-amber-900 shadow-sm">
+                <div class="w-9 h-9 bg-amber-500 text-slate-950 rounded-xl flex items-center justify-center font-bold text-base flex-shrink-0 shadow">
+                    <i class="fa-solid fa-gift"></i>
+                </div>
+                <div>
+                    <span class="font-extrabold block text-amber-950 text-sm">Vantagem Exclusiva no App!</span>
+                    <span id="detailPromoText" class="font-medium"></span>
+                </div>
+            </div>
+
             <div class="bg-slate-50 border border-slate-200/80 rounded-2xl p-4 space-y-2 text-xs text-slate-600">
                 <div class="flex items-center gap-2">
                     <i class="fa-solid fa-location-dot text-brand-600"></i>
@@ -467,7 +477,7 @@
                     <thead>
                         <tr class="bg-slate-100 text-slate-700 uppercase tracking-wider text-[10px]">
                             <th class="p-3 rounded-l-xl">Estabelecimento</th>
-                            <th class="p-3">Plano</th>
+                            <th class="p-3">Plano & Promoção</th>
                             <th class="p-3">WhatsApp</th>
                             <th class="p-3 text-center">Status</th>
                             <th class="p-3 text-right rounded-r-xl">Ações</th>
@@ -496,7 +506,7 @@
                     <i class="fa-solid fa-store"></i> Painel Admin
                 </span>
                 <h3 id="modalTitle" class="text-xl font-bold text-slate-900 mt-2">Adicionar Novo Lojista</h3>
-                <p class="text-xs text-slate-500 mt-1">Preencha os dados do parceiro confirmado para exibi-lo instantaneamente na vitrine.</p>
+                <p class="text-xs text-slate-500 mt-1">Preencha os dados e configure campanhas promocionais direto por aqui.</p>
             </div>
             <form id="editBusinessForm" onsubmit="handleEditSubmit(event)" class="space-y-4">
                 <input type="hidden" id="editIndex" value="-1">
@@ -537,6 +547,22 @@
                         </select>
                     </div>
                 </div>
+
+                <!-- NOVA ÁREA DE PROMOÇÕES / BRINDES -->
+                <div class="bg-amber-50 border border-amber-200 rounded-xl p-3 space-y-2">
+                    <label class="block text-xs font-bold text-amber-900 flex items-center gap-1.5">
+                        <i class="fa-solid fa-gift text-amber-600"></i> Promoção / Desconto Ativo no App
+                    </label>
+                    <select id="editPromo" class="w-full px-3 py-2 border border-amber-300 bg-white rounded-lg text-xs font-semibold text-amber-900 focus:ring-2 focus:ring-amber-500 focus:outline-none">
+                        <option value="">Nenhuma Promoção Ativa (Padrão)</option>
+                        <option value="10% de Desconto na 1ª Compra pelo App">🎁 10% de Desconto na 1ª Compra pelo App</option>
+                        <option value="Brinde Surpresa ou Bebida Grátis no Pedido">🥤 Brinde Surpresa ou Bebida Grátis no Pedido</option>
+                        <option value="Taxa de Entrega Grátis no Bairro">🚚 Taxa de Entrega Grátis no Bairro</option>
+                        <option value="Oferta Relâmpago Exclusiva">⚡ Oferta Relâmpago Exclusiva</option>
+                    </select>
+                    <p class="text-[11px] text-amber-700">Ao selecionar, um selo destacado aparecerá no card e no modal da loja para os moradores.</p>
+                </div>
+
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div>
                         <label class="block text-xs font-semibold text-slate-700 mb-1">Endereço (Com Cidade) *</label>
@@ -625,6 +651,7 @@
                 description: 'PRATINHOS CASEIROS, CANUDÃO, BOLOS, SOBREMESAS E MUITO MAIS FEITOS COM CARINHO PARA VOCÊ!',
                 images: ['deli-foto.png', 'foto-pratos.jpeg', 'foto-sobremesas.jpeg'],
                 isFounder: true,
+                promo: '10% de Desconto na 1ª Compra pelo App',
                 status: 'ativo'
             },
             {
@@ -639,6 +666,7 @@
                 description: 'Pão quentinho a toda hora, bolos caseiros e salgados frescos.',
                 images: ['https://images.unsplash.com/photo-1509440159596-0249088772ff?w=500&auto=format&fit=crop&q=80'],
                 isFounder: true,
+                promo: 'Brinde Surpresa ou Bebida Grátis no Pedido',
                 status: 'ativo'
             },
             {
@@ -653,6 +681,7 @@
                 description: 'Ração de qualidade, acessórios, banho e tosa para o seu melhor amigo.',
                 images: ['https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?w=500&auto=format&fit=crop&q=80'],
                 isFounder: true,
+                promo: '',
                 status: 'ativo'
             },
             {
@@ -667,6 +696,7 @@
                 description: 'Corte moderno, barba alinhada e ambiente climatizado com aquela cerveja gelada.',
                 images: ['https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=500&auto=format&fit=crop&q=80'],
                 isFounder: false,
+                promo: '10% de Desconto na 1ª Compra pelo App',
                 status: 'ativo'
             },
             {
@@ -681,6 +711,7 @@
                 description: 'Entrega rápida de botijão de gás e galão de água mineral direto na sua porta.',
                 images: ['https://images.unsplash.com/photo-1585421514284-efb74c2b69ba?w=500&auto=format&fit=crop&q=80'],
                 isFounder: true,
+                promo: 'Taxa de Entrega Grátis no Bairro',
                 status: 'ativo'
             }
         ];
@@ -694,7 +725,7 @@
         let currentImageIndex = 0;
 
         window.onload = function() {
-            const savedData = localStorage.getItem('tem_no_bairro_db_v13');
+            const savedData = localStorage.getItem('tem_no_bairro_db_v14');
             if (savedData !== null) {
                 try {
                     businesses = JSON.parse(savedData);
@@ -703,7 +734,7 @@
                 }
             } else {
                 businesses = defaultBusinesses;
-                localStorage.setItem('tem_no_bairro_db_v13', JSON.stringify(businesses));
+                localStorage.setItem('tem_no_bairro_db_v14', JSON.stringify(businesses));
             }
 
             const savedFavs = localStorage.getItem('tem_no_bairro_favs');
@@ -858,9 +889,9 @@
                 }
 
                 const matchesSearch = item.name.toLowerCase().includes(searchVal) || 
-                                      item.description.toLowerCase().includes(searchVal) ||
-                                      item.category.toLowerCase().includes(searchVal) ||
-                                      item.address.toLowerCase().includes(searchVal);
+                                    item.description.toLowerCase().includes(searchVal) ||
+                                    item.category.toLowerCase().includes(searchVal) ||
+                                    item.address.toLowerCase().includes(searchVal);
 
                 return matchesCategory && matchesCity && matchesSearch;
             });
@@ -899,6 +930,16 @@
 
                 let imagesHtml = `<div class="relative h-40 w-full bg-slate-100 overflow-hidden cursor-pointer" onclick="openDetailModal('${item.id}')"><img src="${imgList[0]}" alt="${item.name}" class="parceiro-capa" onerror="this.src='https://images.unsplash.com/photo-1528698827591-e19ccd7bc23d?w=500&auto=format&fit=crop&q=80'"></div>`;
 
+                // Selo de promoção no card se houver
+                let promoBadgeHtml = '';
+                if (item.promo && item.promo.trim() !== '') {
+                    promoBadgeHtml = `
+                        <span class="absolute top-12 left-3 bg-amber-500 text-slate-950 text-[10px] font-extrabold px-2.5 py-1 rounded-lg shadow flex items-center gap-1 uppercase tracking-wider pointer-events-none">
+                            <i class="fa-solid fa-gift"></i> ${item.promo.includes('10%') ? '10% OFF' : 'Cupom Exclusivo'}
+                        </span>
+                    `;
+                }
+
                 const cardHTML = `
                     <div class="bg-white rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col overflow-hidden relative group">
                         <div class="relative">
@@ -910,6 +951,7 @@
                                 <i class="${favIconClass} text-sm"></i>
                             </button>
                             ${statusBadgeHtml}
+                            ${promoBadgeHtml}
                             ${item.isFounder ? `
                                 <span class="absolute top-3 right-3 bg-amber-400 text-slate-950 text-[10px] font-extrabold px-2 py-1 rounded-full shadow flex items-center gap-1 uppercase tracking-wider pointer-events-none">
                                     <i class="fa-solid fa-star text-slate-950"></i>
@@ -967,6 +1009,16 @@
             document.getElementById('detailAddress').textContent = item.address;
             document.getElementById('detailHours').textContent = item.hours || 'Consulte horário de atendimento';
 
+            // Caixa de Promoção no Modal
+            const promoBox = document.getElementById('detailPromoBox');
+            const promoText = document.getElementById('detailPromoText');
+            if (item.promo && item.promo.trim() !== '') {
+                promoText.textContent = item.promo;
+                promoBox.classList.remove('hidden');
+            } else {
+                promoBox.classList.add('hidden');
+            }
+
             const statusInfo = checkIsOpen(item.hours);
             const modalStatusEl = document.getElementById('detailStatusBadge');
             if (statusInfo.isOpen) {
@@ -982,7 +1034,8 @@
             const waMessage = encodeURIComponent(`Olá, vi o seu anúncio no app TEM NO BAIRRO e gostaria de mais informações!`);
             document.getElementById('detailWhatsApp').href = `https://api.whatsapp.com/send?phone=55${cleanPhone}&text=${waMessage}`;
             
-            const couponMessage = encodeURIComponent(`Olá! Vi o estabelecimento *${item.name}* no app *TEM NO BAIRRO* e quero resgatar o meu cupom/benefício exclusivo de primeira compra!`);
+            const promoNotice = item.promo ? ` e quero resgatar o benefício: *${item.promo}*` : '';
+            const couponMessage = encodeURIComponent(`Olá! Vi o estabelecimento *${item.name}* no app *TEM NO BAIRRO*${promoNotice}!`);
             document.getElementById('detailCouponWa').href = `https://api.whatsapp.com/send?phone=55${cleanPhone}&text=${couponMessage}`;
 
             const shareText = encodeURIComponent(`Confira o estabelecimento *${item.name}* (${item.category}) no *Tem No Bairro*! Fale direto no WhatsApp: https://api.whatsapp.com/send?phone=55${cleanPhone}`);
@@ -1054,7 +1107,10 @@
                             <div class="font-bold text-slate-900">${item.name}</div>
                             <div class="text-[10px] text-slate-400">${item.category} • ${item.address}</div>
                         </td>
-                        <td class="p-3 text-slate-600 font-medium">${item.plan || 'Plano Fundador'}</td>
+                        <td class="p-3 text-slate-600 font-medium">
+                            <div>${item.plan || 'Plano Fundador'}</div>
+                            ${item.promo ? `<span class="text-[10px] text-amber-700 bg-amber-50 px-2 py-0.5 rounded font-bold inline-block mt-0.5"><i class="fa-solid fa-gift"></i> ${item.promo}</span>` : '<span class="text-[10px] text-slate-400">Sem promoção</span>'}
+                        </td>
                         <td class="p-3 text-slate-600 font-mono">${item.phone}</td>
                         <td class="p-3 text-center">
                             <span class="text-xs font-bold px-2.5 py-1 rounded-lg ${badgeClass}">${statusVal}</span>
@@ -1081,6 +1137,7 @@
             document.getElementById('editPhone').value = '';
             document.getElementById('editPlan').value = 'Parceiro Fundador - R$ 39,90/mês';
             document.getElementById('editIsFounder').value = 'true';
+            document.getElementById('editPromo').value = '';
             document.getElementById('editAddress').value = '';
             document.getElementById('editHours').value = '';
             document.getElementById('editMapsUrl').value = '';
@@ -1100,6 +1157,7 @@
             document.getElementById('editPhone').value = item.phone;
             document.getElementById('editPlan').value = item.plan || 'Parceiro Fundador - R$ 39,90/mês';
             document.getElementById('editIsFounder').value = item.isFounder ? 'true' : 'false';
+            document.getElementById('editPromo').value = item.promo || '';
             document.getElementById('editAddress').value = item.address;
             document.getElementById('editHours').value = item.hours || '';
             document.getElementById('editMapsUrl').value = item.mapsUrl || '';
@@ -1126,6 +1184,7 @@
             const phone = document.getElementById('editPhone').value.trim();
             const plan = document.getElementById('editPlan').value;
             const isFounder = document.getElementById('editIsFounder').value === 'true';
+            const promo = document.getElementById('editPromo').value;
             const address = document.getElementById('editAddress').value.trim();
             const hours = document.getElementById('editHours').value.trim();
             const mapsUrl = document.getElementById('editMapsUrl').value.trim();
@@ -1143,6 +1202,7 @@
                     phone: phone,
                     plan: plan,
                     isFounder: isFounder,
+                    promo: promo,
                     address: address,
                     hours: hours,
                     mapsUrl: mapsUrl,
@@ -1158,15 +1218,16 @@
                 businesses[index].phone = phone;
                 businesses[index].plan = plan;
                 businesses[index].isFounder = isFounder;
+                businesses[index].promo = promo;
                 businesses[index].address = address;
                 businesses[index].hours = hours;
                 businesses[index].mapsUrl = mapsUrl;
                 businesses[index].description = description;
                 businesses[index].images = images;
-                alert('Alterações salvas com sucesso!');
+                alert('Alterações e campanhas salvas com sucesso!');
             }
 
-            localStorage.setItem('tem_no_bairro_db_v13', JSON.stringify(businesses));
+            localStorage.setItem('tem_no_bairro_db_v14', JSON.stringify(businesses));
             closeEditModal();
             renderBusinesses();
         }
@@ -1174,7 +1235,7 @@
         function deleteBusiness(index) {
             if (confirm('Deseja realmente remover este parceiro?')) {
                 businesses.splice(index, 1);
-                localStorage.setItem('tem_no_bairro_db_v13', JSON.stringify(businesses));
+                localStorage.setItem('tem_no_bairro_db_v14', JSON.stringify(businesses));
                 renderAdminTable();
             }
         }
