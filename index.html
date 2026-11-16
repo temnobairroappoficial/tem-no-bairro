@@ -87,17 +87,18 @@
                     </button>
                 </div>
             </div>
-            <div class="hidden sm:flex items-center gap-3">
-                <a href="https://g.page/r/CRK_11do12bREBM/review" target="_blank" class="bg-amber-400 hover:bg-amber-500 text-slate-950 font-bold text-xs px-3.5 py-2.5 rounded-xl transition flex items-center gap-1.5 shadow-sm cursor-pointer">
+            <!-- Menu do Topo (Desktop e Mobile) -->
+            <div class="flex items-center gap-2 sm:gap-3 overflow-x-auto w-full sm:w-auto justify-start sm:justify-end pb-1 sm:pb-0">
+                <a href="https://g.page/r/CRK_11do12bREBM/review" target="_blank" class="bg-amber-400 hover:bg-amber-500 text-slate-950 font-bold text-xs px-3.5 py-2.5 rounded-xl transition flex items-center gap-1.5 shadow-sm whitespace-nowrap cursor-pointer flex-shrink-0">
                     <i class="fa-solid fa-star text-slate-950"></i> Avaliar no Google
                 </a>
-                <button type="button" onclick="openIndicateModal()" class="bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-500/40 text-xs px-3.5 py-2.5 rounded-xl transition flex items-center gap-1.5 cursor-pointer font-semibold">
+                <button type="button" onclick="openIndicateModal()" class="bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-500/40 text-xs px-3.5 py-2.5 rounded-xl transition flex items-center gap-1.5 cursor-pointer font-semibold whitespace-nowrap flex-shrink-0">
                     <i class="fa-solid fa-gift"></i> Indicar Comércio
                 </button>
-                <button type="button" onclick="openAdminLoginModal()" class="bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white text-xs px-3.5 py-2.5 rounded-xl transition border border-slate-700 flex items-center gap-1.5 cursor-pointer">
+                <button type="button" onclick="openAdminLoginModal()" class="hidden sm:flex bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white text-xs px-3.5 py-2.5 rounded-xl transition border border-slate-700 items-center gap-1.5 cursor-pointer flex-shrink-0">
                     <i class="fa-solid fa-lock text-brand-500"></i> Painel Admin
                 </button>
-                <a href="https://tally.so/r/VpjbRy" target="_blank" class="flex items-center gap-2 bg-gradient-to-r from-brand-500 to-orange-600 hover:from-brand-600 hover:to-orange-700 text-white font-bold text-sm px-4 py-2.5 rounded-xl shadow-md transition transform hover:-translate-y-0.5 cursor-pointer">
+                <a href="https://tally.so/r/VpjbRy" target="_blank" class="hidden sm:flex items-center gap-2 bg-gradient-to-r from-brand-500 to-orange-600 hover:from-brand-600 hover:to-orange-700 text-white font-bold text-sm px-4 py-2.5 rounded-xl shadow-md transition transform hover:-translate-y-0.5 cursor-pointer flex-shrink-0">
                     <i class="fa-solid fa-star text-amber-300"></i>
                     Seja um Parceiro Fundador
                 </a>
@@ -297,7 +298,7 @@
     </a>
 
     <!-- RODAPÉ COMPLETO -->
-    <footer class="bg-slate-900 text-slate-400 text-xs py-10 border-t border-slate-800 mt-12">
+    <footer class="bg-slate-900 text-slate-400 text-xs py-10 border-t border-slate-800 mt-12 mb-16 sm:mb-0">
         <div class="max-w-6xl mx-auto px-4 text-center space-y-5">
             <div class="flex items-center justify-center gap-2 text-white font-bold text-lg">
                 <i class="fa-solid fa-store text-brand-500"></i> TEM NO BAIRRO
@@ -730,7 +731,7 @@
         let currentImageIndex = 0;
 
         window.onload = function() {
-            const savedData = localStorage.getItem('tem_no_bairro_db_v15');
+            const savedData = localStorage.getItem('tem_no_bairro_db_v16');
             if (savedData !== null) {
                 try {
                     businesses = JSON.parse(savedData);
@@ -739,7 +740,7 @@
                 }
             } else {
                 businesses = defaultBusinesses;
-                localStorage.setItem('tem_no_bairro_db_v15', JSON.stringify(businesses));
+                localStorage.setItem('tem_no_bairro_db_v16', JSON.stringify(businesses));
             }
 
             const savedFavs = localStorage.getItem('tem_no_bairro_favs');
@@ -1230,7 +1231,7 @@
                 alert('Alterações e campanhas salvas com sucesso!');
             }
 
-            localStorage.setItem('tem_no_bairro_db_v15', JSON.stringify(businesses));
+            localStorage.setItem('tem_no_bairro_db_v16', JSON.stringify(businesses));
             closeEditModal();
             renderBusinesses();
         }
@@ -1238,7 +1239,7 @@
         function deleteBusiness(index) {
             if (confirm('Deseja realmente remover este parceiro?')) {
                 businesses.splice(index, 1);
-                localStorage.setItem('tem_no_bairro_db_v15', JSON.stringify(businesses));
+                localStorage.setItem('tem_no_bairro_db_v16', JSON.stringify(businesses));
                 renderAdminTable();
             }
         }
