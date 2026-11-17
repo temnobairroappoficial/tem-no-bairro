@@ -215,7 +215,7 @@
             </div>
         </section>
 
-        <!-- SEÇÃO: GUIA DE UTILIDADE PÚBLICA & SERVIÇOS (POR MUNICÍPIO) -->
+        <!-- SEÇÃO: GUIA DE UTILIDADE PÚBLICA & SERVIÇOS (POR MUNICÍPIO) COM DADOS COMPLETOS -->
         <section class="bg-white rounded-2xl p-5 border border-slate-200/80 shadow-sm space-y-5">
             <div class="flex items-center justify-between flex-wrap gap-2 border-b pb-3">
                 <div class="flex items-center gap-2">
@@ -267,7 +267,7 @@
             </div>
         </section>
 
-        <!-- SEÇÃO DE PLANOS (PARA LOJISTAS) -->
+        <!-- SEÇÃO DE PLANOS (PARA LOJISTAS) COM ESCASSEZ CORRIGIDA -->
         <section id="secaoPlanos" class="space-y-6 pt-2">
             <div class="text-center max-w-xl mx-auto space-y-2">
                 <span class="bg-orange-100 text-brand-700 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Área do Lojista</span>
@@ -279,7 +279,7 @@
                 <!-- Plano Fundador -->
                 <div class="bg-white rounded-3xl p-6 border-2 border-brand-500 shadow-xl flex flex-col justify-between relative transform md:-translate-y-2">
                     <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-brand-500 text-white text-[10px] font-extrabold px-4 py-1 rounded-full uppercase tracking-wider shadow">
-                        ⭐ Restam apenas 3 vagas no lote inicial!
+                        ⭐ Apenas 5 vagas abertas no Lote Fundador!
                     </div>
                     <div class="space-y-4 pt-2">
                         <div>
@@ -850,7 +850,7 @@
         let currentImageIndex = 0;
 
         window.onload = function() {
-            const savedData = localStorage.getItem('tem_no_bairro_db_v21');
+            const savedData = localStorage.getItem('tem_no_bairro_db_v22');
             if (savedData !== null) {
                 try {
                     businesses = JSON.parse(savedData);
@@ -859,7 +859,7 @@
                 }
             } else {
                 businesses = defaultBusinesses;
-                localStorage.setItem('tem_no_bairro_db_v21', JSON.stringify(businesses));
+                localStorage.setItem('tem_no_bairro_db_v22', JSON.stringify(businesses));
             }
 
             const savedFavs = localStorage.getItem('tem_no_bairro_favs');
@@ -872,6 +872,7 @@
             switchServiceTab('emergencia');
         };
 
+        // DADOS OFICIAIS ATUALIZADOS COM ENDEREÇOS E TELEFONES DAS UBS E PREFEITURAS
         const serviceData = {
             emergencia: `
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
@@ -898,23 +899,31 @@
                     <div class="bg-slate-50 border border-slate-200 p-4 rounded-xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
                         <div>
                             <span class="text-[10px] font-extrabold uppercase bg-brand-500 text-white px-2 py-0.5 rounded">Prefeitura Municipal</span>
-                            <h4 class="font-bold text-sm text-slate-900 mt-1">Prefeitura de Maracanaú & Gabinete</h4>
-                            <p class="text-slate-500 text-[11px]">Av. II, nº 150 - Centro, Maracanaú - CE</p>
+                            <h4 class="font-bold text-sm text-slate-900 mt-1">Prefeitura de Maracanaú & Gabinete do Prefeito</h4>
+                            <p class="text-slate-500 text-[11px]">Av. II, nº 150 - Jereissati I, Maracanaú - CE</p>
                         </div>
-                        <a href="tel:8535215000" class="bg-slate-900 text-white px-4 py-2 rounded-lg font-bold text-xs hover:bg-slate-800 transition"><i class="fa-solid fa-phone"></i> (85) 3521-5000</a>
+                        <a href="tel:853718684" class="bg-slate-900 text-white px-4 py-2 rounded-lg font-bold text-xs hover:bg-slate-800 transition"><i class="fa-solid fa-phone"></i> (85) 3718-6840</a>
                     </div>
-                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
                         <div class="bg-white border border-slate-200 p-3 rounded-xl shadow-sm">
-                            <strong class="block text-slate-900 font-bold">UBS Jereissati II</strong>
-                            <p class="text-slate-500 text-[11px] mt-1">Rua 57, s/n - Tel: (85) 3388-3000</p>
+                            <strong class="block text-slate-900 font-bold">UBS Dr. Alarico Leite</strong>
+                            <p class="text-slate-500 text-[11px] mt-1">Rua Patativa Assaré, Parque São João - Tel: (85) 3392-8605</p>
                         </div>
                         <div class="bg-white border border-slate-200 p-3 rounded-xl shadow-sm">
-                            <strong class="block text-slate-900 font-bold">UBS Pajuçara</strong>
-                            <p class="text-slate-500 text-[11px] mt-1">Rua Principal, s/n - Tel: (85) 3388-3010</p>
+                            <strong class="block text-slate-900 font-bold">UBS João Pereira de Andrade II</strong>
+                            <p class="text-slate-500 text-[11px] mt-1">Rua Capitão Valdemar de Lima, Boa Vista - Tel: (85) 3392-8137</p>
                         </div>
                         <div class="bg-white border border-slate-200 p-3 rounded-xl shadow-sm">
-                            <strong class="block text-slate-900 font-bold">UBS Tereza Carla</strong>
-                            <p class="text-slate-500 text-[11px] mt-1">Rua 24, s/n - Tel: (85) 3388-3020</p>
+                            <strong class="block text-slate-900 font-bold">UBS Maria José de Carvalho</strong>
+                            <p class="text-slate-500 text-[11px] mt-1">Av. Lateral Norte, Acaracuzinho - Tel: (85) 3392-8967</p>
+                        </div>
+                        <div class="bg-white border border-slate-200 p-3 rounded-xl shadow-sm">
+                            <strong class="block text-slate-900 font-bold">USF João Batista dos Santos</strong>
+                            <p class="text-slate-500 text-[11px] mt-1">Rua Paulo Batista, Pajuçara - Tel: (85) 3292-8314</p>
+                        </div>
+                        <div class="bg-white border border-slate-200 p-3 rounded-xl shadow-sm">
+                            <strong class="block text-slate-900 font-bold">USF Prefeito Almir Dutra</strong>
+                            <p class="text-slate-500 text-[11px] mt-1">Rua 125, Conjunto Timbó - Maracanaú</p>
                         </div>
                     </div>
                 </div>
@@ -925,18 +934,22 @@
                         <div>
                             <span class="text-[10px] font-extrabold uppercase bg-brand-500 text-white px-2 py-0.5 rounded">Prefeitura Municipal</span>
                             <h4 class="font-bold text-sm text-slate-900 mt-1">Prefeitura de Pacatuba & Gabinete</h4>
-                            <p class="text-slate-500 text-[11px]">Praça da Matriz, Centro, Pacatuba - CE</p>
+                            <p class="text-slate-500 text-[11px]">Rua Major Crisanto, 180 - Centro, Pacatuba - CE</p>
                         </div>
-                        <a href="tel:8533451000" class="bg-slate-900 text-white px-4 py-2 rounded-lg font-bold text-xs hover:bg-slate-800 transition"><i class="fa-solid fa-phone"></i> (85) 3345-1000</a>
+                        <a href="tel:85936182138" class="bg-slate-900 text-white px-4 py-2 rounded-lg font-bold text-xs hover:bg-slate-800 transition"><i class="fa-solid fa-phone"></i> (85) 93618-2138</a>
                     </div>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
                         <div class="bg-white border border-slate-200 p-3 rounded-xl shadow-sm">
-                            <strong class="block text-slate-900 font-bold">UBS Centro Pacatuba</strong>
-                            <p class="text-slate-500 text-[11px] mt-1">Rua Major Crisanto, s/n</p>
+                            <strong class="block text-slate-900 font-bold">UBSF Maria Nívea Severino (Sede)</strong>
+                            <p class="text-slate-500 text-[11px] mt-1">Av. Major Cícero Franklin, s/n - Centro</p>
                         </div>
                         <div class="bg-white border border-slate-200 p-3 rounded-xl shadow-sm">
-                            <strong class="block text-slate-900 font-bold">UBS Jereissati / Pitaguary</strong>
-                            <p class="text-slate-500 text-[11px] mt-1">Avenida Principal, s/n</p>
+                            <strong class="block text-slate-900 font-bold">UBSF João Bruno Moura (Pavuna)</strong>
+                            <p class="text-slate-500 text-[11px] mt-1">Rua Fé e Caridade, 4 - Pacatuba</p>
+                        </div>
+                        <div class="bg-white border border-slate-200 p-3 rounded-xl shadow-sm">
+                            <strong class="block text-slate-900 font-bold">UBSF Francisco Antônio Filho</strong>
+                            <p class="text-slate-500 text-[11px] mt-1">Av. Capitão Manoel Medeiros, 2891 - Alto São João</p>
                         </div>
                     </div>
                 </div>
@@ -947,18 +960,18 @@
                         <div>
                             <span class="text-[10px] font-extrabold uppercase bg-brand-500 text-white px-2 py-0.5 rounded">Prefeitura Municipal</span>
                             <h4 class="font-bold text-sm text-slate-900 mt-1">Prefeitura de Maranguape & Gabinete</h4>
-                            <p class="text-slate-500 text-[11px]">Palácio Municipal - Centro, Maranguape - CE</p>
+                            <p class="text-slate-500 text-[11px]">Rua Dr. João Bezerra, 139 - Preguiça, Maranguape - CE</p>
                         </div>
-                        <a href="tel:8533418100" class="bg-slate-900 text-white px-4 py-2 rounded-lg font-bold text-xs hover:bg-slate-800 transition"><i class="fa-solid fa-phone"></i> (85) 3341-8100</a>
+                        <a href="tel:8533699230" class="bg-slate-900 text-white px-4 py-2 rounded-lg font-bold text-xs hover:bg-slate-800 transition"><i class="fa-solid fa-phone"></i> (85) 3369-9230</a>
                     </div>
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                         <div class="bg-white border border-slate-200 p-3 rounded-xl shadow-sm">
-                            <strong class="block text-slate-900 font-bold">UBS Centro Maranguape</strong>
-                            <p class="text-slate-500 text-[11px] mt-1">Rua Coronel Manoel Paula, s/n</p>
+                            <strong class="block text-slate-900 font-bold">UBS Maria Francina (Stênio Gomes)</strong>
+                            <p class="text-slate-500 text-[11px] mt-1">Av. Stênio Gomes, s/n - Aldeoma - Tel: (85) 3341-5252</p>
                         </div>
                         <div class="bg-white border border-slate-200 p-3 rounded-xl shadow-sm">
-                            <strong class="block text-slate-900 font-bold">UBS Outra Banda</strong>
-                            <p class="text-slate-500 text-[11px] mt-1">Rodovia CE-065, s/n</p>
+                            <strong class="block text-slate-900 font-bold">Secretaria Municipal de Saúde</strong>
+                            <p class="text-slate-500 text-[11px] mt-1">Centro, Maranguape - CE</p>
                         </div>
                     </div>
                 </div>
@@ -1475,7 +1488,7 @@
                 alert('Alterações salvas com sucesso!');
             }
 
-            localStorage.setItem('tem_no_bairro_db_v21', JSON.stringify(businesses));
+            localStorage.setItem('tem_no_bairro_db_v22', JSON.stringify(businesses));
             closeEditModal();
             renderBusinesses();
         }
@@ -1483,7 +1496,7 @@
         function deleteBusiness(index) {
             if (confirm('Deseja realmente remover este parceiro?')) {
                 businesses.splice(index, 1);
-                localStorage.setItem('tem_no_bairro_db_v21', JSON.stringify(businesses));
+                localStorage.setItem('tem_no_bairro_db_v22', JSON.stringify(businesses));
                 renderAdminTable();
             }
         }
