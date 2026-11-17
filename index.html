@@ -133,7 +133,7 @@
             </div>
         </section>
 
-        <!-- SEÇÃO DE UTILIDADE PÚBLICA & VAGAS (OS 3 BOTÕES ESTRATÉGICOS) -->
+        <!-- SEÇÃO DE UTILIDADE PÚBLICA & VAGAS -->
         <section class="bg-white rounded-2xl p-5 border border-slate-200/80 shadow-sm space-y-4">
             <div class="flex items-center justify-between flex-wrap gap-2">
                 <div class="flex items-center gap-2">
@@ -151,7 +151,6 @@
             </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                <!-- Botão 1: SINE IDT -->
                 <a href="https://vagas.idt.org.br/" target="_blank" rel="noopener noreferrer" 
                    class="bg-slate-50 hover:bg-brand-50 border border-slate-200 hover:border-brand-300 p-3.5 rounded-xl transition flex items-center gap-3 group">
                     <div class="w-10 h-10 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center flex-shrink-0 text-base font-bold shadow-sm">
@@ -163,7 +162,6 @@
                     </div>
                 </a>
 
-                <!-- Botão 2: Grupos WhatsApp -->
                 <a href="https://wa.me/5585921033841?text=Olá%20Robinson!%20Gostaria%20de%20participar%20dos%20grupos%20de%20vagas%20e%20avisos%20do%20Tem%20No%20Bairro." target="_blank" rel="noopener noreferrer" 
                    class="bg-slate-50 hover:bg-emerald-50 border border-slate-200 hover:border-emerald-300 p-3.5 rounded-xl transition flex items-center gap-3 group">
                     <div class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center flex-shrink-0 text-base font-bold shadow-sm">
@@ -175,7 +173,6 @@
                     </div>
                 </a>
 
-                <!-- Botão 3: Gov.br Serviços -->
                 <a href="https://www.gov.br/pt-br" target="_blank" rel="noopener noreferrer" 
                    class="bg-slate-50 hover:bg-blue-50 border border-slate-200 hover:border-blue-300 p-3.5 rounded-xl transition flex items-center gap-3 group">
                     <div class="w-10 h-10 rounded-xl bg-indigo-100 text-indigo-600 flex items-center justify-center flex-shrink-0 text-base font-bold shadow-sm">
@@ -189,10 +186,49 @@
             </div>
         </section>
 
+        <!-- SEÇÃO: GUIA DE UTILIDADE PÚBLICA & SERVIÇOS (POR MUNICÍPIO) -->
+        <section class="bg-white rounded-2xl p-5 border border-slate-200/80 shadow-sm space-y-5">
+            <div class="flex items-center justify-between flex-wrap gap-2 border-b pb-3">
+                <div class="flex items-center gap-2">
+                    <div class="w-8 h-8 rounded-lg bg-amber-100 text-amber-700 flex items-center justify-center font-bold">
+                        <i class="fa-solid fa-city"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-sm font-bold text-slate-900">Guia de Utilidade & Serviços Municipais</h3>
+                        <p class="text-[11px] text-slate-500">Prefeituras, Postos de Saúde (UBS), Emergências e Benefícios</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BOTÕES DE ABAS MUNICIPAIS -->
+            <div class="flex flex-wrap gap-2">
+                <button onclick="switchServiceTab('emergencia')" id="tabBtn-emergencia" class="service-tab-btn px-4 py-2 rounded-xl text-xs font-bold bg-brand-500 text-white shadow transition flex items-center gap-1.5 cursor-pointer">
+                    <i class="fa-solid fa-phone-volume"></i> Telefones de Emergência
+                </button>
+                <button onclick="switchServiceTab('maracanau')" id="tabBtn-maracanau" class="service-tab-btn px-4 py-2 rounded-xl text-xs font-medium bg-slate-100 hover:bg-slate-200 text-slate-700 transition flex items-center gap-1.5 cursor-pointer">
+                    <i class="fa-solid fa-building-columns"></i> Maracanaú (Prefeitura & UBS)
+                </button>
+                <button onclick="switchServiceTab('pacatuba')" id="tabBtn-pacatuba" class="service-tab-btn px-4 py-2 rounded-xl text-xs font-medium bg-slate-100 hover:bg-slate-200 text-slate-700 transition flex items-center gap-1.5 cursor-pointer">
+                    <i class="fa-solid fa-building-columns"></i> Pacatuba (Prefeitura & UBS)
+                </button>
+                <button onclick="switchServiceTab('maranguape')" id="tabBtn-maranguape" class="service-tab-btn px-4 py-2 rounded-xl text-xs font-medium bg-slate-100 hover:bg-slate-200 text-slate-700 transition flex items-center gap-1.5 cursor-pointer">
+                    <i class="fa-solid fa-building-columns"></i> Maranguape (Prefeitura & UBS)
+                </button>
+                <button onclick="switchServiceTab('beneficios')" id="tabBtn-beneficios" class="service-tab-btn px-4 py-2 rounded-xl text-xs font-medium bg-slate-100 hover:bg-slate-200 text-slate-700 transition flex items-center gap-1.5 cursor-pointer">
+                    <i class="fa-solid fa-wallet"></i> Bolsa Família & FGTS
+                </button>
+            </div>
+
+            <!-- CONTEÚDO DAS ABAS -->
+            <div id="serviceTabContent" class="pt-2 text-xs text-slate-700">
+                <!-- Conteúdo injetado via JS -->
+            </div>
+        </section>
+
         <!-- SELETOR DE CIDADES -->
         <section class="flex flex-col sm:flex-row items-center justify-between bg-white p-4 rounded-2xl border border-slate-200/80 shadow-sm gap-3">
             <div class="flex items-center gap-2 text-xs font-bold text-slate-700">
-                <i class="fa-solid fa-map-location-dot text-brand-500 text-base"></i> Filtrar por Região:
+                <i class="fa-solid fa-map-location-dot text-brand-500 text-base"></i> Filtrar Comércios por Região:
             </div>
             <div class="flex flex-wrap gap-2 w-full sm:w-auto">
                 <button onclick="selectCity('Todas')" id="cityBtn-Todas" class="city-btn flex-1 sm:flex-none px-3.5 py-1.5 rounded-xl text-xs font-bold bg-brand-500 text-white shadow-sm transition">Todas</button>
@@ -410,7 +446,6 @@
                 <p id="detailDescription" class="text-xs sm:text-sm text-slate-600 leading-relaxed"></p>
             </div>
 
-            <!-- BLOCO DE PROMOÇÃO / BRINDE ATIVO -->
             <div id="detailPromoBox" class="hidden bg-amber-50 border border-amber-300 rounded-2xl p-3.5 flex items-center gap-3 text-xs text-amber-900 shadow-sm">
                 <div class="w-9 h-9 bg-amber-500 text-slate-950 rounded-xl flex items-center justify-center font-bold text-base flex-shrink-0 shadow">
                     <i class="fa-solid fa-gift"></i>
@@ -786,7 +821,7 @@
         let currentImageIndex = 0;
 
         window.onload = function() {
-            const savedData = localStorage.getItem('tem_no_bairro_db_v18');
+            const savedData = localStorage.getItem('tem_no_bairro_db_v20');
             if (savedData !== null) {
                 try {
                     businesses = JSON.parse(savedData);
@@ -795,7 +830,7 @@
                 }
             } else {
                 businesses = defaultBusinesses;
-                localStorage.setItem('tem_no_bairro_db_v18', JSON.stringify(businesses));
+                localStorage.setItem('tem_no_bairro_db_v20', JSON.stringify(businesses));
             }
 
             const savedFavs = localStorage.getItem('tem_no_bairro_favs');
@@ -805,7 +840,131 @@
 
             updateFavCount();
             renderBusinesses();
+            switchServiceTab('emergencia');
         };
+
+        // DADOS DO GUIA DE UTILIDADE PÚBLICA POR MUNICÍPIO
+        const serviceData = {
+            emergencia: `
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+                    <a href="tel:190" class="bg-rose-50 border border-rose-200 p-3.5 rounded-xl flex items-center gap-3 hover:bg-rose-100 transition">
+                        <div class="w-10 h-10 rounded-xl bg-rose-600 text-white flex items-center justify-center font-bold text-base shadow"><i class="fa-solid fa-shield-halved"></i></div>
+                        <div><strong class="block text-slate-900">Polícia Militar</strong><span class="text-rose-700 font-black text-sm">190</span></div>
+                    </a>
+                    <a href="tel:192" class="bg-emerald-50 border border-emerald-200 p-3.5 rounded-xl flex items-center gap-3 hover:bg-emerald-100 transition">
+                        <div class="w-10 h-10 rounded-xl bg-emerald-600 text-white flex items-center justify-center font-bold text-base shadow"><i class="fa-solid fa-truck-medical"></i></div>
+                        <div><strong class="block text-slate-900">SAMU</strong><span class="text-emerald-700 font-black text-sm">192</span></div>
+                    </a>
+                    <a href="tel:193" class="bg-amber-50 border border-amber-200 p-3.5 rounded-xl flex items-center gap-3 hover:bg-amber-100 transition">
+                        <div class="w-10 h-10 rounded-xl bg-amber-600 text-white flex items-center justify-center font-bold text-base shadow"><i class="fa-solid fa-fire-extinguisher"></i></div>
+                        <div><strong class="block text-slate-900">Bombeiros</strong><span class="text-amber-700 font-black text-sm">193</span></div>
+                    </a>
+                    <a href="tel:199" class="bg-blue-50 border border-blue-200 p-3.5 rounded-xl flex items-center gap-3 hover:bg-blue-100 transition">
+                        <div class="w-10 h-10 rounded-xl bg-blue-600 text-white flex items-center justify-center font-bold text-base shadow"><i class="fa-solid fa-triangle-exclamation"></i></div>
+                        <div><strong class="block text-slate-900">Defesa Civil</strong><span class="text-blue-700 font-black text-sm">199</span></div>
+                    </a>
+                </div>
+            `,
+            maracanau: `
+                <div class="space-y-4">
+                    <div class="bg-slate-50 border border-slate-200 p-4 rounded-xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+                        <div>
+                            <span class="text-[10px] font-extrabold uppercase bg-brand-500 text-white px-2 py-0.5 rounded">Prefeitura Municipal</span>
+                            <h4 class="font-bold text-sm text-slate-900 mt-1">Prefeitura de Maracanaú & Gabinete</h4>
+                            <p class="text-slate-500 text-[11px]">Av. II, nº 150 - Centro, Maracanaú - CE</p>
+                        </div>
+                        <a href="tel:8535215000" class="bg-slate-900 text-white px-4 py-2 rounded-lg font-bold text-xs hover:bg-slate-800 transition"><i class="fa-solid fa-phone"></i> (85) 3521-5000</a>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                        <div class="bg-white border border-slate-200 p-3 rounded-xl shadow-sm">
+                            <strong class="block text-slate-900 font-bold">UBS Jereissati II</strong>
+                            <p class="text-slate-500 text-[11px] mt-1">Rua 57, s/n - Tel: (85) 3388-3000</p>
+                        </div>
+                        <div class="bg-white border border-slate-200 p-3 rounded-xl shadow-sm">
+                            <strong class="block text-slate-900 font-bold">UBS Pajuçara</strong>
+                            <p class="text-slate-500 text-[11px] mt-1">Rua Principal, s/n - Tel: (85) 3388-3010</p>
+                        </div>
+                        <div class="bg-white border border-slate-200 p-3 rounded-xl shadow-sm">
+                            <strong class="block text-slate-900 font-bold">UBS Tereza Carla</strong>
+                            <p class="text-slate-500 text-[11px] mt-1">Rua 24, s/n - Tel: (85) 3388-3020</p>
+                        </div>
+                    </div>
+                </div>
+            `,
+            pacatuba: `
+                <div class="space-y-4">
+                    <div class="bg-slate-50 border border-slate-200 p-4 rounded-xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+                        <div>
+                            <span class="text-[10px] font-extrabold uppercase bg-brand-500 text-white px-2 py-0.5 rounded">Prefeitura Municipal</span>
+                            <h4 class="font-bold text-sm text-slate-900 mt-1">Prefeitura de Pacatuba & Gabinete</h4>
+                            <p class="text-slate-500 text-[11px]">Praça da Matriz, Centro, Pacatuba - CE</p>
+                        </div>
+                        <a href="tel:8533451000" class="bg-slate-900 text-white px-4 py-2 rounded-lg font-bold text-xs hover:bg-slate-800 transition"><i class="fa-solid fa-phone"></i> (85) 3345-1000</a>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <div class="bg-white border border-slate-200 p-3 rounded-xl shadow-sm">
+                            <strong class="block text-slate-900 font-bold">UBS Centro Pacatuba</strong>
+                            <p class="text-slate-500 text-[11px] mt-1">Rua Major Crisanto, s/n</p>
+                        </div>
+                        <div class="bg-white border border-slate-200 p-3 rounded-xl shadow-sm">
+                            <strong class="block text-slate-900 font-bold">UBS Jereissati / Pitaguary</strong>
+                            <p class="text-slate-500 text-[11px] mt-1">Avenida Principal, s/n</p>
+                        </div>
+                    </div>
+                </div>
+            `,
+            maranguape: `
+                <div class="space-y-4">
+                    <div class="bg-slate-50 border border-slate-200 p-4 rounded-xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+                        <div>
+                            <span class="text-[10px] font-extrabold uppercase bg-brand-500 text-white px-2 py-0.5 rounded">Prefeitura Municipal</span>
+                            <h4 class="font-bold text-sm text-slate-900 mt-1">Prefeitura de Maranguape & Gabinete</h4>
+                            <p class="text-slate-500 text-[11px]">Palácio Municipal - Centro, Maranguape - CE</p>
+                        </div>
+                        <a href="tel:8533418100" class="bg-slate-900 text-white px-4 py-2 rounded-lg font-bold text-xs hover:bg-slate-800 transition"><i class="fa-solid fa-phone"></i> (85) 3341-8100</a>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <div class="bg-white border border-slate-200 p-3 rounded-xl shadow-sm">
+                            <strong class="block text-slate-900 font-bold">UBS Centro Maranguape</strong>
+                            <p class="text-slate-500 text-[11px] mt-1">Rua Coronel Manoel Paula, s/n</p>
+                        </div>
+                        <div class="bg-white border border-slate-200 p-3 rounded-xl shadow-sm">
+                            <strong class="block text-slate-900 font-bold">UBS Outra Banda</strong>
+                            <p class="text-slate-500 text-[11px] mt-1">Rodovia CE-065, s/n</p>
+                        </div>
+                    </div>
+                </div>
+            `,
+            beneficios: `
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <a href="https://www.gov.br/mds/pt-br/assuntos/bolsa-familia" target="_blank" class="bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 p-4 rounded-xl flex items-center gap-3 transition">
+                        <div class="w-10 h-10 rounded-xl bg-emerald-600 text-white flex items-center justify-center font-bold text-base shadow"><i class="fa-solid fa-wallet"></i></div>
+                        <div>
+                            <strong class="block text-slate-900 text-xs font-bold">Calendário Bolsa Família</strong>
+                            <span class="text-emerald-700 text-[11px]">Consulte datas e pagamentos no Gov.br</span>
+                        </div>
+                    </a>
+                    <a href="https://www.caixa.gov.br/beneficios-trabalhador/fgts" target="_blank" class="bg-blue-50 hover:bg-blue-100 border border-blue-200 p-4 rounded-xl flex items-center gap-3 transition">
+                        <div class="w-10 h-10 rounded-xl bg-blue-600 text-white flex items-center justify-center font-bold text-base shadow"><i class="fa-solid fa-piggy-bank"></i></div>
+                        <div>
+                            <strong class="block text-slate-900 text-xs font-bold">Consulta FGTS & Saque</strong>
+                            <span class="text-blue-700 text-[11px]">Acesse o aplicativo FGTS da Caixa</span>
+                        </div>
+                    </a>
+                </div>
+            `
+        };
+
+        function switchServiceTab(tabKey) {
+            document.querySelectorAll('.service-tab-btn').forEach(btn => {
+                btn.className = 'service-tab-btn px-4 py-2 rounded-xl text-xs font-medium bg-slate-100 hover:bg-slate-200 text-slate-700 transition flex items-center gap-1.5 cursor-pointer';
+            });
+            const activeBtn = document.getElementById('tabBtn-' + tabKey);
+            if (activeBtn) {
+                activeBtn.className = 'service-tab-btn px-4 py-2 rounded-xl text-xs font-bold bg-brand-500 text-white shadow transition flex items-center gap-1.5 cursor-pointer';
+            }
+            document.getElementById('serviceTabContent').innerHTML = serviceData[tabKey] || '';
+        }
 
         function checkIsOpen(hoursStr) {
             if (!hoursStr) return { isOpen: true, text: 'Aberto' };
@@ -934,7 +1093,6 @@
             grid.innerHTML = '';
 
             const filtered = businesses.filter(item => {
-                // Exibe tanto ativos quanto convidados na vitrine para gerar movimento
                 if (showOnlyFavorites && !favorites.includes(item.id)) return false;
 
                 let matchesCategory = true;
@@ -1289,7 +1447,7 @@
                 alert('Alterações salvas com sucesso!');
             }
 
-            localStorage.setItem('tem_no_bairro_db_v18', JSON.stringify(businesses));
+            localStorage.setItem('tem_no_bairro_db_v20', JSON.stringify(businesses));
             closeEditModal();
             renderBusinesses();
         }
@@ -1297,7 +1455,7 @@
         function deleteBusiness(index) {
             if (confirm('Deseja realmente remover este parceiro?')) {
                 businesses.splice(index, 1);
-                localStorage.setItem('tem_no_bairro_db_v18', JSON.stringify(businesses));
+                localStorage.setItem('tem_no_bairro_db_v20', JSON.stringify(businesses));
                 renderAdminTable();
             }
         }
