@@ -109,29 +109,58 @@
     <!-- CONTEÚDO PRINCIPAL -->
     <main class="max-w-6xl mx-auto px-4 py-6 flex-grow w-full space-y-8">
         
-        <!-- SEÇÃO DE BOAS-VINDAS -->
-        <section class="bg-gradient-to-br from-navy-900 via-slate-900 to-navy-800 rounded-3xl p-6 sm:p-8 text-white shadow-xl border border-orange-500/20 relative overflow-hidden">
-            <div class="absolute -right-10 -bottom-10 w-64 h-64 bg-orange-500/10 rounded-full blur-3xl pointer-events-none"></div>
-            <div class="relative z-10 max-w-2xl space-y-4">
-                <span class="bg-brand-500/20 text-brand-400 border border-brand-500/30 text-[10px] sm:text-xs font-extrabold px-3 py-1 rounded-full uppercase tracking-wider inline-flex items-center gap-1.5">
-                    <i class="fa-solid fa-house-chimney text-brand-500"></i> Bem-vindo, Morador!
-                </span>
-                <h2 class="text-2xl sm:text-4xl font-extrabold tracking-tight leading-tight">
-                    Encontre o comércio do seu bairro <span class="text-brand-500">direto no WhatsApp!</span>
-                </h2>
-                <p class="text-slate-300 text-xs sm:text-sm leading-relaxed">
-                    Precisa de gás, pão fresquinho, ração ou prestador de serviço? Pesquise abaixo, chame no WhatsApp e aproveite os cupons exclusivos de quem está perto de você.
-                </p>
-                <div class="pt-2 flex flex-wrap gap-3">
-                    <a href="#searchInput" class="bg-brand-500 hover:bg-brand-600 text-white font-bold text-xs sm:text-sm px-6 py-3.5 rounded-xl shadow-lg transition transform hover:scale-105 flex items-center gap-2">
-                        <i class="fa-solid fa-magnifying-glass"></i> Buscar Comércios Agora
+        <!-- DUPLO BANNER DE DESTAQUE (MORADOR & LOJISTA) -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            
+            <!-- BANNER 1: PARA O MORADOR -->
+            <section class="bg-gradient-to-br from-navy-900 via-slate-900 to-navy-800 rounded-3xl p-6 sm:p-7 text-white shadow-xl border border-orange-500/20 relative overflow-hidden flex flex-col justify-between">
+                <div class="absolute -right-10 -bottom-10 w-48 h-48 bg-orange-500/10 rounded-full blur-3xl pointer-events-none"></div>
+                <div class="relative z-10 space-y-3">
+                    <span class="bg-brand-500/20 text-brand-400 border border-brand-500/30 text-[10px] sm:text-xs font-extrabold px-3 py-1 rounded-full uppercase tracking-wider inline-flex items-center gap-1.5">
+                        <i class="fa-solid fa-house-chimney text-brand-500"></i> Para o Morador
+                    </span>
+                    <h2 class="text-xl sm:text-2xl font-extrabold tracking-tight leading-tight">
+                        O "Canivete Suíço" do seu dia a dia em <span class="text-brand-500">Maracanaú, Pacatuba e Maranguape!</span>
+                    </h2>
+                    <p class="text-slate-300 text-xs sm:text-sm leading-relaxed">
+                        Acesse em um só lugar os telefones de emergência, postos de saúde (UBS) por bairro, guias de benefícios sociais (Bolsa Família/FGTS), vagas de emprego e os melhores comércios locais direto no WhatsApp.
+                    </p>
+                </div>
+                <div class="pt-5 relative z-10 flex flex-wrap gap-2.5">
+                    <a href="#searchInput" class="bg-brand-500 hover:bg-brand-600 text-white font-bold text-xs px-4 py-3 rounded-xl shadow-lg transition transform hover:scale-105 flex items-center gap-2">
+                        <i class="fa-solid fa-magnifying-glass"></i> Buscar Comércios
                     </a>
-                    <button type="button" onclick="requestUserLocation()" class="bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-xs sm:text-sm px-5 py-3.5 rounded-xl shadow transition flex items-center gap-2 cursor-pointer">
-                        <i class="fa-solid fa-location-crosshairs"></i> Comércios Perto de Mim
+                    <button type="button" onclick="requestUserLocation()" class="bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-xs px-4 py-3 rounded-xl shadow transition flex items-center gap-2 cursor-pointer">
+                        <i class="fa-solid fa-location-crosshairs"></i> Perto de Mim
                     </button>
                 </div>
-            </div>
-        </section>
+            </section>
+
+            <!-- BANNER 2: PARA O LOJISTA / PRESTADOR DE SERVIÇO -->
+            <section class="bg-gradient-to-br from-orange-600 via-brand-600 to-amber-700 rounded-3xl p-6 sm:p-7 text-white shadow-xl border border-amber-400/30 relative overflow-hidden flex flex-col justify-between">
+                <div class="absolute -right-10 -bottom-10 w-48 h-48 bg-white/10 rounded-full blur-3xl pointer-events-none"></div>
+                <div class="relative z-10 space-y-3">
+                    <span class="bg-slate-900/30 text-amber-200 border border-amber-300/30 text-[10px] sm:text-xs font-extrabold px-3 py-1 rounded-full uppercase tracking-wider inline-flex items-center gap-1.5">
+                        <i class="fa-solid fa-store text-amber-300"></i> Para Lojistas & Prestadores
+                    </span>
+                    <h2 class="text-xl sm:text-2xl font-extrabold tracking-tight leading-tight">
+                        Tem um negócio ou presta serviços? <span class="text-amber-200">Apareça para milhares de vizinhos!</span>
+                    </h2>
+                    <p class="text-amber-50 text-xs sm:text-sm leading-relaxed">
+                        Tenha sua vitrine digital profissional com fotos, carrossel, cupons de desconto, link direto para o seu WhatsApp e <strong class="underline">zero comissão sobre as suas vendas</strong>.
+                    </p>
+                </div>
+                <div class="pt-5 relative z-10 flex flex-wrap gap-2.5">
+                    <a href="https://tally.so/r/VpjbRy" target="_blank" class="bg-slate-900 hover:bg-slate-950 text-amber-300 font-bold text-xs px-4 py-3 rounded-xl shadow-lg transition transform hover:scale-105 flex items-center gap-2">
+                        <i class="fa-solid fa-star"></i> Ser Parceiro Fundador (R$ 39,90)
+                    </a>
+                    <a href="https://wa.me/5585921033841?text=Olá%20Robinson!%20Quero%20saber%20como%20cadastrar%20meu%20negócio%20no%20Tem%20No%20Bairro." target="_blank" class="bg-white/20 hover:bg-white/30 text-white font-semibold text-xs px-4 py-3 rounded-xl shadow transition flex items-center gap-2 cursor-pointer">
+                        <i class="fa-brands fa-whatsapp"></i> Falar com o Fundador
+                    </a>
+                </div>
+            </section>
+
+        </div>
 
         <!-- SEÇÃO DE UTILIDADE PÚBLICA & VAGAS -->
         <section class="bg-white rounded-2xl p-5 border border-slate-200/80 shadow-sm space-y-4">
@@ -821,7 +850,7 @@
         let currentImageIndex = 0;
 
         window.onload = function() {
-            const savedData = localStorage.getItem('tem_no_bairro_db_v20');
+            const savedData = localStorage.getItem('tem_no_bairro_db_v21');
             if (savedData !== null) {
                 try {
                     businesses = JSON.parse(savedData);
@@ -830,7 +859,7 @@
                 }
             } else {
                 businesses = defaultBusinesses;
-                localStorage.setItem('tem_no_bairro_db_v20', JSON.stringify(businesses));
+                localStorage.setItem('tem_no_bairro_db_v21', JSON.stringify(businesses));
             }
 
             const savedFavs = localStorage.getItem('tem_no_bairro_favs');
@@ -843,7 +872,6 @@
             switchServiceTab('emergencia');
         };
 
-        // DADOS DO GUIA DE UTILIDADE PÚBLICA POR MUNICÍPIO
         const serviceData = {
             emergencia: `
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
@@ -1447,7 +1475,7 @@
                 alert('Alterações salvas com sucesso!');
             }
 
-            localStorage.setItem('tem_no_bairro_db_v20', JSON.stringify(businesses));
+            localStorage.setItem('tem_no_bairro_db_v21', JSON.stringify(businesses));
             closeEditModal();
             renderBusinesses();
         }
@@ -1455,7 +1483,7 @@
         function deleteBusiness(index) {
             if (confirm('Deseja realmente remover este parceiro?')) {
                 businesses.splice(index, 1);
-                localStorage.setItem('tem_no_bairro_db_v20', JSON.stringify(businesses));
+                localStorage.setItem('tem_no_bairro_db_v21', JSON.stringify(businesses));
                 renderAdminTable();
             }
         }
