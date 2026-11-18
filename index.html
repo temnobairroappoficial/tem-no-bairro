@@ -351,48 +351,6 @@
             </div>
         </section>
 
-        <!-- SEÇÃO DE PAGAMENTO PIX / CONFIRMAÇÃO (COM MENSAGEM GENÉRICA E QR CODE ESTÁTICO) -->
-        <section id="secaoPagamentoPix" class="max-w-md mx-auto bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-8 shadow-xl text-center space-y-6 my-8">
-            <div class="w-14 h-14 bg-emerald-500/20 border border-emerald-500/40 text-emerald-400 rounded-full flex items-center justify-center mx-auto text-2xl shadow-md">
-                <i class="fa-solid fa-qrcode"></i>
-            </div>
-
-            <div class="space-y-2">
-                <h3 class="text-xl font-black tracking-tight text-white">Pagamento da Assinatura (Pix)</h3>
-                <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
-                    Realize o Pix referente ao plano escolhido no cadastro para ativar sua loja com <strong>zero comissão sobre vendas</strong>.
-                </p>
-            </div>
-
-            <!-- QR Code Estático -->
-            <div class="flex flex-col items-center justify-center bg-white p-3 rounded-2xl border border-slate-700">
-                <img src="assets/img/qrcode-pix.png" alt="QR Code Pix Tem No Bairro" class="w-36 h-36 object-contain rounded-lg" onerror="this.src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=00020126580014br.gov.bcb.pix013669.805.020/0001-365204000053039865802BR5925Tem%20No%20Bairro6009Maracanau62070503***'">
-                <span class="text-[10px] text-slate-900 font-bold mt-2">Escaneie com o app do seu banco</span>
-            </div>
-
-            <!-- Chave Pix CNPJ -->
-            <div class="space-y-1.5 text-left">
-                <span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">Chave Pix (CNPJ):</span>
-                <div class="flex items-center justify-between bg-slate-950 border border-slate-800 rounded-xl px-3 py-2.5">
-                    <code id="pixKeyInline" class="text-xs sm:text-sm font-mono font-bold text-brand-400">69.805.020/0001-36</code>
-                    <button onclick="copyInlinePixKey()" class="bg-brand-500 hover:bg-brand-600 text-white text-xs font-bold px-3 py-1.5 rounded-lg transition shadow flex items-center gap-1 cursor-pointer">
-                        <i class="fa-solid fa-copy"></i> Copiar
-                    </button>
-                </div>
-            </div>
-
-            <div class="text-[11px] text-slate-400 pt-1 flex justify-between items-center border-t border-slate-800">
-                <span>Beneficiário: <strong class="text-slate-200">Tem No Bairro</strong></span>
-                <span class="text-emerald-400 font-semibold">Zero comissão</span>
-            </div>
-
-            <a href="https://wa.me/5585921033841?text=Olá%20Robinson!%20Realizei%20o%20Pix%20da%20minha%20assinatura%20no%20Tem%20No%20Bairro.%20Segue%20o%20comprovante:" 
-               target="_blank" 
-               class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3.5 px-4 rounded-xl shadow-lg text-xs sm:text-sm flex items-center justify-center gap-2 transition transform hover:scale-[1.02]">
-                <i class="fa-brands fa-whatsapp text-xl"></i> Já fiz o Pix! Enviar Comprovante no WhatsApp
-            </a>
-        </section>
-
         <!-- BUSCA E FILTROS -->
         <section class="space-y-4 pt-4 border-t border-slate-200">
             <div class="relative">
@@ -750,7 +708,7 @@
                 </div>
                 <div>
                     <label class="block text-xs font-semibold text-slate-700 mb-1">URL da Foto de Capa</label>
-                    <input type="text" id="editImages" placeholder="Ex: deli-foto.png ou https://..." class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none">
+                    <input type="text" id="editImages" placeholder="Ex: https://i.ibb.co/... ou link direto" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none">
                 </div>
                 <div class="pt-2 flex justify-end gap-2">
                     <button type="button" onclick="closeEditModal()" class="px-4 py-2 border border-slate-300 rounded-lg text-xs font-semibold text-slate-700 hover:bg-slate-100 transition cursor-pointer">
@@ -807,6 +765,21 @@
     <script>
         const defaultBusinesses = [
             {
+                id: 'bruna-boutique-1',
+                name: 'Bruna Boutique',
+                category: 'Lojas & Varejo',
+                phone: '85921033841',
+                social: '@brunaboutique',
+                address: 'Rua Flor do Lírio 175 Maranguape',
+                hours: 'Seg á Sáb 09h ás 22h',
+                mapsUrl: '',
+                description: 'Consultora Mary kay, serviços de Atesanato próprio e uma Variedade de produtos. VENHA NOS CONHECER.',
+                images: ['https://i.ibb.co/fYpVNWqt/IMG-20261118-WA0149.jpg'],
+                isFounder: true,
+                promo: '',
+                status: 'ativo'
+            },
+            {
                 id: 'delicias-dely-1',
                 name: 'Delícias da Dely',
                 category: 'Alimentação',
@@ -816,7 +789,7 @@
                 hours: 'Sex e Sáb: 19:00 - 22:00',
                 mapsUrl: 'https://maps.app.goo.gl/goGdYGUznRwrVKvD7',
                 description: 'PRATINHOS CASEIROS, CANUDÃO, BOLOS, SOBREMESAS E MUITO MAIS FEITOS COM CARINHO PARA VOCÊ!',
-                images: ['deli-foto.png', 'foto-pratos.jpeg', 'foto-sobremesas.jpeg'],
+                images: ['deli-foto.png'],
                 isFounder: true,
                 promo: '10% de Desconto na 1ª Compra pelo App',
                 status: 'ativo'
@@ -892,7 +865,7 @@
         let currentImageIndex = 0;
 
         window.onload = function() {
-            const savedData = localStorage.getItem('tem_no_bairro_db_v22');
+            const savedData = localStorage.getItem('tem_no_bairro_db_v23');
             if (savedData !== null) {
                 try {
                     businesses = JSON.parse(savedData);
@@ -901,7 +874,7 @@
                 }
             } else {
                 businesses = defaultBusinesses;
-                localStorage.setItem('tem_no_bairro_db_v22', JSON.stringify(businesses));
+                localStorage.setItem('tem_no_bairro_db_v23', JSON.stringify(businesses));
             }
 
             const savedFavs = localStorage.getItem('tem_no_bairro_favs');
@@ -1469,7 +1442,7 @@
                 alert('Alterações salvas com sucesso!');
             }
 
-            localStorage.setItem('tem_no_bairro_db_v22', JSON.stringify(businesses));
+            localStorage.setItem('tem_no_bairro_db_v23', JSON.stringify(businesses));
             closeEditModal();
             renderBusinesses();
         }
@@ -1477,15 +1450,9 @@
         function deleteBusiness(index) {
             if (confirm('Deseja realmente remover este parceiro?')) {
                 businesses.splice(index, 1);
-                localStorage.setItem('tem_no_bairro_db_v22', JSON.stringify(businesses));
+                localStorage.setItem('tem_no_bairro_db_v23', JSON.stringify(businesses));
                 renderAdminTable();
             }
-        }
-
-        function copyInlinePixKey() {
-            navigator.clipboard.writeText("69.805.020/0001-36").then(() => {
-                alert("Chave Pix copiada com sucesso!");
-            });
         }
 
         function filterBusinesses() { renderBusinesses(); }
