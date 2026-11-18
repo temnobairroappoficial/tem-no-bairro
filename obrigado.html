@@ -1,1 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro Realizado - Tem No Bairro</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: { 500: '#f97316', 600: '#ea580c', 700: '#c2410c' },
+                        navy: { 800: '#1e293b', 900: '#0f172a' }
+                    },
+                    fontFamily: { sans: ['Inter', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-slate-900 text-slate-100 min-h-screen flex flex-col justify-between">
 
+    <!-- TOPO SIMPLES -->
+    <header class="py-6 text-center border-b border-slate-800">
+        <h1 class="text-xl font-black tracking-tight text-white flex items-center justify-center gap-2">
+            <i class="fa-solid fa-store text-brand-500"></i> TEM NO <span class="text-brand-500">BAIRRO</span>
+        </h1>
+        <p class="text-xs text-slate-400 mt-1">Plataforma de Economia Local - Maracanaú, Pacatuba e Maranguape</p>
+    </header>
+
+    <!-- CONTEÚDO PRINCIPAL -->
+    <main class="max-w-xl mx-auto px-4 py-8 w-full text-center space-y-6">
+        
+        <div class="w-20 h-20 bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 rounded-full flex items-center justify-center mx-auto text-3xl shadow-lg">
+            <i class="fa-solid fa-check"></i>
+        </div>
+
+        <div class="space-y-2">
+            <h2 class="text-2xl sm:text-3xl font-extrabold text-white">Cadastro Realizado com Sucesso!</h2>
+            <p class="text-slate-300 text-xs sm:text-sm leading-relaxed max-w-md mx-auto">
+                Falta apenas um passo para a sua loja aparecer em destaque para milhares de vizinhos na região.
+            </p>
+        </div>
+
+        <!-- CARD DO PIX COM QR CODE -->
+        <div class="bg-slate-800 border border-slate-700 rounded-3xl p-6 shadow-xl space-y-4 text-center">
+            <div class="flex items-center gap-3 border-b border-slate-700 pb-3 text-left">
+                <div class="w-10 h-10 bg-brand-500 text-white rounded-xl flex items-center justify-center font-bold text-lg flex-shrink-0">
+                    <i class="fa-solid fa-qrcode"></i>
+                </div>
+                <div>
+                    <h3 class="text-sm font-bold text-white">Pagamento da Assinatura (Pix)</h3>
+                    <p class="text-[11px] text-slate-400">Chave Pix CNPJ (Zero comissão sobre vendas)</p>
+                </div>
+            </div>
+
+            <!-- QR Code Automático Otimizado para Leitura Perfeita -->
+            <div class="flex flex-col items-center justify-center bg-white p-3 rounded-2xl border border-slate-700 max-w-[210px] mx-auto shadow-md">
+                <img id="dynamicQrCode" src="" alt="QR Code Pix Tem No Bairro" class="w-40 h-40 object-contain rounded-lg">
+                <span class="text-[10px] text-slate-900 font-bold mt-2">Escaneie com o app do banco</span>
+            </div>
+
+            <div class="space-y-3 text-xs text-left">
+                <div class="bg-slate-900 p-3 rounded-xl border border-slate-700 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
+                    <div>
+                        <span class="block text-slate-400 text-[10px] uppercase font-bold">Chave Pix (CNPJ):</span>
+                        <span id="pixKey" class="font-mono text-brand-400 font-bold text-sm">69.805.020/0001-36</span>
+                    </div>
+                    <button onclick="copyPixKey()" class="bg-brand-500 hover:bg-brand-600 text-white font-bold px-3 py-2 rounded-lg transition text-xs flex items-center gap-1.5 cursor-pointer w-full sm:w-auto justify-center">
+                        <i class="fa-solid fa-copy"></i> Copiar Chave
+                    </button>
+                </div>
+
+                <div class="text-slate-300 space-y-1 bg-slate-900/50 p-3 rounded-xl border border-slate-800 text-center">
+                    <p class="font-semibold text-white">Obrigado por se cadastrar!</p>
+                    <p class="text-slate-400">Escaneie o QR Code acima ou utilize a chave CNPJ para efetuar o pagamento.</p>
+                </div>
+            </div>
+
+            <div class="pt-2">
+                <a id="whatsappButton" href="https://wa.me/5585921033841?text=Olá%20Robinson!%20Fiz%20meu%20cadastro%20no%20Tem%20No%20Bairro%20e%20segue%20o%20comprovante%20do%20Pix." target="_blank" 
+                   class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3.5 px-4 rounded-xl shadow-lg text-xs sm:text-sm flex items-center justify-center gap-2 transition transform hover:scale-[1.02]">
+                    <i class="fa-brands fa-whatsapp text-lg"></i> Já fiz o Pix! Enviar Comprovante no WhatsApp
+                </a>
+            </div>
+        </div>
+
+        <p class="text-[11px] text-slate-500">
+            Dúvidas? Fale diretamente com o fundador pelo WhatsApp (85) 9.2103-3841.
+        </p>
+
+    </main>
+
+    <!-- RODAPÉ -->
+    <footer class="py-6 text-center text-slate-500 text-xs border-t border-slate-800">
+        <p>TEM NO BAIRRO — CNPJ: 69.805.020/0001-36 | Maracanaú - CE</p>
+    </footer>
+
+    <script>
+        // Gera o QR Code dinamicamente usando a chave CNPJ para garantir leitura imediata
+        window.onload = function() {
+            const pixPayload = "69.805.020/0001-36";
+            const qrImageUrl = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(pixPayload)}`;
+            const imgElement = document.getElementById('dynamicQrCode');
+            if(imgElement) {
+                imgElement.src = qrImageUrl;
+            }
+        };
+
+        function copyPixKey() {
+            const pix = "69.805.020/0001-36";
+            navigator.clipboard.writeText(pix).then(() => {
+                alert("Chave Pix copiada com sucesso!");
+            });
+        }
+    </script>
+</body>
+</html>
