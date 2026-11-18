@@ -45,7 +45,7 @@
             </p>
         </div>
 
-        <!-- CARD DO PIX COM QR CODE -->
+        <!-- CARD DO PIX COM QR CODE OFICIAL BANCO CENTRAL -->
         <div class="bg-slate-800 border border-slate-700 rounded-3xl p-6 shadow-xl space-y-4 text-center">
             <div class="flex items-center gap-3 border-b border-slate-700 pb-3 text-left">
                 <div class="w-10 h-10 bg-brand-500 text-white rounded-xl flex items-center justify-center font-bold text-lg flex-shrink-0">
@@ -57,26 +57,32 @@
                 </div>
             </div>
 
-            <!-- QR Code Automático Otimizado para Leitura Perfeita -->
-            <div class="flex flex-col items-center justify-center bg-white p-3 rounded-2xl border border-slate-700 max-w-[210px] mx-auto shadow-md">
-                <img id="dynamicQrCode" src="" alt="QR Code Pix Tem No Bairro" class="w-40 h-40 object-contain rounded-lg">
+            <!-- QR Code Padrão EMV Banco Central -->
+            <div class="flex flex-col items-center justify-center bg-white p-3 rounded-2xl border border-slate-700 max-w-[215px] mx-auto shadow-md">
+                <img id="dynamicQrCode" src="" alt="QR Code Pix Tem No Bairro" class="w-44 h-44 object-contain rounded-lg">
                 <span class="text-[10px] text-slate-900 font-bold mt-2">Escaneie com o app do banco</span>
             </div>
 
             <div class="space-y-3 text-xs text-left">
+                <!-- Chave Pix CNPJ -->
                 <div class="bg-slate-900 p-3 rounded-xl border border-slate-700 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
                     <div>
                         <span class="block text-slate-400 text-[10px] uppercase font-bold">Chave Pix (CNPJ):</span>
                         <span id="pixKey" class="font-mono text-brand-400 font-bold text-sm">69.805.020/0001-36</span>
                     </div>
                     <button onclick="copyPixKey()" class="bg-brand-500 hover:bg-brand-600 text-white font-bold px-3 py-2 rounded-lg transition text-xs flex items-center gap-1.5 cursor-pointer w-full sm:w-auto justify-center">
-                        <i class="fa-solid fa-copy"></i> Copiar Chave
+                        <i class="fa-solid fa-copy"></i> Copiar CNPJ
                     </button>
                 </div>
 
+                <!-- Botão Extra: Pix Copia e Cola Oficial -->
+                <button onclick="copyPixEmv()" class="w-full bg-slate-700 hover:bg-slate-600 text-slate-200 font-semibold py-2.5 px-3 rounded-xl border border-slate-600 transition text-xs flex items-center justify-center gap-2 cursor-pointer">
+                    <i class="fa-solid fa-paste text-brand-400"></i> Copiar Código Pix Copia e Cola
+                </button>
+
                 <div class="text-slate-300 space-y-1 bg-slate-900/50 p-3 rounded-xl border border-slate-800 text-center">
                     <p class="font-semibold text-white">Obrigado por se cadastrar!</p>
-                    <p class="text-slate-400">Escaneie o QR Code acima ou utilize a chave CNPJ para efetuar o pagamento.</p>
+                    <p class="text-slate-400">Escaneie o QR Code acima ou utilize a chave CNPJ para efetuar o pagamento do plano escolhido.</p>
                 </div>
             </div>
 
@@ -100,20 +106,66 @@
     </footer>
 
     <script>
-        // Gera o QR Code dinamicamente usando a chave CNPJ para garantir leitura imediata
+        // Função oficial para gerar o Payload EMV (Padrão Banco Central do Brasil)
+        function gerarPayloadPix(chave, nome, cidade, txid = '***') {
+            function formatField(id, value) {
+                const len = String(value.length).padStart(2, '0');
+                return `${id}${len}${value}`;
+            }
+
+            const gui = formatField('00', 'br.gov.bcb.pix');
+            const keyField = formatField('01', chave);
+            const merchantAccountInfo = formatField('26', gui + keyField);
+
+            const payloadSemCrc = [
+                formatField('00', '01'),
+                merchantAccountInfo,
+                formatField('52', '0000'),
+                formatField('53', '986'),
+                formatField('58', 'BR'),
+                formatField('59', nome.substring(0, 25)),
+                formatField('60', cidade.substring(0, 15)),
+                formatField('62', formatField('05', txid)),
+                '6304'
+            ].join('');
+
+            // Cálculo do CRC16-CCITT exigido pelos bancos
+            let crc = 0xFFFF;
+            for (let i = 0; i < payloadSemCrc.length; i++) {
+                crc ^= payloadSemCrc.charCodeAt(i) << 8;
+                for (let j = 0; j < 8; j++) {
+                    if ((crc & 0x8000) !== 0) {
+                        crc = (crc << 1) ^ 0x1021;
+                    } else {
+                        crc = crc << 1;
+                    }
+                }
+            }
+            const crcHex = (crc & 0xFFFF).toString(16).toUpperCase().padStart(4, '0');
+            return payloadSemCrc + crcHex;
+        }
+
+        let pixEmvCode = '';
+
         window.onload = function() {
-            const pixPayload = "69.805.020/0001-36";
-            const qrImageUrl = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(pixPayload)}`;
+            // CNPJ sem pontos/barra (padrão obrigatório do Pix EMV)
+            pixEmvCode = gerarPayloadPix('69805020000136', 'Tem No Bairro', 'Maracanau');
+            const qrImageUrl = `https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=${encodeURIComponent(pixEmvCode)}`;
             const imgElement = document.getElementById('dynamicQrCode');
-            if(imgElement) {
+            if (imgElement) {
                 imgElement.src = qrImageUrl;
             }
         };
 
         function copyPixKey() {
-            const pix = "69.805.020/0001-36";
-            navigator.clipboard.writeText(pix).then(() => {
-                alert("Chave Pix copiada com sucesso!");
+            navigator.clipboard.writeText("69.805.020/0001-36").then(() => {
+                alert("Chave CNPJ copiada com sucesso!");
+            });
+        }
+
+        function copyPixEmv() {
+            navigator.clipboard.writeText(pixEmvCode).then(() => {
+                alert("Código Pix Copia e Cola copiado! Cole na opção 'Pix Copia e Cola' do seu banco.");
             });
         }
     </script>
