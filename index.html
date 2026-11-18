@@ -351,6 +351,48 @@
             </div>
         </section>
 
+        <!-- SEÇÃO DE PAGAMENTO PIX / CONFIRMAÇÃO (COM MENSAGEM GENÉRICA E QR CODE ESTÁTICO) -->
+        <section id="secaoPagamentoPix" class="max-w-md mx-auto bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-8 shadow-xl text-center space-y-6 my-8">
+            <div class="w-14 h-14 bg-emerald-500/20 border border-emerald-500/40 text-emerald-400 rounded-full flex items-center justify-center mx-auto text-2xl shadow-md">
+                <i class="fa-solid fa-qrcode"></i>
+            </div>
+
+            <div class="space-y-2">
+                <h3 class="text-xl font-black tracking-tight text-white">Pagamento da Assinatura (Pix)</h3>
+                <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                    Realize o Pix referente ao plano escolhido no cadastro para ativar sua loja com <strong>zero comissão sobre vendas</strong>.
+                </p>
+            </div>
+
+            <!-- QR Code Estático -->
+            <div class="flex flex-col items-center justify-center bg-white p-3 rounded-2xl border border-slate-700">
+                <img src="assets/img/qrcode-pix.png" alt="QR Code Pix Tem No Bairro" class="w-36 h-36 object-contain rounded-lg" onerror="this.src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=00020126580014br.gov.bcb.pix013669.805.020/0001-365204000053039865802BR5925Tem%20No%20Bairro6009Maracanau62070503***'">
+                <span class="text-[10px] text-slate-900 font-bold mt-2">Escaneie com o app do seu banco</span>
+            </div>
+
+            <!-- Chave Pix CNPJ -->
+            <div class="space-y-1.5 text-left">
+                <span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">Chave Pix (CNPJ):</span>
+                <div class="flex items-center justify-between bg-slate-950 border border-slate-800 rounded-xl px-3 py-2.5">
+                    <code id="pixKeyInline" class="text-xs sm:text-sm font-mono font-bold text-brand-400">69.805.020/0001-36</code>
+                    <button onclick="copyInlinePixKey()" class="bg-brand-500 hover:bg-brand-600 text-white text-xs font-bold px-3 py-1.5 rounded-lg transition shadow flex items-center gap-1 cursor-pointer">
+                        <i class="fa-solid fa-copy"></i> Copiar
+                    </button>
+                </div>
+            </div>
+
+            <div class="text-[11px] text-slate-400 pt-1 flex justify-between items-center border-t border-slate-800">
+                <span>Beneficiário: <strong class="text-slate-200">Tem No Bairro</strong></span>
+                <span class="text-emerald-400 font-semibold">Zero comissão</span>
+            </div>
+
+            <a href="https://wa.me/5585921033841?text=Olá%20Robinson!%20Realizei%20o%20Pix%20da%20minha%20assinatura%20no%20Tem%20No%20Bairro.%20Segue%20o%20comprovante:" 
+               target="_blank" 
+               class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3.5 px-4 rounded-xl shadow-lg text-xs sm:text-sm flex items-center justify-center gap-2 transition transform hover:scale-[1.02]">
+                <i class="fa-brands fa-whatsapp text-xl"></i> Já fiz o Pix! Enviar Comprovante no WhatsApp
+            </a>
+        </section>
+
         <!-- BUSCA E FILTROS -->
         <section class="space-y-4 pt-4 border-t border-slate-200">
             <div class="relative">
@@ -872,7 +914,6 @@
             switchServiceTab('emergencia');
         };
 
-        // DADOS OFICIAIS ATUALIZADOS COM ENDEREÇOS E TELEFONES DAS UBS E PREFEITURAS
         const serviceData = {
             emergencia: `
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
@@ -917,14 +958,6 @@
                             <strong class="block text-slate-900 font-bold">UBS Maria José de Carvalho</strong>
                             <p class="text-slate-500 text-[11px] mt-1">Av. Lateral Norte, Acaracuzinho - Tel: (85) 3392-8967</p>
                         </div>
-                        <div class="bg-white border border-slate-200 p-3 rounded-xl shadow-sm">
-                            <strong class="block text-slate-900 font-bold">USF João Batista dos Santos</strong>
-                            <p class="text-slate-500 text-[11px] mt-1">Rua Paulo Batista, Pajuçara - Tel: (85) 3292-8314</p>
-                        </div>
-                        <div class="bg-white border border-slate-200 p-3 rounded-xl shadow-sm">
-                            <strong class="block text-slate-900 font-bold">USF Prefeito Almir Dutra</strong>
-                            <p class="text-slate-500 text-[11px] mt-1">Rua 125, Conjunto Timbó - Maracanaú</p>
-                        </div>
                     </div>
                 </div>
             `,
@@ -947,10 +980,6 @@
                             <strong class="block text-slate-900 font-bold">UBSF João Bruno Moura (Pavuna)</strong>
                             <p class="text-slate-500 text-[11px] mt-1">Rua Fé e Caridade, 4 - Pacatuba</p>
                         </div>
-                        <div class="bg-white border border-slate-200 p-3 rounded-xl shadow-sm">
-                            <strong class="block text-slate-900 font-bold">UBSF Francisco Antônio Filho</strong>
-                            <p class="text-slate-500 text-[11px] mt-1">Av. Capitão Manoel Medeiros, 2891 - Alto São João</p>
-                        </div>
                     </div>
                 </div>
             `,
@@ -968,10 +997,6 @@
                         <div class="bg-white border border-slate-200 p-3 rounded-xl shadow-sm">
                             <strong class="block text-slate-900 font-bold">UBS Maria Francina (Stênio Gomes)</strong>
                             <p class="text-slate-500 text-[11px] mt-1">Av. Stênio Gomes, s/n - Aldeoma - Tel: (85) 3341-5252</p>
-                        </div>
-                        <div class="bg-white border border-slate-200 p-3 rounded-xl shadow-sm">
-                            <strong class="block text-slate-900 font-bold">Secretaria Municipal de Saúde</strong>
-                            <p class="text-slate-500 text-[11px] mt-1">Centro, Maranguape - CE</p>
                         </div>
                     </div>
                 </div>
@@ -1013,7 +1038,6 @@
                 const now = new Date();
                 const currentDay = now.getDay();
                 const currentMinutes = now.getHours() * 60 + now.getMinutes();
-
                 const lowerStr = hoursStr.toLowerCase();
 
                 if (lowerStr.includes('sex') || lowerStr.includes('sáb') || lowerStr.includes('sab')) {
@@ -1031,10 +1055,6 @@
                         const times = timeMatch[0].split('-');
                         openTime = times[0].trim();
                         closeTime = times[1].trim();
-                    } else {
-                        const parts = hoursStr.split('-');
-                        openTime = parts[0].trim().substring(0, 5);
-                        closeTime = parts[1].trim().substring(0, 5);
                     }
 
                     const [openH, openM] = openTime.split(':').map(Number);
@@ -1049,7 +1069,6 @@
                         return { isOpen: false, text: `Fechado (Abre às ${openTime})` };
                     }
                 }
-
                 return { isOpen: true, text: 'Aberto' };
             } catch(e) {
                 return { isOpen: true, text: 'Aberto' };
@@ -1288,7 +1307,6 @@
             }
 
             const cleanPhone = item.phone ? item.phone.replace(/\D/g, '') : '85921033841';
-            
             const waMessage = encodeURIComponent(`Olá, vi o seu anúncio no app TEM NO BAIRRO e gostaria de mais informações!`);
             document.getElementById('detailWhatsApp').href = `https://api.whatsapp.com/send?phone=55${cleanPhone}&text=${waMessage}`;
             
@@ -1314,23 +1332,18 @@
             document.getElementById('detailModal').classList.remove('hidden');
         }
 
-        function closeDetailModal() {
-            document.getElementById('detailModal').classList.add('hidden');
-        }
-
+        function closeDetailModal() { document.getElementById('detailModal').classList.add('hidden'); }
         function updateCarouselImage() {
             const imgEl = document.getElementById('detailImage');
             if (currentActiveImages.length > 0) {
                 imgEl.src = currentActiveImages[currentImageIndex];
             }
         }
-
         function nextImage() {
             if (currentActiveImages.length <= 1) return;
             currentImageIndex = (currentImageIndex + 1) % currentActiveImages.length;
             updateCarouselImage();
         }
-
         function prevImage() {
             if (currentActiveImages.length <= 1) return;
             currentImageIndex = (currentImageIndex - 1 + currentActiveImages.length) % currentActiveImages.length;
@@ -1373,16 +1386,10 @@
                             ${item.promo ? `<span class="text-[10px] text-amber-700 bg-amber-50 px-2 py-0.5 rounded font-bold inline-block mt-0.5"><i class="fa-solid fa-gift"></i> ${item.promo}</span>` : ''}
                         </td>
                         <td class="p-3 text-slate-600 font-mono">${item.phone}</td>
-                        <td class="p-3 text-center">
-                            ${badgeHtml}
-                        </td>
+                        <td class="p-3 text-center">${badgeHtml}</td>
                         <td class="p-3 text-right space-x-1">
-                            <button onclick="openEditModal(${index})" class="bg-blue-50 hover:bg-blue-100 text-blue-600 p-2 rounded-lg transition" title="Editar">
-                                <i class="fa-solid fa-pen"></i>
-                            </button>
-                            <button onclick="deleteBusiness(${index})" class="bg-red-50 hover:bg-red-100 text-red-600 p-2 rounded-lg transition" title="Excluir">
-                                <i class="fa-solid fa-trash-can"></i>
-                            </button>
+                            <button onclick="openEditModal(${index})" class="bg-blue-50 hover:bg-blue-100 text-blue-600 p-2 rounded-lg transition" title="Editar"><i class="fa-solid fa-pen"></i></button>
+                            <button onclick="deleteBusiness(${index})" class="bg-red-50 hover:bg-red-100 text-red-600 p-2 rounded-lg transition" title="Excluir"><i class="fa-solid fa-trash-can"></i></button>
                         </td>
                     </tr>
                 `;
@@ -1404,7 +1411,6 @@
             document.getElementById('editMapsUrl').value = '';
             document.getElementById('editDescription').value = '';
             document.getElementById('editImages').value = '';
-
             document.getElementById('adminPanelModal').classList.add('hidden');
             document.getElementById('editModal').classList.remove('hidden');
         }
@@ -1439,7 +1445,6 @@
         function handleEditSubmit(event) {
             event.preventDefault();
             const index = parseInt(document.getElementById('editIndex').value);
-            
             const name = document.getElementById('editName').value.trim();
             const category = document.getElementById('editCategory').value;
             const phone = document.getElementById('editPhone').value.trim();
@@ -1450,41 +1455,17 @@
             const hours = document.getElementById('editHours').value.trim();
             const mapsUrl = document.getElementById('editMapsUrl').value.trim();
             const description = document.getElementById('editDescription').value.trim();
-            
             const imgsVal = document.getElementById('editImages').value.trim();
             let images = imgsVal ? imgsVal.split(',').map(s => s.trim()).filter(s => s.length > 0) : ['https://images.unsplash.com/photo-1528698827591-e19ccd7bc23d?w=500&auto=format&fit=crop&q=80'];
 
             if (index === -1) {
                 const newId = 'loja-' + Date.now();
-                const newBusiness = {
-                    id: newId,
-                    name: name,
-                    category: category,
-                    phone: phone,
-                    plan: plan,
-                    isFounder: true,
-                    promo: promo,
-                    address: address,
-                    hours: hours,
-                    mapsUrl: mapsUrl,
-                    description: description,
-                    images: images,
-                    status: status
-                };
-                businesses.unshift(newBusiness);
+                businesses.unshift({
+                    id: newId, name, category, phone, plan, isFounder: true, promo, address, hours, mapsUrl, description, images, status
+                });
                 alert('Novo lojista adicionado com sucesso!');
             } else {
-                businesses[index].name = name;
-                businesses[index].category = category;
-                businesses[index].phone = phone;
-                businesses[index].plan = plan;
-                businesses[index].status = status;
-                businesses[index].promo = promo;
-                businesses[index].address = address;
-                businesses[index].hours = hours;
-                businesses[index].mapsUrl = mapsUrl;
-                businesses[index].description = description;
-                businesses[index].images = images;
+                businesses[index] = { ...businesses[index], name, category, phone, plan, status, promo, address, hours, mapsUrl, description, images };
                 alert('Alterações salvas com sucesso!');
             }
 
@@ -1499,6 +1480,12 @@
                 localStorage.setItem('tem_no_bairro_db_v22', JSON.stringify(businesses));
                 renderAdminTable();
             }
+        }
+
+        function copyInlinePixKey() {
+            navigator.clipboard.writeText("69.805.020/0001-36").then(() => {
+                alert("Chave Pix copiada com sucesso!");
+            });
         }
 
         function filterBusinesses() { renderBusinesses(); }
