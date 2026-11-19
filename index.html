@@ -788,9 +788,8 @@
                 social: '@barbearia_dcristo',
                 address: 'Av B esquina com 123 n 260, Timbó - Maracanaú',
                 hours: 'Seg a Sáb 09:00 - 19:00',
-                mapsUrl: '
-https://maps.app.goo.gl/7DNzTWEadw6NdyeP7',
-                description: "Ambiente Climatizado, Estilo , precisão e bom atendimento, Barbearia D Cristo, somos Especializados em cortes masculinos, acabamento de barba e cuidados do dia a dia para quem valoriza qualidade local.",
+                mapsUrl: 'https://maps.app.goo.gl/7DNzTWEadw6NdyeP7',
+                description: 'Ambiente Climatizado, Estilo , precisão e bom atendimento, Barbearia D Cristo, somos Especializados em cortes masculinos, acabamento de barba e cuidados do dia a dia para quem valoriza qualidade local.',
                 images: [
                     'https://i.ibb.co/qLHq02ML/Whats-App-Image-2026-11-19-at-09-22-33-1.jpg',
                     'https://i.ibb.co/4gS72xnD/Whats-App-Image-2026-11-19-at-09-22-33.jpg'
@@ -1044,7 +1043,7 @@ https://maps.app.goo.gl/7DNzTWEadw6NdyeP7',
             if (!hoursStr) return { isOpen: true, text: 'Aberto' };
             try {
                 const now = new Date();
-                const currentDay = now.getDay(); // 0 = Dom, 1 = Seg, 2 = Ter, 3 = Qua, 4 = Qui, 5 = Sex, 6 = Sáb
+                const currentDay = now.getDay();
                 const currentMinutes = now.getHours() * 60 + now.getMinutes();
                 const lowerStr = hoursStr.toLowerCase();
 
@@ -1057,7 +1056,6 @@ https://maps.app.goo.gl/7DNzTWEadw6NdyeP7',
                 const openMinutes = openH * 60 + (openM || 0);
                 const closeMinutes = closeH * 60 + (closeM || 0);
 
-                // Regra para estabelecimentos exclusivos de sexta e sábado (ex: Delícias da Dely)
                 const isOnlyFriSat = (lowerStr.includes('sex') && (lowerStr.includes('sáb') || lowerStr.includes('sab'))) && !lowerStr.includes('seg');
                 if (isOnlyFriSat) {
                     if (currentDay === 5 || currentDay === 6) {
@@ -1069,7 +1067,6 @@ https://maps.app.goo.gl/7DNzTWEadw6NdyeP7',
                     return { isOpen: false, text: 'Fechado (Abre Sex às 19h)' };
                 }
 
-                // Regra para estabelecimentos de Segunda a Sábado
                 const isSegASab = lowerStr.includes('seg') && (lowerStr.includes('sáb') || lowerStr.includes('sab'));
                 if (isSegASab) {
                     if (currentDay === 0) {
@@ -1081,7 +1078,6 @@ https://maps.app.goo.gl/7DNzTWEadw6NdyeP7',
                     return { isOpen: false, text: `Fechado (Abre às ${openTime})` };
                 }
 
-                // Faixa de horário padrão
                 if (timeMatch) {
                     if (currentMinutes >= openMinutes && currentMinutes <= closeMinutes) {
                         return { isOpen: true, text: 'Aberto Agora' };
@@ -1522,7 +1518,7 @@ https://maps.app.goo.gl/7DNzTWEadw6NdyeP7',
             const userName = document.getElementById('indUserName').value.trim();
 
             const msg = encodeURIComponent(
-                `Olá Robinson! Quero indicar um comércio para o *Tem No Bairro*:\n\n` +
+                `Olá Fundador! Quero indicar um comércio para o *Tem No Bairro*:\n\n` +
                 `*Estabelecimento:* ${storeName}\n` +
                 `*O que faz:* ${storeDesc}\n` +
                 (storeAddress ? `*Endereço/Referência:* ${storeAddress}\n` : '') +
