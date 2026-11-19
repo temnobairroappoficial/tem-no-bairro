@@ -89,7 +89,8 @@
             </div>
             <!-- Menu do Topo -->
             <div class="flex items-center gap-2 sm:gap-3 overflow-x-auto w-full sm:w-auto justify-start sm:justify-end pb-1 sm:pb-0">
-                <a href="https://g.page/r/CRK_11do12bREBM/review" target="_blank" class="bg-amber-400 hover:bg-amber-500 text-slate-950 font-bold text-xs px-3.5 py-2.5 rounded-xl transition flex items-center gap-1.5 shadow-sm whitespace-nowrap cursor-pointer flex-shrink-0">
+                <!-- LINK DO GOOGLE ATUALIZADO PARA BUSCA/AVALIAÇÃO DIRETA -->
+                <a href="https://www.google.com/search?q=Tem+No+Bairro+Maracanaú" target="_blank" class="bg-amber-400 hover:bg-amber-500 text-slate-950 font-bold text-xs px-3.5 py-2.5 rounded-xl transition flex items-center gap-1.5 shadow-sm whitespace-nowrap cursor-pointer flex-shrink-0">
                     <i class="fa-solid fa-star text-slate-950"></i> Avaliar no Google
                 </a>
                 <button type="button" onclick="openIndicateModal()" class="bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-500/40 text-xs px-3.5 py-2.5 rounded-xl transition flex items-center gap-1.5 cursor-pointer font-semibold whitespace-nowrap flex-shrink-0">
@@ -434,7 +435,7 @@
             <div class="flex flex-wrap justify-center items-center gap-4 py-2 text-slate-300 font-medium">
                 <a href="https://instagram.com/temnobairro_oficial" target="_blank" class="hover:text-brand-500 transition flex items-center gap-1.5"><i class="fa-brands fa-instagram text-base"></i> @temnobairro_oficial</a>
                 <span class="text-slate-700">•</span>
-                <a href="https://g.page/r/CRK_11do12bREBM/review" target="_blank" class="hover:text-amber-400 transition flex items-center gap-1.5 text-amber-300 font-bold"><i class="fa-solid fa-star text-base"></i> Avaliar no Google</a>
+                <a href="https://www.google.com/search?q=Tem+No+Bairro+Maracanaú" target="_blank" class="hover:text-amber-400 transition flex items-center gap-1.5 text-amber-300 font-bold"><i class="fa-solid fa-star text-base"></i> Avaliar no Google</a>
                 <span class="text-slate-700">•</span>
                 <button type="button" onclick="openIndicateModal()" class="hover:text-amber-400 transition flex items-center gap-1.5 cursor-pointer text-amber-300 font-semibold"><i class="fa-solid fa-gift text-base"></i> Indicar Comércio</button>
                 <span class="text-slate-700">•</span>
@@ -772,7 +773,7 @@
                 id: 'bruna-boutique-1',
                 name: 'Bruna Boutique',
                 category: 'Comércio e Serviços',
-                phone: '85921033841',
+                phone: '85921033841', /* Substitua aqui pelo WhatsApp correto da Bruna se for diferente */
                 social: '@brunaboutique',
                 address: 'Rua Flor do Lírio 175 Maranguape',
                 hours: 'Seg á Sáb 09h ás 22h',
@@ -869,7 +870,7 @@
         let currentImageIndex = 0;
 
         window.onload = function() {
-            const savedData = localStorage.getItem('tem_no_bairro_db_v24');
+            const savedData = localStorage.getItem('tem_no_bairro_db_v25');
             if (savedData !== null) {
                 try {
                     businesses = JSON.parse(savedData);
@@ -878,7 +879,7 @@
                 }
             } else {
                 businesses = defaultBusinesses;
-                localStorage.setItem('tem_no_bairro_db_v24', JSON.stringify(businesses));
+                localStorage.setItem('tem_no_bairro_db_v25', JSON.stringify(businesses));
             }
 
             const savedFavs = localStorage.getItem('tem_no_bairro_favs');
@@ -1446,7 +1447,7 @@
                 alert('Alterações salvas com sucesso!');
             }
 
-            localStorage.setItem('tem_no_bairro_db_v24', JSON.stringify(businesses));
+            localStorage.setItem('tem_no_bairro_db_v25', JSON.stringify(businesses));
             closeEditModal();
             renderBusinesses();
         }
@@ -1454,7 +1455,7 @@
         function deleteBusiness(index) {
             if (confirm('Deseja realmente remover este parceiro?')) {
                 businesses.splice(index, 1);
-                localStorage.setItem('tem_no_bairro_db_v24', JSON.stringify(businesses));
+                localStorage.setItem('tem_no_bairro_db_v25', JSON.stringify(businesses));
                 renderAdminTable();
             }
         }
