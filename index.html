@@ -51,6 +51,7 @@
             width: 100%;
             height: 160px;
             object-fit: cover;
+            object-position: center 20%;
             background-color: #fff7ed;
             border-top-left-radius: 1rem;
             border-top-right-radius: 1rem;
@@ -460,13 +461,13 @@
                 <i class="fa-solid fa-xmark"></i>
             </button>
             
-            <div class="relative h-64 w-full bg-slate-100 rounded-2xl overflow-hidden shadow-inner">
-                <img id="detailImage" src="" alt="Foto do Estabelecimento" class="w-full h-full object-cover transition duration-300">
+            <div class="relative h-64 w-full bg-slate-950 rounded-2xl overflow-hidden shadow-inner flex items-center justify-center">
+                <img id="detailImage" src="" alt="Foto do Estabelecimento" class="w-full h-full object-contain transition duration-300">
                 <div id="carouselNav" class="absolute inset-0 flex items-center justify-between p-2 hidden">
-                    <button onclick="prevImage()" class="bg-slate-900/60 hover:bg-slate-900 text-white w-9 h-9 rounded-full flex items-center justify-center transition cursor-pointer shadow">
+                    <button onclick="prevImage()" class="bg-slate-900/70 hover:bg-slate-900 text-white w-9 h-9 rounded-full flex items-center justify-center transition cursor-pointer shadow">
                         <i class="fa-solid fa-chevron-left"></i>
                     </button>
-                    <button onclick="nextImage()" class="bg-slate-900/60 hover:bg-slate-900 text-white w-9 h-9 rounded-full flex items-center justify-center transition cursor-pointer shadow">
+                    <button onclick="nextImage()" class="bg-slate-900/70 hover:bg-slate-900 text-white w-9 h-9 rounded-full flex items-center justify-center transition cursor-pointer shadow">
                         <i class="fa-solid fa-chevron-right"></i>
                     </button>
                 </div>
@@ -711,8 +712,8 @@
                     <textarea id="editDescription" required rows="2" placeholder="O que o estabelecimento oferece..." class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none"></textarea>
                 </div>
                 <div>
-                    <label class="block text-xs font-semibold text-slate-700 mb-1">URL da Foto de Capa</label>
-                    <input type="text" id="editImages" placeholder="Ex: https://i.ibb.co/... ou link direto" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none">
+                    <label class="block text-xs font-semibold text-slate-700 mb-1">URLs das Fotos (separe por vírgula: capa, tabela de preços)</label>
+                    <input type="text" id="editImages" placeholder="Ex: https://i.ibb.co/..., https://i.ibb.co/..." class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none">
                 </div>
                 <div class="pt-2 flex justify-end gap-2">
                     <button type="button" onclick="closeEditModal()" class="px-4 py-2 border border-slate-300 rounded-lg text-xs font-semibold text-slate-700 hover:bg-slate-100 transition cursor-pointer">
@@ -767,9 +768,27 @@
 
     <!-- SCRIPTS E LÓGICA DO SITE -->
     <script>
-        const DB_KEY = 'tem_no_bairro_db_v28';
+        const DB_KEY = 'tem_no_bairro_db_v30';
 
         const defaultBusinesses = [
+            {
+                id: 'barbearia-de-cristo-1',
+                name: 'Barbearia D Cristo',
+                category: 'Saúde e Beleza',
+                phone: '85992352042',
+                social: '@barbearia_dcristo',
+                address: 'Av B esquina com 123 n 260 - timbó - Maracanaú',
+                hours: 'Seg á Sáb 09:00 - 19:00',
+                mapsUrl: 'https://maps.app.goo.gl/7DNzTWEadw6NdyeP7',
+                description: 'Cortes modernos e clássicos, barba alinhada, ambiente climatizado e atendimento de confiança no bairro. Agende seu horário e garanta seu visual em dia com praticidade pelo Tem No Bairro.',
+                images: [
+                    'https://i.ibb.co/qLHq02ML/Whats-App-Image-2026-11-19-at-09-22-33-1.jpg',
+                    'https://i.ibb.co/4gS72xnD/Whats-App-Image-2026-11-19-at-09-22-33.jpg'
+                ],
+                isFounder: true,
+                promo: '',
+                status: 'ativo'
+            },
             {
                 id: 'bruna-boutique-1',
                 name: 'Bruna Boutique',
@@ -834,11 +853,11 @@
                 id: 'barbearia-estilo',
                 name: 'Barbearia Estilo & Corte',
                 category: 'Saúde e Beleza',
-                phone: '85921033841',
+                phone: '85992352042',
                 social: '@estilocortebarber',
                 address: 'Rua 12, 85, Pacatuba',
-                hours: '09:00 - 20:00',
-                mapsUrl: '',
+                hours: '09:00 - 19:00',
+                mapsUrl: 'https://maps.app.goo.gl/7DNzTWEadw6NdyeP7',
                 description: 'Corte moderno, barba alinhada e ambiente climatizado com aquela cerveja gelada.',
                 images: ['https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=500&auto=format&fit=crop&q=80'],
                 isFounder: false,
@@ -897,611 +916,4 @@
             emergencia: `
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
                     <a href="tel:190" class="bg-rose-50 border border-rose-200 p-3.5 rounded-xl flex items-center gap-3 hover:bg-rose-100 transition">
-                        <div class="w-10 h-10 rounded-xl bg-rose-600 text-white flex items-center justify-center font-bold text-base shadow"><i class="fa-solid fa-shield-halved"></i></div>
-                        <div><strong class="block text-slate-900">Polícia Militar</strong><span class="text-rose-700 font-black text-sm">190</span></div>
-                    </a>
-                    <a href="tel:192" class="bg-emerald-50 border border-emerald-200 p-3.5 rounded-xl flex items-center gap-3 hover:bg-emerald-100 transition">
-                        <div class="w-10 h-10 rounded-xl bg-emerald-600 text-white flex items-center justify-center font-bold text-base shadow"><i class="fa-solid fa-truck-medical"></i></div>
-                        <div><strong class="block text-slate-900">SAMU</strong><span class="text-emerald-700 font-black text-sm">192</span></div>
-                    </a>
-                    <a href="tel:193" class="bg-amber-50 border border-amber-200 p-3.5 rounded-xl flex items-center gap-3 hover:bg-amber-100 transition">
-                        <div class="w-10 h-10 rounded-xl bg-amber-600 text-white flex items-center justify-center font-bold text-base shadow"><i class="fa-solid fa-fire-extinguisher"></i></div>
-                        <div><strong class="block text-slate-900">Bombeiros</strong><span class="text-amber-700 font-black text-sm">193</span></div>
-                    </a>
-                    <a href="tel:199" class="bg-blue-50 border border-blue-200 p-3.5 rounded-xl flex items-center gap-3 hover:bg-blue-100 transition">
-                        <div class="w-10 h-10 rounded-xl bg-blue-600 text-white flex items-center justify-center font-bold text-base shadow"><i class="fa-solid fa-triangle-exclamation"></i></div>
-                        <div><strong class="block text-slate-900">Defesa Civil</strong><span class="text-blue-700 font-black text-sm">199</span></div>
-                    </a>
-                </div>
-            `,
-            maracanau: `
-                <div class="space-y-4">
-                    <div class="bg-slate-50 border border-slate-200 p-4 rounded-xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
-                        <div>
-                            <span class="text-[10px] font-extrabold uppercase bg-brand-500 text-white px-2 py-0.5 rounded">Prefeitura Municipal</span>
-                            <h4 class="font-bold text-sm text-slate-900 mt-1">Prefeitura de Maracanaú & Gabinete do Prefeito</h4>
-                            <p class="text-slate-500 text-[11px]">Av. II, nº 150 - Jereissati I, Maracanaú - CE</p>
-                        </div>
-                        <a href="tel:853718684" class="bg-slate-900 text-white px-4 py-2 rounded-lg font-bold text-xs hover:bg-slate-800 transition"><i class="fa-solid fa-phone"></i> (85) 3718-6840</a>
-                    </div>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-                        <div class="bg-white border border-slate-200 p-3 rounded-xl shadow-sm">
-                            <strong class="block text-slate-900 font-bold">UBS Dr. Alarico Leite</strong>
-                            <p class="text-slate-500 text-[11px] mt-1">Rua Patativa Assaré, Parque São João - Tel: (85) 3392-8605</p>
-                        </div>
-                        <div class="bg-white border border-slate-200 p-3 rounded-xl shadow-sm">
-                            <strong class="block text-slate-900 font-bold">UBS João Pereira de Andrade II</strong>
-                            <p class="text-slate-500 text-[11px] mt-1">Rua Capitão Valdemar de Lima, Boa Vista - Tel: (85) 3392-8137</p>
-                        </div>
-                        <div class="bg-white border border-slate-200 p-3 rounded-xl shadow-sm">
-                            <strong class="block text-slate-900 font-bold">UBS Maria José de Carvalho</strong>
-                            <p class="text-slate-500 text-[11px] mt-1">Av. Lateral Norte, Acaracuzinho - Tel: (85) 3392-8967</p>
-                        </div>
-                    </div>
-                </div>
-            `,
-            pacatuba: `
-                <div class="space-y-4">
-                    <div class="bg-slate-50 border border-slate-200 p-4 rounded-xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
-                        <div>
-                            <span class="text-[10px] font-extrabold uppercase bg-brand-500 text-white px-2 py-0.5 rounded">Prefeitura Municipal</span>
-                            <h4 class="font-bold text-sm text-slate-900 mt-1">Prefeitura de Pacatuba & Gabinete</h4>
-                            <p class="text-slate-500 text-[11px]">Rua Major Crisanto, 180 - Centro, Pacatuba - CE</p>
-                        </div>
-                        <a href="tel:85936182138" class="bg-slate-900 text-white px-4 py-2 rounded-lg font-bold text-xs hover:bg-slate-800 transition"><i class="fa-solid fa-phone"></i> (85) 93618-2138</a>
-                    </div>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-                        <div class="bg-white border border-slate-200 p-3 rounded-xl shadow-sm">
-                            <strong class="block text-slate-900 font-bold">UBSF Maria Nívea Severino (Sede)</strong>
-                            <p class="text-slate-500 text-[11px] mt-1">Av. Major Cícero Franklin, s/n - Centro</p>
-                        </div>
-                        <div class="bg-white border border-slate-200 p-3 rounded-xl shadow-sm">
-                            <strong class="block text-slate-900 font-bold">UBSF João Bruno Moura (Pavuna)</strong>
-                            <p class="text-slate-500 text-[11px] mt-1">Rua Fé e Caridade, 4 - Pacatuba</p>
-                        </div>
-                    </div>
-                </div>
-            `,
-            maranguape: `
-                <div class="space-y-4">
-                    <div class="bg-slate-50 border border-slate-200 p-4 rounded-xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
-                        <div>
-                            <span class="text-[10px] font-extrabold uppercase bg-brand-500 text-white px-2 py-0.5 rounded">Prefeitura Municipal</span>
-                            <h4 class="font-bold text-sm text-slate-900 mt-1">Prefeitura de Maranguape & Gabinete</h4>
-                            <p class="text-slate-500 text-[11px]">Rua Dr. João Bezerra, 139 - Preguiça, Maranguape - CE</p>
-                        </div>
-                        <a href="tel:8533699230" class="bg-slate-900 text-white px-4 py-2 rounded-lg font-bold text-xs hover:bg-slate-800 transition"><i class="fa-solid fa-phone"></i> (85) 3369-9230</a>
-                    </div>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                        <div class="bg-white border border-slate-200 p-3 rounded-xl shadow-sm">
-                            <strong class="block text-slate-900 font-bold">UBS Maria Francina (Stênio Gomes)</strong>
-                            <p class="text-slate-500 text-[11px] mt-1">Av. Stênio Gomes, s/n - Aldeoma - Tel: (85) 3341-5252</p>
-                        </div>
-                    </div>
-                </div>
-            `,
-            beneficios: `
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <a href="https://www.gov.br/mds/pt-br/assuntos/bolsa-familia" target="_blank" class="bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 p-4 rounded-xl flex items-center gap-3 transition">
-                        <div class="w-10 h-10 rounded-xl bg-emerald-600 text-white flex items-center justify-center font-bold text-base shadow"><i class="fa-solid fa-wallet"></i></div>
-                        <div>
-                            <strong class="block text-slate-900 text-xs font-bold">Calendário Bolsa Família</strong>
-                            <span class="text-emerald-700 text-[11px]">Consulte datas e pagamentos no Gov.br</span>
-                        </div>
-                    </a>
-                    <a href="https://www.caixa.gov.br/beneficios-trabalhador/fgts" target="_blank" class="bg-blue-50 hover:bg-blue-100 border border-blue-200 p-4 rounded-xl flex items-center gap-3 transition">
-                        <div class="w-10 h-10 rounded-xl bg-blue-600 text-white flex items-center justify-center font-bold text-base shadow"><i class="fa-solid fa-piggy-bank"></i></div>
-                        <div>
-                            <strong class="block text-slate-900 text-xs font-bold">Consulta FGTS & Saque</strong>
-                            <span class="text-blue-700 text-[11px]">Acesse o aplicativo FGTS da Caixa</span>
-                        </div>
-                    </a>
-                </div>
-            `
-        };
-
-        function switchServiceTab(tabKey) {
-            document.querySelectorAll('.service-tab-btn').forEach(btn => {
-                btn.className = 'service-tab-btn px-4 py-2 rounded-xl text-xs font-medium bg-slate-100 hover:bg-slate-200 text-slate-700 transition flex items-center gap-1.5 cursor-pointer';
-            });
-            const activeBtn = document.getElementById('tabBtn-' + tabKey);
-            if (activeBtn) {
-                activeBtn.className = 'service-tab-btn px-4 py-2 rounded-xl text-xs font-bold bg-brand-500 text-white shadow transition flex items-center gap-1.5 cursor-pointer';
-            }
-            document.getElementById('serviceTabContent').innerHTML = serviceData[tabKey] || '';
-        }
-
-        function checkIsOpen(hoursStr) {
-            if (!hoursStr) return { isOpen: true, text: 'Aberto' };
-            try {
-                const now = new Date();
-                const currentDay = now.getDay(); // 0 = Dom, 1 = Seg, 2 = Ter, 3 = Qua, 4 = Qui, 5 = Sex, 6 = Sáb
-                const currentMinutes = now.getHours() * 60 + now.getMinutes();
-                const lowerStr = hoursStr.toLowerCase();
-
-                const timeMatch = hoursStr.match(/(\d{1,2}:\d{2})\s*-\s*(\d{1,2}:\d{2})/);
-                const openTime = timeMatch ? timeMatch[1].padStart(5, '0') : '08:00';
-                const closeTime = timeMatch ? timeMatch[2].padStart(5, '0') : '18:00';
-
-                const [openH, openM] = openTime.split(':').map(Number);
-                const [closeH, closeM] = closeTime.split(':').map(Number);
-                const openMinutes = openH * 60 + (openM || 0);
-                const closeMinutes = closeH * 60 + (closeM || 0);
-
-                // Regra para estabelecimentos exclusivos de sexta e sábado (ex: Delícias da Dely)
-                const isOnlyFriSat = (lowerStr.includes('sex') && (lowerStr.includes('sáb') || lowerStr.includes('sab'))) && !lowerStr.includes('seg');
-                if (isOnlyFriSat) {
-                    if (currentDay === 5 || currentDay === 6) {
-                        if (currentMinutes >= openMinutes && currentMinutes <= closeMinutes) {
-                            return { isOpen: true, text: 'Aberto Agora' };
-                        }
-                        return { isOpen: false, text: `Fechado (Abre às ${openTime})` };
-                    }
-                    return { isOpen: false, text: 'Fechado (Abre Sex às 19h)' };
-                }
-
-                // Regra para estabelecimentos de Segunda a Sábado (ex: Bruna Boutique)
-                const isSegASab = lowerStr.includes('seg') && (lowerStr.includes('sáb') || lowerStr.includes('sab'));
-                if (isSegASab) {
-                    if (currentDay === 0) {
-                        return { isOpen: false, text: `Fechado (Abre Seg às ${openTime})` };
-                    }
-                    if (currentMinutes >= openMinutes && currentMinutes <= closeMinutes) {
-                        return { isOpen: true, text: 'Aberto Agora' };
-                    }
-                    return { isOpen: false, text: `Fechado (Abre às ${openTime})` };
-                }
-
-                // Faixa de horário padrão
-                if (timeMatch) {
-                    if (currentMinutes >= openMinutes && currentMinutes <= closeMinutes) {
-                        return { isOpen: true, text: 'Aberto Agora' };
-                    }
-                    return { isOpen: false, text: `Fechado (Abre às ${openTime})` };
-                }
-
-                return { isOpen: true, text: 'Aberto' };
-            } catch (e) {
-                return { isOpen: true, text: 'Aberto' };
-            }
-        }
-
-        function requestUserLocation() {
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(position => {
-                    alert("Localização obtida! Mostrando comércios ordenados para a sua região.");
-                    renderBusinesses();
-                }, error => {
-                    alert("Não foi possível acessar sua localização automática.");
-                });
-            } else {
-                alert("Seu navegador não suporta geolocalização.");
-            }
-        }
-
-        function toggleFavorite(id, event) {
-            event.stopPropagation();
-            const index = favorites.indexOf(id);
-            if (index > -1) {
-                favorites.splice(index, 1);
-            } else {
-                favorites.push(id);
-            }
-            localStorage.setItem('tem_no_bairro_favs', JSON.stringify(favorites));
-            updateFavCount();
-            renderBusinesses();
-        }
-
-        function updateFavCount() {
-            const countEl = document.getElementById('favCount');
-            if (countEl) countEl.textContent = favorites.length;
-        }
-
-        function toggleFavoritesTab() {
-            showOnlyFavorites = !showOnlyFavorites;
-            const btn = document.getElementById('favTabBtn');
-            if (showOnlyFavorites) {
-                btn.className = 'bg-rose-600 text-white border border-rose-700 px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold whitespace-nowrap shadow-sm transition flex items-center gap-1.5';
-            } else {
-                btn.className = 'bg-rose-50 hover:bg-rose-100 text-rose-600 border border-rose-200 px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold whitespace-nowrap shadow-sm transition flex items-center gap-1.5';
-            }
-            renderBusinesses();
-        }
-
-        function selectCity(cityName) {
-            currentCity = cityName;
-            document.querySelectorAll('.city-btn').forEach(btn => {
-                if (btn.textContent.includes(cityName)) {
-                    btn.className = 'city-btn flex-1 sm:flex-none px-3.5 py-1.5 rounded-xl text-xs font-bold bg-brand-500 text-white shadow-sm transition';
-                } else {
-                    btn.className = 'city-btn flex-1 sm:flex-none px-3.5 py-1.5 rounded-xl text-xs font-medium bg-slate-100 hover:bg-slate-200 text-slate-700 transition';
-                }
-            });
-            renderBusinesses();
-        }
-
-        function selectCategory(categoryName) {
-            currentCategory = categoryName;
-            document.querySelectorAll('.category-btn').forEach(btn => {
-                if (btn.textContent.includes(categoryName)) {
-                    btn.className = 'category-btn active bg-brand-500 text-white px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap shadow-sm transition';
-                } else {
-                    btn.className = 'category-btn bg-white text-slate-700 border border-slate-200 hover:bg-slate-100 px-4 py-2 rounded-xl text-xs sm:text-sm font-medium whitespace-nowrap shadow-sm transition';
-                }
-            });
-            renderBusinesses();
-        }
-
-        function renderBusinesses() {
-            const grid = document.getElementById('businessGrid');
-            const emptyState = document.getElementById('emptyState');
-            const searchInputEl = document.getElementById('searchInput');
-            const resultsCount = document.getElementById('resultsCount');
-
-            if (!grid) return;
-
-            const searchVal = searchInputEl ? searchInputEl.value.toLowerCase().trim() : '';
-            grid.innerHTML = '';
-
-            const filtered = businesses.filter(item => {
-                if (showOnlyFavorites && !favorites.includes(item.id)) return false;
-
-                let matchesCategory = true;
-                if (currentCategory === 'Fundadores') {
-                    matchesCategory = item.isFounder === true;
-                } else if (currentCategory !== 'Todos') {
-                    matchesCategory = item.category === currentCategory;
-                }
-
-                let matchesCity = true;
-                if (currentCity !== 'Todas') {
-                    matchesCity = item.address.toLowerCase().includes(currentCity.toLowerCase());
-                }
-
-                const matchesSearch = item.name.toLowerCase().includes(searchVal) || 
-                                      item.description.toLowerCase().includes(searchVal) ||
-                                      item.category.toLowerCase().includes(searchVal) ||
-                                      item.address.toLowerCase().includes(searchVal);
-
-                return matchesCategory && matchesCity && matchesSearch;
-            });
-
-            if (resultsCount) {
-                resultsCount.textContent = showOnlyFavorites ? `Mostrando ${filtered.length} favoritos salvos` : `Mostrando ${filtered.length} ${filtered.length === 1 ? 'comércio' : 'comércios'}`;
-            }
-
-            if (filtered.length === 0) {
-                grid.classList.add('hidden');
-                if (emptyState) emptyState.classList.remove('hidden');
-                return;
-            }
-
-            grid.classList.remove('hidden');
-            if (emptyState) emptyState.classList.add('hidden');
-
-            filtered.forEach((item) => {
-                const cleanPhone = item.phone ? item.phone.replace(/\D/g, '') : '85921033841';
-                const waMessage = encodeURIComponent(`Olá, vi o seu anúncio no app TEM NO BAIRRO e gostaria de mais informações!`);
-                const whatsappUrl = `https://api.whatsapp.com/send?phone=55${cleanPhone}&text=${waMessage}`;
-                
-                const mapsUrl = item.mapsUrl && item.mapsUrl.trim() !== '' 
-                    ? item.mapsUrl.trim() 
-                    : `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(item.name + ' ' + item.address)}`;
-
-                let imgList = item.images && item.images.length > 0 ? item.images : (item.image ? [item.image] : ['https://images.unsplash.com/photo-1528698827591-e19ccd7bc23d?w=500&auto=format&fit=crop&q=80']);
-
-                const isFav = favorites.includes(item.id);
-                let favIconClass = isFav ? "fa-solid fa-heart text-rose-500" : "fa-regular fa-heart text-white";
-                
-                const statusInfo = checkIsOpen(item.hours);
-                const statusBadgeHtml = statusInfo.isOpen 
-                    ? `<span class="absolute bottom-3 left-3 bg-emerald-600/90 text-white text-[10px] font-bold px-2 py-0.5 rounded-md flex items-center gap-1 shadow"><span class="w-1.5 h-1.5 rounded-full bg-emerald-300 animate-pulse"></span> Aberto Agora</span>`
-                    : `<span class="absolute bottom-3 left-3 bg-slate-700/90 text-slate-200 text-[10px] font-bold px-2 py-0.5 rounded-md flex items-center gap-1 shadow"><span class="w-1.5 h-1.5 rounded-full bg-slate-400"></span> ${statusInfo.text}</span>`;
-
-                let imagesHtml = `<div class="relative h-40 w-full bg-slate-100 overflow-hidden cursor-pointer" onclick="openDetailModal('${item.id}')"><img src="${imgList[0]}" alt="${item.name}" class="parceiro-capa" onerror="this.src='https://images.unsplash.com/photo-1528698827591-e19ccd7bc23d?w=500&auto=format&fit=crop&q=80'"></div>`;
-
-                let promoBadgeHtml = '';
-                if (item.promo && item.promo.trim() !== '') {
-                    promoBadgeHtml = `
-                        <span class="absolute top-12 left-3 bg-amber-500 text-slate-950 text-[10px] font-extrabold px-2.5 py-1 rounded-lg shadow flex items-center gap-1 uppercase tracking-wider pointer-events-none">
-                            <i class="fa-solid fa-gift"></i> ${item.promo.includes('10%') ? '10% OFF' : 'Cupom Exclusivo'}
-                        </span>
-                    `;
-                }
-
-                const cardHTML = `
-                    <div class="bg-white rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col overflow-hidden relative group">
-                        <div class="relative">
-                            ${imagesHtml}
-                            <span class="absolute top-3 left-3 bg-slate-900/80 backdrop-blur-md text-white text-[11px] font-medium px-2.5 py-1 rounded-lg shadow pointer-events-none">
-                                ${item.category}
-                            </span>
-                            <button onclick="toggleFavorite('${item.id}', event)" class="absolute top-3 right-12 w-8 h-8 rounded-full bg-slate-900/60 hover:bg-slate-900/90 flex items-center justify-center transition cursor-pointer shadow">
-                                <i class="${favIconClass} text-sm"></i>
-                            </button>
-                            ${statusBadgeHtml}
-                            ${promoBadgeHtml}
-                            ${item.isFounder ? `
-                                <span class="absolute top-3 right-3 bg-amber-400 text-slate-950 text-[10px] font-extrabold px-2 py-1 rounded-full shadow flex items-center gap-1 uppercase tracking-wider pointer-events-none">
-                                    <i class="fa-solid fa-star text-slate-950"></i>
-                                </span>
-                            ` : ''}
-                        </div>
-                        <div class="p-4 flex-grow flex flex-col justify-between">
-                            <div>
-                                <h3 onclick="openDetailModal('${item.id}')" class="text-base font-bold text-slate-900 leading-snug group-hover:text-brand-700 transition cursor-pointer">
-                                    ${item.name} <i class="fa-solid fa-circle-info text-brand-500 text-xs ml-1"></i>
-                                </h3>
-                                <p class="text-xs text-slate-600 mt-2 line-clamp-2 leading-relaxed">
-                                    ${item.description}
-                                </p>
-                                <div class="mt-4 pt-3 border-t border-slate-100 space-y-1.5 text-xs text-slate-500">
-                                    <div class="flex items-start gap-2">
-                                        <i class="fa-solid fa-location-dot text-brand-600 mt-0.5"></i>
-                                        <span class="font-medium text-slate-700">${item.address}</span>
-                                    </div>
-                                    <div class="flex items-center gap-2">
-                                        <i class="fa-solid fa-clock text-slate-400"></i>
-                                        <span>${item.hours || 'Consulte horário'}</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="mt-5 space-y-2">
-                                <a href="${whatsappUrl}" target="_blank" rel="noopener noreferrer" 
-                                   class="w-full bg-brand-500 hover:bg-brand-600 text-white font-bold py-2.5 px-4 rounded-xl shadow-sm hover:shadow text-xs sm:text-sm flex items-center justify-center gap-2 transition">
-                                    <i class="fa-brands fa-whatsapp text-lg"></i> Chamar no WhatsApp
-                                </a>
-                                <a href="${mapsUrl}" target="_blank" rel="noopener noreferrer"
-                                   class="w-full bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold py-2 px-3 rounded-xl text-xs flex items-center justify-center gap-1.5 transition">
-                                    <i class="fa-solid fa-map-location-dot text-slate-500"></i> Como Chegar
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                `;
-                grid.innerHTML += cardHTML;
-            });
-        }
-
-        function openDetailModal(id) {
-            const item = businesses.find(b => b.id === id);
-            if (!item) return;
-
-            currentActiveImages = item.images && item.images.length > 0 ? item.images : (item.image ? [item.image] : ['https://images.unsplash.com/photo-1528698827591-e19ccd7bc23d?w=500&auto=format&fit=crop&q=80']);
-            currentImageIndex = 0;
-
-            updateCarouselImage();
-
-            document.getElementById('detailName').textContent = item.name;
-            document.getElementById('detailCategoryBadge').textContent = item.category;
-            document.getElementById('detailDescription').textContent = item.description;
-            document.getElementById('detailAddress').textContent = item.address;
-            document.getElementById('detailHours').textContent = item.hours || 'Consulte horário de atendimento';
-
-            const promoBox = document.getElementById('detailPromoBox');
-            const promoText = document.getElementById('detailPromoText');
-            if (item.promo && item.promo.trim() !== '') {
-                promoText.textContent = item.promo;
-                promoBox.classList.remove('hidden');
-            } else {
-                promoBox.classList.add('hidden');
-            }
-
-            const statusInfo = checkIsOpen(item.hours);
-            const modalStatusEl = document.getElementById('detailStatusBadge');
-            if (statusInfo.isOpen) {
-                modalStatusEl.className = 'bg-emerald-100 text-emerald-800 text-[10px] font-bold px-2 py-0.5 rounded-full flex items-center gap-1';
-                modalStatusEl.innerHTML = '<span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> Aberto Agora';
-            } else {
-                modalStatusEl.className = 'bg-slate-100 text-slate-700 text-[10px] font-bold px-2 py-0.5 rounded-full flex items-center gap-1';
-                modalStatusEl.innerHTML = `<span class="w-2 h-2 rounded-full bg-slate-400"></span> ${statusInfo.text}`;
-            }
-
-            const cleanPhone = item.phone ? item.phone.replace(/\D/g, '') : '85921033841';
-            const waMessage = encodeURIComponent(`Olá, vi o seu anúncio no app TEM NO BAIRRO e gostaria de mais informações!`);
-            document.getElementById('detailWhatsApp').href = `https://api.whatsapp.com/send?phone=55${cleanPhone}&text=${waMessage}`;
-            
-            const promoNotice = item.promo ? ` e quero resgatar o benefício: *${item.promo}*` : '';
-            const couponMessage = encodeURIComponent(`Olá! Vi o estabelecimento *${item.name}* no app *TEM NO BAIRRO*${promoNotice}!`);
-            document.getElementById('detailCouponWa').href = `https://api.whatsapp.com/send?phone=55${cleanPhone}&text=${couponMessage}`;
-
-            const shareText = encodeURIComponent(`Confira o estabelecimento *${item.name}* (${item.category}) no *Tem No Bairro*! Fale direto no WhatsApp: https://api.whatsapp.com/send?phone=55${cleanPhone}`);
-            document.getElementById('detailShareWa').href = `https://api.whatsapp.com/send?text=${shareText}`;
-
-            const mapsUrl = item.mapsUrl && item.mapsUrl.trim() !== '' 
-                ? item.mapsUrl.trim() 
-                : `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(item.name + ' ' + item.address)}`;
-            document.getElementById('detailMaps').href = mapsUrl;
-
-            const nav = document.getElementById('carouselNav');
-            if (currentActiveImages.length > 1) {
-                nav.classList.remove('hidden');
-            } else {
-                nav.classList.add('hidden');
-            }
-
-            document.getElementById('detailModal').classList.remove('hidden');
-        }
-
-        function closeDetailModal() { document.getElementById('detailModal').classList.add('hidden'); }
-        function updateCarouselImage() {
-            const imgEl = document.getElementById('detailImage');
-            if (currentActiveImages.length > 0) {
-                imgEl.src = currentActiveImages[currentImageIndex];
-            }
-        }
-        function nextImage() {
-            if (currentActiveImages.length <= 1) return;
-            currentImageIndex = (currentImageIndex + 1) % currentActiveImages.length;
-            updateCarouselImage();
-        }
-        function prevImage() {
-            if (currentActiveImages.length <= 1) return;
-            currentImageIndex = (currentImageIndex - 1 + currentActiveImages.length) % currentActiveImages.length;
-            updateCarouselImage();
-        }
-
-        function openAdminLoginModal() { document.getElementById('adminLoginModal').classList.remove('hidden'); }
-        function closeAdminLoginModal() { document.getElementById('adminLoginModal').classList.add('hidden'); document.getElementById('adminPassword').value = ''; }
-        function handleAdminLogin(event) {
-            event.preventDefault();
-            if (document.getElementById('adminPassword').value === 'admin123') {
-                closeAdminLoginModal();
-                openAdminPanel();
-            } else { alert('Senha incorreta!'); }
-        }
-        function openAdminPanel() { renderAdminTable(); document.getElementById('adminPanelModal').classList.remove('hidden'); }
-        function closeAdminPanel() { document.getElementById('adminPanelModal').classList.add('hidden'); renderBusinesses(); }
-
-        function renderAdminTable() {
-            const tbody = document.getElementById('adminTableBody');
-            const totalCount = document.getElementById('adminTotalCount');
-            if (!tbody) return;
-            totalCount.textContent = businesses.length;
-            tbody.innerHTML = '';
-
-            businesses.forEach((item, index) => {
-                let statusVal = item.status || 'ativo';
-                let badgeHtml = statusVal === 'ativo' 
-                    ? '<span class="text-xs font-bold px-2.5 py-1 rounded-lg bg-emerald-100 text-emerald-800">Ativo</span>'
-                    : '<span class="text-xs font-bold px-2.5 py-1 rounded-lg bg-amber-100 text-amber-800">Convidado / Em Teste</span>';
-                
-                const row = `
-                    <tr class="hover:bg-slate-50 transition">
-                        <td class="p-3">
-                            <div class="font-bold text-slate-900">${item.name}</div>
-                            <div class="text-[10px] text-slate-400">${item.category} • ${item.address}</div>
-                        </td>
-                        <td class="p-3 text-slate-600 font-medium">
-                            <div>${item.plan || 'Parceiro Fundador'}</div>
-                            ${item.promo ? `<span class="text-[10px] text-amber-700 bg-amber-50 px-2 py-0.5 rounded font-bold inline-block mt-0.5"><i class="fa-solid fa-gift"></i> ${item.promo}</span>` : ''}
-                        </td>
-                        <td class="p-3 text-slate-600 font-mono">${item.phone}</td>
-                        <td class="p-3 text-center">${badgeHtml}</td>
-                        <td class="p-3 text-right space-x-1">
-                            <button onclick="openEditModal(${index})" class="bg-blue-50 hover:bg-blue-100 text-blue-600 p-2 rounded-lg transition" title="Editar"><i class="fa-solid fa-pen"></i></button>
-                            <button onclick="deleteBusiness(${index})" class="bg-red-50 hover:bg-red-100 text-red-600 p-2 rounded-lg transition" title="Excluir"><i class="fa-solid fa-trash-can"></i></button>
-                        </td>
-                    </tr>
-                `;
-                tbody.innerHTML += row;
-            });
-        }
-
-        function openAddBusinessModal() {
-            document.getElementById('editIndex').value = '-1';
-            document.getElementById('modalTitle').textContent = 'Adicionar Novo Lojista';
-            document.getElementById('editName').value = '';
-            document.getElementById('editCategory').value = 'Comércio e Serviços';
-            document.getElementById('editPhone').value = '';
-            document.getElementById('editPlan').value = 'Parceiro Fundador - R$ 39,90/mês';
-            document.getElementById('editStatus').value = 'convidado';
-            document.getElementById('editPromo').value = '';
-            document.getElementById('editAddress').value = '';
-            document.getElementById('editHours').value = '';
-            document.getElementById('editMapsUrl').value = '';
-            document.getElementById('editDescription').value = '';
-            document.getElementById('editImages').value = '';
-            document.getElementById('adminPanelModal').classList.add('hidden');
-            document.getElementById('editModal').classList.remove('hidden');
-        }
-
-        function openEditModal(index) {
-            const item = businesses[index];
-            document.getElementById('editIndex').value = index;
-            document.getElementById('modalTitle').textContent = 'Editar Estabelecimento';
-            document.getElementById('editName').value = item.name;
-            document.getElementById('editCategory').value = item.category;
-            document.getElementById('editPhone').value = item.phone;
-            document.getElementById('editPlan').value = item.plan || 'Parceiro Fundador - R$ 39,90/mês';
-            document.getElementById('editStatus').value = item.status || 'ativo';
-            document.getElementById('editPromo').value = item.promo || '';
-            document.getElementById('editAddress').value = item.address;
-            document.getElementById('editHours').value = item.hours || '';
-            document.getElementById('editMapsUrl').value = item.mapsUrl || '';
-            document.getElementById('editDescription').value = item.description;
-            
-            let imgStr = item.images && item.images.length > 0 ? item.images.join(', ') : (item.image || '');
-            document.getElementById('editImages').value = imgStr;
-            
-            document.getElementById('adminPanelModal').classList.add('hidden');
-            document.getElementById('editModal').classList.remove('hidden');
-        }
-
-        function closeEditModal() {
-            document.getElementById('editModal').classList.add('hidden');
-            openAdminPanel();
-        }
-
-        function handleEditSubmit(event) {
-            event.preventDefault();
-            const index = parseInt(document.getElementById('editIndex').value);
-            const name = document.getElementById('editName').value.trim();
-            const category = document.getElementById('editCategory').value;
-            const phone = document.getElementById('editPhone').value.trim();
-            const plan = document.getElementById('editPlan').value;
-            const status = document.getElementById('editStatus').value;
-            const promo = document.getElementById('editPromo').value;
-            const address = document.getElementById('editAddress').value.trim();
-            const hours = document.getElementById('editHours').value.trim();
-            const mapsUrl = document.getElementById('editMapsUrl').value.trim();
-            const description = document.getElementById('editDescription').value.trim();
-            const imgsVal = document.getElementById('editImages').value.trim();
-            let images = imgsVal ? imgsVal.split(',').map(s => s.trim()).filter(s => s.length > 0) : ['https://images.unsplash.com/photo-1528698827591-e19ccd7bc23d?w=500&auto=format&fit=crop&q=80'];
-
-            if (index === -1) {
-                const newId = 'loja-' + Date.now();
-                businesses.unshift({
-                    id: newId, name, category, phone, plan, isFounder: true, promo, address, hours, mapsUrl, description, images, status
-                });
-                alert('Novo lojista adicionado com sucesso!');
-            } else {
-                businesses[index] = { ...businesses[index], name, category, phone, plan, status, promo, address, hours, mapsUrl, description, images };
-                alert('Alterações salvas com sucesso!');
-            }
-
-            localStorage.setItem(DB_KEY, JSON.stringify(businesses));
-            closeEditModal();
-            renderBusinesses();
-        }
-
-        function deleteBusiness(index) {
-            if (confirm('Deseja realmente remover este parceiro?')) {
-                businesses.splice(index, 1);
-                localStorage.setItem(DB_KEY, JSON.stringify(businesses));
-                renderAdminTable();
-            }
-        }
-
-        function handleIndicateSubmit(event) {
-            event.preventDefault();
-            const storeName = document.getElementById('indStoreName').value.trim();
-            const storeDesc = document.getElementById('indStoreDesc').value.trim();
-            const storeAddress = document.getElementById('indStoreAddress').value.trim();
-            const userName = document.getElementById('indUserName').value.trim();
-
-            const msg = encodeURIComponent(
-                `Olá Robinson! Quero indicar um comércio para o *Tem No Bairro*:\n\n` +
-                `*Estabelecimento:* ${storeName}\n` +
-                `*O que faz:* ${storeDesc}\n` +
-                (storeAddress ? `*Endereço/Referência:* ${storeAddress}\n` : '') +
-                (userName ? `*Indicado por:* ${userName}` : '')
-            );
-
-            window.open(`https://wa.me/5585921033841?text=${msg}`, '_blank');
-            closeIndicateModal();
-            event.target.reset();
-        }
-
-        function filterBusinesses() { renderBusinesses(); }
-        function clearSearchInput() { document.getElementById('searchInput').value = ''; renderBusinesses(); }
-        function resetFilters() { document.getElementById('searchInput').value = ''; selectCategory('Todos'); selectCity('Todas'); }
-        function openIndicateModal() { document.getElementById('indicateModal').classList.remove('hidden'); }
-        function closeIndicateModal() { document.getElementById('indicateModal').classList.add('hidden'); }
-        function openTermsModal() { document.getElementById('termsModal').classList.remove('hidden'); }
-        function closeTermsModal() { document.getElementById('termsModal').classList.add('hidden'); }
-        function openPrivacyModal() { document.getElementById('privacyModal').classList.remove('hidden'); }
-        function closePrivacyModal() { document.getElementById('privacyModal').classList.add('hidden'); }
-    </script>
-</body>
-</html>
+                        <div class="w-10 h-10 rounded-xl bg-rose-600 text-white flex items-center
