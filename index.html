@@ -977,7 +977,7 @@
 
     <!-- SCRIPTS E LÓGICA DO SITE -->
     <script>
-        const DB_KEY = 'tem_no_bairro_db_v31';
+        const DB_KEY = 'tem_no_bairro_db_v32';
 
         const defaultBusinesses = [
             {
@@ -986,7 +986,7 @@
                 category: 'Saúde e Beleza',
                 phone: '85992352042',
                 social: '@barbearia_dcristo',
-                address: 'Av B esquina com a 123 n 260, Timbó - Maracanaú',
+                address: 'Av B esquina com 123 n 260, Timbó - Maracanaú',
                 hours: 'Seg a Sáb 09:00 - 19:00',
                 mapsUrl: 'https://maps.app.goo.gl/7DNzTWEadw6NdyeP7',
                 description: 'Ambiente Climatizado, Estilo , precisão e bom atendimento, Barbearia D Cristo, somos Especializados em cortes masculinos, acabamento de barba e cuidados do dia a dia para quem valoriza qualidade local.',
@@ -1102,6 +1102,16 @@
         let currentActiveImages = [];
         let currentImageIndex = 0;
         let splashTimerId = null;
+
+        function buildWhatsAppUrl(phone, message) {
+            let digits = phone ? String(phone).replace(/\D/g, '') : '';
+            if (!digits) {
+                digits = '5585921033841';
+            } else if (!digits.startsWith('55') && (digits.length === 10 || digits.length === 11)) {
+                digits = '55' + digits;
+            }
+            return `https://api.whatsapp.com/send?phone=${digits}&text=${encodeURIComponent(message)}`;
+        }
 
         function dismissSplashScreen() {
             if (splashTimerId) {
@@ -1493,9 +1503,8 @@
             if (emptyState) emptyState.classList.add('hidden');
 
             filtered.forEach((item) => {
-                const cleanPhone = item.phone ? String(item.phone).replace(/\D/g, '') : '85921033841';
-                const waMessage = encodeURIComponent(`Olá, vi o seu anúncio no app TEM NO BAIRRO e gostaria de mais informações!`);
-                const whatsappUrl = `https://api.whatsapp.com/send?phone=55${cleanPhone}&text=${waMessage}`;
+                const waMessage = 'Olá, vi o seu anúncio no app TEM NO BAIRRO e gostaria de mais informações!';
+                const whatsappUrl = buildWhatsAppUrl(item.phone, waMessage);
                 
                 const mapsUrl = item.mapsUrl && item.mapsUrl.trim() !== '' 
                     ? item.mapsUrl.trim() 
@@ -1659,14 +1668,14 @@
                 modalStatusEl.innerHTML = `<span class="w-2 h-2 rounded-full bg-slate-500"></span> ${statusInfo.text}`;
             }
 
-            const cleanPhone = item.phone ? String(item.phone).replace(/\D/g, '') : '85921033841';
-            const waMessage = encodeURIComponent(`Olá, vi o seu anúncio no app TEM NO BAIRRO e gostaria de mais informações!`);
-            document.getElementById('detailWhatsApp').href = `https://api.whatsapp.com/send?phone=55${cleanPhone}&text=${waMessage}`;
+            const waMessage = 'Olá, vi o seu anúncio no app TEM NO BAIRRO e gostaria de mais informações!';
+            document.getElementById('detailWhatsApp').href = buildWhatsAppUrl(item.phone, waMessage);
             
             const promoNotice = item.promo ? ` e quero resgatar o benefício: *${item.promo}*` : '';
-            const couponMessage = encodeURIComponent(`Olá! Vi o estabelecimento *${item.name}* no app *TEM NO BAIRRO*${promoNotice}!`);
-            document.getElementById('detailCouponWa').href = `https://api.whatsapp.com/send?phone=55${cleanPhone}&text=${couponMessage}`;
+            const couponMessage = `Olá! Vi o estabelecimento *${item.name}* no app *TEM NO BAIRRO*${promoNotice}!`;
+            document.getElementById('detailCouponWa').href = buildWhatsAppUrl(item.phone, couponMessage);
 
+            const cleanPhone = item.phone ? String(item.phone).replace(/\D/g, '') : '85921033841';
             const shareText = encodeURIComponent(`Confira o estabelecimento *${item.name}* (${item.category}) no *Tem No Bairro*! Fale direto no WhatsApp: https://api.whatsapp.com/send?phone=55${cleanPhone}`);
             document.getElementById('detailShareWa').href = `https://api.whatsapp.com/send?text=${shareText}`;
 
@@ -1816,7 +1825,7 @@
             const index = parseInt(document.getElementById('editIndex').value);
             const name = document.getElementById('editName').value.trim();
             const category = document.getElementById('editCategory').value;
-            const phone = document.getElementById('editPhone').value.trim();
+            const phone = document.getElementById('editPhone').value.replace(/\D/g, '');
             const social = document.getElementById('editSocial').value.trim();
             const plan = document.getElementById('editPlan').value;
             const status = document.getElementById('editStatus').value;
