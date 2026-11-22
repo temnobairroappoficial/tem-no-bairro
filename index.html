@@ -123,7 +123,6 @@
 
     <!-- FAIXA 2 (ESCURA / CONTRASTE HERO): HERO SECTION DIVIDIDA EM DOIS BLOCOS -->
     <section class="bg-navy-900 border-b border-navy-800 py-10 sm:py-14 relative overflow-hidden">
-        <!-- Elementos decorativos de fundo -->
         <div class="absolute top-0 left-1/4 w-96 h-96 bg-brand-500/10 rounded-full blur-3xl pointer-events-none"></div>
         <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl pointer-events-none"></div>
 
@@ -164,7 +163,7 @@
                             Tem um negócio ou presta serviços? <span class="text-white drop-shadow-sm">Venda mais na sua região!</span>
                         </h2>
                         <p class="text-navy-950/90 font-medium text-sm sm:text-base leading-relaxed">
-                            Tenha sua vitrine editorial com galeria de fotos, cupons de desconto, botão direto para o seu WhatsApp e <strong class="underline decoration-navy-950 font-extrabold">zero comissão sobre suas vendas</strong>.
+                            Tenha sua vitrine editorial com galeria de fotos, Instagram, cupons de desconto, botão direto para o seu WhatsApp e <strong class="underline decoration-navy-950 font-extrabold">zero comissão sobre suas vendas</strong>.
                         </p>
                     </div>
                     <div class="pt-7 relative z-10 flex flex-wrap gap-3">
@@ -195,7 +194,7 @@
                         Comércios & Serviços em Destaque
                     </h2>
                     <p class="text-sm text-slate-600 max-w-2xl">
-                        Apoie quem faz a economia do seu bairro girar. Clique em qualquer estabelecimento para ver fotos, horários e cupons exclusivos.
+                        Apoie quem faz a economia do seu bairro girar. Clique em qualquer estabelecimento para ver fotos, Instagram, horários e cupons exclusivos.
                     </p>
                 </div>
 
@@ -532,7 +531,12 @@
             </div>
 
             <div class="space-y-2">
-                <h3 id="detailName" class="text-2xl font-extrabold text-navy-950"></h3>
+                <div class="flex items-center justify-between gap-2 flex-wrap">
+                    <h3 id="detailName" class="text-2xl font-extrabold text-navy-950"></h3>
+                    <a id="detailInstagram" href="#" target="_blank" rel="noopener noreferrer" class="hidden inline-flex items-center gap-1.5 text-xs font-extrabold text-pink-600 bg-pink-50 hover:bg-pink-100 border border-pink-200 px-3 py-1.5 rounded-xl transition">
+                        <i class="fa-brands fa-instagram text-sm"></i> <span id="detailInstagramHandle"></span>
+                    </a>
+                </div>
                 <p id="detailDescription" class="text-xs sm:text-sm text-slate-600 leading-relaxed"></p>
             </div>
 
@@ -667,7 +671,7 @@
                         <tr class="bg-slate-100 text-navy-950 uppercase tracking-wider text-[10px]">
                             <th class="p-3 rounded-l-xl">Estabelecimento</th>
                             <th class="p-3">Plano & Status</th>
-                            <th class="p-3">WhatsApp</th>
+                            <th class="p-3">WhatsApp / Insta</th>
                             <th class="p-3 text-center">Estado no App</th>
                             <th class="p-3 text-right rounded-r-xl">Ações</th>
                         </tr>
@@ -695,7 +699,7 @@
                     <i class="fa-solid fa-store"></i> Painel Admin
                 </span>
                 <h3 id="modalTitle" class="text-xl font-extrabold text-navy-950 mt-2">Adicionar Novo Lojista</h3>
-                <p class="text-xs text-slate-500 mt-1">Preencha os dados e defina o status (Ativo ou Convidado em Teste).</p>
+                <p class="text-xs text-slate-500 mt-1">Preencha os dados, o Instagram e defina o status (Ativo ou Convidado em Teste).</p>
             </div>
             <form id="editBusinessForm" onsubmit="handleEditSubmit(event)" class="space-y-4">
                 <input type="hidden" id="editIndex" value="-1">
@@ -718,6 +722,13 @@
                     <div>
                         <label class="block text-xs font-bold text-slate-700 mb-1">WhatsApp (Só números com DDD) *</label>
                         <input type="tel" id="editPhone" required placeholder="85921033841" class="w-full px-3.5 py-2.5 border border-slate-300 rounded-xl text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none">
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">Instagram do Estabelecimento (@usuario ou link)</label>
+                    <div class="relative">
+                        <i class="fa-brands fa-instagram absolute left-3.5 top-1/2 -translate-y-1/2 text-pink-500 text-base"></i>
+                        <input type="text" id="editSocial" placeholder="Ex: @deliciasdadely ou https://instagram.com/..." class="w-full pl-10 pr-3.5 py-2.5 border border-slate-300 rounded-xl text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none">
                     </div>
                 </div>
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -827,7 +838,7 @@
 
     <!-- SCRIPTS E LÓGICA DO SITE -->
     <script>
-        const DB_KEY = 'tem_no_bairro_db_v30';
+        const DB_KEY = 'tem_no_bairro_db_v31';
 
         const defaultBusinesses = [
             {
@@ -873,7 +884,11 @@
                 hours: 'Sex e Sáb: 19:00 - 22:00',
                 mapsUrl: 'https://maps.app.goo.gl/goGdYGUznRwrVKvD7',
                 description: 'PRATINHOS CASEIROS, CANUDÃO, BOLOS, SOBREMESAS E MUITO MAIS FEITOS COM CARINHO PARA VOCÊ!',
-                images: ['deli-foto.png'],
+                images: [
+                    'deli-foto.png',
+                    'https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=600&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1551024601-bec78aea704b?w=600&auto=format&fit=crop&q=80'
+                ],
                 isFounder: true,
                 promo: '10% de Desconto na 1ª Compra pelo App',
                 status: 'ativo'
@@ -947,6 +962,23 @@
         let favorites = [];
         let currentActiveImages = [];
         let currentImageIndex = 0;
+
+        function formatInstagram(social) {
+            if (!social || !social.trim()) return null;
+            const raw = social.trim();
+            if (raw.startsWith('http://') || raw.startsWith('https://')) {
+                const cleanUrl = raw.replace(/\/+$/, '');
+                const parts = cleanUrl.split('/');
+                const handle = parts[parts.length - 1] ? '@' + parts[parts.length - 1].replace(/^@/, '') : '@instagram';
+                return { url: raw, handle };
+            }
+            const cleanHandle = raw.replace(/^@+/, '').replace(/\s+/g, '');
+            if (!cleanHandle) return null;
+            return {
+                url: `https://instagram.com/${cleanHandle}`,
+                handle: `@${cleanHandle}`
+            };
+        }
 
         window.onload = function() {
             const savedData = localStorage.getItem(DB_KEY);
@@ -1207,7 +1239,6 @@
             renderBusinesses();
         }
 
-        // Geração de Avatar/Monograma Editorial para o Parceiro
         function getPartnerAvatarHtml(name) {
             const initials = name
                 .split(' ')
@@ -1268,7 +1299,8 @@
                 const matchesSearch = item.name.toLowerCase().includes(searchVal) || 
                                       item.description.toLowerCase().includes(searchVal) ||
                                       item.category.toLowerCase().includes(searchVal) ||
-                                      item.address.toLowerCase().includes(searchVal);
+                                      item.address.toLowerCase().includes(searchVal) ||
+                                      (item.social && item.social.toLowerCase().includes(searchVal));
 
                 return matchesCategory && matchesCity && matchesSearch;
             });
@@ -1295,6 +1327,13 @@
                     ? item.mapsUrl.trim() 
                     : `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(item.name + ' ' + item.address)}`;
 
+                const insta = formatInstagram(item.social);
+                const instaBadgeHtml = insta 
+                    ? `<a href="${insta.url}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()" class="inline-flex items-center gap-1.5 text-xs font-bold text-pink-600 hover:text-pink-700 bg-pink-50 hover:bg-pink-100 border border-pink-200 px-2.5 py-1 rounded-lg transition mt-2">
+                         <i class="fa-brands fa-instagram text-sm"></i> ${insta.handle}
+                       </a>`
+                    : '';
+
                 let imgList = item.images && item.images.length > 0 ? item.images : (item.image ? [item.image] : ['https://images.unsplash.com/photo-1528698827591-e19ccd7bc23d?w=500&auto=format&fit=crop&q=80']);
 
                 const isFav = favorites.includes(item.id);
@@ -1319,7 +1358,6 @@
                     `;
                 }
 
-                // CARD EDITORIAL DE PARCEIRO
                 const cardHTML = `
                     <article class="bg-white rounded-3xl border border-slate-200/90 shadow-sm hover:shadow-2xl hover:border-brand-500/40 hover:-translate-y-1.5 transition-all duration-300 flex flex-col overflow-hidden relative group">
                         
@@ -1358,11 +1396,12 @@
                                     </span>
                                 </div>
 
-                                <!-- 3. NOME E RESUMO -->
+                                <!-- 3. NOME, INSTAGRAM E RESUMO -->
                                 <h3 onclick="openDetailModal('${item.id}')" class="text-lg sm:text-xl font-extrabold text-navy-950 leading-snug group-hover:text-brand-600 transition cursor-pointer flex items-center justify-between gap-2">
                                     <span>${item.name}</span>
                                     <i class="fa-solid fa-arrow-up-right-from-square text-xs text-slate-400 group-hover:text-brand-500 transition"></i>
                                 </h3>
+                                ${instaBadgeHtml}
                                 <p class="text-xs sm:text-sm text-slate-600 mt-2 line-clamp-2 leading-relaxed">
                                     ${item.description}
                                 </p>
@@ -1415,6 +1454,17 @@
             document.getElementById('detailDescription').textContent = item.description;
             document.getElementById('detailAddress').textContent = item.address;
             document.getElementById('detailHours').textContent = item.hours || 'Consulte horário de atendimento';
+
+            const instaEl = document.getElementById('detailInstagram');
+            const instaHandleEl = document.getElementById('detailInstagramHandle');
+            const insta = formatInstagram(item.social);
+            if (insta) {
+                instaEl.href = insta.url;
+                instaHandleEl.textContent = insta.handle;
+                instaEl.classList.remove('hidden');
+            } else {
+                instaEl.classList.add('hidden');
+            }
 
             const promoBox = document.getElementById('detailPromoBox');
             const promoText = document.getElementById('detailPromoText');
@@ -1512,6 +1562,9 @@
                     ? '<span class="text-xs font-bold px-2.5 py-1 rounded-lg bg-emerald-100 text-emerald-800">Ativo</span>'
                     : '<span class="text-xs font-bold px-2.5 py-1 rounded-lg bg-amber-100 text-amber-800">Convidado / Em Teste</span>';
                 
+                const insta = formatInstagram(item.social);
+                const instaText = insta ? `<div class="text-[11px] text-pink-600 font-semibold mt-0.5"><i class="fa-brands fa-instagram"></i> ${insta.handle}</div>` : '';
+
                 const row = `
                     <tr class="hover:bg-slate-50 transition">
                         <td class="p-3">
@@ -1522,7 +1575,10 @@
                             <div>${item.plan || 'Parceiro Fundador'}</div>
                             ${item.promo ? `<span class="text-[10px] text-amber-800 bg-brand-50 px-2 py-0.5 rounded font-bold inline-block mt-0.5"><i class="fa-solid fa-gift text-brand-500"></i> ${item.promo}</span>` : ''}
                         </td>
-                        <td class="p-3 text-slate-600 font-mono">${item.phone}</td>
+                        <td class="p-3 text-slate-600 font-mono">
+                            <div>${item.phone}</div>
+                            ${instaText}
+                        </td>
                         <td class="p-3 text-center">${badgeHtml}</td>
                         <td class="p-3 text-right space-x-1">
                             <button onclick="openEditModal(${index})" class="bg-blue-50 hover:bg-blue-100 text-navy-900 p-2 rounded-lg transition cursor-pointer" title="Editar"><i class="fa-solid fa-pen"></i></button>
@@ -1540,6 +1596,7 @@
             document.getElementById('editName').value = '';
             document.getElementById('editCategory').value = 'Comércio e Serviços';
             document.getElementById('editPhone').value = '';
+            document.getElementById('editSocial').value = '';
             document.getElementById('editPlan').value = 'Parceiro Fundador - R$ 39,90/mês';
             document.getElementById('editStatus').value = 'convidado';
             document.getElementById('editPromo').value = '';
@@ -1559,6 +1616,7 @@
             document.getElementById('editName').value = item.name;
             document.getElementById('editCategory').value = item.category;
             document.getElementById('editPhone').value = item.phone;
+            document.getElementById('editSocial').value = item.social || '';
             document.getElementById('editPlan').value = item.plan || 'Parceiro Fundador - R$ 39,90/mês';
             document.getElementById('editStatus').value = item.status || 'ativo';
             document.getElementById('editPromo').value = item.promo || '';
@@ -1585,6 +1643,7 @@
             const name = document.getElementById('editName').value.trim();
             const category = document.getElementById('editCategory').value;
             const phone = document.getElementById('editPhone').value.trim();
+            const social = document.getElementById('editSocial').value.trim();
             const plan = document.getElementById('editPlan').value;
             const status = document.getElementById('editStatus').value;
             const promo = document.getElementById('editPromo').value;
@@ -1598,11 +1657,11 @@
             if (index === -1) {
                 const newId = 'loja-' + Date.now();
                 businesses.unshift({
-                    id: newId, name, category, phone, plan, isFounder: true, promo, address, hours, mapsUrl, description, images, status
+                    id: newId, name, category, phone, social, plan, isFounder: true, promo, address, hours, mapsUrl, description, images, status
                 });
                 alert('Novo lojista adicionado com sucesso!');
             } else {
-                businesses[index] = { ...businesses[index], name, category, phone, plan, status, promo, address, hours, mapsUrl, description, images };
+                businesses[index] = { ...businesses[index], name, category, phone, social, plan, status, promo, address, hours, mapsUrl, description, images };
                 alert('Alterações salvas com sucesso!');
             }
 
