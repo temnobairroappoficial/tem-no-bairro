@@ -136,16 +136,16 @@
 <body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col antialiased selection:bg-brand-500 selection:text-white">
 
     <!-- ABERTURA ANIMADA DO APP (SPLASH SCREEN) -->
-    <div id="splashScreen" class="fixed inset-0 z-50 bg-gradient-to-b from-navy-950 via-navy-900 to-navy-950 flex flex-col items-center justify-center px-6 text-center transition-opacity duration-500 ease-out">
+    <div id="splashScreen" class="fixed inset-0 z-50 bg-gradient-to-b from-navy-950 via-navy-900 to-navy-950 flex flex-col items-center justify-center px-6 text-center transition-opacity duration-300 ease-out">
         <div class="absolute w-72 h-72 bg-brand-500/15 rounded-full blur-3xl pointer-events-none"></div>
 
-        <button type="button" onclick="dismissSplashScreen()" class="absolute top-6 right-6 text-xs font-bold text-slate-300 hover:text-white bg-white/10 hover:bg-white/20 border border-white/15 px-3.5 py-1.5 rounded-full transition cursor-pointer">
+        <button id="skipSplashBtn" type="button" onclick="dismissSplashScreen()" class="absolute top-6 right-6 z-20 text-xs font-bold text-slate-200 hover:text-white bg-white/15 hover:bg-white/25 border border-white/20 px-4 py-2 rounded-full transition cursor-pointer select-none">
             Pular
         </button>
 
         <div class="relative z-10 flex flex-col items-center max-w-xs w-full">
             <div class="animate-splash-logo w-28 h-28 sm:w-32 sm:h-32 rounded-3xl overflow-hidden border-2 border-brand-500/80 bg-navy-950 flex items-center justify-center mb-6">
-                <img src="logo-casa-pino.jpeg" alt="Logo Tem No Bairro" class="w-full h-full object-cover">
+                <img src="logo-casa-pino.jpeg" alt="Logo Tem No Bairro" class="w-full h-full object-cover" onerror="this.style.display='none'">
             </div>
 
             <div class="animate-splash-text space-y-2">
@@ -157,7 +157,7 @@
                 </p>
             </div>
 
-            <!-- Barra de carregamento sutil -->
+            <!-- Barra de carregamento -->
             <div class="animate-splash-text w-44 h-1.5 bg-white/10 rounded-full overflow-hidden mt-7">
                 <div class="animate-splash-bar h-full bg-gradient-to-r from-brand-400 to-brand-600 rounded-full"></div>
             </div>
@@ -549,9 +549,7 @@
                 </div>
 
                 <!-- Conteúdo das Abas -->
-                <div id="serviceTabContent" class="pt-2 text-xs text-slate-700">
-                    <!-- Conteúdo injetado via JS -->
-                </div>
+                <div id="serviceTabContent" class="pt-2 text-xs text-slate-700"></div>
             </div>
 
         </div>
@@ -950,7 +948,7 @@
                 id: 'bruna-boutique-1',
                 name: 'Bruna Boutique',
                 category: 'Comércio e Serviços',
-                phone: 85984190491',
+                phone: '85984190491',
                 social: '@brunaboutique.ofc',
                 address: 'Rua Flor do Lírio 175, Lameirao Maranguape',
                 hours: 'Seg á Sáb 09:00 - 22:00',
@@ -1049,15 +1047,23 @@
         let favorites = [];
         let currentActiveImages = [];
         let currentImageIndex = 0;
+        let splashTimerId = null;
 
         function dismissSplashScreen() {
+            if (splashTimerId) {
+                clearTimeout(splashTimerId);
+                splashTimerId = null;
+            }
             const splash = document.getElementById('splashScreen');
             if (!splash || splash.dataset.dismissed === 'true') return;
             splash.dataset.dismissed = 'true';
-            splash.classList.add('opacity-0', 'pointer-events-none');
+            splash.style.opacity = '0';
+            splash.style.pointerEvents = 'none';
             setTimeout(() => {
-                splash.remove();
-            }, 520);
+                if (splash && splash.parentNode) {
+                    splash.remove();
+                }
+            }, 320);
         }
 
         function formatInstagram(social) {
@@ -1077,8 +1083,18 @@
             };
         }
 
-        window.onload = function() {
-            setTimeout(dismissSplashScreen, 1750);
+        function initApp() {
+            const skipBtn = document.getElementById('skipSplashBtn');
+            if (skipBtn) {
+                skipBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    dismissSplashScreen();
+                });
+            }
+
+            // Fecha automaticamente após a barra concluir (mesmo se alguma imagem externa atrasar)
+            splashTimerId = setTimeout(dismissSplashScreen, 1650);
 
             const savedData = localStorage.getItem(DB_KEY);
             if (savedData !== null) {
@@ -1100,7 +1116,13 @@
             updateFavCount();
             renderBusinesses();
             switchServiceTab('emergencia');
-        };
+        }
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initApp);
+        } else {
+            initApp();
+        }
 
         const serviceData = {
             emergencia: `
@@ -1418,7 +1440,7 @@
             if (emptyState) emptyState.classList.add('hidden');
 
             filtered.forEach((item) => {
-                const cleanPhone = item.phone ? item.phone.replace(/\D/g, '') : '85921033841';
+                const cleanPhone = item.phone ? String(item.phone).replace(/\D/g, '') : '85921033841';
                 const waMessage = encodeURIComponent(`Olá, vi o seu anúncio no app TEM NO BAIRRO e gostaria de mais informações!`);
                 const whatsappUrl = `https://api.whatsapp.com/send?phone=55${cleanPhone}&text=${waMessage}`;
                 
@@ -1584,7 +1606,7 @@
                 modalStatusEl.innerHTML = `<span class="w-2 h-2 rounded-full bg-slate-500"></span> ${statusInfo.text}`;
             }
 
-            const cleanPhone = item.phone ? item.phone.replace(/\D/g, '') : '85921033841';
+            const cleanPhone = item.phone ? String(item.phone).replace(/\D/g, '') : '85921033841';
             const waMessage = encodeURIComponent(`Olá, vi o seu anúncio no app TEM NO BAIRRO e gostaria de mais informações!`);
             document.getElementById('detailWhatsApp').href = `https://api.whatsapp.com/send?phone=55${cleanPhone}&text=${waMessage}`;
             
