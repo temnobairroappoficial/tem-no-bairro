@@ -7,14 +7,14 @@
     
     <!-- CONEXÃO COM O MANIFEST DO APLICATIVO (PWA) -->
     <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#F97316">
+    <meta name="theme-color" content="#1A237E">
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="Tem No Bairro">
     <link rel="apple-touch-icon" href="icone-192.png">
 
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script>
         tailwind.config = {
@@ -22,438 +22,486 @@
                 extend: {
                     colors: {
                         brand: {
-                            50: '#fff7ed',
-                            100: '#ffedd5',
-                            500: '#f97316',
-                            600: '#ea580c',
-                            700: '#c2410c',
-                            800: '#9a3412',
-                            900: '#7c2d12',
+                            50: '#FFF3E0',
+                            100: '#FFE0B2',
+                            400: '#FFA726',
+                            500: '#FF9800', // Laranja Oficial
+                            600: '#FB8C00',
+                            700: '#F57C00',
+                            800: '#EF6C00',
+                            900: '#E65100',
                         },
                         navy: {
-                            800: '#1e293b',
-                            900: '#0f172a',
+                            700: '#283593',
+                            800: '#1F2A8A',
+                            900: '#1A237E', // Azul Marinho Oficial
+                            950: '#0D134B',
                         }
                     },
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
+                        display: ['Plus Jakarta Sans', 'Inter', 'sans-serif'],
                     }
                 }
             }
         }
     </script>
     <style>
-        body { font-family: 'Inter', sans-serif; }
+        body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
+        h1, h2, h3, h4, .font-editorial { font-family: 'Plus Jakarta Sans', 'Inter', sans-serif; }
+        
         .hide-scrollbar::-webkit-scrollbar { display: none; }
         .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
+        /* Card Editorial - Imagem de Destaque */
         .parceiro-capa {
             width: 100%;
-            height: 160px;
+            height: 210px;
             object-fit: cover;
-            object-position: center 20%;
-            background-color: #fff7ed;
-            border-top-left-radius: 1rem;
-            border-top-right-radius: 1rem;
-            transition: transform 0.5s ease;
+            object-position: center 25%;
+            background-color: #f1f5f9;
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
         }
         .group:hover .parceiro-capa {
-            transform: scale(1.05);
+            transform: scale(1.06);
         }
 
         .detalhe-foto {
             width: 100%;
             height: 100%;
             object-fit: contain;
-            background-color: #0f172a;
+            background-color: #0D134B;
             transition: transform 0.3s ease;
         }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col">
+<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col antialiased selection:bg-brand-500 selection:text-white">
 
-    <!-- HEADER / TOPO -->
-    <header class="bg-gradient-to-r from-navy-900 via-slate-900 to-navy-800 text-white shadow-md border-b border-orange-500/30 sticky top-0 z-30">
-        <div class="max-w-6xl mx-auto px-4 py-3 sm:py-4 flex flex-col sm:flex-row items-center justify-between gap-3">
-            <div class="flex items-center gap-3 w-full sm:w-auto justify-between">
-                <div class="flex items-center gap-3">
-                    <div class="w-11 h-11 rounded-xl overflow-hidden shadow-lg border border-orange-400/40 bg-slate-800 flex items-center justify-center flex-shrink-0">
+    <!-- FAIXA 1 (ESCURA): HEADER / TOPO -->
+    <header class="bg-navy-950 text-white shadow-lg border-b border-white/10 sticky top-0 z-30">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-3.5 w-full sm:w-auto justify-between">
+                <div class="flex items-center gap-3.5">
+                    <div class="w-12 h-12 rounded-2xl overflow-hidden shadow-lg border-2 border-brand-500/60 bg-navy-900 flex items-center justify-center flex-shrink-0">
                         <img src="logo-casa-pino.jpeg" alt="Logo Tem No Bairro" class="w-full h-full object-cover">
                     </div>
                     <div>
-                        <h1 class="text-xl sm:text-2xl font-black tracking-tight flex items-center gap-1.5 text-white">
+                        <h1 class="text-xl sm:text-2xl font-extrabold tracking-tight flex items-center gap-1.5 text-white">
                             TEM NO <span class="text-brand-500">BAIRRO</span>
                         </h1>
-                        <p class="text-[11px] sm:text-xs text-slate-300 font-medium">O seu comércio local a um clique de distância</p>
+                        <p class="text-xs text-slate-300 font-medium">O seu comércio local a um clique de distância</p>
                     </div>
                 </div>
-                <div class="flex items-center gap-2">
-                    <a href="https://tally.so/r/VpjbRy" target="_blank" class="sm:hidden bg-brand-500 hover:bg-brand-600 text-white font-semibold text-xs px-3 py-2 rounded-lg transition shadow-md flex items-center gap-1 cursor-pointer">
+                <div class="flex items-center gap-2 sm:hidden">
+                    <a href="https://tally.so/r/VpjbRy" target="_blank" class="bg-brand-500 hover:bg-brand-600 text-navy-950 font-bold text-xs px-3.5 py-2.5 rounded-xl transition shadow-md flex items-center gap-1 cursor-pointer">
                         <i class="fa-solid fa-plus"></i> Anunciar
                     </a>
-                    <button type="button" onclick="openAdminLoginModal()" class="bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white text-xs px-3 py-2 rounded-lg transition border border-slate-700 flex items-center gap-1 cursor-pointer" title="Painel Administrativo">
+                    <button type="button" onclick="openAdminLoginModal()" class="bg-navy-900 hover:bg-navy-800 text-slate-300 hover:text-white text-xs px-3 py-2.5 rounded-xl transition border border-white/10 flex items-center gap-1 cursor-pointer" title="Painel Administrativo">
                         <i class="fa-solid fa-lock"></i>
                     </button>
                 </div>
             </div>
+
             <!-- Menu do Topo -->
-            <div class="flex items-center gap-2 sm:gap-3 overflow-x-auto w-full sm:w-auto justify-start sm:justify-end pb-1 sm:pb-0">
-                <a href="https://g.page/r/CRK_11do12bRECE/review" target="_blank" class="bg-amber-400 hover:bg-amber-500 text-slate-950 font-bold text-xs px-3.5 py-2.5 rounded-xl transition flex items-center gap-1.5 shadow-sm whitespace-nowrap cursor-pointer flex-shrink-0">
-                    <i class="fa-solid fa-star text-slate-950"></i> Avaliar no Google
+            <div class="flex items-center gap-2.5 overflow-x-auto w-full sm:w-auto justify-start sm:justify-end pb-1 sm:pb-0 hide-scrollbar">
+                <a href="https://g.page/r/CRK_11do12bRECE/review" target="_blank" class="bg-white/10 hover:bg-white/20 text-amber-300 border border-white/15 font-semibold text-xs px-3.5 py-2.5 rounded-xl transition flex items-center gap-1.5 whitespace-nowrap cursor-pointer flex-shrink-0">
+                    <i class="fa-solid fa-star text-brand-500"></i> Avaliar no Google
                 </a>
-                <button type="button" onclick="openIndicateModal()" class="bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-500/40 text-xs px-3.5 py-2.5 rounded-xl transition flex items-center gap-1.5 cursor-pointer font-semibold whitespace-nowrap flex-shrink-0">
-                    <i class="fa-solid fa-gift"></i> Indicar Comércio
+                <button type="button" onclick="openIndicateModal()" class="bg-white/10 hover:bg-white/20 text-white border border-white/15 text-xs px-3.5 py-2.5 rounded-xl transition flex items-center gap-1.5 cursor-pointer font-semibold whitespace-nowrap flex-shrink-0">
+                    <i class="fa-solid fa-gift text-brand-500"></i> Indicar Comércio
                 </button>
-                <button type="button" onclick="openAdminLoginModal()" class="hidden sm:flex bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white text-xs px-3.5 py-2.5 rounded-xl transition border border-slate-700 items-center gap-1.5 cursor-pointer flex-shrink-0">
-                    <i class="fa-solid fa-lock text-brand-500"></i> Painel Admin
+                <button type="button" onclick="openAdminLoginModal()" class="hidden sm:flex bg-navy-900 hover:bg-navy-800 text-slate-300 hover:text-white text-xs px-3.5 py-2.5 rounded-xl transition border border-white/10 items-center gap-1.5 cursor-pointer flex-shrink-0">
+                    <i class="fa-solid fa-lock text-brand-500"></i> Admin
                 </button>
-                <a href="https://tally.so/r/VpjbRy" target="_blank" class="hidden sm:flex items-center gap-2 bg-gradient-to-r from-brand-500 to-orange-600 hover:from-brand-600 hover:to-orange-700 text-white font-bold text-sm px-4 py-2.5 rounded-xl shadow-md transition transform hover:-translate-y-0.5 cursor-pointer flex-shrink-0">
-                    <i class="fa-solid fa-star text-amber-300"></i>
-                    Seja um Parceiro Fundador
+                <a href="https://tally.so/r/VpjbRy" target="_blank" class="hidden sm:flex items-center gap-2 bg-brand-500 hover:bg-brand-600 text-navy-950 font-extrabold text-xs sm:text-sm px-5 py-2.5 rounded-xl shadow-lg shadow-brand-500/20 transition transform hover:-translate-y-0.5 cursor-pointer flex-shrink-0">
+                    <i class="fa-solid fa-star"></i>
+                    Seja Parceiro Fundador
                 </a>
             </div>
         </div>
     </header>
 
-    <!-- CONTEÚDO PRINCIPAL -->
-    <main class="max-w-6xl mx-auto px-4 py-6 flex-grow w-full space-y-8">
-        
-        <!-- DUPLO BANNER DE DESTAQUE (MORADOR & LOJISTA) -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <!-- FAIXA 2 (ESCURA / CONTRASTE HERO): HERO SECTION DIVIDIDA EM DOIS BLOCOS -->
+    <section class="bg-navy-900 border-b border-navy-800 py-10 sm:py-14 relative overflow-hidden">
+        <!-- Elementos decorativos de fundo -->
+        <div class="absolute top-0 left-1/4 w-96 h-96 bg-brand-500/10 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 items-stretch">
+                
+                <!-- BLOCO 1 (ESCURO): PARA O MORADOR -->
+                <div class="bg-navy-950/90 backdrop-blur-sm rounded-3xl p-7 sm:p-9 text-white shadow-2xl border border-white/10 relative overflow-hidden flex flex-col justify-between">
+                    <div class="space-y-4">
+                        <span class="bg-white/10 text-brand-400 border border-brand-500/30 text-xs font-extrabold px-3.5 py-1.5 rounded-full uppercase tracking-wider inline-flex items-center gap-2">
+                            <i class="fa-solid fa-house-chimney text-brand-500"></i> Para o Morador
+                        </span>
+                        <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight leading-snug">
+                            O guia definitivo do seu bairro em <span class="text-brand-500">Maracanaú, Pacatuba e Maranguape.</span>
+                        </h2>
+                        <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+                            Encontre os melhores comércios locais direto no WhatsApp, além de telefones de emergência, postos de saúde (UBS), vagas de emprego e benefícios sociais em um só lugar.
+                        </p>
+                    </div>
+                    <div class="pt-7 flex flex-wrap gap-3">
+                        <a href="#vitrineComercios" class="bg-brand-500 hover:bg-brand-600 text-navy-950 font-extrabold text-xs sm:text-sm px-6 py-3.5 rounded-xl shadow-lg shadow-brand-500/25 transition transform hover:-translate-y-0.5 flex items-center gap-2">
+                            <i class="fa-solid fa-magnifying-glass"></i> Explorar Comércios
+                        </a>
+                        <button type="button" onclick="requestUserLocation()" class="bg-white/10 hover:bg-white/20 text-white border border-white/20 font-semibold text-xs sm:text-sm px-5 py-3.5 rounded-xl transition flex items-center gap-2 cursor-pointer">
+                            <i class="fa-solid fa-location-crosshairs text-brand-400"></i> Perto de Mim
+                        </button>
+                    </div>
+                </div>
+
+                <!-- BLOCO 2 (LARANJA VIBRANTE): PARA O LOJISTA / PRESTADOR -->
+                <div class="bg-gradient-to-br from-brand-500 via-brand-600 to-brand-700 rounded-3xl p-7 sm:p-9 text-navy-950 shadow-2xl border border-brand-400 relative overflow-hidden flex flex-col justify-between">
+                    <div class="absolute -right-12 -bottom-12 w-56 h-56 bg-white/15 rounded-full blur-2xl pointer-events-none"></div>
+                    <div class="space-y-4 relative z-10">
+                        <span class="bg-navy-950 text-brand-400 text-xs font-extrabold px-3.5 py-1.5 rounded-full uppercase tracking-wider inline-flex items-center gap-2 shadow-sm">
+                            <i class="fa-solid fa-store text-brand-500"></i> Para Lojistas & Prestadores
+                        </span>
+                        <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight leading-snug text-navy-950">
+                            Tem um negócio ou presta serviços? <span class="text-white drop-shadow-sm">Venda mais na sua região!</span>
+                        </h2>
+                        <p class="text-navy-950/90 font-medium text-sm sm:text-base leading-relaxed">
+                            Tenha sua vitrine editorial com galeria de fotos, cupons de desconto, botão direto para o seu WhatsApp e <strong class="underline decoration-navy-950 font-extrabold">zero comissão sobre suas vendas</strong>.
+                        </p>
+                    </div>
+                    <div class="pt-7 relative z-10 flex flex-wrap gap-3">
+                        <a href="https://tally.so/r/VpjbRy" target="_blank" class="bg-navy-950 hover:bg-navy-900 text-white font-extrabold text-xs sm:text-sm px-6 py-3.5 rounded-xl shadow-xl transition transform hover:-translate-y-0.5 flex items-center gap-2">
+                            <i class="fa-solid fa-star text-brand-500"></i> Ser Parceiro Fundador (R$ 39,90)
+                        </a>
+                        <a href="https://wa.me/5585921033841?text=Olá%20Robinson!%20Quero%20saber%20como%20cadastrar%20meu%20negócio%20no%20Tem%20No%20Bairro." target="_blank" class="bg-white/90 hover:bg-white text-navy-950 font-bold text-xs sm:text-sm px-5 py-3.5 rounded-xl shadow transition flex items-center gap-2 cursor-pointer">
+                            <i class="fa-brands fa-whatsapp text-emerald-600 text-base"></i> Falar com o Fundador
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FAIXA 3 (CLARA): VITRINE EDITORIAL DE PARCEIROS, BUSCA E FILTROS -->
+    <section id="vitrineComercios" class="bg-slate-50 py-12 sm:py-16 border-b border-slate-200/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
             
-            <!-- BANNER 1: PARA O MORADOR -->
-            <section class="bg-gradient-to-br from-navy-900 via-slate-900 to-navy-800 rounded-3xl p-6 sm:p-7 text-white shadow-xl border border-orange-500/20 relative overflow-hidden flex flex-col justify-between">
-                <div class="absolute -right-10 -bottom-10 w-48 h-48 bg-orange-500/10 rounded-full blur-3xl pointer-events-none"></div>
-                <div class="relative z-10 space-y-3">
-                    <span class="bg-brand-500/20 text-brand-400 border border-brand-500/30 text-[10px] sm:text-xs font-extrabold px-3 py-1 rounded-full uppercase tracking-wider inline-flex items-center gap-1.5">
-                        <i class="fa-solid fa-house-chimney text-brand-500"></i> Para o Morador
+            <!-- Cabeçalho Editorial da Vitrine -->
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+                <div class="space-y-2">
+                    <span class="text-xs font-extrabold uppercase tracking-widest text-brand-600 flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-brand-500"></span> Vitrine Local
                     </span>
-                    <h2 class="text-xl sm:text-2xl font-extrabold tracking-tight leading-tight">
-                        O "Canivete Suíço" do seu dia a dia em <span class="text-brand-500">Maracanaú, Pacatuba e Maranguape!</span>
+                    <h2 class="text-2xl sm:text-4xl font-extrabold text-navy-950 tracking-tight">
+                        Comércios & Serviços em Destaque
                     </h2>
-                    <p class="text-slate-300 text-xs sm:text-sm leading-relaxed">
-                        Acesse em um só lugar os telefones de emergência, postos de saúde (UBS) por bairro, guias de benefícios sociais (Bolsa Família/FGTS), vagas de emprego e os melhores comércios locais direto no WhatsApp.
+                    <p class="text-sm text-slate-600 max-w-2xl">
+                        Apoie quem faz a economia do seu bairro girar. Clique em qualquer estabelecimento para ver fotos, horários e cupons exclusivos.
                     </p>
                 </div>
-                <div class="pt-5 relative z-10 flex flex-wrap gap-2.5">
-                    <a href="#searchInput" class="bg-brand-500 hover:bg-brand-600 text-white font-bold text-xs px-4 py-3 rounded-xl shadow-lg transition transform hover:scale-105 flex items-center gap-2">
-                        <i class="fa-solid fa-magnifying-glass"></i> Buscar Comércios
-                    </a>
-                    <button type="button" onclick="requestUserLocation()" class="bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-xs px-4 py-3 rounded-xl shadow transition flex items-center gap-2 cursor-pointer">
-                        <i class="fa-solid fa-location-crosshairs"></i> Perto de Mim
+
+                <!-- Seletor de Cidades -->
+                <div class="flex flex-wrap items-center gap-2 bg-white p-2 rounded-2xl border border-slate-200 shadow-sm">
+                    <span class="text-xs font-bold text-navy-900 px-2 flex items-center gap-1.5">
+                        <i class="fa-solid fa-map-location-dot text-brand-500"></i> Cidade:
+                    </span>
+                    <button onclick="selectCity('Todas')" id="cityBtn-Todas" class="city-btn px-3.5 py-2 rounded-xl text-xs font-bold bg-navy-900 text-white shadow-sm transition cursor-pointer">Todas</button>
+                    <button onclick="selectCity('Maracanaú')" id="cityBtn-Maracanaú" class="city-btn px-3.5 py-2 rounded-xl text-xs font-semibold bg-slate-100 hover:bg-slate-200 text-slate-700 transition cursor-pointer">Maracanaú</button>
+                    <button onclick="selectCity('Pacatuba')" id="cityBtn-Pacatuba" class="city-btn px-3.5 py-2 rounded-xl text-xs font-semibold bg-slate-100 hover:bg-slate-200 text-slate-700 transition cursor-pointer">Pacatuba</button>
+                    <button onclick="selectCity('Maranguape')" id="cityBtn-Maranguape" class="city-btn px-3.5 py-2 rounded-xl text-xs font-semibold bg-slate-100 hover:bg-slate-200 text-slate-700 transition cursor-pointer">Maranguape</button>
+                </div>
+            </div>
+
+            <!-- Barra de Busca + Filtros de Categoria -->
+            <div class="bg-white p-5 sm:p-6 rounded-3xl border border-slate-200/90 shadow-sm space-y-5">
+                <div class="relative">
+                    <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-base"></i>
+                    <input type="text" id="searchInput" oninput="filterBusinesses()" placeholder="Buscar por nome da loja, produto, bairro ou serviço (ex: pão, corte de cabelo, ração, gás)..." 
+                        class="w-full pl-12 pr-10 py-3.5 bg-slate-50 border border-slate-200 rounded-2xl text-slate-800 text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-500 transition">
+                    <button id="clearSearch" onclick="clearSearchInput()" class="hidden absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 p-1 cursor-pointer">
+                        <i class="fa-solid fa-xmark"></i>
                     </button>
                 </div>
-            </section>
 
-            <!-- BANNER 2: PARA O LOJISTA / PRESTADOR DE SERVIÇO -->
-            <section class="bg-gradient-to-br from-orange-600 via-brand-600 to-amber-700 rounded-3xl p-6 sm:p-7 text-white shadow-xl border border-amber-400/30 relative overflow-hidden flex flex-col justify-between">
-                <div class="absolute -right-10 -bottom-10 w-48 h-48 bg-white/10 rounded-full blur-3xl pointer-events-none"></div>
-                <div class="relative z-10 space-y-3">
-                    <span class="bg-slate-900/30 text-amber-200 border border-amber-300/30 text-[10px] sm:text-xs font-extrabold px-3 py-1 rounded-full uppercase tracking-wider inline-flex items-center gap-1.5">
-                        <i class="fa-solid fa-store text-amber-300"></i> Para Lojistas & Prestadores
-                    </span>
-                    <h2 class="text-xl sm:text-2xl font-extrabold tracking-tight leading-tight">
-                        Tem um negócio ou presta serviços? <span class="text-amber-200">Apareça para milhares de vizinhos!</span>
-                    </h2>
-                    <p class="text-amber-50 text-xs sm:text-sm leading-relaxed">
-                        Tenha sua vitrine digital profissional com fotos, carrossel, cupons de desconto, link direto para o seu WhatsApp e <strong class="underline">zero comissão sobre as suas vendas</strong>.
-                    </p>
+                <div class="flex items-center justify-between gap-3 overflow-x-auto pb-1 hide-scrollbar">
+                    <div class="flex items-center gap-2">
+                        <button onclick="selectCategory('Todos')" class="category-btn active bg-navy-900 text-white px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold whitespace-nowrap shadow-sm transition cursor-pointer">
+                            <i class="fa-solid fa-border-all mr-1.5"></i> Todos
+                        </button>
+                        <button onclick="selectCategory('Fundadores')" class="category-btn bg-slate-100 text-slate-700 hover:bg-slate-200 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap transition cursor-pointer">
+                            <i class="fa-solid fa-award text-brand-500 mr-1.5"></i> Parceiros Fundadores
+                        </button>
+                        <button onclick="selectCategory('Comércio e Serviços')" class="category-btn bg-slate-100 text-slate-700 hover:bg-slate-200 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap transition cursor-pointer">
+                            <i class="fa-solid fa-store text-brand-600 mr-1.5"></i> Comércio e Serviços
+                        </button>
+                        <button onclick="selectCategory('Saúde e Beleza')" class="category-btn bg-slate-100 text-slate-700 hover:bg-slate-200 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap transition cursor-pointer">
+                            <i class="fa-solid fa-scissors text-pink-500 mr-1.5"></i> Saúde e Beleza
+                        </button>
+                        <button onclick="selectCategory('Pet Shop')" class="category-btn bg-slate-100 text-slate-700 hover:bg-slate-200 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap transition cursor-pointer">
+                            <i class="fa-solid fa-paw text-amber-700 mr-1.5"></i> Pet Shop
+                        </button>
+                        <button onclick="selectCategory('Construção e Reparos')" class="category-btn bg-slate-100 text-slate-700 hover:bg-slate-200 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap transition cursor-pointer">
+                            <i class="fa-solid fa-hammer text-navy-700 mr-1.5"></i> Construção e Reparos
+                        </button>
+                        <button onclick="selectCategory('Serviços Rápidos')" class="category-btn bg-slate-100 text-slate-700 hover:bg-slate-200 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap transition cursor-pointer">
+                            <i class="fa-solid fa-bolt text-brand-500 mr-1.5"></i> Serviços Rápidos
+                        </button>
+                        <button onclick="selectCategory('Outros')" class="category-btn bg-slate-100 text-slate-700 hover:bg-slate-200 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap transition cursor-pointer">
+                            <i class="fa-solid fa-folder-open text-purple-600 mr-1.5"></i> Outros
+                        </button>
+                    </div>
+                    <button onclick="toggleFavoritesTab()" id="favTabBtn" class="bg-rose-50 hover:bg-rose-100 text-rose-600 border border-rose-200 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold whitespace-nowrap transition flex items-center gap-1.5 cursor-pointer">
+                        <i class="fa-solid fa-heart"></i> Favoritos (<span id="favCount">0</span>)
+                    </button>
                 </div>
-                <div class="pt-5 relative z-10 flex flex-wrap gap-2.5">
-                    <a href="https://tally.so/r/VpjbRy" target="_blank" class="bg-slate-900 hover:bg-slate-950 text-amber-300 font-bold text-xs px-4 py-3 rounded-xl shadow-lg transition transform hover:scale-105 flex items-center gap-2">
-                        <i class="fa-solid fa-star"></i> Ser Parceiro Fundador (R$ 39,90)
-                    </a>
-                    <a href="https://wa.me/5585921033841?text=Olá%20Robinson!%20Quero%20saber%20como%20cadastrar%20meu%20negócio%20no%20Tem%20No%20Bairro." target="_blank" class="bg-white/20 hover:bg-white/30 text-white font-semibold text-xs px-4 py-3 rounded-xl shadow transition flex items-center gap-2 cursor-pointer">
-                        <i class="fa-brands fa-whatsapp"></i> Falar com o Fundador
-                    </a>
-                </div>
-            </section>
+            </div>
 
-        </div>
-
-        <!-- SEÇÃO DE UTILIDADE PÚBLICA & VAGAS -->
-        <section class="bg-white rounded-2xl p-5 border border-slate-200/80 shadow-sm space-y-4">
+            <!-- Barra de Status dos Resultados -->
             <div class="flex items-center justify-between flex-wrap gap-2">
-                <div class="flex items-center gap-2">
-                    <div class="w-8 h-8 rounded-lg bg-orange-100 text-brand-600 flex items-center justify-center font-bold">
-                        <i class="fa-solid fa-briefcase"></i>
-                    </div>
-                    <div>
-                        <h3 class="text-sm font-bold text-slate-900">Empregos & Oportunidades na Região</h3>
-                        <p class="text-[11px] text-slate-500">Acesse portais oficiais e avisos úteis para a comunidade</p>
-                    </div>
-                </div>
-                <span class="text-[10px] font-bold bg-brand-50 text-brand-700 border border-brand-200 px-2.5 py-1 rounded-full">
-                    <i class="fa-solid fa-bolt text-brand-500"></i> Atualizado
+                <span id="resultsCount" class="text-xs sm:text-sm text-slate-600 font-semibold">Mostrando todos os comércios</span>
+                <span class="text-xs text-navy-900 font-bold bg-navy-900/5 border border-navy-900/10 px-3 py-1.5 rounded-lg">
+                    <i class="fa-solid fa-location-dot text-brand-500 mr-1"></i> Região Metropolitana: Maracanaú, Pacatuba e Maranguape - CE
                 </span>
             </div>
 
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                <a href="https://vagas.idt.org.br/" target="_blank" rel="noopener noreferrer" 
-                   class="bg-slate-50 hover:bg-brand-50 border border-slate-200 hover:border-brand-300 p-3.5 rounded-xl transition flex items-center gap-3 group">
-                    <div class="w-10 h-10 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center flex-shrink-0 text-base font-bold shadow-sm">
-                        <i class="fa-solid fa-magnifying-glass-briefcase"></i>
-                    </div>
-                    <div>
-                        <span class="block text-xs font-bold text-slate-900 group-hover:text-brand-700">Vagas SINE IDT</span>
-                        <span class="text-[11px] text-slate-500">Portal oficial de vagas na região</span>
-                    </div>
-                </a>
+            <!-- GRID DE CARDS EDITORIAIS -->
+            <div id="businessGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7"></div>
 
-                <a href="https://wa.me/5585921033841?text=Olá%20Robinson!%20Gostaria%20de%20participar%20dos%20grupos%20de%20vagas%20e%20avisos%20do%20Tem%20No%20Bairro." target="_blank" rel="noopener noreferrer" 
-                   class="bg-slate-50 hover:bg-emerald-50 border border-slate-200 hover:border-emerald-300 p-3.5 rounded-xl transition flex items-center gap-3 group">
-                    <div class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center flex-shrink-0 text-base font-bold shadow-sm">
-                        <i class="fa-brands fa-whatsapp"></i>
-                    </div>
-                    <div>
-                        <span class="block text-xs font-bold text-slate-900 group-hover:text-emerald-700">Grupos de Vagas (Zap)</span>
-                        <span class="text-[11px] text-slate-500">Receba avisos direto no celular</span>
-                    </div>
-                </a>
-
-                <a href="https://www.gov.br/pt-br" target="_blank" rel="noopener noreferrer" 
-                   class="bg-slate-50 hover:bg-blue-50 border border-slate-200 hover:border-blue-300 p-3.5 rounded-xl transition flex items-center gap-3 group">
-                    <div class="w-10 h-10 rounded-xl bg-indigo-100 text-indigo-600 flex items-center justify-center flex-shrink-0 text-base font-bold shadow-sm">
-                        <i class="fa-solid fa-id-card"></i>
-                    </div>
-                    <div>
-                        <span class="block text-xs font-bold text-slate-900 group-hover:text-indigo-700">Seguro & Serv. Gov.br</span>
-                        <span class="text-[11px] text-slate-500">Consulta e serviços públicos</span>
-                    </div>
-                </a>
-            </div>
-        </section>
-
-        <!-- SEÇÃO: GUIA DE UTILIDADE PÚBLICA & SERVIÇOS (POR MUNICÍPIO) COM DADOS COMPLETOS -->
-        <section class="bg-white rounded-2xl p-5 border border-slate-200/80 shadow-sm space-y-5">
-            <div class="flex items-center justify-between flex-wrap gap-2 border-b pb-3">
-                <div class="flex items-center gap-2">
-                    <div class="w-8 h-8 rounded-lg bg-amber-100 text-amber-700 flex items-center justify-center font-bold">
-                        <i class="fa-solid fa-city"></i>
-                    </div>
-                    <div>
-                        <h3 class="text-sm font-bold text-slate-900">Guia de Utilidade & Serviços Municipais</h3>
-                        <p class="text-[11px] text-slate-500">Prefeituras, Postos de Saúde (UBS), Emergências e Benefícios</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- BOTÕES DE ABAS MUNICIPAIS -->
-            <div class="flex flex-wrap gap-2">
-                <button onclick="switchServiceTab('emergencia')" id="tabBtn-emergencia" class="service-tab-btn px-4 py-2 rounded-xl text-xs font-bold bg-brand-500 text-white shadow transition flex items-center gap-1.5 cursor-pointer">
-                    <i class="fa-solid fa-phone-volume"></i> Telefones de Emergência
-                </button>
-                <button onclick="switchServiceTab('maracanau')" id="tabBtn-maracanau" class="service-tab-btn px-4 py-2 rounded-xl text-xs font-medium bg-slate-100 hover:bg-slate-200 text-slate-700 transition flex items-center gap-1.5 cursor-pointer">
-                    <i class="fa-solid fa-building-columns"></i> Maracanaú (Prefeitura & UBS)
-                </button>
-                <button onclick="switchServiceTab('pacatuba')" id="tabBtn-pacatuba" class="service-tab-btn px-4 py-2 rounded-xl text-xs font-medium bg-slate-100 hover:bg-slate-200 text-slate-700 transition flex items-center gap-1.5 cursor-pointer">
-                    <i class="fa-solid fa-building-columns"></i> Pacatuba (Prefeitura & UBS)
-                </button>
-                <button onclick="switchServiceTab('maranguape')" id="tabBtn-maranguape" class="service-tab-btn px-4 py-2 rounded-xl text-xs font-medium bg-slate-100 hover:bg-slate-200 text-slate-700 transition flex items-center gap-1.5 cursor-pointer">
-                    <i class="fa-solid fa-building-columns"></i> Maranguape (Prefeitura & UBS)
-                </button>
-                <button onclick="switchServiceTab('beneficios')" id="tabBtn-beneficios" class="service-tab-btn px-4 py-2 rounded-xl text-xs font-medium bg-slate-100 hover:bg-slate-200 text-slate-700 transition flex items-center gap-1.5 cursor-pointer">
-                    <i class="fa-solid fa-wallet"></i> Bolsa Família & FGTS
+            <!-- Estado Vazio -->
+            <div id="emptyState" class="hidden text-center py-16 bg-white rounded-3xl border border-dashed border-slate-300 p-8">
+                <i class="fa-solid fa-store-slash text-slate-300 text-5xl mb-4"></i>
+                <h3 class="text-lg font-bold text-navy-950">Nenhum comércio encontrado</h3>
+                <p class="text-sm text-slate-500 mt-1 max-w-md mx-auto">Não encontramos negócios para os filtros selecionados. Tente limpar a busca ou escolher outra cidade.</p>
+                <button onclick="resetFilters()" class="mt-5 bg-navy-900 hover:bg-navy-800 text-white font-bold text-xs px-6 py-3 rounded-xl transition cursor-pointer">
+                    Ver todos os comércios
                 </button>
             </div>
+        </div>
+    </section>
 
-            <!-- CONTEÚDO DAS ABAS -->
-            <div id="serviceTabContent" class="pt-2 text-xs text-slate-700">
-                <!-- Conteúdo injetado via JS -->
-            </div>
-        </section>
+    <!-- FAIXA 4 (ESCURA): PLANOS PARA LOJISTAS -->
+    <section id="secaoPlanos" class="bg-navy-950 text-white py-14 sm:py-20 relative overflow-hidden">
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-brand-500/10 rounded-full blur-3xl pointer-events-none"></div>
 
-        <!-- SELETOR DE CIDADES -->
-        <section class="flex flex-col sm:flex-row items-center justify-between bg-white p-4 rounded-2xl border border-slate-200/80 shadow-sm gap-3">
-            <div class="flex items-center gap-2 text-xs font-bold text-slate-700">
-                <i class="fa-solid fa-map-location-dot text-brand-500 text-base"></i> Filtrar Comércios por Região:
-            </div>
-            <div class="flex flex-wrap gap-2 w-full sm:w-auto">
-                <button onclick="selectCity('Todas')" id="cityBtn-Todas" class="city-btn flex-1 sm:flex-none px-3.5 py-1.5 rounded-xl text-xs font-bold bg-brand-500 text-white shadow-sm transition">Todas</button>
-                <button onclick="selectCity('Maracanaú')" id="cityBtn-Maracanaú" class="city-btn flex-1 sm:flex-none px-3.5 py-1.5 rounded-xl text-xs font-medium bg-slate-100 hover:bg-slate-200 text-slate-700 transition">Maracanaú</button>
-                <button onclick="selectCity('Pacatuba')" id="cityBtn-Pacatuba" class="city-btn flex-1 sm:flex-none px-3.5 py-1.5 rounded-xl text-xs font-medium bg-slate-100 hover:bg-slate-200 text-slate-700 transition">Pacatuba</button>
-                <button onclick="selectCity('Maranguape')" id="cityBtn-Maranguape" class="city-btn flex-1 sm:flex-none px-3.5 py-1.5 rounded-xl text-xs font-medium bg-slate-100 hover:bg-slate-200 text-slate-700 transition">Maranguape</button>
-            </div>
-        </section>
-
-        <!-- SEÇÃO DE PLANOS (PARA LOJISTAS) -->
-        <section id="secaoPlanos" class="space-y-6 pt-2">
-            <div class="text-center max-w-xl mx-auto space-y-2">
-                <span class="bg-orange-100 text-brand-700 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Área do Lojista</span>
-                <h3 class="text-xl sm:text-3xl font-extrabold text-slate-900">Quer anunciar o seu negócio aqui?</h3>
-                <p class="text-xs sm:text-sm text-slate-500">Invista em visibilidade profissional e venda diretamente pelo WhatsApp.</p>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12 relative z-10">
+            <div class="text-center max-w-2xl mx-auto space-y-3">
+                <span class="bg-brand-500/20 text-brand-400 border border-brand-500/30 text-xs font-extrabold px-4 py-1.5 rounded-full uppercase tracking-wider inline-block">
+                    Área do Lojista
+                </span>
+                <h3 class="text-2xl sm:text-4xl font-extrabold text-white tracking-tight">
+                    Coloque sua loja na palma da mão dos moradores
+                </h3>
+                <p class="text-sm sm:text-base text-slate-300">
+                    Escolha o plano ideal para o seu momento e receba pedidos direto no seu WhatsApp sem taxas por venda.
+                </p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
-                <!-- Plano Fundador -->
-                <div class="bg-white rounded-3xl p-6 border-2 border-brand-500 shadow-xl flex flex-col justify-between relative transform md:-translate-y-2">
-                    <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-brand-500 text-white text-[10px] font-extrabold px-4 py-1 rounded-full uppercase tracking-wider shadow whitespace-nowrap">
-                        ⭐ Apenas 5 vagas abertas no Lote Fundador!
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-7 items-stretch pt-2">
+                <!-- Plano Fundador (Destaque) -->
+                <div class="bg-navy-900 rounded-3xl p-7 sm:p-8 border-2 border-brand-500 shadow-2xl shadow-brand-500/10 flex flex-col justify-between relative transform md:-translate-y-3">
+                    <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-brand-500 text-navy-950 text-[11px] font-extrabold px-4 py-1.5 rounded-full uppercase tracking-wider shadow-lg whitespace-nowrap">
+                        ⭐ Apenas 5 vagas no Lote Fundador
                     </div>
-                    <div class="space-y-4 pt-2">
+                    <div class="space-y-5 pt-2">
                         <div>
-                            <h4 class="text-lg font-black text-slate-900">Parceiro Fundador</h4>
-                            <p class="text-xs text-slate-500">Para lojistas visionários que entram no início.</p>
+                            <h4 class="text-xl font-extrabold text-white">Parceiro Fundador</h4>
+                            <p class="text-xs text-slate-300 mt-1">Para lojistas visionários que entram no início.</p>
                         </div>
-                        <div class="py-2">
-                            <span class="text-3xl sm:text-4xl font-black text-brand-600">R$ 39,90</span>
-                            <span class="text-xs text-slate-500 font-medium">/mês (preço travado)</span>
+                        <div class="py-3 border-y border-white/10">
+                            <span class="text-4xl font-black text-brand-500">R$ 39,90</span>
+                            <span class="text-xs text-slate-300 font-medium">/mês (valor vitalício)</span>
                         </div>
-                        <ul class="space-y-2.5 text-xs text-slate-600">
-                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Ficha com carrossel de fotos/produtos</li>
-                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Painel de Promoções e Brindes exclusivos</li>
-                            <li class="flex items-center gap-2 font-bold text-slate-900"><i class="fa-solid fa-star text-amber-500"></i> Selo "Parceiro Fundador"</li>
-                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Divulgação de vagas e demandas no mural</li>
+                        <ul class="space-y-3 text-xs sm:text-sm text-slate-200">
+                            <li class="flex items-center gap-2.5"><i class="fa-solid fa-circle-check text-brand-500"></i> Vitrine editorial com carrossel de fotos</li>
+                            <li class="flex items-center gap-2.5"><i class="fa-solid fa-circle-check text-brand-500"></i> Painel de Promoções e Cupons exclusivos</li>
+                            <li class="flex items-center gap-2.5 font-bold text-brand-400"><i class="fa-solid fa-star text-brand-500"></i> Selo Oficial "Parceiro Fundador"</li>
+                            <li class="flex items-center gap-2.5"><i class="fa-solid fa-circle-check text-brand-500"></i> Divulgação de vagas e avisos no mural</li>
                         </ul>
                     </div>
-                    <a href="https://tally.so/r/VpjbRy" target="_blank" class="mt-6 w-full text-center bg-brand-500 hover:bg-brand-600 text-white font-bold py-3 rounded-xl shadow-md text-xs transition cursor-pointer block">
+                    <a href="https://tally.so/r/VpjbRy" target="_blank" class="mt-8 w-full text-center bg-brand-500 hover:bg-brand-600 text-navy-950 font-extrabold py-3.5 rounded-xl shadow-lg text-xs sm:text-sm transition cursor-pointer block">
                         Garantir Vaga de Fundador
                     </a>
                 </div>
 
                 <!-- Plano Regular -->
-                <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm flex flex-col justify-between">
-                    <div class="space-y-4">
+                <div class="bg-navy-900/70 rounded-3xl p-7 sm:p-8 border border-white/10 shadow-xl flex flex-col justify-between">
+                    <div class="space-y-5">
                         <div>
-                            <h4 class="text-lg font-bold text-slate-900">Plano Regular</h4>
-                            <p class="text-xs text-slate-500">Ideal para comércios consolidados.</p>
+                            <h4 class="text-xl font-bold text-white">Plano Regular</h4>
+                            <p class="text-xs text-slate-400 mt-1">Ideal para comércios locais consolidados.</p>
                         </div>
-                        <div class="py-2">
-                            <span class="text-3xl font-black text-slate-900">R$ 59,90</span>
-                            <span class="text-xs text-slate-500 font-medium">/mês</span>
+                        <div class="py-3 border-y border-white/10">
+                            <span class="text-4xl font-black text-white">R$ 59,90</span>
+                            <span class="text-xs text-slate-400 font-medium">/mês</span>
                         </div>
-                        <ul class="space-y-2.5 text-xs text-slate-600">
-                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Ficha completa no site</li>
-                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> 1 Post mensal no Instagram</li>
-                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Inclusão em divulgações gerais</li>
-                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Zero comissão sobre vendas</li>
+                        <ul class="space-y-3 text-xs sm:text-sm text-slate-300">
+                            <li class="flex items-center gap-2.5"><i class="fa-solid fa-circle-check text-emerald-400"></i> Ficha completa na vitrine do bairro</li>
+                            <li class="flex items-center gap-2.5"><i class="fa-solid fa-circle-check text-emerald-400"></i> 1 Post mensal no Instagram oficial</li>
+                            <li class="flex items-center gap-2.5"><i class="fa-solid fa-circle-check text-emerald-400"></i> Inclusão em campanhas regionais</li>
+                            <li class="flex items-center gap-2.5"><i class="fa-solid fa-circle-check text-emerald-400"></i> Zero comissão sobre vendas</li>
                         </ul>
                     </div>
-                    <a href="https://tally.so/r/VpjbRy" target="_blank" class="mt-6 w-full text-center bg-slate-900 hover:bg-slate-800 text-white font-bold py-3 rounded-xl transition text-xs cursor-pointer block">
-                        Escolher Regular
+                    <a href="https://tally.so/r/VpjbRy" target="_blank" class="mt-8 w-full text-center bg-white/10 hover:bg-white/20 text-white border border-white/15 font-bold py-3.5 rounded-xl transition text-xs sm:text-sm cursor-pointer block">
+                        Escolher Plano Regular
                     </a>
                 </div>
 
                 <!-- Plano Premium -->
-                <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm flex flex-col justify-between">
-                    <div class="space-y-4">
+                <div class="bg-navy-900/70 rounded-3xl p-7 sm:p-8 border border-white/10 shadow-xl flex flex-col justify-between">
+                    <div class="space-y-5">
                         <div>
-                            <span class="text-[10px] font-extrabold text-purple-600 bg-purple-50 px-2.5 py-0.5 rounded-full">MAIS VISIBILIDADE</span>
-                            <h4 class="text-lg font-bold text-slate-900 mt-1">Plano Premium</h4>
-                            <p class="text-xs text-slate-500">Destaque máximo na região.</p>
+                            <span class="text-[10px] font-extrabold text-brand-400 bg-brand-500/20 border border-brand-500/30 px-2.5 py-1 rounded-full uppercase tracking-wider">Máxima Visibilidade</span>
+                            <h4 class="text-xl font-bold text-white mt-2">Plano Premium</h4>
+                            <p class="text-xs text-slate-400 mt-1">Destaque absoluto em toda a região.</p>
                         </div>
-                        <div class="py-2">
-                            <span class="text-3xl font-black text-slate-900">R$ 97,00</span>
-                            <span class="text-xs text-slate-500 font-medium">/mês</span>
+                        <div class="py-3 border-y border-white/10">
+                            <span class="text-4xl font-black text-white">R$ 97,00</span>
+                            <span class="text-xs text-slate-400 font-medium">/mês</span>
                         </div>
-                        <ul class="space-y-2.5 text-xs text-slate-600">
-                            <li class="flex items-center gap-2 font-bold text-purple-700"><i class="fa-solid fa-bolt text-purple-500"></i> Destaque no topo da categoria</li>
-                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> 2 Posts + Stories semanais</li>
-                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Vagas ilimitadas em destaque</li>
-                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Botão direto pro WhatsApp</li>
+                        <ul class="space-y-3 text-xs sm:text-sm text-slate-300">
+                            <li class="flex items-center gap-2.5 font-bold text-brand-400"><i class="fa-solid fa-bolt text-brand-500"></i> Posição de destaque no topo</li>
+                            <li class="flex items-center gap-2.5"><i class="fa-solid fa-circle-check text-emerald-400"></i> 2 Posts + Stories semanais</li>
+                            <li class="flex items-center gap-2.5"><i class="fa-solid fa-circle-check text-emerald-400"></i> Vagas ilimitadas em destaque</li>
+                            <li class="flex items-center gap-2.5"><i class="fa-solid fa-circle-check text-emerald-400"></i> Botão direto para o WhatsApp</li>
                         </ul>
                     </div>
-                    <a href="https://tally.so/r/VpjbRy" target="_blank" class="mt-6 w-full text-center bg-slate-900 hover:bg-slate-800 text-white font-bold py-3 rounded-xl transition text-xs cursor-pointer block">
-                        Escolher Premium
+                    <a href="https://tally.so/r/VpjbRy" target="_blank" class="mt-8 w-full text-center bg-white/10 hover:bg-white/20 text-white border border-white/15 font-bold py-3.5 rounded-xl transition text-xs sm:text-sm cursor-pointer block">
+                        Escolher Plano Premium
                     </a>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- BUSCA E FILTROS -->
-        <section class="space-y-4 pt-4 border-t border-slate-200">
-            <div class="relative">
-                <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"></i>
-                <input type="text" id="searchInput" oninput="filterBusinesses()" placeholder="Buscar por nome da loja, produto ou serviço (ex: pão, corte de cabelo, ração)..." 
-                    class="w-full pl-11 pr-10 py-3 bg-white border border-slate-200 rounded-xl shadow-sm text-slate-800 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 transition">
-                <button id="clearSearch" onclick="clearSearchInput()" class="hidden absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 p-1">
-                    <i class="fa-solid fa-xmark"></i>
-                </button>
+    <!-- FAIXA 5 (CLARA): UTILIDADE PÚBLICA, EMPREGOS & SERVIÇOS MUNICIPAIS -->
+    <section class="bg-white py-14 sm:py-16 border-t border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+            
+            <!-- Bloco 1: Empregos & Oportunidades -->
+            <div class="bg-slate-50 rounded-3xl p-6 sm:p-8 border border-slate-200/90 shadow-sm space-y-6">
+                <div class="flex items-center justify-between flex-wrap gap-3">
+                    <div class="flex items-center gap-3.5">
+                        <div class="w-11 h-11 rounded-2xl bg-navy-900 text-brand-500 flex items-center justify-center text-lg shadow">
+                            <i class="fa-solid fa-briefcase"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-base sm:text-lg font-extrabold text-navy-950">Empregos & Oportunidades na Região</h3>
+                            <p class="text-xs text-slate-500">Acesse portais oficiais de vagas e grupos comunitários</p>
+                        </div>
+                    </div>
+                    <span class="text-xs font-bold bg-brand-50 text-brand-700 border border-brand-200 px-3 py-1 rounded-full">
+                        <i class="fa-solid fa-bolt text-brand-500 mr-1"></i> Atualizado
+                    </span>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                    <a href="https://vagas.idt.org.br/" target="_blank" rel="noopener noreferrer" 
+                       class="bg-white hover:bg-navy-900/5 border border-slate-200 hover:border-navy-900/30 p-4 rounded-2xl transition flex items-center gap-3.5 group shadow-sm">
+                        <div class="w-11 h-11 rounded-xl bg-navy-900 text-white flex items-center justify-center flex-shrink-0 text-base shadow">
+                            <i class="fa-solid fa-magnifying-glass-briefcase"></i>
+                        </div>
+                        <div>
+                            <span class="block text-sm font-bold text-navy-950 group-hover:text-brand-600 transition">Vagas SINE IDT</span>
+                            <span class="text-xs text-slate-500">Portal oficial de vagas na região</span>
+                        </div>
+                    </a>
+
+                    <a href="https://wa.me/5585921033841?text=Olá%20Robinson!%20Gostaria%20de%20participar%20dos%20grupos%20de%20vagas%20e%20avisos%20do%20Tem%20No%20Bairro." target="_blank" rel="noopener noreferrer" 
+                       class="bg-white hover:bg-emerald-50/70 border border-slate-200 hover:border-emerald-300 p-4 rounded-2xl transition flex items-center gap-3.5 group shadow-sm">
+                        <div class="w-11 h-11 rounded-xl bg-emerald-600 text-white flex items-center justify-center flex-shrink-0 text-lg shadow">
+                            <i class="fa-brands fa-whatsapp"></i>
+                        </div>
+                        <div>
+                            <span class="block text-sm font-bold text-navy-950 group-hover:text-emerald-700 transition">Grupos de Vagas (Zap)</span>
+                            <span class="text-xs text-slate-500">Receba avisos direto no celular</span>
+                        </div>
+                    </a>
+
+                    <a href="https://www.gov.br/pt-br" target="_blank" rel="noopener noreferrer" 
+                       class="bg-white hover:bg-brand-50/70 border border-slate-200 hover:border-brand-300 p-4 rounded-2xl transition flex items-center gap-3.5 group shadow-sm">
+                        <div class="w-11 h-11 rounded-xl bg-brand-500 text-navy-950 flex items-center justify-center flex-shrink-0 text-base shadow">
+                            <i class="fa-solid fa-id-card"></i>
+                        </div>
+                        <div>
+                            <span class="block text-sm font-bold text-navy-950 group-hover:text-brand-700 transition">Seguro & Serv. Gov.br</span>
+                            <span class="text-xs text-slate-500">Consulta e serviços públicos</span>
+                        </div>
+                    </a>
+                </div>
             </div>
 
-            <div class="flex items-center justify-between gap-2 overflow-x-auto pb-2 hide-scrollbar -mx-4 px-4 sm:mx-0 sm:px-0">
-                <div class="flex items-center gap-2">
-                    <button onclick="selectCategory('Todos')" class="category-btn active bg-brand-500 text-white px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap shadow-sm transition">
-                        <i class="fa-solid fa-border-all mr-1.5"></i> Todos
+            <!-- Bloco 2: Guia de Utilidade Pública & Serviços Municipais -->
+            <div class="bg-slate-50 rounded-3xl p-6 sm:p-8 border border-slate-200/90 shadow-sm space-y-6">
+                <div class="flex items-center justify-between flex-wrap gap-3 border-b border-slate-200 pb-4">
+                    <div class="flex items-center gap-3.5">
+                        <div class="w-11 h-11 rounded-2xl bg-brand-500 text-navy-950 flex items-center justify-center text-lg shadow">
+                            <i class="fa-solid fa-city"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-base sm:text-lg font-extrabold text-navy-950">Guia de Utilidade & Serviços Municipais</h3>
+                            <p class="text-xs text-slate-500">Telefones de emergência, Prefeituras, Postos de Saúde (UBS) e Benefícios</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Botões de Abas Municipais -->
+                <div class="flex flex-wrap gap-2.5">
+                    <button onclick="switchServiceTab('emergencia')" id="tabBtn-emergencia" class="service-tab-btn px-4 py-2.5 rounded-xl text-xs font-bold bg-navy-900 text-white shadow transition flex items-center gap-1.5 cursor-pointer">
+                        <i class="fa-solid fa-phone-volume text-brand-500"></i> Telefones de Emergência
                     </button>
-                    <button onclick="selectCategory('Fundadores')" class="category-btn bg-white text-slate-700 border border-slate-200 hover:bg-slate-100 px-4 py-2 rounded-xl text-xs sm:text-sm font-medium whitespace-nowrap shadow-sm transition">
-                        <i class="fa-solid fa-award text-amber-500 mr-1.5"></i> ⭐ Parceiros Fundadores
+                    <button onclick="switchServiceTab('maracanau')" id="tabBtn-maracanau" class="service-tab-btn px-4 py-2.5 rounded-xl text-xs font-semibold bg-white border border-slate-200 hover:bg-slate-100 text-slate-700 transition flex items-center gap-1.5 cursor-pointer">
+                        <i class="fa-solid fa-building-columns"></i> Maracanaú (Prefeitura & UBS)
                     </button>
-                    <button onclick="selectCategory('Comércio e Serviços')" class="category-btn bg-white text-slate-700 border border-slate-200 hover:bg-slate-100 px-4 py-2 rounded-xl text-xs sm:text-sm font-medium whitespace-nowrap shadow-sm transition">
-                        <i class="fa-solid fa-store text-orange-500 mr-1.5"></i> Comércio e Serviços
+                    <button onclick="switchServiceTab('pacatuba')" id="tabBtn-pacatuba" class="service-tab-btn px-4 py-2.5 rounded-xl text-xs font-semibold bg-white border border-slate-200 hover:bg-slate-100 text-slate-700 transition flex items-center gap-1.5 cursor-pointer">
+                        <i class="fa-solid fa-building-columns"></i> Pacatuba (Prefeitura & UBS)
                     </button>
-                    <button onclick="selectCategory('Saúde e Beleza')" class="category-btn bg-white text-slate-700 border border-slate-200 hover:bg-slate-100 px-4 py-2 rounded-xl text-xs sm:text-sm font-medium whitespace-nowrap shadow-sm transition">
-                        <i class="fa-solid fa-scissors text-pink-500 mr-1.5"></i> Saúde e Beleza
+                    <button onclick="switchServiceTab('maranguape')" id="tabBtn-maranguape" class="service-tab-btn px-4 py-2.5 rounded-xl text-xs font-semibold bg-white border border-slate-200 hover:bg-slate-100 text-slate-700 transition flex items-center gap-1.5 cursor-pointer">
+                        <i class="fa-solid fa-building-columns"></i> Maranguape (Prefeitura & UBS)
                     </button>
-                    <button onclick="selectCategory('Pet Shop')" class="category-btn bg-white text-slate-700 border border-slate-200 hover:bg-slate-100 px-4 py-2 rounded-xl text-xs sm:text-sm font-medium whitespace-nowrap shadow-sm transition">
-                        <i class="fa-solid fa-paw text-amber-700 mr-1.5"></i> Pet Shop
-                    </button>
-                    <button onclick="selectCategory('Construção e Reparos')" class="category-btn bg-white text-slate-700 border border-slate-200 hover:bg-slate-100 px-4 py-2 rounded-xl text-xs sm:text-sm font-medium whitespace-nowrap shadow-sm transition">
-                        <i class="fa-solid fa-hammer text-blue-500 mr-1.5"></i> Construção e Reparos
-                    </button>
-                    <button onclick="selectCategory('Serviços Rápidos')" class="category-btn bg-white text-slate-700 border border-slate-200 hover:bg-slate-100 px-4 py-2 rounded-xl text-xs sm:text-sm font-medium whitespace-nowrap shadow-sm transition">
-                        <i class="fa-solid fa-bolt text-amber-500 mr-1.5"></i> Serviços Rápidos
-                    </button>
-                    <button onclick="selectCategory('Outros')" class="category-btn bg-white text-slate-700 border border-slate-200 hover:bg-slate-100 px-4 py-2 rounded-xl text-xs sm:text-sm font-medium whitespace-nowrap shadow-sm transition">
-                        <i class="fa-solid fa-folder-open text-purple-500 mr-1.5"></i> Outros
+                    <button onclick="switchServiceTab('beneficios')" id="tabBtn-beneficios" class="service-tab-btn px-4 py-2.5 rounded-xl text-xs font-semibold bg-white border border-slate-200 hover:bg-slate-100 text-slate-700 transition flex items-center gap-1.5 cursor-pointer">
+                        <i class="fa-solid fa-wallet"></i> Bolsa Família & FGTS
                     </button>
                 </div>
-                <button onclick="toggleFavoritesTab()" id="favTabBtn" class="bg-rose-50 hover:bg-rose-100 text-rose-600 border border-rose-200 px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold whitespace-nowrap shadow-sm transition flex items-center gap-1.5">
-                    <i class="fa-solid fa-heart"></i> Favoritos (<span id="favCount">0</span>)
-                </button>
+
+                <!-- Conteúdo das Abas -->
+                <div id="serviceTabContent" class="pt-2 text-xs text-slate-700">
+                    <!-- Conteúdo injetado via JS -->
+                </div>
             </div>
-        </section>
 
-        <div class="flex items-center justify-between mb-4">
-            <span id="resultsCount" class="text-xs sm:text-sm text-slate-500 font-medium">Mostrando todos os comércios</span>
-            <span class="text-xs text-brand-700 font-semibold bg-brand-50 border border-brand-100 px-2.5 py-1 rounded-md">
-                <i class="fa-solid fa-location-dot"></i> Região: Maracanaú, Pacatuba e Maranguape - CE
-            </span>
         </div>
-
-        <div id="businessGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"></div>
-
-        <div id="emptyState" class="hidden text-center py-12 bg-white rounded-2xl border border-dashed border-slate-300 p-6 mt-4">
-            <i class="fa-solid fa-store-slash text-slate-300 text-5xl mb-3"></i>
-            <h3 class="text-base font-bold text-slate-700">Nenhum comércio encontrado</h3>
-            <p class="text-xs text-slate-500 mt-1 max-w-md mx-auto">Não encontramos negócios para os termos pesquisados.</p>
-            <button onclick="resetFilters()" class="mt-4 bg-slate-800 hover:bg-slate-900 text-white font-medium text-xs px-4 py-2 rounded-lg transition">
-                Ver todos os comércios
-            </button>
-        </div>
-    </main>
+    </section>
 
     <!-- BOTÃO FLUTUANTE WHATSAPP -->
     <a href="https://wa.me/5585921033841?text=Olá%20Robinson!%20Tenho%20dúvidas%20sobre%20o%20cadastro%20no%20Tem%20No%20Bairro." 
        target="_blank" 
-       class="fixed bottom-5 right-5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 px-4 rounded-full shadow-2xl flex items-center gap-2 z-40 transition transform hover:scale-105 text-xs sm:text-sm">
+       class="fixed bottom-5 right-5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3.5 px-5 rounded-full shadow-2xl flex items-center gap-2.5 z-40 transition transform hover:scale-105 text-xs sm:text-sm border border-emerald-400/30">
        <i class="fa-brands fa-whatsapp text-xl"></i> Falar com o Fundador
     </a>
 
-    <!-- RODAPÉ COMPLETO -->
-    <footer class="bg-slate-900 text-slate-400 text-xs py-10 border-t border-slate-800 mt-12 mb-16 sm:mb-0">
-        <div class="max-w-6xl mx-auto px-4 text-center space-y-5">
-            <div class="flex items-center justify-center gap-2 text-white font-bold text-lg">
-                <i class="fa-solid fa-store text-brand-500"></i> TEM NO BAIRRO
+    <!-- FAIXA 6 (ESCURA): RODAPÉ COMPLETO -->
+    <footer class="bg-navy-950 text-slate-400 text-xs py-12 border-t border-white/10 mb-16 sm:mb-0">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
+            <div class="flex items-center justify-center gap-2.5 text-white font-extrabold text-xl tracking-tight">
+                <i class="fa-solid fa-store text-brand-500"></i> TEM NO <span class="text-brand-500">BAIRRO</span>
             </div>
-            <p class="max-w-xl mx-auto text-slate-400 leading-relaxed">
+            <p class="max-w-xl mx-auto text-slate-300 leading-relaxed text-xs sm:text-sm">
                 Iniciativa de apoio e fortalecimento da economia comunitária em Maracanaú, Pacatuba e Maranguape - CE.
             </p>
             
-            <div class="flex flex-wrap justify-center items-center gap-4 py-2 text-slate-300 font-medium">
-                <a href="https://instagram.com/temnobairro_oficial" target="_blank" class="hover:text-brand-500 transition flex items-center gap-1.5"><i class="fa-brands fa-instagram text-base"></i> @temnobairro_oficial</a>
-                <span class="text-slate-700">•</span>
-                <a href="https://g.page/r/CRK_11do12bRECE/review" target="_blank" class="hover:text-amber-400 transition flex items-center gap-1.5 text-amber-300 font-bold"><i class="fa-solid fa-star text-base"></i> Avaliar no Google</a>
-                <span class="text-slate-700">•</span>
-                <button type="button" onclick="openIndicateModal()" class="hover:text-amber-400 transition flex items-center gap-1.5 cursor-pointer text-amber-300 font-semibold"><i class="fa-solid fa-gift text-base"></i> Indicar Comércio</button>
-                <span class="text-slate-700">•</span>
+            <div class="flex flex-wrap justify-center items-center gap-4 py-2 text-slate-300 font-semibold">
+                <a href="https://instagram.com/temnobairro_oficial" target="_blank" class="hover:text-brand-500 transition flex items-center gap-1.5"><i class="fa-brands fa-instagram text-base text-brand-500"></i> @temnobairro_oficial</a>
+                <span class="text-white/20">•</span>
+                <a href="https://g.page/r/CRK_11do12bRECE/review" target="_blank" class="hover:text-brand-400 transition flex items-center gap-1.5 text-brand-400 font-bold"><i class="fa-solid fa-star text-base"></i> Avaliar no Google</a>
+                <span class="text-white/20">•</span>
+                <button type="button" onclick="openIndicateModal()" class="hover:text-brand-400 transition flex items-center gap-1.5 cursor-pointer text-brand-400 font-semibold"><i class="fa-solid fa-gift text-base"></i> Indicar Comércio</button>
+                <span class="text-white/20">•</span>
                 <button type="button" onclick="openTermsModal()" class="hover:text-white transition cursor-pointer underline">Termos de Uso</button>
-                <span class="text-slate-700">•</span>
+                <span class="text-white/20">•</span>
                 <button type="button" onclick="openPrivacyModal()" class="hover:text-white transition cursor-pointer underline">Política de Privacidade (LGPD)</button>
             </div>
 
-            <div class="bg-slate-950/60 rounded-xl p-4 max-w-2xl mx-auto border border-slate-800/80 text-[11px] text-slate-400 space-y-1.5 text-center sm:text-left">
-                <div class="flex items-center gap-2 justify-center sm:justify-start font-semibold text-slate-300">
+            <div class="bg-navy-900/80 rounded-2xl p-5 max-w-2xl mx-auto border border-white/10 text-xs text-slate-400 space-y-1.5 text-center sm:text-left">
+                <div class="flex items-center gap-2 justify-center sm:justify-start font-bold text-white">
                     <i class="fa-solid fa-building text-brand-500"></i>
                     <span>TEM NO BAIRRO — PLATAFORMA DIGITAL</span>
                 </div>
@@ -463,128 +511,130 @@
     </footer>
 
     <!-- MODAL DE DETALHES -->
-    <div id="detailModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md z-50 hidden flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
-        <div class="bg-white rounded-3xl max-w-lg w-full p-6 shadow-2xl relative my-8 border border-slate-100 space-y-4">
-            <button type="button" onclick="closeDetailModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 bg-slate-100 p-2 rounded-full w-8 h-8 flex items-center justify-center transition cursor-pointer z-10">
+    <div id="detailModal" class="fixed inset-0 bg-navy-950/85 backdrop-blur-md z-50 hidden flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
+        <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-7 shadow-2xl relative my-8 border border-slate-100 space-y-5">
+            <button type="button" onclick="closeDetailModal()" class="absolute top-4 right-4 text-slate-500 hover:text-navy-950 bg-slate-100 hover:bg-slate-200 p-2 rounded-full w-9 h-9 flex items-center justify-center transition cursor-pointer z-10">
                 <i class="fa-solid fa-xmark"></i>
             </button>
             
-            <div class="relative h-72 w-full bg-slate-950 rounded-2xl overflow-hidden shadow-inner">
+            <div class="relative h-72 w-full bg-navy-950 rounded-2xl overflow-hidden shadow-inner">
                 <img id="detailImage" src="" alt="Foto do Estabelecimento" class="detalhe-foto">
-                <div id="carouselNav" class="absolute inset-0 flex items-center justify-between p-2 hidden">
-                    <button onclick="prevImage()" class="bg-slate-900/75 hover:bg-slate-900 text-white w-9 h-9 rounded-full flex items-center justify-center transition cursor-pointer shadow">
+                <div id="carouselNav" class="absolute inset-0 flex items-center justify-between p-3 hidden">
+                    <button onclick="prevImage()" class="bg-navy-950/80 hover:bg-navy-950 text-white w-9 h-9 rounded-full flex items-center justify-center transition cursor-pointer shadow">
                         <i class="fa-solid fa-chevron-left"></i>
                     </button>
-                    <button onclick="nextImage()" class="bg-slate-900/75 hover:bg-slate-900 text-white w-9 h-9 rounded-full flex items-center justify-center transition cursor-pointer shadow">
+                    <button onclick="nextImage()" class="bg-navy-950/80 hover:bg-navy-950 text-white w-9 h-9 rounded-full flex items-center justify-center transition cursor-pointer shadow">
                         <i class="fa-solid fa-chevron-right"></i>
                     </button>
                 </div>
-                <span id="detailCategoryBadge" class="absolute top-3 left-3 bg-slate-900/80 backdrop-blur-md text-white text-xs font-medium px-3 py-1 rounded-lg"></span>
-                <span id="detailPhotoCounter" class="hidden absolute bottom-3 right-3 bg-slate-900/80 text-white text-[10px] font-bold px-2.5 py-1 rounded-full"></span>
+                <span id="detailCategoryBadge" class="absolute top-3 left-3 bg-navy-950/85 backdrop-blur-md text-white text-xs font-bold px-3 py-1.5 rounded-xl border border-white/10"></span>
+                <span id="detailPhotoCounter" class="hidden absolute bottom-3 right-3 bg-navy-950/85 text-white text-[11px] font-bold px-3 py-1 rounded-full"></span>
             </div>
 
             <div class="space-y-2">
-                <h3 id="detailName" class="text-xl font-black text-slate-900"></h3>
+                <h3 id="detailName" class="text-2xl font-extrabold text-navy-950"></h3>
                 <p id="detailDescription" class="text-xs sm:text-sm text-slate-600 leading-relaxed"></p>
             </div>
 
-            <div id="detailPromoBox" class="hidden bg-amber-50 border border-amber-300 rounded-2xl p-3.5 flex items-center gap-3 text-xs text-amber-900 shadow-sm">
-                <div class="w-9 h-9 bg-amber-500 text-slate-950 rounded-xl flex items-center justify-center font-bold text-base flex-shrink-0 shadow">
+            <div id="detailPromoBox" class="hidden bg-brand-50 border border-brand-200 rounded-2xl p-4 flex items-center gap-3.5 text-xs text-navy-950 shadow-sm">
+                <div class="w-10 h-10 bg-brand-500 text-navy-950 rounded-xl flex items-center justify-center font-bold text-base flex-shrink-0 shadow">
                     <i class="fa-solid fa-gift"></i>
                 </div>
                 <div>
-                    <span class="font-extrabold block text-amber-950 text-sm">Vantagem Exclusiva no App!</span>
-                    <span id="detailPromoText" class="font-medium"></span>
+                    <span class="font-extrabold block text-navy-950 text-sm">Vantagem Exclusiva no App!</span>
+                    <span id="detailPromoText" class="font-semibold text-brand-900"></span>
                 </div>
             </div>
 
-            <div class="bg-slate-50 border border-slate-200/80 rounded-2xl p-4 space-y-2 text-xs text-slate-600">
-                <div class="flex items-center gap-2">
-                    <i class="fa-solid fa-location-dot text-brand-600"></i>
-                    <span id="detailAddress"></span>
+            <div class="bg-slate-50 border border-slate-200/80 rounded-2xl p-4 space-y-2.5 text-xs text-slate-600">
+                <div class="flex items-center gap-2.5">
+                    <i class="fa-solid fa-location-dot text-brand-600 text-sm"></i>
+                    <span id="detailAddress" class="font-medium text-slate-800"></span>
                 </div>
                 <div class="flex items-center justify-between">
-                    <div class="flex items-center gap-2">
-                        <i class="fa-solid fa-clock text-slate-400"></i>
-                        <span id="detailHours"></span>
+                    <div class="flex items-center gap-2.5">
+                        <i class="fa-solid fa-clock text-navy-700 text-sm"></i>
+                        <span id="detailHours" class="font-medium"></span>
                     </div>
                     <span id="detailStatusBadge"></span>
                 </div>
             </div>
 
-            <div class="pt-2 space-y-2">
-                <a id="detailWhatsApp" href="#" target="_blank" class="w-full bg-brand-500 hover:bg-brand-600 text-white font-bold py-3 px-4 rounded-xl shadow-md text-xs sm:text-sm flex items-center justify-center gap-2 transition">
+            <div class="pt-2 space-y-2.5">
+                <a id="detailWhatsApp" href="#" target="_blank" class="w-full bg-brand-500 hover:bg-brand-600 text-navy-950 font-extrabold py-3.5 px-4 rounded-xl shadow-md text-xs sm:text-sm flex items-center justify-center gap-2 transition">
                     <i class="fa-brands fa-whatsapp text-lg"></i> Chamar no WhatsApp
                 </a>
-                <a id="detailCouponWa" href="#" target="_blank" class="w-full bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold py-2.5 px-3 rounded-xl text-xs flex items-center justify-center gap-2 transition shadow">
-                    <i class="fa-solid fa-ticket"></i> Resgatar Cupom Exclusivo no WhatsApp
+                <a id="detailCouponWa" href="#" target="_blank" class="w-full bg-navy-900 hover:bg-navy-800 text-white font-bold py-3 px-4 rounded-xl text-xs flex items-center justify-center gap-2 transition shadow">
+                    <i class="fa-solid fa-ticket text-brand-500"></i> Resgatar Cupom Exclusivo no WhatsApp
                 </a>
-                <a id="detailShareWa" href="#" target="_blank" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-2.5 px-3 rounded-xl text-xs flex items-center justify-center gap-2 transition">
-                    <i class="fa-solid fa-share-nodes"></i> Compartilhar Loja com Amigo
-                </a>
-                <a id="detailMaps" href="#" target="_blank" class="w-full bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold py-2.5 px-3 rounded-xl text-xs flex items-center justify-center gap-1.5 transition">
-                    <i class="fa-solid fa-map-location-dot text-slate-500"></i> Como Chegar (Abrir no Mapa)
-                </a>
+                <div class="grid grid-cols-2 gap-2.5">
+                    <a id="detailShareWa" href="#" target="_blank" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2.5 px-3 rounded-xl text-xs flex items-center justify-center gap-1.5 transition">
+                        <i class="fa-solid fa-share-nodes"></i> Compartilhar
+                    </a>
+                    <a id="detailMaps" href="#" target="_blank" class="bg-slate-100 hover:bg-slate-200 text-navy-950 font-bold py-2.5 px-3 rounded-xl text-xs flex items-center justify-center gap-1.5 transition">
+                        <i class="fa-solid fa-map-location-dot text-brand-600"></i> Como Chegar
+                    </a>
+                </div>
             </div>
         </div>
     </div>
 
     <!-- MODAL: TERMOS DE USO -->
-    <div id="termsModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md z-50 hidden flex items-center justify-center p-4 overflow-y-auto">
+    <div id="termsModal" class="fixed inset-0 bg-navy-950/85 backdrop-blur-md z-50 hidden flex items-center justify-center p-4 overflow-y-auto">
         <div class="bg-white rounded-3xl max-w-2xl w-full p-6 sm:p-8 shadow-2xl relative my-8 border border-slate-100 text-left space-y-4 max-h-[85vh] flex flex-col">
             <button type="button" onclick="closeTermsModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 bg-slate-100 p-2 rounded-full w-8 h-8 flex items-center justify-center transition cursor-pointer">
                 <i class="fa-solid fa-xmark"></i>
             </button>
-            <div class="flex items-center gap-2 border-b pb-3">
+            <div class="flex items-center gap-2.5 border-b pb-3">
                 <i class="fa-solid fa-file-contract text-brand-500 text-xl"></i>
-                <h3 class="text-lg font-bold text-slate-900">Termos e Condições de Uso</h3>
+                <h3 class="text-lg font-extrabold text-navy-950">Termos e Condições de Uso</h3>
             </div>
-            <div class="overflow-y-auto pr-2 space-y-3 text-xs text-slate-600 leading-relaxed flex-grow">
+            <div class="overflow-y-auto pr-2 space-y-3 text-xs sm:text-sm text-slate-600 leading-relaxed flex-grow">
                 <p><strong>1. Visão Geral:</strong> O diretório <strong>Tem No Bairro</strong> (CNPJ 69.805.020/0001-36) atua exclusivamente como uma plataforma de conexão digital entre moradores e comércios locais nas regiões de Maracanaú, Pacatuba e Maranguape.</p>
                 <p><strong>2. Relação Comercial:</strong> A plataforma não realiza cobranças de comissão sobre vendas e não se responsabiliza por transações financeiras realizadas diretamente entre o cliente e o lojista via WhatsApp ou Pix.</p>
             </div>
             <div class="pt-3 border-t text-right">
-                <button onclick="closeTermsModal()" class="bg-slate-900 hover:bg-slate-800 text-white font-bold px-5 py-2.5 rounded-xl text-xs transition cursor-pointer">Entendido</button>
+                <button onclick="closeTermsModal()" class="bg-navy-900 hover:bg-navy-800 text-white font-bold px-6 py-2.5 rounded-xl text-xs transition cursor-pointer">Entendido</button>
             </div>
         </div>
     </div>
 
     <!-- MODAL: POLÍTICA DE PRIVACIDADE / LGPD -->
-    <div id="privacyModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md z-50 hidden flex items-center justify-center p-4 overflow-y-auto">
+    <div id="privacyModal" class="fixed inset-0 bg-navy-950/85 backdrop-blur-md z-50 hidden flex items-center justify-center p-4 overflow-y-auto">
         <div class="bg-white rounded-3xl max-w-2xl w-full p-6 sm:p-8 shadow-2xl relative my-8 border border-slate-100 text-left space-y-4 max-h-[85vh] flex flex-col">
             <button type="button" onclick="closePrivacyModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 bg-slate-100 p-2 rounded-full w-8 h-8 flex items-center justify-center transition cursor-pointer">
                 <i class="fa-solid fa-xmark"></i>
             </button>
-            <div class="flex items-center gap-2 border-b pb-3">
+            <div class="flex items-center gap-2.5 border-b pb-3">
                 <i class="fa-solid fa-shield-halved text-brand-500 text-xl"></i>
-                <h3 class="text-lg font-bold text-slate-900">Política de Privacidade e LGPD</h3>
+                <h3 class="text-lg font-extrabold text-navy-950">Política de Privacidade e LGPD</h3>
             </div>
-            <div class="overflow-y-auto pr-2 space-y-3 text-xs text-slate-600 leading-relaxed flex-grow">
+            <div class="overflow-y-auto pr-2 space-y-3 text-xs sm:text-sm text-slate-600 leading-relaxed flex-grow">
                 <p><strong>1. Compromisso com a Privacidade:</strong> Em conformidade com a Lei Geral de Proteção de Dados (LGPD - Lei nº 13.709/2018), o <strong>Tem No Bairro</strong> preza pela transparência e segurança no tratamento das informações.</p>
                 <p><strong>2. Coleta de Dados:</strong> Coletamos apenas os dados essenciais fornecidos voluntariamente no cadastro para exibição na vitrine digital e facilitação do contato direto via WhatsApp.</p>
             </div>
             <div class="pt-3 border-t text-right">
-                <button onclick="closePrivacyModal()" class="bg-slate-900 hover:bg-slate-800 text-white font-bold px-5 py-2.5 rounded-xl text-xs transition cursor-pointer">Fechar</button>
+                <button onclick="closePrivacyModal()" class="bg-navy-900 hover:bg-navy-800 text-white font-bold px-6 py-2.5 rounded-xl text-xs transition cursor-pointer">Fechar</button>
             </div>
         </div>
     </div>
 
     <!-- MODAL ADMIN LOGIN -->
-    <div id="adminLoginModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
-        <div class="bg-white rounded-2xl max-w-sm w-full p-6 shadow-2xl relative border border-slate-100 space-y-4">
+    <div id="adminLoginModal" class="fixed inset-0 bg-navy-950/85 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-sm w-full p-7 shadow-2xl relative border border-slate-100 space-y-4">
             <button type="button" onclick="closeAdminLoginModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 bg-slate-100 p-2 rounded-full w-8 h-8 flex items-center justify-center transition cursor-pointer">
                 <i class="fa-solid fa-xmark"></i>
             </button>
             <div class="text-center">
-                <div class="w-12 h-12 bg-navy-900 text-brand-500 rounded-full flex items-center justify-center mx-auto text-xl mb-2">
+                <div class="w-12 h-12 bg-navy-900 text-brand-500 rounded-2xl flex items-center justify-center mx-auto text-xl mb-3 shadow">
                     <i class="fa-solid fa-lock"></i>
                 </div>
-                <h3 class="text-lg font-bold text-slate-900">Acesso Restrito</h3>
+                <h3 class="text-lg font-extrabold text-navy-950">Acesso Restrito</h3>
                 <p class="text-xs text-slate-500">Digite a senha do administrador</p>
             </div>
             <form onsubmit="handleAdminLogin(event)" class="space-y-3">
-                <input type="password" id="adminPassword" required placeholder="Senha de acesso" class="w-full px-3 py-2.5 border border-slate-300 rounded-xl text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none text-center">
-                <button type="submit" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-2.5 rounded-xl text-xs transition cursor-pointer">
+                <input type="password" id="adminPassword" required placeholder="Senha de acesso" class="w-full px-3 py-3 border border-slate-300 rounded-xl text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none text-center">
+                <button type="submit" class="w-full bg-navy-900 hover:bg-navy-800 text-white font-bold py-3 rounded-xl text-xs transition cursor-pointer">
                     Entrar no Painel
                 </button>
             </form>
@@ -592,18 +642,18 @@
     </div>
 
     <!-- PAINEL ADMIN -->
-    <div id="adminPanelModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md z-50 hidden flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
+    <div id="adminPanelModal" class="fixed inset-0 bg-navy-950/85 backdrop-blur-md z-50 hidden flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
         <div class="bg-white rounded-3xl max-w-5xl w-full p-5 sm:p-8 shadow-2xl relative my-6 border border-slate-100 max-h-[90vh] flex flex-col">
             <div class="flex items-center justify-between pb-4 border-b border-slate-200 mb-4 flex-wrap gap-3">
-                <div class="flex items-center gap-2">
-                    <span class="bg-brand-500 text-white p-2 rounded-xl text-sm"><i class="fa-solid fa-sliders"></i></span>
+                <div class="flex items-center gap-3">
+                    <span class="bg-navy-900 text-brand-500 p-2.5 rounded-xl text-sm shadow"><i class="fa-solid fa-sliders"></i></span>
                     <div>
-                        <h3 class="text-lg font-extrabold text-slate-900">Painel de Controle Administrativo</h3>
+                        <h3 class="text-lg font-extrabold text-navy-950">Painel de Controle Administrativo</h3>
                         <p class="text-xs text-slate-500">Gerencie e adicione novos parceiros à vitrine</p>
                     </div>
                 </div>
                 <div class="flex items-center gap-2">
-                    <button type="button" onclick="openAddBusinessModal()" class="bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold px-4 py-2.5 rounded-xl shadow transition flex items-center gap-1.5 cursor-pointer">
+                    <button type="button" onclick="openAddBusinessModal()" class="bg-brand-500 hover:bg-brand-600 text-navy-950 text-xs font-extrabold px-4 py-2.5 rounded-xl shadow transition flex items-center gap-1.5 cursor-pointer">
                         <i class="fa-solid fa-plus"></i> Adicionar Novo Lojista
                     </button>
                     <button type="button" onclick="closeAdminPanel()" class="bg-slate-100 hover:bg-slate-200 text-slate-600 p-2.5 rounded-full w-9 h-9 flex items-center justify-center transition cursor-pointer">
@@ -614,7 +664,7 @@
             <div class="overflow-y-auto flex-grow pr-1">
                 <table class="w-full text-left border-collapse text-xs">
                     <thead>
-                        <tr class="bg-slate-100 text-slate-700 uppercase tracking-wider text-[10px]">
+                        <tr class="bg-slate-100 text-navy-950 uppercase tracking-wider text-[10px]">
                             <th class="p-3 rounded-l-xl">Estabelecimento</th>
                             <th class="p-3">Plano & Status</th>
                             <th class="p-3">WhatsApp</th>
@@ -626,8 +676,8 @@
                 </table>
             </div>
             <div class="pt-4 border-t border-slate-200 mt-4 flex justify-between items-center text-xs text-slate-500">
-                <span>Total de parceiros: <strong id="adminTotalCount" class="text-slate-900">0</strong></span>
-                <button onclick="closeAdminPanel()" class="bg-slate-900 hover:bg-slate-800 text-white px-5 py-2.5 rounded-xl font-bold transition cursor-pointer">
+                <span>Total de parceiros: <strong id="adminTotalCount" class="text-navy-950">0</strong></span>
+                <button onclick="closeAdminPanel()" class="bg-navy-900 hover:bg-navy-800 text-white px-5 py-2.5 rounded-xl font-bold transition cursor-pointer">
                     Fechar Painel
                 </button>
             </div>
@@ -635,28 +685,28 @@
     </div>
 
     <!-- MODAL ADICIONAR / EDITAR LOJISTA -->
-    <div id="editModal" class="fixed inset-0 bg-slate-950/70 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4 overflow-y-auto">
-        <div class="bg-white rounded-2xl max-w-lg w-full p-5 sm:p-6 shadow-2xl relative my-8 border border-slate-100">
+    <div id="editModal" class="fixed inset-0 bg-navy-950/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4 overflow-y-auto">
+        <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-7 shadow-2xl relative my-8 border border-slate-100">
             <button type="button" onclick="closeEditModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 bg-slate-100 p-2 rounded-full w-8 h-8 flex items-center justify-center transition cursor-pointer">
                 <i class="fa-solid fa-xmark"></i>
             </button>
             <div class="mb-5">
-                <span class="bg-emerald-100 text-emerald-800 text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider">
+                <span class="bg-brand-100 text-brand-800 text-[10px] font-extrabold px-3 py-1 rounded-full uppercase tracking-wider">
                     <i class="fa-solid fa-store"></i> Painel Admin
                 </span>
-                <h3 id="modalTitle" class="text-xl font-bold text-slate-900 mt-2">Adicionar Novo Lojista</h3>
+                <h3 id="modalTitle" class="text-xl font-extrabold text-navy-950 mt-2">Adicionar Novo Lojista</h3>
                 <p class="text-xs text-slate-500 mt-1">Preencha os dados e defina o status (Ativo ou Convidado em Teste).</p>
             </div>
             <form id="editBusinessForm" onsubmit="handleEditSubmit(event)" class="space-y-4">
                 <input type="hidden" id="editIndex" value="-1">
                 <div>
-                    <label class="block text-xs font-semibold text-slate-700 mb-1">Nome do Estabelecimento *</label>
-                    <input type="text" id="editName" required placeholder="Ex: Mercearia do Bairro" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none">
+                    <label class="block text-xs font-bold text-slate-700 mb-1">Nome do Estabelecimento *</label>
+                    <input type="text" id="editName" required placeholder="Ex: Mercearia do Bairro" class="w-full px-3.5 py-2.5 border border-slate-300 rounded-xl text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none">
                 </div>
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div>
-                        <label class="block text-xs font-semibold text-slate-700 mb-1">Categoria *</label>
-                        <select id="editCategory" required class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none">
+                        <label class="block text-xs font-bold text-slate-700 mb-1">Categoria *</label>
+                        <select id="editCategory" required class="w-full px-3.5 py-2.5 border border-slate-300 rounded-xl text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none">
                             <option value="Comércio e Serviços">Comércio e Serviços</option>
                             <option value="Saúde e Beleza">Saúde e Beleza</option>
                             <option value="Pet Shop">Pet Shop</option>
@@ -666,22 +716,22 @@
                         </select>
                     </div>
                     <div>
-                        <label class="block text-xs font-semibold text-slate-700 mb-1">WhatsApp (Só números com DDD) *</label>
-                        <input type="tel" id="editPhone" required placeholder="85921033841" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none">
+                        <label class="block text-xs font-bold text-slate-700 mb-1">WhatsApp (Só números com DDD) *</label>
+                        <input type="tel" id="editPhone" required placeholder="85921033841" class="w-full px-3.5 py-2.5 border border-slate-300 rounded-xl text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none">
                     </div>
                 </div>
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div>
-                        <label class="block text-xs font-semibold text-slate-700 mb-1">Plano *</label>
-                        <select id="editPlan" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none font-bold text-brand-700">
+                        <label class="block text-xs font-bold text-slate-700 mb-1">Plano *</label>
+                        <select id="editPlan" class="w-full px-3.5 py-2.5 border border-slate-300 rounded-xl text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none font-bold text-navy-900">
                             <option value="Parceiro Fundador - R$ 39,90/mês">⭐ Parceiro Fundador</option>
                             <option value="Plano Regular - R$ 59,90/mês">Plano Regular</option>
                             <option value="Plano Premium - R$ 97,00/mês">🚀 Plano Premium</option>
                         </select>
                     </div>
                     <div>
-                        <label class="block text-xs font-semibold text-slate-700 mb-1">Status no App (Comercial) *</label>
-                        <select id="editStatus" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none font-bold text-amber-800 bg-amber-50">
+                        <label class="block text-xs font-bold text-slate-700 mb-1">Status no App (Comercial) *</label>
+                        <select id="editStatus" class="w-full px-3.5 py-2.5 border border-slate-300 rounded-xl text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none font-bold text-amber-800 bg-amber-50">
                             <option value="ativo">🟢 Ativo / Fechado</option>
                             <option value="convidado">🟡 Convidado / Em Teste (Experimental)</option>
                         </select>
@@ -689,11 +739,11 @@
                 </div>
 
                 <!-- ÁREA DE PROMOÇÕES / BRINDES -->
-                <div class="bg-amber-50 border border-amber-200 rounded-xl p-3 space-y-2">
-                    <label class="block text-xs font-bold text-amber-900 flex items-center gap-1.5">
-                        <i class="fa-solid fa-gift text-amber-600"></i> Promoção / Desconto Ativo no App
+                <div class="bg-brand-50 border border-brand-200 rounded-2xl p-3.5 space-y-2">
+                    <label class="block text-xs font-extrabold text-navy-950 flex items-center gap-1.5">
+                        <i class="fa-solid fa-gift text-brand-600"></i> Promoção / Desconto Ativo no App
                     </label>
-                    <select id="editPromo" class="w-full px-3 py-2 border border-amber-300 bg-white rounded-lg text-xs font-semibold text-amber-900 focus:ring-2 focus:ring-amber-500 focus:outline-none">
+                    <select id="editPromo" class="w-full px-3.5 py-2.5 border border-brand-300 bg-white rounded-xl text-xs font-bold text-navy-950 focus:ring-2 focus:ring-brand-500 focus:outline-none">
                         <option value="">Nenhuma Promoção Ativa (Padrão)</option>
                         <option value="10% de Desconto na 1ª Compra pelo App">🎁 10% de Desconto na 1ª Compra pelo App</option>
                         <option value="Brinde Surpresa ou Bebida Grátis no Pedido">🥤 Brinde Surpresa ou Bebida Grátis no Pedido</option>
@@ -704,32 +754,32 @@
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div>
-                        <label class="block text-xs font-semibold text-slate-700 mb-1">Endereço (Com Cidade) *</label>
-                        <input type="text" id="editAddress" required placeholder="Ex: Rua 57, 222, Jereissati II, Maracanaú" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none">
+                        <label class="block text-xs font-bold text-slate-700 mb-1">Endereço (Com Cidade) *</label>
+                        <input type="text" id="editAddress" required placeholder="Ex: Rua 57, 222, Jereissati II, Maracanaú" class="w-full px-3.5 py-2.5 border border-slate-300 rounded-xl text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none">
                     </div>
                     <div>
-                        <label class="block text-xs font-semibold text-slate-700 mb-1">Horário (Ex: Seg a Sáb 09:00 - 19:00)</label>
-                        <input type="text" id="editHours" placeholder="Ex: Seg a Sáb 09:00 - 19:00" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none">
+                        <label class="block text-xs font-bold text-slate-700 mb-1">Horário (Ex: Seg a Sáb 09:00 - 19:00)</label>
+                        <input type="text" id="editHours" placeholder="Ex: Seg a Sáb 09:00 - 19:00" class="w-full px-3.5 py-2.5 border border-slate-300 rounded-xl text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none">
                     </div>
                 </div>
                 <div>
-                    <label class="block text-xs font-semibold text-slate-700 mb-1">Link Direto do Google Maps (URL)</label>
-                    <input type="text" id="editMapsUrl" placeholder="Ex: https://maps.app.goo.gl/..." class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none">
+                    <label class="block text-xs font-bold text-slate-700 mb-1">Link Direto do Google Maps (URL)</label>
+                    <input type="text" id="editMapsUrl" placeholder="Ex: https://maps.app.goo.gl/..." class="w-full px-3.5 py-2.5 border border-slate-300 rounded-xl text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none">
                 </div>
                 <div>
-                    <label class="block text-xs font-semibold text-slate-700 mb-1">Descrição Curta *</label>
-                    <textarea id="editDescription" required rows="2" placeholder="O que o estabelecimento oferece..." class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none"></textarea>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">Descrição Curta *</label>
+                    <textarea id="editDescription" required rows="2" placeholder="O que o estabelecimento oferece..." class="w-full px-3.5 py-2.5 border border-slate-300 rounded-xl text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none"></textarea>
                 </div>
                 <div>
-                    <label class="block text-xs font-semibold text-slate-700 mb-1">URLs das Fotos (Separe por vírgula: Capa, Tabela de Preços)</label>
-                    <input type="text" id="editImages" placeholder="Ex: https://i.ibb.co/foto1.jpg, https://i.ibb.co/foto2.jpg" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none">
+                    <label class="block text-xs font-bold text-slate-700 mb-1">URLs das Fotos (Separe por vírgula: Capa, Tabela de Preços)</label>
+                    <input type="text" id="editImages" placeholder="Ex: https://i.ibb.co/foto1.jpg, https://i.ibb.co/foto2.jpg" class="w-full px-3.5 py-2.5 border border-slate-300 rounded-xl text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none">
                 </div>
                 <div class="pt-2 flex justify-end gap-2">
-                    <button type="button" onclick="closeEditModal()" class="px-4 py-2 border border-slate-300 rounded-lg text-xs font-semibold text-slate-700 hover:bg-slate-100 transition cursor-pointer">
+                    <button type="button" onclick="closeEditModal()" class="px-4 py-2.5 border border-slate-300 rounded-xl text-xs font-bold text-slate-700 hover:bg-slate-100 transition cursor-pointer">
                         Cancelar
                     </button>
-                    <button type="submit" class="px-6 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg text-xs font-bold shadow-md transition flex items-center gap-1.5 cursor-pointer">
-                        <i class="fa-solid fa-floppy-disk"></i> Salvar e Publicar
+                    <button type="submit" class="px-6 py-2.5 bg-navy-900 hover:bg-navy-800 text-white rounded-xl text-xs font-extrabold shadow-md transition flex items-center gap-1.5 cursor-pointer">
+                        <i class="fa-solid fa-floppy-disk text-brand-500"></i> Salvar e Publicar
                     </button>
                 </div>
             </form>
@@ -737,37 +787,37 @@
     </div>
 
     <!-- MODAL INDICAR COMÉRCIO -->
-    <div id="indicateModal" class="fixed inset-0 bg-slate-950/70 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4 overflow-y-auto">
-        <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl relative my-8 border border-slate-100 space-y-4">
+    <div id="indicateModal" class="fixed inset-0 bg-navy-950/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4 overflow-y-auto">
+        <div class="bg-white rounded-3xl max-w-md w-full p-6 sm:p-7 shadow-2xl relative my-8 border border-slate-100 space-y-4">
             <button type="button" onclick="closeIndicateModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 bg-slate-100 p-2 rounded-full w-8 h-8 flex items-center justify-center transition cursor-pointer">
                 <i class="fa-solid fa-xmark"></i>
             </button>
             <div class="text-center space-y-1">
-                <span class="bg-amber-100 text-amber-800 text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider">
-                    <i class="fa-solid fa-gift text-amber-600"></i> Indique um Vizinho
+                <span class="bg-brand-100 text-brand-800 text-[10px] font-extrabold px-3 py-1 rounded-full uppercase tracking-wider">
+                    <i class="fa-solid fa-gift text-brand-600"></i> Indique um Vizinho
                 </span>
-                <h3 class="text-xl font-bold text-slate-900 pt-1">Indicar Comércio Local</h3>
+                <h3 class="text-xl font-extrabold text-navy-950 pt-1">Indicar Comércio Local</h3>
                 <p class="text-xs text-slate-500">Conhece uma lojinha ou mercadinho que deveria estar no app?</p>
             </div>
             <form onsubmit="handleIndicateSubmit(event)" class="space-y-3 pt-2">
                 <div>
-                    <label class="block text-xs font-semibold text-slate-700 mb-1">Nome do Estabelecimento *</label>
-                    <input type="text" id="indStoreName" required placeholder="Ex: Mercearia do Bairro" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-amber-500 focus:outline-none">
+                    <label class="block text-xs font-bold text-slate-700 mb-1">Nome do Estabelecimento *</label>
+                    <input type="text" id="indStoreName" required placeholder="Ex: Mercearia do Bairro" class="w-full px-3.5 py-2.5 border border-slate-300 rounded-xl text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none">
                 </div>
                 <div>
-                    <label class="block text-xs font-semibold text-slate-700 mb-1">O que vende ou qual o serviço? *</label>
-                    <input type="text" id="indStoreDesc" required placeholder="Ex: Verdura fresca, gás, ração..." class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-amber-500 focus:outline-none">
+                    <label class="block text-xs font-bold text-slate-700 mb-1">O que vende ou qual o serviço? *</label>
+                    <input type="text" id="indStoreDesc" required placeholder="Ex: Verdura fresca, gás, ração..." class="w-full px-3.5 py-2.5 border border-slate-300 rounded-xl text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none">
                 </div>
                 <div>
-                    <label class="block text-xs font-semibold text-slate-700 mb-1">Endereço ou Ponto de Referência</label>
-                    <input type="text" id="indStoreAddress" placeholder="Ex: Próximo à rua 10, Maracanaú" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-amber-500 focus:outline-none">
+                    <label class="block text-xs font-bold text-slate-700 mb-1">Endereço ou Ponto de Referência</label>
+                    <input type="text" id="indStoreAddress" placeholder="Ex: Próximo à rua 10, Maracanaú" class="w-full px-3.5 py-2.5 border border-slate-300 rounded-xl text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none">
                 </div>
                 <div>
-                    <label class="block text-xs font-semibold text-slate-700 mb-1">Seu Nome (Morador que indicou)</label>
-                    <input type="text" id="indUserName" placeholder="Opcional" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-amber-500 focus:outline-none">
+                    <label class="block text-xs font-bold text-slate-700 mb-1">Seu Nome (Morador que indicou)</label>
+                    <input type="text" id="indUserName" placeholder="Opcional" class="w-full px-3.5 py-2.5 border border-slate-300 rounded-xl text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none">
                 </div>
                 <div class="pt-2">
-                    <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 rounded-xl text-xs sm:text-sm shadow-md transition flex items-center justify-center gap-2 cursor-pointer">
+                    <button type="submit" class="w-full bg-brand-500 hover:bg-brand-600 text-navy-950 font-extrabold py-3.5 rounded-xl text-xs sm:text-sm shadow-md transition flex items-center justify-center gap-2 cursor-pointer">
                         <i class="fa-brands fa-whatsapp text-lg"></i> Enviar Indicação no WhatsApp
                     </button>
                 </div>
@@ -923,105 +973,105 @@
 
         const serviceData = {
             emergencia: `
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
-                    <a href="tel:190" class="bg-rose-50 border border-rose-200 p-3.5 rounded-xl flex items-center gap-3 hover:bg-rose-100 transition">
-                        <div class="w-10 h-10 rounded-xl bg-rose-600 text-white flex items-center justify-center font-bold text-base shadow"><i class="fa-solid fa-shield-halved"></i></div>
-                        <div><strong class="block text-slate-900">Polícia Militar</strong><span class="text-rose-700 font-black text-sm">190</span></div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <a href="tel:190" class="bg-white border border-rose-200 p-4 rounded-2xl flex items-center gap-3.5 hover:bg-rose-50 transition shadow-sm">
+                        <div class="w-11 h-11 rounded-xl bg-rose-600 text-white flex items-center justify-center font-bold text-base shadow"><i class="fa-solid fa-shield-halved"></i></div>
+                        <div><strong class="block text-navy-950 text-xs">Polícia Militar</strong><span class="text-rose-700 font-black text-base">190</span></div>
                     </a>
-                    <a href="tel:192" class="bg-emerald-50 border border-emerald-200 p-3.5 rounded-xl flex items-center gap-3 hover:bg-emerald-100 transition">
-                        <div class="w-10 h-10 rounded-xl bg-emerald-600 text-white flex items-center justify-center font-bold text-base shadow"><i class="fa-solid fa-truck-medical"></i></div>
-                        <div><strong class="block text-slate-900">SAMU</strong><span class="text-emerald-700 font-black text-sm">192</span></div>
+                    <a href="tel:192" class="bg-white border border-emerald-200 p-4 rounded-2xl flex items-center gap-3.5 hover:bg-emerald-50 transition shadow-sm">
+                        <div class="w-11 h-11 rounded-xl bg-emerald-600 text-white flex items-center justify-center font-bold text-base shadow"><i class="fa-solid fa-truck-medical"></i></div>
+                        <div><strong class="block text-navy-950 text-xs">SAMU</strong><span class="text-emerald-700 font-black text-base">192</span></div>
                     </a>
-                    <a href="tel:193" class="bg-amber-50 border border-amber-200 p-3.5 rounded-xl flex items-center gap-3 hover:bg-amber-100 transition">
-                        <div class="w-10 h-10 rounded-xl bg-amber-600 text-white flex items-center justify-center font-bold text-base shadow"><i class="fa-solid fa-fire-extinguisher"></i></div>
-                        <div><strong class="block text-slate-900">Bombeiros</strong><span class="text-amber-700 font-black text-sm">193</span></div>
+                    <a href="tel:193" class="bg-white border border-brand-200 p-4 rounded-2xl flex items-center gap-3.5 hover:bg-brand-50 transition shadow-sm">
+                        <div class="w-11 h-11 rounded-xl bg-brand-500 text-navy-950 flex items-center justify-center font-bold text-base shadow"><i class="fa-solid fa-fire-extinguisher"></i></div>
+                        <div><strong class="block text-navy-950 text-xs">Bombeiros</strong><span class="text-brand-700 font-black text-base">193</span></div>
                     </a>
-                    <a href="tel:199" class="bg-blue-50 border border-blue-200 p-3.5 rounded-xl flex items-center gap-3 hover:bg-blue-100 transition">
-                        <div class="w-10 h-10 rounded-xl bg-blue-600 text-white flex items-center justify-center font-bold text-base shadow"><i class="fa-solid fa-triangle-exclamation"></i></div>
-                        <div><strong class="block text-slate-900">Defesa Civil</strong><span class="text-blue-700 font-black text-sm">199</span></div>
+                    <a href="tel:199" class="bg-white border border-navy-900/20 p-4 rounded-2xl flex items-center gap-3.5 hover:bg-navy-900/5 transition shadow-sm">
+                        <div class="w-11 h-11 rounded-xl bg-navy-900 text-white flex items-center justify-center font-bold text-base shadow"><i class="fa-solid fa-triangle-exclamation"></i></div>
+                        <div><strong class="block text-navy-950 text-xs">Defesa Civil</strong><span class="text-navy-900 font-black text-base">199</span></div>
                     </a>
                 </div>
             `,
             maracanau: `
                 <div class="space-y-4">
-                    <div class="bg-slate-50 border border-slate-200 p-4 rounded-xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+                    <div class="bg-white border border-slate-200 p-4 rounded-2xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 shadow-sm">
                         <div>
-                            <span class="text-[10px] font-extrabold uppercase bg-brand-500 text-white px-2 py-0.5 rounded">Prefeitura Municipal</span>
-                            <h4 class="font-bold text-sm text-slate-900 mt-1">Prefeitura de Maracanaú & Gabinete do Prefeito</h4>
-                            <p class="text-slate-500 text-[11px]">Av. II, nº 150 - Jereissati I, Maracanaú - CE</p>
+                            <span class="text-[10px] font-extrabold uppercase bg-navy-900 text-brand-400 px-2.5 py-1 rounded-md">Prefeitura Municipal</span>
+                            <h4 class="font-extrabold text-sm text-navy-950 mt-1.5">Prefeitura de Maracanaú & Gabinete do Prefeito</h4>
+                            <p class="text-slate-500 text-xs">Av. II, nº 150 - Jereissati I, Maracanaú - CE</p>
                         </div>
-                        <a href="tel:853718684" class="bg-slate-900 text-white px-4 py-2 rounded-lg font-bold text-xs hover:bg-slate-800 transition"><i class="fa-solid fa-phone"></i> (85) 3718-6840</a>
+                        <a href="tel:853718684" class="bg-navy-900 text-white px-4 py-2.5 rounded-xl font-bold text-xs hover:bg-navy-800 transition"><i class="fa-solid fa-phone text-brand-500 mr-1"></i> (85) 3718-6840</a>
                     </div>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-                        <div class="bg-white border border-slate-200 p-3 rounded-xl shadow-sm">
-                            <strong class="block text-slate-900 font-bold">UBS Dr. Alarico Leite</strong>
-                            <p class="text-slate-500 text-[11px] mt-1">Rua Patativa Assaré, Parque São João - Tel: (85) 3392-8605</p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5">
+                        <div class="bg-white border border-slate-200 p-4 rounded-2xl shadow-sm">
+                            <strong class="block text-navy-950 font-bold">UBS Dr. Alarico Leite</strong>
+                            <p class="text-slate-500 text-xs mt-1">Rua Patativa Assaré, Parque São João - Tel: (85) 3392-8605</p>
                         </div>
-                        <div class="bg-white border border-slate-200 p-3 rounded-xl shadow-sm">
-                            <strong class="block text-slate-900 font-bold">UBS João Pereira de Andrade II</strong>
-                            <p class="text-slate-500 text-[11px] mt-1">Rua Capitão Valdemar de Lima, Boa Vista - Tel: (85) 3392-8137</p>
+                        <div class="bg-white border border-slate-200 p-4 rounded-2xl shadow-sm">
+                            <strong class="block text-navy-950 font-bold">UBS João Pereira de Andrade II</strong>
+                            <p class="text-slate-500 text-xs mt-1">Rua Capitão Valdemar de Lima, Boa Vista - Tel: (85) 3392-8137</p>
                         </div>
-                        <div class="bg-white border border-slate-200 p-3 rounded-xl shadow-sm">
-                            <strong class="block text-slate-900 font-bold">UBS Maria José de Carvalho</strong>
-                            <p class="text-slate-500 text-[11px] mt-1">Av. Lateral Norte, Acaracuzinho - Tel: (85) 3392-8967</p>
+                        <div class="bg-white border border-slate-200 p-4 rounded-2xl shadow-sm">
+                            <strong class="block text-navy-950 font-bold">UBS Maria José de Carvalho</strong>
+                            <p class="text-slate-500 text-xs mt-1">Av. Lateral Norte, Acaracuzinho - Tel: (85) 3392-8967</p>
                         </div>
                     </div>
                 </div>
             `,
             pacatuba: `
                 <div class="space-y-4">
-                    <div class="bg-slate-50 border border-slate-200 p-4 rounded-xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+                    <div class="bg-white border border-slate-200 p-4 rounded-2xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 shadow-sm">
                         <div>
-                            <span class="text-[10px] font-extrabold uppercase bg-brand-500 text-white px-2 py-0.5 rounded">Prefeitura Municipal</span>
-                            <h4 class="font-bold text-sm text-slate-900 mt-1">Prefeitura de Pacatuba & Gabinete</h4>
-                            <p class="text-slate-500 text-[11px]">Rua Major Crisanto, 180 - Centro, Pacatuba - CE</p>
+                            <span class="text-[10px] font-extrabold uppercase bg-navy-900 text-brand-400 px-2.5 py-1 rounded-md">Prefeitura Municipal</span>
+                            <h4 class="font-extrabold text-sm text-navy-950 mt-1.5">Prefeitura de Pacatuba & Gabinete</h4>
+                            <p class="text-slate-500 text-xs">Rua Major Crisanto, 180 - Centro, Pacatuba - CE</p>
                         </div>
-                        <a href="tel:85936182138" class="bg-slate-900 text-white px-4 py-2 rounded-lg font-bold text-xs hover:bg-slate-800 transition"><i class="fa-solid fa-phone"></i> (85) 93618-2138</a>
+                        <a href="tel:85936182138" class="bg-navy-900 text-white px-4 py-2.5 rounded-xl font-bold text-xs hover:bg-navy-800 transition"><i class="fa-solid fa-phone text-brand-500 mr-1"></i> (85) 93618-2138</a>
                     </div>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-                        <div class="bg-white border border-slate-200 p-3 rounded-xl shadow-sm">
-                            <strong class="block text-slate-900 font-bold">UBSF Maria Nívea Severino (Sede)</strong>
-                            <p class="text-slate-500 text-[11px] mt-1">Av. Major Cícero Franklin, s/n - Centro</p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5">
+                        <div class="bg-white border border-slate-200 p-4 rounded-2xl shadow-sm">
+                            <strong class="block text-navy-950 font-bold">UBSF Maria Nívea Severino (Sede)</strong>
+                            <p class="text-slate-500 text-xs mt-1">Av. Major Cícero Franklin, s/n - Centro</p>
                         </div>
-                        <div class="bg-white border border-slate-200 p-3 rounded-xl shadow-sm">
-                            <strong class="block text-slate-900 font-bold">UBSF João Bruno Moura (Pavuna)</strong>
-                            <p class="text-slate-500 text-[11px] mt-1">Rua Fé e Caridade, 4 - Pacatuba</p>
+                        <div class="bg-white border border-slate-200 p-4 rounded-2xl shadow-sm">
+                            <strong class="block text-navy-950 font-bold">UBSF João Bruno Moura (Pavuna)</strong>
+                            <p class="text-slate-500 text-xs mt-1">Rua Fé e Caridade, 4 - Pacatuba</p>
                         </div>
                     </div>
                 </div>
             `,
             maranguape: `
                 <div class="space-y-4">
-                    <div class="bg-slate-50 border border-slate-200 p-4 rounded-xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+                    <div class="bg-white border border-slate-200 p-4 rounded-2xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 shadow-sm">
                         <div>
-                            <span class="text-[10px] font-extrabold uppercase bg-brand-500 text-white px-2 py-0.5 rounded">Prefeitura Municipal</span>
-                            <h4 class="font-bold text-sm text-slate-900 mt-1">Prefeitura de Maranguape & Gabinete</h4>
-                            <p class="text-slate-500 text-[11px]">Rua Dr. João Bezerra, 139 - Preguiça, Maranguape - CE</p>
+                            <span class="text-[10px] font-extrabold uppercase bg-navy-900 text-brand-400 px-2.5 py-1 rounded-md">Prefeitura Municipal</span>
+                            <h4 class="font-extrabold text-sm text-navy-950 mt-1.5">Prefeitura de Maranguape & Gabinete</h4>
+                            <p class="text-slate-500 text-xs">Rua Dr. João Bezerra, 139 - Preguiça, Maranguape - CE</p>
                         </div>
-                        <a href="tel:8533699230" class="bg-slate-900 text-white px-4 py-2 rounded-lg font-bold text-xs hover:bg-slate-800 transition"><i class="fa-solid fa-phone"></i> (85) 3369-9230</a>
+                        <a href="tel:8533699230" class="bg-navy-900 text-white px-4 py-2.5 rounded-xl font-bold text-xs hover:bg-navy-800 transition"><i class="fa-solid fa-phone text-brand-500 mr-1"></i> (85) 3369-9230</a>
                     </div>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                        <div class="bg-white border border-slate-200 p-3 rounded-xl shadow-sm">
-                            <strong class="block text-slate-900 font-bold">UBS Maria Francina (Stênio Gomes)</strong>
-                            <p class="text-slate-500 text-[11px] mt-1">Av. Stênio Gomes, s/n - Aldeoma - Tel: (85) 3341-5252</p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                        <div class="bg-white border border-slate-200 p-4 rounded-2xl shadow-sm">
+                            <strong class="block text-navy-950 font-bold">UBS Maria Francina (Stênio Gomes)</strong>
+                            <p class="text-slate-500 text-xs mt-1">Av. Stênio Gomes, s/n - Aldeoma - Tel: (85) 3341-5252</p>
                         </div>
                     </div>
                 </div>
             `,
             beneficios: `
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <a href="https://www.gov.br/mds/pt-br/assuntos/bolsa-familia" target="_blank" class="bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 p-4 rounded-xl flex items-center gap-3 transition">
-                        <div class="w-10 h-10 rounded-xl bg-emerald-600 text-white flex items-center justify-center font-bold text-base shadow"><i class="fa-solid fa-wallet"></i></div>
+                    <a href="https://www.gov.br/mds/pt-br/assuntos/bolsa-familia" target="_blank" class="bg-white hover:bg-emerald-50 border border-emerald-200 p-4 rounded-2xl flex items-center gap-3.5 transition shadow-sm">
+                        <div class="w-11 h-11 rounded-xl bg-emerald-600 text-white flex items-center justify-center font-bold text-base shadow"><i class="fa-solid fa-wallet"></i></div>
                         <div>
-                            <strong class="block text-slate-900 text-xs font-bold">Calendário Bolsa Família</strong>
-                            <span class="text-emerald-700 text-[11px]">Consulte datas e pagamentos no Gov.br</span>
+                            <strong class="block text-navy-950 text-xs font-extrabold">Calendário Bolsa Família</strong>
+                            <span class="text-emerald-700 text-xs">Consulte datas e pagamentos no Gov.br</span>
                         </div>
                     </a>
-                    <a href="https://www.caixa.gov.br/beneficios-trabalhador/fgts" target="_blank" class="bg-blue-50 hover:bg-blue-100 border border-blue-200 p-4 rounded-xl flex items-center gap-3 transition">
-                        <div class="w-10 h-10 rounded-xl bg-blue-600 text-white flex items-center justify-center font-bold text-base shadow"><i class="fa-solid fa-piggy-bank"></i></div>
+                    <a href="https://www.caixa.gov.br/beneficios-trabalhador/fgts" target="_blank" class="bg-white hover:bg-navy-900/5 border border-navy-900/20 p-4 rounded-2xl flex items-center gap-3.5 transition shadow-sm">
+                        <div class="w-11 h-11 rounded-xl bg-navy-900 text-brand-500 flex items-center justify-center font-bold text-base shadow"><i class="fa-solid fa-piggy-bank"></i></div>
                         <div>
-                            <strong class="block text-slate-900 text-xs font-bold">Consulta FGTS & Saque</strong>
-                            <span class="text-blue-700 text-[11px]">Acesse o aplicativo FGTS da Caixa</span>
+                            <strong class="block text-navy-950 text-xs font-extrabold">Consulta FGTS & Saque</strong>
+                            <span class="text-navy-800 text-xs">Acesse o aplicativo FGTS da Caixa</span>
                         </div>
                     </a>
                 </div>
@@ -1030,11 +1080,11 @@
 
         function switchServiceTab(tabKey) {
             document.querySelectorAll('.service-tab-btn').forEach(btn => {
-                btn.className = 'service-tab-btn px-4 py-2 rounded-xl text-xs font-medium bg-slate-100 hover:bg-slate-200 text-slate-700 transition flex items-center gap-1.5 cursor-pointer';
+                btn.className = 'service-tab-btn px-4 py-2.5 rounded-xl text-xs font-semibold bg-white border border-slate-200 hover:bg-slate-100 text-slate-700 transition flex items-center gap-1.5 cursor-pointer';
             });
             const activeBtn = document.getElementById('tabBtn-' + tabKey);
             if (activeBtn) {
-                activeBtn.className = 'service-tab-btn px-4 py-2 rounded-xl text-xs font-bold bg-brand-500 text-white shadow transition flex items-center gap-1.5 cursor-pointer';
+                activeBtn.className = 'service-tab-btn px-4 py-2.5 rounded-xl text-xs font-bold bg-navy-900 text-white shadow transition flex items-center gap-1.5 cursor-pointer';
             }
             document.getElementById('serviceTabContent').innerHTML = serviceData[tabKey] || '';
         }
@@ -1126,9 +1176,9 @@
             showOnlyFavorites = !showOnlyFavorites;
             const btn = document.getElementById('favTabBtn');
             if (showOnlyFavorites) {
-                btn.className = 'bg-rose-600 text-white border border-rose-700 px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold whitespace-nowrap shadow-sm transition flex items-center gap-1.5';
+                btn.className = 'bg-rose-600 text-white border border-rose-700 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold whitespace-nowrap shadow-sm transition flex items-center gap-1.5 cursor-pointer';
             } else {
-                btn.className = 'bg-rose-50 hover:bg-rose-100 text-rose-600 border border-rose-200 px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold whitespace-nowrap shadow-sm transition flex items-center gap-1.5';
+                btn.className = 'bg-rose-50 hover:bg-rose-100 text-rose-600 border border-rose-200 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold whitespace-nowrap transition flex items-center gap-1.5 cursor-pointer';
             }
             renderBusinesses();
         }
@@ -1137,9 +1187,9 @@
             currentCity = cityName;
             document.querySelectorAll('.city-btn').forEach(btn => {
                 if (btn.textContent.includes(cityName)) {
-                    btn.className = 'city-btn flex-1 sm:flex-none px-3.5 py-1.5 rounded-xl text-xs font-bold bg-brand-500 text-white shadow-sm transition';
+                    btn.className = 'city-btn px-3.5 py-2 rounded-xl text-xs font-bold bg-navy-900 text-white shadow-sm transition cursor-pointer';
                 } else {
-                    btn.className = 'city-btn flex-1 sm:flex-none px-3.5 py-1.5 rounded-xl text-xs font-medium bg-slate-100 hover:bg-slate-200 text-slate-700 transition';
+                    btn.className = 'city-btn px-3.5 py-2 rounded-xl text-xs font-semibold bg-slate-100 hover:bg-slate-200 text-slate-700 transition cursor-pointer';
                 }
             });
             renderBusinesses();
@@ -1149,12 +1199,39 @@
             currentCategory = categoryName;
             document.querySelectorAll('.category-btn').forEach(btn => {
                 if (btn.textContent.includes(categoryName)) {
-                    btn.className = 'category-btn active bg-brand-500 text-white px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap shadow-sm transition';
+                    btn.className = 'category-btn active bg-navy-900 text-white px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold whitespace-nowrap shadow-sm transition cursor-pointer';
                 } else {
-                    btn.className = 'category-btn bg-white text-slate-700 border border-slate-200 hover:bg-slate-100 px-4 py-2 rounded-xl text-xs sm:text-sm font-medium whitespace-nowrap shadow-sm transition';
+                    btn.className = 'category-btn bg-slate-100 text-slate-700 hover:bg-slate-200 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap transition cursor-pointer';
                 }
             });
             renderBusinesses();
+        }
+
+        // Geração de Avatar/Monograma Editorial para o Parceiro
+        function getPartnerAvatarHtml(name) {
+            const initials = name
+                .split(' ')
+                .filter(w => w.length > 2 || name.split(' ').length === 1)
+                .slice(0, 2)
+                .map(w => w[0].toUpperCase())
+                .join('') || name.substring(0, 2).toUpperCase();
+            return `
+                <div class="w-14 h-14 rounded-2xl bg-navy-900 text-brand-500 border-4 border-white shadow-lg flex items-center justify-center font-extrabold text-base tracking-tight flex-shrink-0">
+                    ${initials}
+                </div>
+            `;
+        }
+
+        function getCategoryTagStyle(category) {
+            const styles = {
+                'Saúde e Beleza': 'bg-pink-50 text-pink-700 border-pink-200',
+                'Comércio e Serviços': 'bg-brand-50 text-brand-800 border-brand-200',
+                'Pet Shop': 'bg-amber-50 text-amber-800 border-amber-200',
+                'Construção e Reparos': 'bg-blue-50 text-navy-900 border-blue-200',
+                'Serviços Rápidos': 'bg-emerald-50 text-emerald-800 border-emerald-200',
+                'Outros': 'bg-purple-50 text-purple-800 border-purple-200'
+            };
+            return styles[category] || 'bg-slate-100 text-navy-900 border-slate-200';
         }
 
         function renderBusinesses() {
@@ -1162,10 +1239,15 @@
             const emptyState = document.getElementById('emptyState');
             const searchInputEl = document.getElementById('searchInput');
             const resultsCount = document.getElementById('resultsCount');
+            const clearBtn = document.getElementById('clearSearch');
 
             if (!grid) return;
 
             const searchVal = searchInputEl ? searchInputEl.value.toLowerCase().trim() : '';
+            if (clearBtn) {
+                searchVal.length > 0 ? clearBtn.classList.remove('hidden') : clearBtn.classList.add('hidden');
+            }
+
             grid.innerHTML = '';
 
             const filtered = businesses.filter(item => {
@@ -1220,73 +1302,100 @@
                 
                 const statusInfo = checkIsOpen(item.hours);
                 const statusBadgeHtml = statusInfo.isOpen 
-                    ? `<span class="absolute bottom-3 left-3 bg-emerald-600/90 text-white text-[10px] font-bold px-2 py-0.5 rounded-md flex items-center gap-1 shadow"><span class="w-1.5 h-1.5 rounded-full bg-emerald-300 animate-pulse"></span> Aberto Agora</span>`
-                    : `<span class="absolute bottom-3 left-3 bg-slate-700/90 text-slate-200 text-[10px] font-bold px-2 py-0.5 rounded-md flex items-center gap-1 shadow"><span class="w-1.5 h-1.5 rounded-full bg-slate-400"></span> ${statusInfo.text}</span>`;
+                    ? `<span class="bg-emerald-600/95 backdrop-blur-sm text-white text-[10px] font-bold px-2.5 py-1 rounded-lg flex items-center gap-1.5 shadow"><span class="w-1.5 h-1.5 rounded-full bg-emerald-200 animate-pulse"></span> Aberto Agora</span>`
+                    : `<span class="bg-navy-950/90 backdrop-blur-sm text-slate-200 text-[10px] font-bold px-2.5 py-1 rounded-lg flex items-center gap-1.5 shadow"><span class="w-1.5 h-1.5 rounded-full bg-slate-400"></span> ${statusInfo.text}</span>`;
 
                 const galleryBadgeHtml = imgList.length > 1
-                    ? `<span class="absolute bottom-3 right-3 bg-slate-900/80 text-white text-[10px] font-bold px-2 py-0.5 rounded-md shadow pointer-events-none"><i class="fa-solid fa-images mr-1"></i>${imgList.length} fotos</span>`
+                    ? `<span class="bg-navy-950/85 backdrop-blur-sm text-white text-[10px] font-bold px-2.5 py-1 rounded-lg shadow pointer-events-none"><i class="fa-solid fa-images mr-1 text-brand-400"></i>${imgList.length} fotos</span>`
                     : '';
 
-                let imagesHtml = `<div class="relative h-40 w-full bg-slate-100 overflow-hidden cursor-pointer" onclick="openDetailModal('${item.id}')"><img src="${imgList[0]}" alt="${item.name}" class="parceiro-capa" onerror="this.src='https://images.unsplash.com/photo-1528698827591-e19ccd7bc23d?w=500&auto=format&fit=crop&q=80'">${galleryBadgeHtml}</div>`;
-
-                let promoBadgeHtml = '';
+                let promoBannerHtml = '';
                 if (item.promo && item.promo.trim() !== '') {
-                    promoBadgeHtml = `
-                        <span class="absolute top-12 left-3 bg-amber-500 text-slate-950 text-[10px] font-extrabold px-2.5 py-1 rounded-lg shadow flex items-center gap-1 uppercase tracking-wider pointer-events-none">
-                            <i class="fa-solid fa-gift"></i> ${item.promo.includes('10%') ? '10% OFF' : 'Cupom Exclusivo'}
-                        </span>
+                    promoBannerHtml = `
+                        <div class="mt-3 bg-brand-50 border border-brand-200 rounded-xl px-3 py-2 flex items-center gap-2 text-[11px] font-bold text-navy-950">
+                            <i class="fa-solid fa-gift text-brand-600"></i>
+                            <span class="truncate">${item.promo}</span>
+                        </div>
                     `;
                 }
 
+                // CARD EDITORIAL DE PARCEIRO
                 const cardHTML = `
-                    <div class="bg-white rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col overflow-hidden relative group">
-                        <div class="relative">
-                            ${imagesHtml}
-                            <span class="absolute top-3 left-3 bg-slate-900/80 backdrop-blur-md text-white text-[11px] font-medium px-2.5 py-1 rounded-lg shadow pointer-events-none">
-                                ${item.category}
-                            </span>
-                            <button onclick="toggleFavorite('${item.id}', event)" class="absolute top-3 right-12 w-8 h-8 rounded-full bg-slate-900/60 hover:bg-slate-900/90 flex items-center justify-center transition cursor-pointer shadow">
-                                <i class="${favIconClass} text-sm"></i>
-                            </button>
-                            ${statusBadgeHtml}
-                            ${promoBadgeHtml}
-                            ${item.isFounder ? `
-                                <span class="absolute top-3 right-3 bg-amber-400 text-slate-950 text-[10px] font-extrabold px-2 py-1 rounded-full shadow flex items-center gap-1 uppercase tracking-wider pointer-events-none">
-                                    <i class="fa-solid fa-star text-slate-950"></i>
-                                </span>
-                            ` : ''}
+                    <article class="bg-white rounded-3xl border border-slate-200/90 shadow-sm hover:shadow-2xl hover:border-brand-500/40 hover:-translate-y-1.5 transition-all duration-300 flex flex-col overflow-hidden relative group">
+                        
+                        <!-- 1. IMAGEM DE DESTAQUE (TOPO DO CARD) -->
+                        <div class="relative h-52 w-full bg-slate-100 overflow-hidden cursor-pointer" onclick="openDetailModal('${item.id}')">
+                            <img src="${imgList[0]}" alt="${item.name}" class="parceiro-capa" onerror="this.src='https://images.unsplash.com/photo-1528698827591-e19ccd7bc23d?w=500&auto=format&fit=crop&q=80'">
+                            <div class="absolute inset-0 bg-gradient-to-t from-navy-950/60 via-transparent to-navy-950/20 pointer-events-none"></div>
+                            
+                            <!-- Selo Fundador & Botão Favoritar -->
+                            <div class="absolute top-3.5 right-3.5 flex items-center gap-2">
+                                ${item.isFounder ? `
+                                    <span class="bg-brand-500 text-navy-950 text-[10px] font-extrabold px-2.5 py-1 rounded-full shadow-md flex items-center gap-1 uppercase tracking-wider pointer-events-none">
+                                        <i class="fa-solid fa-star"></i> Fundador
+                                    </span>
+                                ` : ''}
+                                <button onclick="toggleFavorite('${item.id}', event)" class="w-9 h-9 rounded-full bg-navy-950/70 hover:bg-navy-950 backdrop-blur-sm flex items-center justify-center transition cursor-pointer shadow-md" title="Salvar nos Favoritos">
+                                    <i class="${favIconClass} text-sm"></i>
+                                </button>
+                            </div>
+
+                            <!-- Status Aberto/Fechado & Contador de Fotos -->
+                            <div class="absolute bottom-3 left-3.5 right-3.5 flex items-center justify-between pointer-events-none">
+                                ${statusBadgeHtml}
+                                ${galleryBadgeHtml}
+                            </div>
                         </div>
-                        <div class="p-4 flex-grow flex flex-col justify-between">
+
+                        <!-- CORPO EDITORIAL DO CARD -->
+                        <div class="p-6 pt-0 flex-grow flex flex-col justify-between relative">
                             <div>
-                                <h3 onclick="openDetailModal('${item.id}')" class="text-base font-bold text-slate-900 leading-snug group-hover:text-brand-700 transition cursor-pointer">
-                                    ${item.name} <i class="fa-solid fa-circle-info text-brand-500 text-xs ml-1"></i>
+                                <!-- 2. LOGOTIPO / MONOGRAMA E TAG DE CATEGORIA -->
+                                <div class="flex items-end justify-between gap-3 -mt-7 mb-3.5 relative z-10">
+                                    ${getPartnerAvatarHtml(item.name)}
+                                    <span class="border ${getCategoryTagStyle(item.category)} text-[11px] font-extrabold px-3 py-1 rounded-full uppercase tracking-wide shadow-xs">
+                                        ${item.category}
+                                    </span>
+                                </div>
+
+                                <!-- 3. NOME E RESUMO -->
+                                <h3 onclick="openDetailModal('${item.id}')" class="text-lg sm:text-xl font-extrabold text-navy-950 leading-snug group-hover:text-brand-600 transition cursor-pointer flex items-center justify-between gap-2">
+                                    <span>${item.name}</span>
+                                    <i class="fa-solid fa-arrow-up-right-from-square text-xs text-slate-400 group-hover:text-brand-500 transition"></i>
                                 </h3>
-                                <p class="text-xs text-slate-600 mt-2 line-clamp-2 leading-relaxed">
+                                <p class="text-xs sm:text-sm text-slate-600 mt-2 line-clamp-2 leading-relaxed">
                                     ${item.description}
                                 </p>
-                                <div class="mt-4 pt-3 border-t border-slate-100 space-y-1.5 text-xs text-slate-500">
+
+                                ${promoBannerHtml}
+                            </div>
+
+                            <!-- 4. LOCALIZAÇÃO E BOTÃO DE AÇÃO -->
+                            <div class="mt-5 pt-4 border-t border-slate-100 space-y-4">
+                                <div class="space-y-1.5 text-xs text-slate-600">
                                     <div class="flex items-start gap-2">
-                                        <i class="fa-solid fa-location-dot text-brand-600 mt-0.5"></i>
-                                        <span class="font-medium text-slate-700">${item.address}</span>
+                                        <i class="fa-solid fa-location-dot text-brand-500 mt-0.5 text-sm"></i>
+                                        <span class="font-semibold text-navy-950 line-clamp-1">${item.address}</span>
                                     </div>
-                                    <div class="flex items-center gap-2">
-                                        <i class="fa-solid fa-clock text-slate-400"></i>
+                                    <div class="flex items-center gap-2 text-slate-500">
+                                        <i class="fa-solid fa-clock text-navy-700"></i>
                                         <span>${item.hours || 'Consulte horário'}</span>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="mt-5 space-y-2">
-                                <a href="${whatsappUrl}" target="_blank" rel="noopener noreferrer" 
-                                   class="w-full bg-brand-500 hover:bg-brand-600 text-white font-bold py-2.5 px-4 rounded-xl shadow-sm hover:shadow text-xs sm:text-sm flex items-center justify-center gap-2 transition">
-                                    <i class="fa-brands fa-whatsapp text-lg"></i> Chamar no WhatsApp
-                                </a>
-                                <a href="${mapsUrl}" target="_blank" rel="noopener noreferrer"
-                                   class="w-full bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold py-2 px-3 rounded-xl text-xs flex items-center justify-center gap-1.5 transition">
-                                    <i class="fa-solid fa-map-location-dot text-slate-500"></i> Como Chegar
-                                </a>
+
+                                <div class="flex items-center gap-2">
+                                    <a href="${whatsappUrl}" target="_blank" rel="noopener noreferrer" 
+                                       class="flex-grow bg-navy-900 hover:bg-brand-500 text-white hover:text-navy-950 font-extrabold py-3 px-4 rounded-xl shadow-sm text-xs sm:text-sm flex items-center justify-center gap-2 transition-colors duration-200">
+                                        <i class="fa-brands fa-whatsapp text-base"></i> Chamar no WhatsApp
+                                    </a>
+                                    <a href="${mapsUrl}" target="_blank" rel="noopener noreferrer" title="Abrir no Mapa"
+                                       class="w-11 h-11 bg-slate-100 hover:bg-slate-200 text-navy-950 rounded-xl flex items-center justify-center transition flex-shrink-0">
+                                        <i class="fa-solid fa-map-location-dot text-brand-600 text-base"></i>
+                                    </a>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </article>
                 `;
                 grid.innerHTML += cardHTML;
             });
@@ -1319,11 +1428,11 @@
             const statusInfo = checkIsOpen(item.hours);
             const modalStatusEl = document.getElementById('detailStatusBadge');
             if (statusInfo.isOpen) {
-                modalStatusEl.className = 'bg-emerald-100 text-emerald-800 text-[10px] font-bold px-2 py-0.5 rounded-full flex items-center gap-1';
+                modalStatusEl.className = 'bg-emerald-100 text-emerald-800 text-[10px] font-bold px-2.5 py-1 rounded-full flex items-center gap-1';
                 modalStatusEl.innerHTML = '<span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> Aberto Agora';
             } else {
-                modalStatusEl.className = 'bg-slate-100 text-slate-700 text-[10px] font-bold px-2 py-0.5 rounded-full flex items-center gap-1';
-                modalStatusEl.innerHTML = `<span class="w-2 h-2 rounded-full bg-slate-400"></span> ${statusInfo.text}`;
+                modalStatusEl.className = 'bg-slate-200 text-slate-700 text-[10px] font-bold px-2.5 py-1 rounded-full flex items-center gap-1';
+                modalStatusEl.innerHTML = `<span class="w-2 h-2 rounded-full bg-slate-500"></span> ${statusInfo.text}`;
             }
 
             const cleanPhone = item.phone ? item.phone.replace(/\D/g, '') : '85921033841';
@@ -1406,18 +1515,18 @@
                 const row = `
                     <tr class="hover:bg-slate-50 transition">
                         <td class="p-3">
-                            <div class="font-bold text-slate-900">${item.name}</div>
+                            <div class="font-bold text-navy-950">${item.name}</div>
                             <div class="text-[10px] text-slate-400">${item.category} • ${item.address}</div>
                         </td>
                         <td class="p-3 text-slate-600 font-medium">
                             <div>${item.plan || 'Parceiro Fundador'}</div>
-                            ${item.promo ? `<span class="text-[10px] text-amber-700 bg-amber-50 px-2 py-0.5 rounded font-bold inline-block mt-0.5"><i class="fa-solid fa-gift"></i> ${item.promo}</span>` : ''}
+                            ${item.promo ? `<span class="text-[10px] text-amber-800 bg-brand-50 px-2 py-0.5 rounded font-bold inline-block mt-0.5"><i class="fa-solid fa-gift text-brand-500"></i> ${item.promo}</span>` : ''}
                         </td>
                         <td class="p-3 text-slate-600 font-mono">${item.phone}</td>
                         <td class="p-3 text-center">${badgeHtml}</td>
                         <td class="p-3 text-right space-x-1">
-                            <button onclick="openEditModal(${index})" class="bg-blue-50 hover:bg-blue-100 text-blue-600 p-2 rounded-lg transition" title="Editar"><i class="fa-solid fa-pen"></i></button>
-                            <button onclick="deleteBusiness(${index})" class="bg-red-50 hover:bg-red-100 text-red-600 p-2 rounded-lg transition" title="Excluir"><i class="fa-solid fa-trash-can"></i></button>
+                            <button onclick="openEditModal(${index})" class="bg-blue-50 hover:bg-blue-100 text-navy-900 p-2 rounded-lg transition cursor-pointer" title="Editar"><i class="fa-solid fa-pen"></i></button>
+                            <button onclick="deleteBusiness(${index})" class="bg-red-50 hover:bg-red-100 text-red-600 p-2 rounded-lg transition cursor-pointer" title="Excluir"><i class="fa-solid fa-trash-can"></i></button>
                         </td>
                     </tr>
                 `;
