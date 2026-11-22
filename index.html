@@ -53,30 +53,15 @@
         .hide-scrollbar::-webkit-scrollbar { display: none; }
         .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
-        /* Abertura Animada (Splash Screen) */
-        @keyframes splashLogoIn {
-            0% {
-                opacity: 0;
-                transform: scale(0.72) translateY(14px);
-            }
-            70% {
-                opacity: 1;
-                transform: scale(1.04) translateY(0);
-            }
-            100% {
-                opacity: 1;
-                transform: scale(1) translateY(0);
-            }
-        }
-
+        /* Animação da Tela de Abertura (Splash Screen) */
         @keyframes splashTextIn {
             0% {
                 opacity: 0;
-                transform: translateY(12px);
+                transform: translateY(14px) scale(0.96);
             }
             100% {
                 opacity: 1;
-                transform: translateY(0);
+                transform: translateY(0) scale(1);
             }
         }
 
@@ -89,22 +74,9 @@
             }
         }
 
-        @keyframes glowPulse {
-            0%, 100% {
-                box-shadow: 0 0 0 0 rgba(255, 152, 0, 0.45);
-            }
-            50% {
-                box-shadow: 0 0 28px 8px rgba(255, 152, 0, 0.22);
-            }
-        }
-
-        .animate-splash-logo {
-            animation: splashLogoIn 0.75s cubic-bezier(0.16, 1, 0.3, 1) forwards, glowPulse 1.8s ease-in-out infinite;
-        }
-
         .animate-splash-text {
             opacity: 0;
-            animation: splashTextIn 0.65s cubic-bezier(0.16, 1, 0.3, 1) 0.25s forwards;
+            animation: splashTextIn 0.65s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards;
         }
 
         .animate-splash-bar {
@@ -135,7 +107,7 @@
 </head>
 <body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col antialiased selection:bg-brand-500 selection:text-white">
 
-    <!-- ABERTURA ANIMADA DO APP (SPLASH SCREEN) -->
+    <!-- ABERTURA ANIMADA DO APP (SOMENTE ANIMAÇÃO) -->
     <div id="splashScreen" class="fixed inset-0 z-50 bg-gradient-to-b from-navy-950 via-navy-900 to-navy-950 flex flex-col items-center justify-center px-6 text-center transition-opacity duration-300 ease-out">
         <div class="absolute w-72 h-72 bg-brand-500/15 rounded-full blur-3xl pointer-events-none"></div>
 
@@ -144,10 +116,6 @@
         </button>
 
         <div class="relative z-10 flex flex-col items-center max-w-xs w-full">
-            <div class="animate-splash-logo w-28 h-28 sm:w-32 sm:h-32 rounded-3xl overflow-hidden border-2 border-brand-500/80 bg-navy-950 flex items-center justify-center mb-6">
-                <img src="logo-casa-pino.jpeg" alt="Logo Tem No Bairro" class="w-full h-full object-cover" onerror="this.style.display='none'">
-            </div>
-
             <div class="animate-splash-text space-y-2">
                 <h2 class="text-3xl sm:text-4xl font-black tracking-tight text-white">
                     TEM NO <span class="text-brand-500">BAIRRO</span>
@@ -1093,7 +1061,6 @@
                 });
             }
 
-            // Fecha automaticamente após a barra concluir (mesmo se alguma imagem externa atrasar)
             splashTimerId = setTimeout(dismissSplashScreen, 1650);
 
             const savedData = localStorage.getItem(DB_KEY);
