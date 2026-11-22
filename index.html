@@ -53,11 +53,93 @@
         .hide-scrollbar::-webkit-scrollbar { display: none; }
         .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
-        /* Animação da Tela de Abertura (Splash Screen) */
-        @keyframes splashTextIn {
+        /* Tela de Abertura (CSS puro para nunca depender de Tailwind) */
+        #splashScreen {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background: linear-gradient(180deg, #0D134B 0%, #1A237E 55%, #0D134B 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            text-align: center;
+            transition: opacity 0.3s ease-out;
+        }
+
+        #skipSplashBtn {
+            position: absolute;
+            top: 24px;
+            right: 24px;
+            z-index: 20;
+            font-size: 12px;
+            font-weight: 700;
+            color: #e2e8f0;
+            background: rgba(255, 255, 255, 0.14);
+            border: 1px solid rgba(255, 255, 255, 0.22);
+            padding: 8px 16px;
+            border-radius: 9999px;
+            cursor: pointer;
+        }
+
+        #skipSplashBtn:hover {
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.24);
+        }
+
+        .splash-content {
+            position: relative;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 340px;
+            width: 100%;
+            animation: splashPop 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+        }
+
+        .splash-title {
+            font-size: 34px;
+            font-weight: 900;
+            letter-spacing: -0.025em;
+            color: #ffffff;
+            line-height: 1.1;
+            margin: 0;
+        }
+
+        .splash-title span {
+            color: #FF9800;
+        }
+
+        .splash-subtitle {
+            font-size: 13px;
+            color: #cbd5e1;
+            font-weight: 500;
+            margin: 10px 0 0 0;
+        }
+
+        .splash-track {
+            width: 180px;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.14);
+            border-radius: 9999px;
+            overflow: hidden;
+            margin-top: 26px;
+        }
+
+        .splash-fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #FFA726, #FF9800, #FB8C00);
+            border-radius: 9999px;
+            animation: splashBarFill 1.5s ease-in-out forwards;
+        }
+
+        @keyframes splashPop {
             0% {
-                opacity: 0;
-                transform: translateY(14px) scale(0.96);
+                opacity: 0.2;
+                transform: translateY(14px) scale(0.95);
             }
             100% {
                 opacity: 1;
@@ -65,22 +147,9 @@
             }
         }
 
-        @keyframes splashProgress {
-            0% {
-                width: 0%;
-            }
-            100% {
-                width: 100%;
-            }
-        }
-
-        .animate-splash-text {
-            opacity: 0;
-            animation: splashTextIn 0.65s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards;
-        }
-
-        .animate-splash-bar {
-            animation: splashProgress 1.55s ease-in-out forwards;
+        @keyframes splashBarFill {
+            0% { width: 0%; }
+            100% { width: 100%; }
         }
 
         /* Card Editorial - Imagem de Destaque */
@@ -107,27 +176,22 @@
 </head>
 <body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col antialiased selection:bg-brand-500 selection:text-white">
 
-    <!-- ABERTURA ANIMADA DO APP (SOMENTE ANIMAÇÃO) -->
-    <div id="splashScreen" class="fixed inset-0 z-50 bg-gradient-to-b from-navy-950 via-navy-900 to-navy-950 flex flex-col items-center justify-center px-6 text-center transition-opacity duration-300 ease-out">
-        <div class="absolute w-72 h-72 bg-brand-500/15 rounded-full blur-3xl pointer-events-none"></div>
-
-        <button id="skipSplashBtn" type="button" onclick="dismissSplashScreen()" class="absolute top-6 right-6 z-20 text-xs font-bold text-slate-200 hover:text-white bg-white/15 hover:bg-white/25 border border-white/20 px-4 py-2 rounded-full transition cursor-pointer select-none">
+    <!-- ABERTURA ANIMADA DO APP (SOMENTE TEXTO + BARRA) -->
+    <div id="splashScreen">
+        <button id="skipSplashBtn" type="button" onclick="dismissSplashScreen()">
             Pular
         </button>
 
-        <div class="relative z-10 flex flex-col items-center max-w-xs w-full">
-            <div class="animate-splash-text space-y-2">
-                <h2 class="text-3xl sm:text-4xl font-black tracking-tight text-white">
-                    TEM NO <span class="text-brand-500">BAIRRO</span>
-                </h2>
-                <p class="text-xs sm:text-sm text-slate-300 font-medium">
-                    O seu comércio local a um clique de distância
-                </p>
-            </div>
+        <div class="splash-content">
+            <h2 class="splash-title">
+                TEM NO <span>BAIRRO</span>
+            </h2>
+            <p class="splash-subtitle">
+                O seu comércio local a um clique de distância
+            </p>
 
-            <!-- Barra de carregamento -->
-            <div class="animate-splash-text w-44 h-1.5 bg-white/10 rounded-full overflow-hidden mt-7">
-                <div class="animate-splash-bar h-full bg-gradient-to-r from-brand-400 to-brand-600 rounded-full"></div>
+            <div class="splash-track">
+                <div class="splash-fill"></div>
             </div>
         </div>
     </div>
@@ -1061,7 +1125,7 @@
                 });
             }
 
-            splashTimerId = setTimeout(dismissSplashScreen, 1650);
+            splashTimerId = setTimeout(dismissSplashScreen, 1600);
 
             const savedData = localStorage.getItem(DB_KEY);
             if (savedData !== null) {
