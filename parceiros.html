@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seja Parceiro | TEM NO BAIRRO - Seu comércio local na palma da mão do bairro</title>
+    <meta name="robots" content="noindex, nofollow">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#FFF3E0',
+                            100: '#FFE0B2',
+                            400: '#FFA726',
+                            500: '#FF9800', // Laranja Oficial
+                            600: '#FB8C00',
+                            700: '#F57C00',
+                            800: '#EF6C00',
+                            900: '#E65100',
+                        },
+                        navy: {
+                            700: '#283593',
+                            800: '#1F2A8A',
+                            900: '#1A237E', // Azul Marinho Oficial
+                            950: '#0D134B',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Plus Jakarta Sans', 'Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
+        h1, h2, h3, h4 { font-family: 'Plus Jakarta Sans', 'Inter', sans-serif; }
+        .faq-answer { display: none; }
+        .faq-item.open .faq-answer { display: block; }
+        .faq-item.open .faq-chevron { transform: rotate(180deg); }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased selection:bg-brand-500 selection:text-white">
+
+    <!-- BARRA SUPERIOR FIXA -->
+    <header class="bg-navy-950 text-white border-b border-white/10 py-4 px-4 sticky top-0 z-30 shadow-lg">
+        <div class="max-w-6xl mx-auto flex items-center justify-between gap-3">
+            <div class="flex items-center gap-3">
+                <div class="w-11 h-11 rounded-2xl overflow-hidden border-2 border-brand-500/70 bg-navy-900 flex-shrink-0">
+                    <img src="logo-casa-pino.jpeg" alt="Logo Tem No Bairro" class="w-full h-full object-cover" onerror="this.style.display='none'">
+                </div>
+                <div>
+                    <span class="text-lg sm:text-xl font-black tracking-tight text-white block leading-none">
+                        TEM NO <span class="text-brand-500">BAIRRO</span>
+                    </span>
+                    <span class="text-[11px] text-slate-300 font-medium">Canal Exclusivo para Lojistas & Prestadores de Serviço</span>
+                </div>
+            </div>
+
+            <div class="flex items-center gap-2 sm:gap-3">
+                <a href="https://wa.me/5585921033841?text=Olá%20Robinson!%20Vi%20a%20página%20de%20parceiros%20do%20Tem%20No%20Bairro%20e%20quero%20colocar%20meu%20negócio%20no%20app." target="_blank" rel="noopener noreferrer" class="hidden md:inline-flex items-center gap-1.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs px-4 py-2.5 rounded-xl transition">
+                    <i class="fa-brands fa-whatsapp text-base"></i> Falar com o Fundador
+                </a>
+                <a href="https://tally.so/r/VpjbRy" target="_blank" rel="noopener noreferrer" class="bg-brand-500 hover:bg-brand-600 text-navy-950 font-extrabold text-xs px-4 py-2.5 rounded-xl shadow-md transition flex items-center gap-1.5">
+                    <i class="fa-solid fa-rocket"></i> Fazer Cadastro
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO DE IMPACTO E CONVERSÃO -->
+    <section class="bg-gradient-to-b from-navy-950 via-navy-900 to-navy-950 text-white py-14 sm:py-20 px-4 relative overflow-hidden border-b border-white/10">
+        <div class="absolute top-0 left-1/4 w-96 h-96 bg-brand-500/15 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="max-w-5xl mx-auto text-center space-y-6 relative z-10">
+            <span class="inline-flex items-center gap-2 bg-brand-500/20 text-brand-400 border border-brand-500/40 text-xs font-extrabold px-4 py-1.5 rounded-full uppercase tracking-wider">
+                <i class="fa-solid fa-location-dot text-brand-500"></i> Maracanaú • Pacatuba • Maranguape
+            </span>
+
+            <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.12]">
+                Quem mora no bairro precisa saber que você existe — <span class="text-brand-500">antes que vá comprar do concorrente.</span>
+            </h1>
+
+            <p class="text-slate-200 text-base sm:text-xl max-w-3xl mx-auto leading-relaxed font-medium">
+                Todo dia um vizinho procura exatamente o que você vende ou o serviço que você faz. Se o seu negócio não está onde ele busca, você está entregando esse cliente de bandeja para quem aparece primeiro.
+            </p>
+
+            <div class="bg-white/5 border border-white/15 rounded-2xl p-4 sm:p-5 max-w-2xl mx-auto text-xs sm:text-sm text-brand-300 font-semibold flex items-center justify-center gap-2.5">
+                <i class="fa-solid fa-circle-check text-emerald-400 text-lg flex-shrink-0"></i>
+                <span>Vitrine digital completa no <strong class="text-white">TEM NO BAIRRO</strong> com <strong class="text-white">ZERO comissão por venda</strong> e contato direto no seu WhatsApp.</span>
+            </div>
+
+            <div class="pt-3 flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="https://tally.so/r/VpjbRy" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto bg-brand-500 hover:bg-brand-600 text-navy-950 font-black text-sm sm:text-base px-8 py-4 rounded-2xl shadow-2xl shadow-brand-500/30 transition transform hover:-translate-y-0.5 flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-star"></i> Garantir Meu Espaço no App
+                </a>
+                <a href="https://wa.me/5585921033841?text=Olá%20Robinson!%20Quero%20entender%20melhor%20como%20funciona%20a%20parceria%20no%20Tem%20No%20Bairro." target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-sm sm:text-base px-7 py-4 rounded-2xl shadow-xl transition flex items-center justify-center gap-2">
+                    <i class="fa-brands fa-whatsapp text-xl"></i> Falar com Robinson no WhatsApp
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- A HISTÓRIA E A ORIGEM (CONEXÃO HUMANA E REAL) -->
+    <section class="py-14 sm:py-20 px-4 bg-white border-b border-slate-200">
+        <div class="max-w-5xl mx-auto">
+            <div class="bg-slate-50 border border-slate-200/90 rounded-3xl p-7 sm:p-11 shadow-sm space-y-6">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-200 pb-6">
+                    <div class="space-y-1">
+                        <span class="text-xs font-extrabold uppercase tracking-widest text-brand-600 flex items-center gap-2">
+                            <i class="fa-solid fa-heart text-brand-500"></i> Nossa História & Propósito
+                        </span>
+                        <h2 class="text-2xl sm:text-3xl font-black text-navy-950">
+                            Nasceu da necessidade real de quem vive aqui em Maracanaú
+                        </h2>
+                    </div>
+                    <div class="bg-navy-900 text-white px-4 py-2.5 rounded-2xl text-xs font-bold flex items-center gap-2 self-start sm:self-auto">
+                        <i class="fa-solid fa-shield-check text-brand-500 text-base"></i>
+                        <span>CNPJ: 69.805.020/0001-36</span>
+                    </div>
+                </div>
+
+                <div class="space-y-4 text-slate-700 text-sm sm:text-base leading-relaxed">
+                    <p>
+                        Eu sou morador de <strong>Maracanaú</strong> e, por anos, vivi na pele uma situação que todo mundo aqui conhece: precisar de um serviço rápido, de um comércio de confiança, de uma peça, de um lanche ou de um atendimento perto de casa e não ter um lugar único, organizado e confiável para achar quem atende ali no bairro.
+                    </p>
+                    <p>
+                        Muitas vezes o comércio bom está a duas ruas de distância, tem qualidade, tem preço justo e atende bem, mas fica invisível porque quem precisa não sabe que ele existe naquele momento — ou porque se perde no meio de redes sociais cheias de distrações e anúncios de longe.
+                    </p>
+                    <p class="font-semibold text-navy-950 bg-brand-50 border-l-4 border-brand-500 p-4 rounded-r-2xl">
+                        Foi dessa vivência diária que nasceu o <strong>TEM NO BAIRRO</strong>: não apenas como um catálogo comum, mas como um movimento de fortalecimento da economia local de Maracanaú, Pacatuba e Maranguape — onde o morador encontra soluções rápidas do dia a dia e o empreendedor local conquista clientes reais da própria região.
+                    </p>
+                </div>
+
+                <div class="pt-2 flex flex-wrap items-center justify-between gap-4">
+                    <div class="text-xs text-slate-600 font-medium">
+                        <strong>Fundador do projeto:</strong> Robinson — Compromisso com seriedade, transparência e resultado local.
+                    </div>
+                    <a href="https://wa.me/5585921033841?text=Olá%20Robinson!%20Gostei%20muito%20da%20história%20do%20Tem%20No%20Bairro%20e%20quero%20conversar%20sobre%20meu%20negócio." target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-navy-900 hover:bg-navy-800 text-white font-bold text-xs sm:text-sm px-5 py-3 rounded-xl transition">
+                        <i class="fa-brands fa-whatsapp text-emerald-400 text-base"></i> Conversar Direto com o Fundador
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- POR QUE TER O SEU NEGÓCIO NO TEM NO BAIRRO É ESSENCIAL (PROVOCAÇÃO DE CONVERSÃO) -->
+    <section class="py-14 sm:py-20 px-4 bg-navy-950 text-white border-b border-white/10">
+        <div class="max-w-5xl mx-auto space-y-10">
+            <div class="text-center max-w-3xl mx-auto space-y-3">
+                <span class="bg-brand-500/20 text-brand-400 border border-brand-500/30 text-xs font-extrabold px-4 py-1.5 rounded-full uppercase tracking-wider inline-block">
+                    A Realidade do Comércio Local
+                </span>
+                <h2 class="text-2xl sm:text-4xl font-black tracking-tight">
+                    A porta da sua loja pode estar aberta, mas e a presença digital do seu bairro?
+                </h2>
+                <p class="text-sm sm:text-base text-slate-300">
+                    Hoje, antes de sair de casa ou pedir algo, o morador pega o celular. Quem não está na vitrine local perde espaço para quem se posiciona primeiro.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-navy-900 border border-white/10 rounded-3xl p-6 space-y-3">
+                    <div class="w-12 h-12 rounded-2xl bg-brand-500/20 text-brand-400 flex items-center justify-center text-xl font-bold">
+                        <i class="fa-solid fa-eye-slash"></i>
+                    </div>
+                    <h3 class="text-lg font-extrabold text-white">Invisível na hora da decisão</h3>
+                    <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                        Quando um morador busca um serviço no bairro e não encontra o seu nome, ele liga para o primeiro contato que aparece. Estar no app é garantir presença no momento exato da compra.
+                    </p>
+                </div>
+
+                <div class="bg-navy-900 border border-white/10 rounded-3xl p-6 space-y-3">
+                    <div class="w-12 h-12 rounded-2xl bg-rose-500/20 text-rose-400 flex items-center justify-center text-xl font-bold">
+                        <i class="fa-solid fa-percent"></i>
+                    </div>
+                    <h3 class="text-lg font-extrabold text-white">Refém de taxas e comissões</h3>
+                    <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                        Em plataformas que cobram porcentagem sobre cada venda, você trabalha mais e vê a margem encolher. No <strong class="text-brand-400">TEM NO BAIRRO</strong>, a venda é sua e o lucro é 100% seu.
+                    </p>
+                </div>
+
+                <div class="bg-navy-900 border border-white/10 rounded-3xl p-6 space-y-3">
+                    <div class="w-12 h-12 rounded-2xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-xl font-bold">
+                        <i class="fa-solid fa-users"></i>
+                    </div>
+                    <h3 class="text-lg font-extrabold text-white">Vizinho fideliza vizinho</h3>
+                    <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                        O cliente do bairro tem recorrência: se ele compra bem, faz a barba, pede comida, contrata serviço ou compra um presente perto de casa, ele volta sempre que precisa.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DINÂMICAS DO APLICATIVO: COMO MANTEMOS O MORADOR ATIVO TODOS OS DIAS -->
+    <section class="py-14 sm:py-20 px-4 bg-white border-b border-slate-200">
+        <div class="max-w-5xl mx-auto space-y-10">
+            <div class="text-center max-w-3xl mx-auto space-y-2">
+                <span class="text-xs font-extrabold uppercase tracking-widest text-brand-600">Dinâmica da Plataforma</span>
+                <h2 class="text-2xl sm:text-4xl font-black text-navy-950">
+                    Por que o morador abre o TEM NO BAIRRO — e como isso ajuda a sua loja
+                </h2>
+                <p class="text-sm text-slate-600">
+                    Criamos um ecossistema útil de verdade. Enquanto o morador usa o app para resolver coisas do dia a dia, ele descobre e se conecta com o seu negócio.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-slate-50 border border-slate-200 rounded-3xl p-6 space-y-2">
+                    <div class="flex items-center gap-3">
+                        <span class="w-9 h-9 rounded-xl bg-navy-900 text-brand-500 flex items-center justify-center font-extrabold text-sm">01</span>
+                        <h3 class="font-extrabold text-navy-950 text-base">Vitrine Inteligente com Filtros por Cidade e Categoria</h3>
+                    </div>
+                    <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                        O morador filtra por <strong>Maracanaú, Pacatuba ou Maranguape</strong>, busca por palavra-chave, vê fotos, descrição, horário de funcionamento (com indicador de <strong>Aberto Agora</strong>) e abre a rota direto no Google Maps.
+                    </p>
+                </div>
+
+                <div class="bg-slate-50 border border-slate-200 rounded-3xl p-6 space-y-2">
+                    <div class="flex items-center gap-3">
+                        <span class="w-9 h-9 rounded-xl bg-brand-500 text-navy-950 flex items-center justify-center font-extrabold text-sm">02</span>
+                        <h3 class="font-extrabold text-navy-950 text-base">Cupons e Vantagens que Destravam a Primeira Compra</h3>
+                    </div>
+                    <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                        Você pode ativar benefícios como desconto na 1ª compra pelo app, brinde/bebida grátis ou oferta especial, com botão de resgate direto no seu WhatsApp.
+                    </p>
+                </div>
+
+                <div class="bg-slate-50 border border-slate-200 rounded-3xl p-6 space-y-2">
+                    <div class="flex items-center gap-3">
+                        <span class="w-9 h-9 rounded-xl bg-emerald-600 text-white flex items-center justify-center font-extrabold text-sm">03</span>
+                        <h3 class="font-extrabold text-navy-950 text-base">Mural de Imóveis Direto com o Proprietário</h3>
+                    </div>
+                    <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                        Moradores que buscam casas, terrenos ou pontos comerciais para venda ou aluguel direto com o dono também acessam a plataforma, ampliando o fluxo de pessoas interessadas na região.
+                    </p>
+                </div>
+
+                <div class="bg-slate-50 border border-slate-200 rounded-3xl p-6 space-y-2">
+                    <div class="flex items-center gap-3">
+                        <span class="w-9 h-9 rounded-xl bg-navy-900 text-white flex items-center justify-center font-extrabold text-sm">04</span>
+                        <h3 class="font-extrabold text-navy-950 text-base">Utilidade Pública, Saúde (UBS) & Oportunidades de Emprego</h3>
+                    </div>
+                    <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                        Telefones de emergência (190, 192, 193, 199), informações municipais, postos de saúde, vagas SINE/IDT e benefícios sociais fazem o morador manter o app salvo e voltar sempre.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DIRETRIZES E REGRAS DA PARCERIA (TRANSPARÊNCIA TOTAL) -->
+    <section class="py-14 sm:py-20 px-4 bg-slate-50 border-b border-slate-200">
+        <div class="max-w-5xl mx-auto space-y-8">
+            <div class="text-center max-w-2xl mx-auto space-y-2">
+                <span class="text-xs font-extrabold uppercase tracking-widest text-navy-900">Nossas Diretrizes</span>
+                <h2 class="text-2xl sm:text-3xl font-black text-navy-950">
+                    Como funciona a parceria com seriedade e clareza
+                </h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs sm:text-sm">
+                <div class="bg-white border border-slate-200 rounded-2xl p-5 flex items-start gap-3.5">
+                    <i class="fa-solid fa-circle-check text-emerald-600 text-lg mt-0.5"></i>
+                    <div>
+                        <strong class="text-navy-950 block">Negociação 100% direta com você:</strong>
+                        <span class="text-slate-600">O cliente clica no botão do WhatsApp e fala diretamente com a sua equipe para fechar pedido, orçamento, agendamento ou entrega.</span>
+                    </div>
+                </div>
+
+                <div class="bg-white border border-slate-200 rounded-2xl p-5 flex items-start gap-3.5">
+                    <i class="fa-solid fa-circle-check text-emerald-600 text-lg mt-0.5"></i>
+                    <div>
+                        <strong class="text-navy-950 block">Zero intermediação financeira ou comissão:</strong>
+                        <span class="text-slate-600">Não cobramos comissão por venda realizada. O pagamento do cliente vai direto para o seu caixa ou Pix.</span>
+                    </div>
+                </div>
+
+                <div class="bg-white border border-slate-200 rounded-2xl p-5 flex items-start gap-3.5">
+                    <i class="fa-solid fa-circle-check text-emerald-600 text-lg mt-0.5"></i>
+                    <div>
+                        <strong class="text-navy-950 block">Compromisso com bom atendimento ao morador:</strong>
+                        <span class="text-slate-600">Valorizamos parceiros que honram promoções divulgadas no app, mantêm horários atualizados e tratam bem os clientes do bairro.</span>
+                    </div>
+                </div>
+
+                <div class="bg-white border border-slate-200 rounded-2xl p-5 flex items-start gap-3.5">
+                    <i class="fa-solid fa-circle-check text-emerald-600 text-lg mt-0.5"></i>
+                    <div>
+                        <strong class="text-navy-950 block">Atualização ágil de dados e campanhas:</strong>
+                        <span class="text-slate-600">Você pode atualizar fotos, promoções, horários ou informações do seu anúncio sempre que precisar, com suporte próximo.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PLANOS MENSAIS DE PARCERIA -->
+    <section id="planosMensais" class="py-16 sm:py-24 px-4 bg-navy-950 text-white relative overflow-hidden">
+        <div class="max-w-6xl mx-auto space-y-12 relative z-10">
+            <div class="text-center max-w-3xl mx-auto space-y-3">
+                <span class="bg-brand-500/20 text-brand-400 border border-brand-500/30 text-xs font-extrabold px-4 py-1.5 rounded-full uppercase tracking-wider inline-block">
+                    Planos Mensais
+                </span>
+                <h2 class="text-2xl sm:text-4xl font-black tracking-tight">
+                    Escolha o plano que coloca o seu negócio em evidência
+                </h2>
+                <p class="text-sm sm:text-base text-slate-300">
+                    Planos transparentes, sem taxa escondida por venda e com retorno focado em gerar visibilidade e contatos reais na região.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-7 items-stretch pt-2">
+                <!-- PLANO PARCEIRO FUNDADOR -->
+                <div class="bg-navy-900 rounded-3xl p-7 sm:p-8 border-2 border-brand-500 shadow-2xl shadow-brand-500/15 flex flex-col justify-between relative transform lg:-translate-y-3">
+                    <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-brand-500 text-navy-950 text-[11px] font-black px-4 py-1.5 rounded-full uppercase tracking-wider shadow-lg whitespace-nowrap">
+                        ⭐ Vagas Limitadas • Condição Especial
+                    </div>
+                    <div class="space-y-5 pt-2">
+                        <div>
+                            <h3 class="text-2xl font-extrabold text-white">Parceiro Fundador</h3>
+                            <p class="text-xs text-slate-300 mt-1">Ideal para quem quer entrar no início com valor promocional e selo de destaque.</p>
+                        </div>
+                        <div class="py-4 border-y border-white/10">
+                            <span class="text-4xl sm:text-5xl font-black text-brand-500">R$ 39,90</span>
+                            <span class="text-xs text-slate-300 font-medium">/mês</span>
+                        </div>
+                        <ul class="space-y-3 text-xs sm:text-sm text-slate-200">
+                            <li class="flex items-start gap-2.5"><i class="fa-solid fa-circle-check text-brand-500 mt-1"></i> <span>Vitrine completa com carrossel de fotos, descrição, horário e mapa</span></li>
+                            <li class="flex items-start gap-2.5"><i class="fa-solid fa-circle-check text-brand-500 mt-1"></i> <span>Botão direto para o seu WhatsApp e link do seu Instagram</span></li>
+                            <li class="flex items-start gap-2.5"><i class="fa-solid fa-circle-check text-brand-500 mt-1"></i> <span>Ativação de promoções e cupons exclusivos no aplicativo</span></li>
+                            <li class="flex items-start gap-2.5 font-bold text-brand-400"><i class="fa-solid fa-star text-brand-500 mt-1"></i> <span>Selo Oficial "Parceiro Fundador" na vitrine</span></li>
+                            <li class="flex items-start gap-2.5"><i class="fa-solid fa-circle-check text-brand-500 mt-1"></i> <span>Zero comissão sobre as suas vendas</span></li>
+                        </ul>
+                    </div>
+                    <div class="mt-8 space-y-2.5">
+                        <a href="https://tally.so/r/VpjbRy" target="_blank" rel="noopener noreferrer" class="w-full text-center bg-brand-500 hover:bg-brand-600 text-navy-950 font-black py-3.5 rounded-xl shadow-lg text-xs sm:text-sm transition block">
+                            Quero Ser Parceiro Fundador
+                        </a>
+                        <a href="https://wa.me/5585921033841?text=Olá%20Robinson!%20Tenho%20interesse%20no%20plano%20Parceiro%20Fundador%20(R$%2039,90/mês)%20no%20Tem%20No%20Bairro." target="_blank" rel="noopener noreferrer" class="w-full text-center bg-white/10 hover:bg-white/20 text-white font-bold py-2.5 rounded-xl text-xs transition block">
+                            <i class="fa-brands fa-whatsapp text-emerald-400 mr-1"></i> Tirar dúvida no WhatsApp
+                        </a>
+                    </div>
+                </div>
+
+                <!-- PLANO REGULAR -->
+                <div class="bg-navy-900/75 rounded-3xl p-7 sm:p-8 border border-white/10 shadow-xl flex flex-col justify-between">
+                    <div class="space-y-5">
+                        <div>
+                            <h3 class="text-2xl font-extrabold text-white">Plano Regular</h3>
+                            <p class="text-xs text-slate-400 mt-1">Para negócios que querem presença contínua na vitrine e reforço nas redes.</p>
+                        </div>
+                        <div class="py-4 border-y border-white/10">
+                            <span class="text-4xl sm:text-5xl font-black text-white">R$ 59,90</span>
+                            <span class="text-xs text-slate-400 font-medium">/mês</span>
+                        </div>
+                        <ul class="space-y-3 text-xs sm:text-sm text-slate-300">
+                            <li class="flex items-start gap-2.5"><i class="fa-solid fa-circle-check text-emerald-400 mt-1"></i> <span>Ficha completa na vitrine local com fotos, WhatsApp e Instagram</span></li>
+                            <li class="flex items-start gap-2.5"><i class="fa-solid fa-circle-check text-emerald-400 mt-1"></i> <span>Direito a divulgar promoções e vantagens para os moradores</span></li>
+                            <li class="flex items-start gap-2.5"><i class="fa-solid fa-circle-check text-emerald-400 mt-1"></i> <span>1 Post mensal de divulgação no Instagram oficial do projeto</span></li>
+                            <li class="flex items-start gap-2.5"><i class="fa-solid fa-circle-check text-emerald-400 mt-1"></i> <span>Inclusão nas campanhas de divulgação regional</span></li>
+                            <li class="flex items-start gap-2.5"><i class="fa-solid fa-circle-check text-emerald-400 mt-1"></i> <span>Zero comissão sobre vendas</span></li>
+                        </ul>
+                    </div>
+                    <div class="mt-8 space-y-2.5">
+                        <a href="https://tally.so/r/VpjbRy" target="_blank" rel="noopener noreferrer" class="w-full text-center bg-brand-500 hover:bg-brand-600 text-navy-950 font-extrabold py-3.5 rounded-xl shadow text-xs sm:text-sm transition block">
+                            Escolher Plano Regular
+                        </a>
+                        <a href="https://wa.me/5585921033841?text=Olá%20Robinson!%20Tenho%20interesse%20no%20Plano%20Regular%20(R$%2059,90/mês)%20no%20Tem%20No%20Bairro." target="_blank" rel="noopener noreferrer" class="w-full text-center bg-white/10 hover:bg-white/20 text-white font-bold py-2.5 rounded-xl text-xs transition block">
+                            <i class="fa-brands fa-whatsapp text-emerald-400 mr-1"></i> Falar com o Fundador
+                        </a>
+                    </div>
+                </div>
+
+                <!-- PLANO PREMIUM -->
+                <div class="bg-navy-900/75 rounded-3xl p-7 sm:p-8 border border-white/10 shadow-xl flex flex-col justify-between">
+                    <div class="space-y-5">
+                        <div>
+                            <span class="text-[10px] font-extrabold text-brand-400 bg-brand-500/20 border border-brand-500/30 px-2.5 py-1 rounded-full uppercase tracking-wider">Máxima Visibilidade</span>
+                            <h3 class="text-2xl font-extrabold text-white mt-2">Plano Premium</h3>
+                            <p class="text-xs text-slate-400 mt-1">Para quem quer se destacar com frequência e acelerar a presença na região.</p>
+                        </div>
+                        <div class="py-4 border-y border-white/10">
+                            <span class="text-4xl sm:text-5xl font-black text-white">R$ 97,00</span>
+                            <span class="text-xs text-slate-400 font-medium">/mês</span>
+                        </div>
+                        <ul class="space-y-3 text-xs sm:text-sm text-slate-300">
+                            <li class="flex items-start gap-2.5 font-bold text-brand-400"><i class="fa-solid fa-bolt text-brand-500 mt-1"></i> <span>Posição de destaque privilegiada na vitrine</span></li>
+                            <li class="flex items-start gap-2.5"><i class="fa-solid fa-circle-check text-emerald-400 mt-1"></i> <span>2 Posts + Stories semanais de divulgação do seu negócio</span></li>
+                            <li class="flex items-start gap-2.5"><i class="fa-solid fa-circle-check text-emerald-400 mt-1"></i> <span>Destaque de promoções, novidades e vagas de emprego</span></li>
+                            <li class="flex items-start gap-2.5"><i class="fa-solid fa-circle-check text-emerald-400 mt-1"></i> <span>Botão direto para o WhatsApp, Instagram e localização</span></li>
+                            <li class="flex items-start gap-2.5"><i class="fa-solid fa-circle-check text-emerald-400 mt-1"></i> <span>Zero comissão sobre vendas</span></li>
+                        </ul>
+                    </div>
+                    <div class="mt-8 space-y-2.5">
+                        <a href="https://tally.so/r/VpjbRy" target="_blank" rel="noopener noreferrer" class="w-full text-center bg-brand-500 hover:bg-brand-600 text-navy-950 font-extrabold py-3.5 rounded-xl shadow text-xs sm:text-sm transition block">
+                            Escolher Plano Premium
+                        </a>
+                        <a href="https://wa.me/5585921033841?text=Olá%20Robinson!%20Tenho%20interesse%20no%20Plano%20Premium%20(R$%2097,00/mês)%20no%20Tem%20No%20Bairro." target="_blank" rel="noopener noreferrer" class="w-full text-center bg-white/10 hover:bg-white/20 text-white font-bold py-2.5 rounded-xl text-xs transition block">
+                            <i class="fa-brands fa-whatsapp text-emerald-400 mr-1"></i> Falar com o Fundador
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PERGUNTAS FREQUENTES (INTERATIVO) -->
+    <section class="py-14 sm:py-16 px-4 bg-white border-b border-slate-200">
+        <div class="max-w-4xl mx-auto space-y-8">
+            <div class="text-center space-y-2">
+                <span class="text-xs font-extrabold uppercase tracking-widest text-brand-600">Dúvidas Comuns</span>
+                <h2 class="text-2xl sm:text-3xl font-black text-navy-950">Tudo o que você precisa saber antes de entrar</h2>
+            </div>
+
+            <div class="space-y-3">
+                <div class="faq-item open bg-slate-50 border border-slate-200 rounded-2xl p-5">
+                    <button type="button" onclick="toggleFaq(this)" class="w-full flex items-center justify-between text-left gap-4 cursor-pointer">
+                        <span class="font-extrabold text-navy-950 text-sm sm:text-base">Preciso pagar comissão por venda feita pelo aplicativo?</span>
+                        <i class="fa-solid fa-chevron-down faq-chevron text-brand-600 transition-transform"></i>
+                    </button>
+                    <p class="faq-answer text-xs sm:text-sm text-slate-600 mt-3 leading-relaxed">
+                        <strong>Não.</strong> O <strong>TEM NO BAIRRO</strong> não cobra comissão sobre suas vendas nem porcentagem por pedido. O cliente fala direto com você no seu WhatsApp e você negocia livremente.
+                    </p>
+                </div>
+
+                <div class="faq-item bg-slate-50 border border-slate-200 rounded-2xl p-5">
+                    <button type="button" onclick="toggleFaq(this)" class="w-full flex items-center justify-between text-left gap-4 cursor-pointer">
+                        <span class="font-extrabold text-navy-950 text-sm sm:text-base">Serve para prestadores de serviço autônomos ou quem trabalha em casa?</span>
+                        <i class="fa-solid fa-chevron-down faq-chevron text-brand-600 transition-transform"></i>
+                    </button>
+                    <p class="faq-answer text-xs sm:text-sm text-slate-600 mt-3 leading-relaxed">
+                        <strong>Sim!</strong> Se você faz consertos, instalações, estética, doces/salgados por encomenda, artesanato, manutenção, aulas ou qualquer serviço local, ter sua vitrine no bairro ajuda quem mora perto a encontrar seu trabalho na hora em que precisa.
+                    </p>
+                </div>
+
+                <div class="faq-item bg-slate-50 border border-slate-200 rounded-2xl p-5">
+                    <button type="button" onclick="toggleFaq(this)" class="w-full flex items-center justify-between text-left gap-4 cursor-pointer">
+                        <span class="font-extrabold text-navy-950 text-sm sm:text-base">Como faço para colocar meu negócio no ar?</span>
+                        <i class="fa-solid fa-chevron-down faq-chevron text-brand-600 transition-transform"></i>
+                    </button>
+                    <p class="faq-answer text-xs sm:text-sm text-slate-600 mt-3 leading-relaxed">
+                        Basta clicar em <strong>Fazer Cadastro</strong> para preencher o formulário no Tally ou chamar o fundador diretamente no <strong>WhatsApp</strong> para enviarmos os detalhes e montar a sua vitrine.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CHAMADA FINAL DE CONVERSÃO -->
+    <section class="py-14 sm:py-20 px-4 bg-gradient-to-br from-brand-500 via-brand-600 to-brand-700 text-navy-950">
+        <div class="max-w-4xl mx-auto text-center space-y-6">
+            <h2 class="text-2xl sm:text-4xl font-black tracking-tight">
+                Não deixe o seu vizinho procurar quem ele não conhece. Coloque o seu negócio no TEM NO BAIRRO!
+            </h2>
+            <p class="text-sm sm:text-lg font-semibold text-navy-950/90 max-w-2xl mx-auto">
+                Dê o próximo passo agora: preencha o formulário rápido de cadastro ou fale direto com Robinson pelo WhatsApp.
+            </p>
+            <div class="pt-2 flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="https://tally.so/r/VpjbRy" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto bg-navy-950 hover:bg-navy-900 text-white font-black text-sm sm:text-base px-8 py-4 rounded-2xl shadow-2xl transition flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-file-signature text-brand-500"></i> Preencher Cadastro no Tally
+                </a>
+                <a href="https://wa.me/5585921033841?text=Olá%20Robinson!%20Estou%20na%20página%20de%20parceiros%20do%20Tem%20No%20Bairro%20e%20quero%20fechar%20minha%20parceria!" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto bg-white hover:bg-slate-100 text-navy-950 font-black text-sm sm:text-base px-8 py-4 rounded-2xl shadow-xl transition flex items-center justify-center gap-2">
+                    <i class="fa-brands fa-whatsapp text-emerald-600 text-xl"></i> Chamar no WhatsApp Agora
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- POLÍTICA DE PRIVACIDADE, LGPD E DADOS DA EMPRESA -->
+    <section id="privacidade-lgpd" class="py-14 px-4 bg-slate-100 border-t border-slate-200 text-slate-700">
+        <div class="max-w-5xl mx-auto space-y-6">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-300 pb-4">
+                <div class="flex items-center gap-2.5">
+                    <i class="fa-solid fa-shield-halved text-navy-900 text-xl"></i>
+                    <h2 class="text-lg sm:text-xl font-black text-navy-950">Política de Privacidade, LGPD e Dados Institucionais</h2>
+                </div>
+                <span class="text-xs font-bold text-navy-950 bg-white px-3 py-1.5 rounded-xl border border-slate-300">
+                    CNPJ: 69.805.020/0001-36
+                </span>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs sm:text-sm leading-relaxed">
+                <div class="bg-white rounded-2xl p-6 border border-slate-200 space-y-3">
+                    <h3 class="font-extrabold text-navy-950 text-base">1. Empresa Constituída e Transparência</h3>
+                    <p>
+                        O <strong>TEM NO BAIRRO</strong> é operado sob o <strong>CNPJ 69.805.020/0001-36</strong>, com atuação voltada à divulgação de comércios locais, prestadores de serviço, utilidade pública e classificados comunitários em <strong>Maracanaú, Pacatuba e Maranguape - CE</strong>.
+                    </p>
+                    <p>
+                        A plataforma atua como meio de divulgação e conexão digital, não realizando intermediação financeira de vendas realizadas diretamente entre anunciantes e consumidores.
+                    </p>
+                </div>
+
+                <div class="bg-white rounded-2xl p-6 border border-slate-200 space-y-3">
+                    <h3 class="font-extrabold text-navy-950 text-base">2. Conformidade com a LGPD (Lei nº 13.709/2018)</h3>
+                    <p>
+                        Respeitamos integralmente a Lei Geral de Proteção de Dados Pessoais (LGPD). Os dados informados por lojistas, prestadores de serviço ou visitantes (como nome, telefone/WhatsApp, endereço comercial, redes sociais e informações de cadastro) são utilizados exclusivamente para:
+                    </p>
+                    <ul class="list-disc pl-5 space-y-1 text-slate-600">
+                        <li>Viabilizar o atendimento, suporte e criação da vitrine comercial no aplicativo;</li>
+                        <li>Exibir publicamente apenas os dados comerciais destinados à divulgação do estabelecimento;</li>
+                        <li>Atender solicitações de atualização, correção ou remoção de dados a pedido do titular.</li>
+                    </ul>
+                    <p>
+                        Para solicitar atualização ou exclusão de dados conforme a LGPD, entre em contato pelo WhatsApp oficial <strong>(85) 92103-3841</strong>.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BOTÃO FLUTUANTE WHATSAPP -->
+    <a href="https://wa.me/5585921033841?text=Olá%20Robinson!%20Vi%20a%20página%20de%20parceiros%20do%20Tem%20No%20Bairro%20e%20quero%20falar%20com%20você."
+       target="_blank"
+       rel="noopener noreferrer"
+       class="fixed bottom-5 right-5 bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold py-3.5 px-5 rounded-full shadow-2xl flex items-center gap-2.5 z-40 transition transform hover:scale-105 text-xs sm:text-sm border border-emerald-300/30">
+        <i class="fa-brands fa-whatsapp text-xl"></i> Falar com o Fundador
+    </a>
+
+    <!-- RODAPÉ COM REDES SOCIAIS E DADOS OFICIAIS -->
+    <footer class="bg-navy-950 text-slate-400 text-xs py-10 px-4 border-t border-white/10">
+        <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-6 text-center sm:text-left">
+            <div class="space-y-1">
+                <div class="text-white font-black text-lg tracking-tight">
+                    TEM NO <span class="text-brand-500">BAIRRO</span>
+                </div>
+                <p class="text-slate-300 font-medium">CNPJ: 69.805.020/0001-36 • Maracanaú, Pacatuba e Maranguape - CE</p>
+                <p class="text-slate-400">Em conformidade com a LGPD (Lei nº 13.709/2018)</p>
+            </div>
+
+            <div class="flex flex-wrap items-center justify-center gap-3 font-bold text-slate-200">
+                <a href="https://instagram.com/temnobairro_oficial" target="_blank" rel="noopener noreferrer" class="bg-white/10 hover:bg-white/20 px-4 py-2.5 rounded-xl transition flex items-center gap-2">
+                    <i class="fa-brands fa-instagram text-pink-400 text-base"></i> @temnobairro_oficial
+                </a>
+                <a href="https://wa.me/5585921033841?text=Olá%20Robinson!%20Vim%20pela%20página%20de%20parceiros%20do%20Tem%20No%20Bairro." target="_blank" rel="noopener noreferrer" class="bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2.5 rounded-xl transition flex items-center gap-2">
+                    <i class="fa-brands fa-whatsapp text-base"></i> WhatsApp (85) 92103-3841
+                </a>
+                <a href="#privacidade-lgpd" class="bg-white/5 hover:bg-white/15 px-3.5 py-2.5 rounded-xl transition underline">
+                    Privacidade & LGPD
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleFaq(buttonEl) {
+            const item = buttonEl.closest('.faq-item');
+            if (item) {
+                item.classList.toggle('open');
+            }
+        }
+    </script>
+</body>
+</html>
