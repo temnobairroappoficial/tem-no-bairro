@@ -234,7 +234,10 @@
                     </div>
                 </div>
                 <div class="flex items-center gap-2 sm:hidden">
-                    <a href="https://tally.so/r/VpjbRy" target="_blank" class="bg-brand-500 hover:bg-brand-600 text-navy-950 font-bold text-xs px-3.5 py-2.5 rounded-xl transition shadow-md flex items-center gap-1 cursor-pointer">
+                    <a href="#muralImoveis" class="bg-white/10 hover:bg-white/20 text-white font-bold text-xs px-3 py-2.5 rounded-xl transition border border-white/15 flex items-center gap-1">
+                        <i class="fa-solid fa-house-flag text-brand-500"></i> Imóveis
+                    </a>
+                    <a href="https://tally.so/r/VpjbRy" target="_blank" class="bg-brand-500 hover:bg-brand-600 text-navy-950 font-bold text-xs px-3 py-2.5 rounded-xl transition shadow-md flex items-center gap-1 cursor-pointer">
                         <i class="fa-solid fa-plus"></i> Anunciar
                     </a>
                     <button type="button" onclick="openAdminLoginModal()" class="bg-navy-900 hover:bg-navy-800 text-slate-300 hover:text-white text-xs px-3 py-2.5 rounded-xl transition border border-white/10 flex items-center gap-1 cursor-pointer" title="Painel Administrativo">
@@ -245,6 +248,9 @@
 
             <!-- Menu do Topo -->
             <div class="flex items-center gap-2.5 overflow-x-auto w-full sm:w-auto justify-start sm:justify-end pb-1 sm:pb-0 hide-scrollbar">
+                <a href="#muralImoveis" class="hidden sm:flex bg-white/10 hover:bg-white/20 text-white border border-white/15 font-semibold text-xs px-3.5 py-2.5 rounded-xl transition items-center gap-1.5 whitespace-nowrap cursor-pointer flex-shrink-0">
+                    <i class="fa-solid fa-house-flag text-brand-500"></i> Imóveis do Bairro
+                </a>
                 <a href="https://g.page/r/CRK_11do12bRECE/review" target="_blank" class="bg-white/10 hover:bg-white/20 text-amber-300 border border-white/15 font-semibold text-xs px-3.5 py-2.5 rounded-xl transition flex items-center gap-1.5 whitespace-nowrap cursor-pointer flex-shrink-0">
                     <i class="fa-solid fa-star text-brand-500"></i> Avaliar no Google
                 </a>
@@ -280,16 +286,16 @@
                             O guia definitivo do seu bairro em <span class="text-brand-500">Maracanaú, Pacatuba e Maranguape.</span>
                         </h2>
                         <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
-                            Encontre os melhores comércios locais direto no WhatsApp, além de telefones de emergência, postos de saúde (UBS), vagas de emprego e benefícios sociais em um só lugar.
+                            Encontre os melhores comércios locais direto no WhatsApp, além de imóveis direto com o proprietário, postos de saúde (UBS), vagas de emprego e benefícios sociais em um só lugar.
                         </p>
                     </div>
                     <div class="pt-7 flex flex-wrap gap-3">
                         <a href="#vitrineComercios" class="bg-brand-500 hover:bg-brand-600 text-navy-950 font-extrabold text-xs sm:text-sm px-6 py-3.5 rounded-xl shadow-lg shadow-brand-500/25 transition transform hover:-translate-y-0.5 flex items-center gap-2">
                             <i class="fa-solid fa-magnifying-glass"></i> Explorar Comércios
                         </a>
-                        <button type="button" onclick="requestUserLocation()" class="bg-white/10 hover:bg-white/20 text-white border border-white/20 font-semibold text-xs sm:text-sm px-5 py-3.5 rounded-xl transition flex items-center gap-2 cursor-pointer">
-                            <i class="fa-solid fa-location-crosshairs text-brand-400"></i> Perto de Mim
-                        </button>
+                        <a href="#muralImoveis" class="bg-white/10 hover:bg-white/20 text-white border border-white/20 font-semibold text-xs sm:text-sm px-5 py-3.5 rounded-xl transition flex items-center gap-2">
+                            <i class="fa-solid fa-house-flag text-brand-400"></i> Ver Imóveis
+                        </a>
                     </div>
                 </div>
 
@@ -415,6 +421,80 @@
                     Ver todos os comércios
                 </button>
             </div>
+        </div>
+    </section>
+
+    <!-- FAIXA 3.5 (NOVA): MURAL DE IMÓVEIS DO BAIRRO (DIRETO COM O PROPRIETÁRIO) -->
+    <section id="muralImoveis" class="bg-white py-12 sm:py-16 border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+            
+            <!-- Cabeçalho + Botão Anunciar Meu Imóvel -->
+            <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-5">
+                <div class="space-y-2">
+                    <span class="text-xs font-extrabold uppercase tracking-widest text-emerald-700 bg-emerald-50 border border-emerald-200 px-3 py-1 rounded-full inline-flex items-center gap-2">
+                        <i class="fa-solid fa-handshake"></i> Direto com o Proprietário • Sem Intermediários
+                    </span>
+                    <h2 class="text-2xl sm:text-4xl font-extrabold text-navy-950 tracking-tight">
+                        Imóveis no Bairro (Venda & Aluguel)
+                    </h2>
+                    <p class="text-sm text-slate-600 max-w-2xl">
+                        Casas, terrenos e pontos comerciais anunciados diretamente pelos moradores donos dos imóveis. Negocie sem intermediários direto no WhatsApp.
+                    </p>
+                </div>
+
+                <div class="flex flex-wrap items-center gap-3">
+                    <button type="button" onclick="openAnnouncePropertyModal()" class="bg-brand-500 hover:bg-brand-600 text-navy-950 font-extrabold text-xs sm:text-sm px-5 py-3.5 rounded-2xl shadow-lg shadow-brand-500/20 transition transform hover:-translate-y-0.5 flex items-center gap-2 cursor-pointer">
+                        <i class="fa-solid fa-house-medical"></i> Anunciar Meu Imóvel
+                    </button>
+                </div>
+            </div>
+
+            <!-- Barra de Filtros dos Imóveis -->
+            <div class="bg-slate-50 p-4 sm:p-5 rounded-3xl border border-slate-200/90 flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4">
+                <!-- Filtro Tipo: Todos / Venda / Aluguel -->
+                <div class="flex flex-wrap items-center gap-2">
+                    <span class="text-xs font-bold text-navy-900 mr-1"><i class="fa-solid fa-tag text-brand-500 mr-1"></i> Finalidade:</span>
+                    <button type="button" onclick="selectPropertyType('Todos')" id="propTypeBtn-Todos" class="prop-type-btn px-4 py-2 rounded-xl text-xs font-bold bg-navy-900 text-white shadow-sm transition cursor-pointer">Todos</button>
+                    <button type="button" onclick="selectPropertyType('Venda')" id="propTypeBtn-Venda" class="prop-type-btn px-4 py-2 rounded-xl text-xs font-semibold bg-white border border-slate-200 hover:bg-slate-100 text-slate-700 transition cursor-pointer">Venda</button>
+                    <button type="button" onclick="selectPropertyType('Aluguel')" id="propTypeBtn-Aluguel" class="prop-type-btn px-4 py-2 rounded-xl text-xs font-semibold bg-white border border-slate-200 hover:bg-slate-100 text-slate-700 transition cursor-pointer">Aluguel</button>
+                </div>
+
+                <!-- Filtro Cidade dos Imóveis -->
+                <div class="flex flex-wrap items-center gap-2">
+                    <span class="text-xs font-bold text-navy-900 mr-1"><i class="fa-solid fa-location-dot text-brand-500 mr-1"></i> Cidade:</span>
+                    <button type="button" onclick="selectPropertyCity('Todas')" id="propCityBtn-Todas" class="prop-city-btn px-3.5 py-2 rounded-xl text-xs font-bold bg-navy-900 text-white shadow-sm transition cursor-pointer">Todas</button>
+                    <button type="button" onclick="selectPropertyCity('Maracanaú')" id="propCityBtn-Maracanaú" class="prop-city-btn px-3.5 py-2 rounded-xl text-xs font-semibold bg-white border border-slate-200 hover:bg-slate-100 text-slate-700 transition cursor-pointer">Maracanaú</button>
+                    <button type="button" onclick="selectPropertyCity('Pacatuba')" id="prop-city-btn-Pacatuba" class="prop-city-btn px-3.5 py-2 rounded-xl text-xs font-semibold bg-white border border-slate-200 hover:bg-slate-100 text-slate-700 transition cursor-pointer">Pacatuba</button>
+                    <button type="button" onclick="selectPropertyCity('Maranguape')" id="propCityBtn-Maranguape" class="prop-city-btn px-3.5 py-2 rounded-xl text-xs font-semibold bg-white border border-slate-200 hover:bg-slate-100 text-slate-700 transition cursor-pointer">Maranguape</button>
+                </div>
+            </div>
+
+            <!-- Status e Aviso Comunitário -->
+            <div class="flex items-center justify-between flex-wrap gap-2">
+                <span id="propertiesResultsCount" class="text-xs sm:text-sm text-slate-600 font-semibold">Mostrando imóveis disponíveis</span>
+                <span class="text-[11px] text-slate-500 bg-slate-100 px-3 py-1.5 rounded-lg">
+                    <i class="fa-solid fa-circle-info text-navy-700 mr-1"></i> Classificado local: negociação feita diretamente entre morador e proprietário.
+                </span>
+            </div>
+
+            <!-- Grid de Imóveis -->
+            <div id="propertiesGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7"></div>
+
+            <!-- Estado Vazio Imóveis -->
+            <div id="propertiesEmptyState" class="hidden text-center py-14 bg-slate-50 rounded-3xl border border-dashed border-slate-300 p-8">
+                <i class="fa-solid fa-house-circle-xmark text-slate-300 text-5xl mb-3"></i>
+                <h3 class="text-lg font-bold text-navy-950">Nenhum imóvel encontrado neste filtro</h3>
+                <p class="text-sm text-slate-500 mt-1 max-w-md mx-auto">Tente trocar entre Venda e Aluguel, escolher outra cidade ou anunciar o seu imóvel agora.</p>
+                <div class="mt-5 flex justify-center gap-3 flex-wrap">
+                    <button type="button" onclick="resetPropertyFilters()" class="bg-navy-900 hover:bg-navy-800 text-white font-bold text-xs px-5 py-3 rounded-xl transition cursor-pointer">
+                        Ver todos os imóveis
+                    </button>
+                    <button type="button" onclick="openAnnouncePropertyModal()" class="bg-brand-500 hover:bg-brand-600 text-navy-950 font-extrabold text-xs px-5 py-3 rounded-xl transition cursor-pointer">
+                        Anunciar Meu Imóvel
+                    </button>
+                </div>
+            </div>
+
         </div>
     </section>
 
@@ -648,7 +728,7 @@
         </div>
     </footer>
 
-    <!-- MODAL DE DETALHES -->
+    <!-- MODAL DE DETALHES DO COMÉRCIO -->
     <div id="detailModal" class="fixed inset-0 bg-navy-950/85 backdrop-blur-md z-50 hidden flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
         <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-7 shadow-2xl relative my-8 border border-slate-100 space-y-5">
             <button type="button" onclick="closeDetailModal()" class="absolute top-4 right-4 text-slate-500 hover:text-navy-950 bg-slate-100 hover:bg-slate-200 p-2 rounded-full w-9 h-9 flex items-center justify-center transition cursor-pointer z-10">
@@ -722,6 +802,129 @@
         </div>
     </div>
 
+    <!-- MODAL DE DETALHES DO IMÓVEL -->
+    <div id="propertyDetailModal" class="fixed inset-0 bg-navy-950/85 backdrop-blur-md z-50 hidden flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
+        <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-7 shadow-2xl relative my-8 border border-slate-100 space-y-5">
+            <button type="button" onclick="closePropertyDetailModal()" class="absolute top-4 right-4 text-slate-500 hover:text-navy-950 bg-slate-100 hover:bg-slate-200 p-2 rounded-full w-9 h-9 flex items-center justify-center transition cursor-pointer z-10">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            
+            <div class="relative h-72 w-full bg-navy-950 rounded-2xl overflow-hidden shadow-inner">
+                <img id="propDetailImage" src="" alt="Foto do Imóvel" class="detalhe-foto">
+                <div id="propCarouselNav" class="absolute inset-0 flex items-center justify-between p-3 hidden">
+                    <button type="button" onclick="prevPropImage()" class="bg-navy-950/80 hover:bg-navy-950 text-white w-9 h-9 rounded-full flex items-center justify-center transition cursor-pointer shadow">
+                        <i class="fa-solid fa-chevron-left"></i>
+                    </button>
+                    <button type="button" onclick="nextPropImage()" class="bg-navy-950/80 hover:bg-navy-950 text-white w-9 h-9 rounded-full flex items-center justify-center transition cursor-pointer shadow">
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </button>
+                </div>
+                <span id="propDetailTypeBadge" class="absolute top-3 left-3 bg-brand-500 text-navy-950 text-xs font-extrabold px-3 py-1.5 rounded-xl uppercase shadow"></span>
+                <span id="propDetailPhotoCounter" class="hidden absolute bottom-3 right-3 bg-navy-950/85 text-white text-[11px] font-bold px-3 py-1 rounded-full"></span>
+            </div>
+
+            <div class="space-y-2">
+                <div class="flex items-center justify-between gap-2 flex-wrap">
+                    <span class="text-[11px] font-extrabold text-emerald-700 bg-emerald-50 border border-emerald-200 px-2.5 py-1 rounded-lg">
+                        <i class="fa-solid fa-handshake mr-1"></i> Direto com o Proprietário
+                    </span>
+                    <span id="propDetailPrice" class="text-xl font-black text-brand-600"></span>
+                </div>
+                <h3 id="propDetailTitle" class="text-2xl font-extrabold text-navy-950"></h3>
+                <p id="propDetailDescription" class="text-xs sm:text-sm text-slate-600 leading-relaxed"></p>
+            </div>
+
+            <div class="bg-slate-50 border border-slate-200/80 rounded-2xl p-4 space-y-2.5 text-xs text-slate-600">
+                <div class="flex items-center gap-2.5">
+                    <i class="fa-solid fa-location-dot text-brand-600 text-sm"></i>
+                    <span id="propDetailAddress" class="font-medium text-slate-800"></span>
+                </div>
+                <div class="flex items-center gap-2.5">
+                    <i class="fa-solid fa-user text-navy-700 text-sm"></i>
+                    <span>Proprietário: <strong id="propDetailOwner" class="text-navy-950"></strong></span>
+                </div>
+                <div id="propDetailFeaturesRow" class="flex items-center gap-2.5">
+                    <i class="fa-solid fa-house text-navy-700 text-sm"></i>
+                    <span id="propDetailFeatures" class="font-medium text-slate-700"></span>
+                </div>
+            </div>
+
+            <div class="pt-2 space-y-2.5">
+                <a id="propDetailWhatsApp" href="#" target="_blank" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold py-3.5 px-4 rounded-xl shadow-md text-xs sm:text-sm flex items-center justify-center gap-2 transition">
+                    <i class="fa-brands fa-whatsapp text-lg"></i> Falar com o Proprietário no WhatsApp
+                </a>
+                <div class="grid grid-cols-2 gap-2.5">
+                    <a id="propDetailShareWa" href="#" target="_blank" class="bg-navy-900 hover:bg-navy-800 text-white font-bold py-2.5 px-3 rounded-xl text-xs flex items-center justify-center gap-1.5 transition">
+                        <i class="fa-solid fa-share-nodes text-brand-500"></i> Compartilhar
+                    </a>
+                    <a id="propDetailMaps" href="#" target="_blank" class="bg-slate-100 hover:bg-slate-200 text-navy-950 font-bold py-2.5 px-3 rounded-xl text-xs flex items-center justify-center gap-1.5 transition">
+                        <i class="fa-solid fa-map-location-dot text-brand-600"></i> Ver Localização
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL: ANUNCIAR MEU IMÓVEL (MORADOR / PROPRIETÁRIO) -->
+    <div id="announcePropertyModal" class="fixed inset-0 bg-navy-950/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4 overflow-y-auto">
+        <div class="bg-white rounded-3xl max-w-md w-full p-6 sm:p-7 shadow-2xl relative my-8 border border-slate-100 space-y-4">
+            <button type="button" onclick="closeAnnouncePropertyModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 bg-slate-100 p-2 rounded-full w-8 h-8 flex items-center justify-center transition cursor-pointer">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="text-center space-y-1">
+                <span class="bg-emerald-100 text-emerald-800 text-[10px] font-extrabold px-3 py-1 rounded-full uppercase tracking-wider">
+                    <i class="fa-solid fa-handshake"></i> Direto com o Proprietário
+                </span>
+                <h3 class="text-xl font-extrabold text-navy-950 pt-1">Anunciar Meu Imóvel no Bairro</h3>
+                <p class="text-xs text-slate-500">Exclusivo para proprietários locais (sem imobiliária/corretor).</p>
+            </div>
+            <form onsubmit="handleAnnouncePropertySubmit(event)" class="space-y-3 pt-1">
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1">Finalidade *</label>
+                        <select id="annPropType" required class="w-full px-3.5 py-2.5 border border-slate-300 rounded-xl text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none">
+                            <option value="Venda">Venda</option>
+                            <option value="Aluguel">Aluguel</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1">Tipo de Imóvel *</label>
+                        <select id="annPropCategory" required class="w-full px-3.5 py-2.5 border border-slate-300 rounded-xl text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none">
+                            <option value="Casa">Casa</option>
+                            <option value="Terreno / Lote">Terreno / Lote</option>
+                            <option value="Ponto Comercial">Ponto Comercial</option>
+                            <option value="Apartamento / Kitnet">Apartamento / Kitnet</option>
+                        </select>
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">Bairro e Cidade *</label>
+                    <input type="text" id="annPropAddress" required placeholder="Ex: Jereissati II, Maracanaú" class="w-full px-3.5 py-2.5 border border-slate-300 rounded-xl text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">Valor Pretendido (ou "A combinar") *</label>
+                    <input type="text" id="annPropPrice" required placeholder="Ex: R$ 145.000 ou R$ 650/mês" class="w-full px-3.5 py-2.5 border border-slate-300 rounded-xl text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">Detalhes do Imóvel *</label>
+                    <textarea id="annPropDesc" required rows="2" placeholder="Ex: 2 quartos, garagem, quintal, escritura..." class="w-full px-3.5 py-2.5 border border-slate-300 rounded-xl text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none"></textarea>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">Seu Nome (Proprietário) *</label>
+                    <input type="text" id="annPropOwner" required placeholder="Seu nome completo" class="w-full px-3.5 py-2.5 border border-slate-300 rounded-xl text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none">
+                </div>
+                <div class="bg-slate-50 border border-slate-200 rounded-xl p-2.5 text-[11px] text-slate-600">
+                    <i class="fa-solid fa-circle-check text-emerald-600 mr-1"></i> Confirmo que sou o proprietário direto deste imóvel. Após enviar, você poderá mandar as fotos pelo WhatsApp.
+                </div>
+                <div class="pt-1">
+                    <button type="submit" class="w-full bg-brand-500 hover:bg-brand-600 text-navy-950 font-extrabold py-3.5 rounded-xl text-xs sm:text-sm shadow-md transition flex items-center justify-center gap-2 cursor-pointer">
+                        <i class="fa-brands fa-whatsapp text-lg"></i> Enviar Anúncio e Fotos no WhatsApp
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <!-- MODAL: TERMOS DE USO -->
     <div id="termsModal" class="fixed inset-0 bg-navy-950/85 backdrop-blur-md z-50 hidden flex items-center justify-center p-4 overflow-y-auto">
         <div class="bg-white rounded-3xl max-w-2xl w-full p-6 sm:p-8 shadow-2xl relative my-8 border border-slate-100 text-left space-y-4 max-h-[85vh] flex flex-col">
@@ -733,8 +936,8 @@
                 <h3 class="text-lg font-extrabold text-navy-950">Termos e Condições de Uso</h3>
             </div>
             <div class="overflow-y-auto pr-2 space-y-3 text-xs sm:text-sm text-slate-600 leading-relaxed flex-grow">
-                <p><strong>1. Visão Geral:</strong> O diretório <strong>Tem No Bairro</strong> (CNPJ 69.805.020/0001-36) atua exclusivamente como uma plataforma de conexão digital entre moradores e comércios locais nas regiões de Maracanaú, Pacatuba e Maranguape.</p>
-                <p><strong>2. Relação Comercial:</strong> A plataforma não realiza cobranças de comissão sobre vendas e não se responsabiliza por transações financeiras realizadas diretamente entre o cliente e o lojista via WhatsApp ou Pix.</p>
+                <p><strong>1. Visão Geral:</strong> O diretório <strong>Tem No Bairro</strong> (CNPJ 69.805.020/0001-36) atua exclusivamente como uma plataforma de divulgação comunitária e conexão digital entre moradores, comércios locais e proprietários diretos nas regiões de Maracanaú, Pacatuba e Maranguape.</p>
+                <p><strong>2. Relação Comercial e Imóveis:</strong> A plataforma não atua como imobiliária, não realiza corretagem nem cobrança de comissão sobre vendas ou locações. Toda negociação de produtos, serviços ou imóveis ocorre diretamente entre as partes interessadas pelo WhatsApp.</p>
             </div>
             <div class="pt-3 border-t text-right">
                 <button onclick="closeTermsModal()" class="bg-navy-900 hover:bg-navy-800 text-white font-bold px-6 py-2.5 rounded-xl text-xs transition cursor-pointer">Entendido</button>
@@ -784,7 +987,7 @@
         </div>
     </div>
 
-    <!-- PAINEL ADMIN -->
+    <!-- PAINEL ADMIN (COMÉRCIOS + IMÓVEIS) -->
     <div id="adminPanelModal" class="fixed inset-0 bg-navy-950/85 backdrop-blur-md z-50 hidden flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
         <div class="bg-white rounded-3xl max-w-5xl w-full p-5 sm:p-8 shadow-2xl relative my-6 border border-slate-100 max-h-[90vh] flex flex-col">
             <div class="flex items-center justify-between pb-4 border-b border-slate-200 mb-4 flex-wrap gap-3">
@@ -792,11 +995,11 @@
                     <span class="bg-navy-900 text-brand-500 p-2.5 rounded-xl text-sm shadow"><i class="fa-solid fa-sliders"></i></span>
                     <div>
                         <h3 class="text-lg font-extrabold text-navy-950">Painel de Controle Administrativo</h3>
-                        <p class="text-xs text-slate-500">Gerencie e adicione novos parceiros à vitrine</p>
+                        <p class="text-xs text-slate-500">Gerencie lojistas e imóveis direto com o proprietário</p>
                     </div>
                 </div>
-                <div class="flex items-center gap-2">
-                    <button type="button" onclick="openAddBusinessModal()" class="bg-brand-500 hover:bg-brand-600 text-navy-950 text-xs font-extrabold px-4 py-2.5 rounded-xl shadow transition flex items-center gap-1.5 cursor-pointer">
+                <div class="flex items-center gap-2 flex-wrap">
+                    <button type="button" id="adminAddActionBtn" onclick="openAddBusinessModal()" class="bg-brand-500 hover:bg-brand-600 text-navy-950 text-xs font-extrabold px-4 py-2.5 rounded-xl shadow transition flex items-center gap-1.5 cursor-pointer">
                         <i class="fa-solid fa-plus"></i> Adicionar Novo Lojista
                     </button>
                     <button type="button" onclick="closeAdminPanel()" class="bg-slate-100 hover:bg-slate-200 text-slate-600 p-2.5 rounded-full w-9 h-9 flex items-center justify-center transition cursor-pointer">
@@ -804,7 +1007,19 @@
                     </button>
                 </div>
             </div>
-            <div class="overflow-y-auto flex-grow pr-1">
+
+            <!-- Abas do Painel Admin -->
+            <div class="flex items-center gap-2 mb-4">
+                <button type="button" id="adminTab-businesses" onclick="switchAdminTab('businesses')" class="px-4 py-2 rounded-xl text-xs font-extrabold bg-navy-900 text-white shadow-sm transition cursor-pointer">
+                    <i class="fa-solid fa-store mr-1.5 text-brand-500"></i> Comércios & Serviços (<span id="adminBusTabCount">0</span>)
+                </button>
+                <button type="button" id="adminTab-properties" onclick="switchAdminTab('properties')" class="px-4 py-2 rounded-xl text-xs font-bold bg-slate-100 hover:bg-slate-200 text-slate-700 transition cursor-pointer">
+                    <i class="fa-solid fa-house-flag mr-1.5 text-emerald-600"></i> Imóveis do Bairro (<span id="adminPropTabCount">0</span>)
+                </button>
+            </div>
+
+            <!-- Tabela Comércios -->
+            <div id="adminBusinessesSection" class="overflow-y-auto flex-grow pr-1">
                 <table class="w-full text-left border-collapse text-xs">
                     <thead>
                         <tr class="bg-slate-100 text-navy-950 uppercase tracking-wider text-[10px]">
@@ -818,8 +1033,25 @@
                     <tbody id="adminTableBody" class="divide-y divide-slate-100"></tbody>
                 </table>
             </div>
+
+            <!-- Tabela Imóveis -->
+            <div id="adminPropertiesSection" class="hidden overflow-y-auto flex-grow pr-1">
+                <table class="w-full text-left border-collapse text-xs">
+                    <thead>
+                        <tr class="bg-slate-100 text-navy-950 uppercase tracking-wider text-[10px]">
+                            <th class="p-3 rounded-l-xl">Imóvel & Local</th>
+                            <th class="p-3">Finalidade & Valor</th>
+                            <th class="p-3">Proprietário / WhatsApp</th>
+                            <th class="p-3 text-center">Situação</th>
+                            <th class="p-3 text-right rounded-r-xl">Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody id="adminPropertiesTableBody" class="divide-y divide-slate-100"></tbody>
+                </table>
+            </div>
+
             <div class="pt-4 border-t border-slate-200 mt-4 flex justify-between items-center text-xs text-slate-500">
-                <span>Total de parceiros: <strong id="adminTotalCount" class="text-navy-950">0</strong></span>
+                <span>Total na aba atual: <strong id="adminTotalCount" class="text-navy-950">0</strong></span>
                 <button onclick="closeAdminPanel()" class="bg-navy-900 hover:bg-navy-800 text-white px-5 py-2.5 rounded-xl font-bold transition cursor-pointer">
                     Fechar Painel
                 </button>
@@ -936,6 +1168,98 @@
         </div>
     </div>
 
+    <!-- MODAL ADICIONAR / EDITAR IMÓVEL (ADMIN) -->
+    <div id="editPropertyModal" class="fixed inset-0 bg-navy-950/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4 overflow-y-auto">
+        <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-7 shadow-2xl relative my-8 border border-slate-100">
+            <button type="button" onclick="closeEditPropertyModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 bg-slate-100 p-2 rounded-full w-8 h-8 flex items-center justify-center transition cursor-pointer">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="mb-5">
+                <span class="bg-emerald-100 text-emerald-800 text-[10px] font-extrabold px-3 py-1 rounded-full uppercase tracking-wider">
+                    <i class="fa-solid fa-house-flag"></i> Painel Admin • Imóveis
+                </span>
+                <h3 id="propModalTitle" class="text-xl font-extrabold text-navy-950 mt-2">Adicionar Imóvel do Bairro</h3>
+                <p class="text-xs text-slate-500 mt-1">Anúncios exclusivos direto com o proprietário (sem intermediários).</p>
+            </div>
+            <form id="editPropertyForm" onsubmit="handleEditPropertySubmit(event)" class="space-y-4">
+                <input type="hidden" id="editPropIndex" value="-1">
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">Título do Anúncio *</label>
+                    <input type="text" id="editPropTitle" required placeholder="Ex: Casa 2 Quartos com Garagem no Jereissati II" class="w-full px-3.5 py-2.5 border border-slate-300 rounded-xl text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none">
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1">Finalidade *</label>
+                        <select id="editPropType" required class="w-full px-3.5 py-2.5 border border-slate-300 rounded-xl text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none">
+                            <option value="Venda">Venda</option>
+                            <option value="Aluguel">Aluguel</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1">Tipo *</label>
+                        <select id="editPropCategory" required class="w-full px-3.5 py-2.5 border border-slate-300 rounded-xl text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none">
+                            <option value="Casa">Casa</option>
+                            <option value="Terreno / Lote">Terreno / Lote</option>
+                            <option value="Ponto Comercial">Ponto Comercial</option>
+                            <option value="Apartamento / Kitnet">Apartamento / Kitnet</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1">Situação *</label>
+                        <select id="editPropStatus" class="w-full px-3.5 py-2.5 border border-slate-300 rounded-xl text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none font-bold text-emerald-800 bg-emerald-50">
+                            <option value="disponivel">🟢 Disponível</option>
+                            <option value="encerrado">🔴 Vendido / Alugado</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1">Valor (ou "A combinar") *</label>
+                        <input type="text" id="editPropPrice" required placeholder="Ex: R$ 135.000 ou R$ 600/mês" class="w-full px-3.5 py-2.5 border border-slate-300 rounded-xl text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1">Características Curtas</label>
+                        <input type="text" id="editPropFeatures" placeholder="Ex: 2 quartos • 1 vaga • Quintal" class="w-full px-3.5 py-2.5 border border-slate-300 rounded-xl text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none">
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1">Nome do Proprietário *</label>
+                        <input type="text" id="editPropOwner" required placeholder="Ex: Sr. Antônio" class="w-full px-3.5 py-2.5 border border-slate-300 rounded-xl text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1">WhatsApp do Proprietário *</label>
+                        <input type="tel" id="editPropPhone" required placeholder="85999999999" class="w-full px-3.5 py-2.5 border border-slate-300 rounded-xl text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none">
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">Endereço / Bairro e Cidade *</label>
+                    <input type="text" id="editPropAddress" required placeholder="Ex: Rua 14, Jereissati II, Maracanaú" class="w-full px-3.5 py-2.5 border border-slate-300 rounded-xl text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">Link Direto do Google Maps (Opcional)</label>
+                    <input type="text" id="editPropMapsUrl" placeholder="Ex: https://maps.app.goo.gl/..." class="w-full px-3.5 py-2.5 border border-slate-300 rounded-xl text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">Descrição do Imóvel *</label>
+                    <textarea id="editPropDescription" required rows="2" placeholder="Detalhes da casa, terreno, documentação, ponto de referência..." class="w-full px-3.5 py-2.5 border border-slate-300 rounded-xl text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none"></textarea>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">URLs das Fotos (Separe por vírgula)</label>
+                    <input type="text" id="editPropImages" placeholder="Ex: https://i.ibb.co/fachada.jpg, https://i.ibb.co/sala.jpg" class="w-full px-3.5 py-2.5 border border-slate-300 rounded-xl text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none">
+                </div>
+                <div class="pt-2 flex justify-end gap-2">
+                    <button type="button" onclick="closeEditPropertyModal()" class="px-4 py-2.5 border border-slate-300 rounded-xl text-xs font-bold text-slate-700 hover:bg-slate-100 transition cursor-pointer">
+                        Cancelar
+                    </button>
+                    <button type="submit" class="px-6 py-2.5 bg-navy-900 hover:bg-navy-800 text-white rounded-xl text-xs font-extrabold shadow-md transition flex items-center gap-1.5 cursor-pointer">
+                        <i class="fa-solid fa-floppy-disk text-brand-500"></i> Salvar Imóvel
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <!-- MODAL INDICAR COMÉRCIO -->
     <div id="indicateModal" class="fixed inset-0 bg-navy-950/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4 overflow-y-auto">
         <div class="bg-white rounded-3xl max-w-md w-full p-6 sm:p-7 shadow-2xl relative my-8 border border-slate-100 space-y-4">
@@ -978,6 +1302,7 @@
     <!-- SCRIPTS E LÓGICA DO SITE -->
     <script>
         const DB_KEY = 'tem_no_bairro_db_v32';
+        const PROP_DB_KEY = 'tem_no_bairro_imoveis_v1';
 
         const defaultBusinesses = [
             {
@@ -1094,6 +1419,39 @@
             }
         ];
 
+        const defaultProperties = [
+            {
+                id: 'imovel-exemplo-1',
+                title: 'Casa Residencial 2 Quartos com Garagem',
+                type: 'Venda',
+                category: 'Casa',
+                price: 'Negociar direto com o dono',
+                features: '2 quartos • Sala e cozinha • Garagem coberta',
+                owner: 'Morador Local (Exemplo)',
+                phone: '85921033841',
+                address: 'Jereissati II, Maracanaú - CE',
+                mapsUrl: '',
+                description: 'Casa bem localizada próxima a mercadinhos, escola e ponto de ônibus. Venda direta com o proprietário, sem intermediários.',
+                images: ['https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=600&auto=format&fit=crop&q=80'],
+                status: 'disponivel'
+            },
+            {
+                id: 'imovel-exemplo-2',
+                title: 'Ponto Comercial em Avenida Movimentada',
+                type: 'Aluguel',
+                category: 'Ponto Comercial',
+                price: 'A combinar',
+                features: 'Salão amplo • Banheiro • Porta de aço',
+                owner: 'Proprietário Local (Exemplo)',
+                phone: '85921033841',
+                address: 'Centro, Pacatuba - CE',
+                mapsUrl: '',
+                description: 'Excelente ponto para barbearia, lanchonete, mercearia ou escritório no bairro. Trata-se direto com o proprietário.',
+                images: ['https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&auto=format&fit=crop&q=80'],
+                status: 'disponivel'
+            }
+        ];
+
         let currentCategory = 'Todos';
         let currentCity = 'Todas';
         let showOnlyFavorites = false;
@@ -1101,6 +1459,14 @@
         let favorites = [];
         let currentActiveImages = [];
         let currentImageIndex = 0;
+
+        let properties = [];
+        let currentPropertyType = 'Todos';
+        let currentPropertyCity = 'Todas';
+        let currentActivePropImages = [];
+        let currentPropImageIndex = 0;
+        let currentAdminTab = 'businesses';
+
         let splashTimerId = null;
 
         function buildWhatsAppUrl(phone, message) {
@@ -1171,6 +1537,18 @@
                 localStorage.setItem(DB_KEY, JSON.stringify(businesses));
             }
 
+            const savedProps = localStorage.getItem(PROP_DB_KEY);
+            if (savedProps !== null) {
+                try {
+                    properties = JSON.parse(savedProps);
+                } catch(e) {
+                    properties = defaultProperties;
+                }
+            } else {
+                properties = defaultProperties;
+                localStorage.setItem(PROP_DB_KEY, JSON.stringify(properties));
+            }
+
             const savedFavs = localStorage.getItem('tem_no_bairro_favs');
             if (savedFavs) {
                 try { favorites = JSON.parse(savedFavs); } catch(e) { favorites = []; }
@@ -1178,6 +1556,7 @@
 
             updateFavCount();
             renderBusinesses();
+            renderProperties();
             switchServiceTab('emergencia');
         }
 
@@ -1623,6 +2002,249 @@
             });
         }
 
+        // --- LÓGICA DE IMÓVEIS DO BAIRRO (DIRETO COM O PROPRIETÁRIO) ---
+        function selectPropertyType(type) {
+            currentPropertyType = type;
+            document.querySelectorAll('.prop-type-btn').forEach(btn => {
+                if (btn.textContent.trim() === type) {
+                    btn.className = 'prop-type-btn px-4 py-2 rounded-xl text-xs font-bold bg-navy-900 text-white shadow-sm transition cursor-pointer';
+                } else {
+                    btn.className = 'prop-type-btn px-4 py-2 rounded-xl text-xs font-semibold bg-white border border-slate-200 hover:bg-slate-100 text-slate-700 transition cursor-pointer';
+                }
+            });
+            renderProperties();
+        }
+
+        function selectPropertyCity(city) {
+            currentPropertyCity = city;
+            document.querySelectorAll('.prop-city-btn').forEach(btn => {
+                if (btn.textContent.trim() === city) {
+                    btn.className = 'prop-city-btn px-3.5 py-2 rounded-xl text-xs font-bold bg-navy-900 text-white shadow-sm transition cursor-pointer';
+                } else {
+                    btn.className = 'prop-city-btn px-3.5 py-2 rounded-xl text-xs font-semibold bg-white border border-slate-200 hover:bg-slate-100 text-slate-700 transition cursor-pointer';
+                }
+            });
+            renderProperties();
+        }
+
+        function resetPropertyFilters() {
+            selectPropertyType('Todos');
+            selectPropertyCity('Todas');
+        }
+
+        function renderProperties() {
+            const grid = document.getElementById('propertiesGrid');
+            const emptyState = document.getElementById('propertiesEmptyState');
+            const resultsCount = document.getElementById('propertiesResultsCount');
+            if (!grid) return;
+
+            grid.innerHTML = '';
+
+            const filtered = properties.filter(item => {
+                if ((item.status || 'disponivel') !== 'disponivel') return false;
+                if (currentPropertyType !== 'Todos' && item.type !== currentPropertyType) return false;
+                if (currentPropertyCity !== 'Todas' && !item.address.toLowerCase().includes(currentPropertyCity.toLowerCase())) return false;
+                return true;
+            });
+
+            if (resultsCount) {
+                resultsCount.textContent = `Mostrando ${filtered.length} ${filtered.length === 1 ? 'imóvel disponível' : 'imóveis disponíveis'}`;
+            }
+
+            if (filtered.length === 0) {
+                grid.classList.add('hidden');
+                if (emptyState) emptyState.classList.remove('hidden');
+                return;
+            }
+
+            grid.classList.remove('hidden');
+            if (emptyState) emptyState.classList.add('hidden');
+
+            filtered.forEach(item => {
+                const waMessage = `Olá ${item.owner || ''}! Vi o anúncio do imóvel "${item.title}" (${item.type}) no app TEM NO BAIRRO e gostaria de conversar diretamente com você.`;
+                const whatsappUrl = buildWhatsAppUrl(item.phone, waMessage);
+
+                const mapsUrl = item.mapsUrl && item.mapsUrl.trim() !== ''
+                    ? item.mapsUrl.trim()
+                    : `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(item.address)}`;
+
+                const imgList = item.images && item.images.length > 0
+                    ? item.images
+                    : ['https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=600&auto=format&fit=crop&q=80'];
+
+                const typeBadgeStyle = item.type === 'Venda'
+                    ? 'bg-brand-500 text-navy-950'
+                    : 'bg-navy-900 text-white border border-white/20';
+
+                const galleryBadgeHtml = imgList.length > 1
+                    ? `<span class="bg-navy-950/85 backdrop-blur-sm text-white text-[10px] font-bold px-2.5 py-1 rounded-lg shadow pointer-events-none"><i class="fa-solid fa-images mr-1 text-brand-400"></i>${imgList.length} fotos</span>`
+                    : '';
+
+                const cardHTML = `
+                    <article class="bg-slate-50 rounded-3xl border border-slate-200/90 shadow-sm hover:shadow-2xl hover:border-emerald-500/40 hover:-translate-y-1.5 transition-all duration-300 flex flex-col overflow-hidden relative group">
+                        <div class="relative h-52 w-full bg-slate-200 overflow-hidden cursor-pointer" onclick="openPropertyDetailModal('${item.id}')">
+                            <img src="${imgList[0]}" alt="${item.title}" class="parceiro-capa" onerror="this.src='https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=600&auto=format&fit=crop&q=80'">
+                            <div class="absolute inset-0 bg-gradient-to-t from-navy-950/65 via-transparent to-navy-950/20 pointer-events-none"></div>
+
+                            <div class="absolute top-3.5 left-3.5 right-3.5 flex items-center justify-between gap-2 pointer-events-none">
+                                <span class="${typeBadgeStyle} text-[11px] font-extrabold px-3 py-1 rounded-full uppercase tracking-wider shadow">
+                                    ${item.type} • ${item.category || 'Imóvel'}
+                                </span>
+                                <span class="bg-emerald-600/95 text-white text-[10px] font-extrabold px-2.5 py-1 rounded-full shadow flex items-center gap-1">
+                                    <i class="fa-solid fa-handshake"></i> Direto c/ Dono
+                                </span>
+                            </div>
+
+                            <div class="absolute bottom-3 left-3.5 right-3.5 flex items-center justify-between pointer-events-none">
+                                <span class="bg-navy-950/90 backdrop-blur-sm text-brand-400 text-xs font-extrabold px-3 py-1 rounded-lg shadow">
+                                    ${item.price}
+                                </span>
+                                ${galleryBadgeHtml}
+                            </div>
+                        </div>
+
+                        <div class="p-6 flex-grow flex flex-col justify-between bg-white">
+                            <div>
+                                <h3 onclick="openPropertyDetailModal('${item.id}')" class="text-lg font-extrabold text-navy-950 leading-snug group-hover:text-brand-600 transition cursor-pointer flex items-center justify-between gap-2">
+                                    <span>${item.title}</span>
+                                    <i class="fa-solid fa-arrow-up-right-from-square text-xs text-slate-400 group-hover:text-brand-500 transition"></i>
+                                </h3>
+                                ${item.features ? `<p class="text-[11px] font-bold text-navy-800 bg-slate-100 inline-block px-2.5 py-1 rounded-lg mt-2">${item.features}</p>` : ''}
+                                <p class="text-xs sm:text-sm text-slate-600 mt-2.5 line-clamp-2 leading-relaxed">
+                                    ${item.description}
+                                </p>
+                            </div>
+
+                            <div class="mt-5 pt-4 border-t border-slate-100 space-y-4">
+                                <div class="space-y-1.5 text-xs text-slate-600">
+                                    <div class="flex items-start gap-2">
+                                        <i class="fa-solid fa-location-dot text-brand-500 mt-0.5 text-sm"></i>
+                                        <span class="font-semibold text-navy-950 line-clamp-1">${item.address}</span>
+                                    </div>
+                                    <div class="flex items-center gap-2 text-slate-500">
+                                        <i class="fa-solid fa-user text-emerald-600"></i>
+                                        <span>Proprietário: <strong class="text-slate-700">${item.owner || 'Morador Local'}</strong></span>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-center gap-2">
+                                    <a href="${whatsappUrl}" target="_blank" rel="noopener noreferrer" 
+                                       class="flex-grow bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold py-3 px-4 rounded-xl shadow-sm text-xs sm:text-sm flex items-center justify-center gap-2 transition-colors duration-200">
+                                        <i class="fa-brands fa-whatsapp text-base"></i> Falar com o Proprietário
+                                    </a>
+                                    <a href="${mapsUrl}" target="_blank" rel="noopener noreferrer" title="Ver Localização"
+                                       class="w-11 h-11 bg-slate-100 hover:bg-slate-200 text-navy-950 rounded-xl flex items-center justify-center transition flex-shrink-0">
+                                        <i class="fa-solid fa-map-location-dot text-brand-600 text-base"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                `;
+                grid.innerHTML += cardHTML;
+            });
+        }
+
+        function openPropertyDetailModal(id) {
+            const item = properties.find(p => p.id === id);
+            if (!item) return;
+
+            currentActivePropImages = item.images && item.images.length > 0
+                ? item.images
+                : ['https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=600&auto=format&fit=crop&q=80'];
+            currentPropImageIndex = 0;
+            updatePropCarouselImage();
+
+            document.getElementById('propDetailTypeBadge').textContent = `${item.type} • ${item.category || 'Imóvel'}`;
+            document.getElementById('propDetailPrice').textContent = item.price;
+            document.getElementById('propDetailTitle').textContent = item.title;
+            document.getElementById('propDetailDescription').textContent = item.description;
+            document.getElementById('propDetailAddress').textContent = item.address;
+            document.getElementById('propDetailOwner').textContent = item.owner || 'Morador Local';
+
+            const featRow = document.getElementById('propDetailFeaturesRow');
+            const featEl = document.getElementById('propDetailFeatures');
+            if (item.features && item.features.trim() !== '') {
+                featEl.textContent = item.features;
+                featRow.classList.remove('hidden');
+            } else {
+                featRow.classList.add('hidden');
+            }
+
+            const waMessage = `Olá ${item.owner || ''}! Vi o anúncio do imóvel "${item.title}" (${item.type}) no app TEM NO BAIRRO e gostaria de conversar diretamente com você.`;
+            document.getElementById('propDetailWhatsApp').href = buildWhatsAppUrl(item.phone, waMessage);
+
+            const shareText = encodeURIComponent(`Veja este imóvel (${item.type}) direto com o proprietário no *Tem No Bairro*: *${item.title}* - ${item.address}. Valor: ${item.price}`);
+            document.getElementById('propDetailShareWa').href = `https://api.whatsapp.com/send?text=${shareText}`;
+
+            const mapsUrl = item.mapsUrl && item.mapsUrl.trim() !== ''
+                ? item.mapsUrl.trim()
+                : `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(item.address)}`;
+            document.getElementById('propDetailMaps').href = mapsUrl;
+
+            const nav = document.getElementById('propCarouselNav');
+            const counterEl = document.getElementById('propDetailPhotoCounter');
+            if (currentActivePropImages.length > 1) {
+                nav.classList.remove('hidden');
+                counterEl.classList.remove('hidden');
+                counterEl.textContent = `${currentPropImageIndex + 1} / ${currentActivePropImages.length}`;
+            } else {
+                nav.classList.add('hidden');
+                counterEl.classList.add('hidden');
+            }
+
+            document.getElementById('propertyDetailModal').classList.remove('hidden');
+        }
+
+        function closePropertyDetailModal() { document.getElementById('propertyDetailModal').classList.add('hidden'); }
+        function updatePropCarouselImage() {
+            const imgEl = document.getElementById('propDetailImage');
+            const counterEl = document.getElementById('propDetailPhotoCounter');
+            if (currentActivePropImages.length > 0) {
+                imgEl.src = currentActivePropImages[currentPropImageIndex];
+            }
+            if (currentActivePropImages.length > 1 && counterEl) {
+                counterEl.textContent = `${currentPropImageIndex + 1} / ${currentActivePropImages.length}`;
+            }
+        }
+        function nextPropImage() {
+            if (currentActivePropImages.length <= 1) return;
+            currentPropImageIndex = (currentPropImageIndex + 1) % currentActivePropImages.length;
+            updatePropCarouselImage();
+        }
+        function prevPropImage() {
+            if (currentActivePropImages.length <= 1) return;
+            currentPropImageIndex = (currentPropImageIndex - 1 + currentActivePropImages.length) % currentActivePropImages.length;
+            updatePropCarouselImage();
+        }
+
+        function openAnnouncePropertyModal() { document.getElementById('announcePropertyModal').classList.remove('hidden'); }
+        function closeAnnouncePropertyModal() { document.getElementById('announcePropertyModal').classList.add('hidden'); }
+
+        function handleAnnouncePropertySubmit(event) {
+            event.preventDefault();
+            const type = document.getElementById('annPropType').value;
+            const category = document.getElementById('annPropCategory').value;
+            const address = document.getElementById('annPropAddress').value.trim();
+            const price = document.getElementById('annPropPrice').value.trim();
+            const desc = document.getElementById('annPropDesc').value.trim();
+            const owner = document.getElementById('annPropOwner').value.trim();
+
+            const msg = encodeURIComponent(
+                `Olá Robinson! Sou proprietário direto e quero anunciar meu imóvel no *Tem No Bairro*:\n\n` +
+                `*Finalidade:* ${type} (${category})\n` +
+                `*Localização:* ${address}\n` +
+                `*Valor:* ${price}\n` +
+                `*Detalhes:* ${desc}\n` +
+                `*Proprietário:* ${owner}\n\n` +
+                `Vou enviar as fotos do imóvel aqui em seguida!`
+            );
+
+            window.open(`https://wa.me/5585921033841?text=${msg}`, '_blank');
+            closeAnnouncePropertyModal();
+            event.target.reset();
+        }
+
         function openDetailModal(id) {
             const item = businesses.find(b => b.id === id);
             if (!item) return;
@@ -1720,6 +2342,7 @@
             updateCarouselImage();
         }
 
+        // --- PAINEL ADMIN (COMÉRCIOS + IMÓVEIS) ---
         function openAdminLoginModal() { document.getElementById('adminLoginModal').classList.remove('hidden'); }
         function closeAdminLoginModal() { document.getElementById('adminLoginModal').classList.add('hidden'); document.getElementById('adminPassword').value = ''; }
         function handleAdminLogin(event) {
@@ -1729,14 +2352,52 @@
                 openAdminPanel();
             } else { alert('Senha incorreta!'); }
         }
-        function openAdminPanel() { renderAdminTable(); document.getElementById('adminPanelModal').classList.remove('hidden'); }
-        function closeAdminPanel() { document.getElementById('adminPanelModal').classList.add('hidden'); renderBusinesses(); }
+        function openAdminPanel() {
+            switchAdminTab(currentAdminTab);
+            document.getElementById('adminPanelModal').classList.remove('hidden');
+        }
+        function closeAdminPanel() {
+            document.getElementById('adminPanelModal').classList.add('hidden');
+            renderBusinesses();
+            renderProperties();
+        }
+
+        function switchAdminTab(tab) {
+            currentAdminTab = tab;
+            const busTabBtn = document.getElementById('adminTab-businesses');
+            const propTabBtn = document.getElementById('adminTab-properties');
+            const busSec = document.getElementById('adminBusinessesSection');
+            const propSec = document.getElementById('adminPropertiesSection');
+            const addBtn = document.getElementById('adminAddActionBtn');
+            const totalCount = document.getElementById('adminTotalCount');
+
+            document.getElementById('adminBusTabCount').textContent = businesses.length;
+            document.getElementById('adminPropTabCount').textContent = properties.length;
+
+            if (tab === 'businesses') {
+                busTabBtn.className = 'px-4 py-2 rounded-xl text-xs font-extrabold bg-navy-900 text-white shadow-sm transition cursor-pointer';
+                propTabBtn.className = 'px-4 py-2 rounded-xl text-xs font-bold bg-slate-100 hover:bg-slate-200 text-slate-700 transition cursor-pointer';
+                busSec.classList.remove('hidden');
+                propSec.classList.add('hidden');
+                addBtn.innerHTML = '<i class="fa-solid fa-plus"></i> Adicionar Novo Lojista';
+                addBtn.onclick = openAddBusinessModal;
+                totalCount.textContent = businesses.length;
+                renderAdminTable();
+            } else {
+                propTabBtn.className = 'px-4 py-2 rounded-xl text-xs font-extrabold bg-navy-900 text-white shadow-sm transition cursor-pointer';
+                busTabBtn.className = 'px-4 py-2 rounded-xl text-xs font-bold bg-slate-100 hover:bg-slate-200 text-slate-700 transition cursor-pointer';
+                propSec.classList.remove('hidden');
+                busSec.classList.add('hidden');
+                addBtn.innerHTML = '<i class="fa-solid fa-plus"></i> Adicionar Novo Imóvel';
+                addBtn.onclick = openAddPropertyModal;
+                totalCount.textContent = properties.length;
+                renderAdminPropertiesTable();
+            }
+        }
 
         function renderAdminTable() {
             const tbody = document.getElementById('adminTableBody');
-            const totalCount = document.getElementById('adminTotalCount');
             if (!tbody) return;
-            totalCount.textContent = businesses.length;
             tbody.innerHTML = '';
 
             businesses.forEach((item, index) => {
@@ -1766,6 +2427,42 @@
                         <td class="p-3 text-right space-x-1">
                             <button onclick="openEditModal(${index})" class="bg-blue-50 hover:bg-blue-100 text-navy-900 p-2 rounded-lg transition cursor-pointer" title="Editar"><i class="fa-solid fa-pen"></i></button>
                             <button onclick="deleteBusiness(${index})" class="bg-red-50 hover:bg-red-100 text-red-600 p-2 rounded-lg transition cursor-pointer" title="Excluir"><i class="fa-solid fa-trash-can"></i></button>
+                        </td>
+                    </tr>
+                `;
+                tbody.innerHTML += row;
+            });
+        }
+
+        function renderAdminPropertiesTable() {
+            const tbody = document.getElementById('adminPropertiesTableBody');
+            if (!tbody) return;
+            tbody.innerHTML = '';
+
+            properties.forEach((item, index) => {
+                const statusVal = item.status || 'disponivel';
+                const badgeHtml = statusVal === 'disponivel'
+                    ? '<span class="text-xs font-bold px-2.5 py-1 rounded-lg bg-emerald-100 text-emerald-800">Disponível</span>'
+                    : '<span class="text-xs font-bold px-2.5 py-1 rounded-lg bg-slate-200 text-slate-700">Vendido / Alugado</span>';
+
+                const row = `
+                    <tr class="hover:bg-slate-50 transition">
+                        <td class="p-3">
+                            <div class="font-bold text-navy-950">${item.title}</div>
+                            <div class="text-[10px] text-slate-400">${item.category || 'Imóvel'} • ${item.address}</div>
+                        </td>
+                        <td class="p-3 text-slate-600 font-medium">
+                            <span class="font-extrabold text-navy-900">${item.type}</span>
+                            <div class="text-[11px] text-brand-700 font-bold">${item.price}</div>
+                        </td>
+                        <td class="p-3 text-slate-600">
+                            <div class="font-bold text-navy-950">${item.owner || 'Proprietário'}</div>
+                            <div class="font-mono text-[11px]">${item.phone}</div>
+                        </td>
+                        <td class="p-3 text-center">${badgeHtml}</td>
+                        <td class="p-3 text-right space-x-1">
+                            <button onclick="openEditPropertyModal(${index})" class="bg-blue-50 hover:bg-blue-100 text-navy-900 p-2 rounded-lg transition cursor-pointer" title="Editar"><i class="fa-solid fa-pen"></i></button>
+                            <button onclick="deleteProperty(${index})" class="bg-red-50 hover:bg-red-100 text-red-600 p-2 rounded-lg transition cursor-pointer" title="Excluir"><i class="fa-solid fa-trash-can"></i></button>
                         </td>
                     </tr>
                 `;
@@ -1857,7 +2554,97 @@
             if (confirm('Deseja realmente remover este parceiro?')) {
                 businesses.splice(index, 1);
                 localStorage.setItem(DB_KEY, JSON.stringify(businesses));
-                renderAdminTable();
+                switchAdminTab('businesses');
+            }
+        }
+
+        // --- CRUD IMÓVEIS NO PAINEL ADMIN ---
+        function openAddPropertyModal() {
+            document.getElementById('editPropIndex').value = '-1';
+            document.getElementById('propModalTitle').textContent = 'Adicionar Imóvel do Bairro';
+            document.getElementById('editPropTitle').value = '';
+            document.getElementById('editPropType').value = 'Venda';
+            document.getElementById('editPropCategory').value = 'Casa';
+            document.getElementById('editPropStatus').value = 'disponivel';
+            document.getElementById('editPropPrice').value = '';
+            document.getElementById('editPropFeatures').value = '';
+            document.getElementById('editPropOwner').value = '';
+            document.getElementById('editPropPhone').value = '';
+            document.getElementById('editPropAddress').value = '';
+            document.getElementById('editPropMapsUrl').value = '';
+            document.getElementById('editPropDescription').value = '';
+            document.getElementById('editPropImages').value = '';
+            document.getElementById('adminPanelModal').classList.add('hidden');
+            document.getElementById('editPropertyModal').classList.remove('hidden');
+        }
+
+        function openEditPropertyModal(index) {
+            const item = properties[index];
+            document.getElementById('editPropIndex').value = index;
+            document.getElementById('propModalTitle').textContent = 'Editar Imóvel do Bairro';
+            document.getElementById('editPropTitle').value = item.title;
+            document.getElementById('editPropType').value = item.type || 'Venda';
+            document.getElementById('editPropCategory').value = item.category || 'Casa';
+            document.getElementById('editPropStatus').value = item.status || 'disponivel';
+            document.getElementById('editPropPrice').value = item.price || '';
+            document.getElementById('editPropFeatures').value = item.features || '';
+            document.getElementById('editPropOwner').value = item.owner || '';
+            document.getElementById('editPropPhone').value = item.phone || '';
+            document.getElementById('editPropAddress').value = item.address || '';
+            document.getElementById('editPropMapsUrl').value = item.mapsUrl || '';
+            document.getElementById('editPropDescription').value = item.description || '';
+            document.getElementById('editPropImages').value = item.images && item.images.length > 0 ? item.images.join(', ') : '';
+
+            document.getElementById('adminPanelModal').classList.add('hidden');
+            document.getElementById('editPropertyModal').classList.remove('hidden');
+        }
+
+        function closeEditPropertyModal() {
+            document.getElementById('editPropertyModal').classList.add('hidden');
+            openAdminPanel();
+        }
+
+        function handleEditPropertySubmit(event) {
+            event.preventDefault();
+            const index = parseInt(document.getElementById('editPropIndex').value);
+            const title = document.getElementById('editPropTitle').value.trim();
+            const type = document.getElementById('editPropType').value;
+            const category = document.getElementById('editPropCategory').value;
+            const status = document.getElementById('editPropStatus').value;
+            const price = document.getElementById('editPropPrice').value.trim();
+            const features = document.getElementById('editPropFeatures').value.trim();
+            const owner = document.getElementById('editPropOwner').value.trim();
+            const phone = document.getElementById('editPropPhone').value.replace(/\D/g, '');
+            const address = document.getElementById('editPropAddress').value.trim();
+            const mapsUrl = document.getElementById('editPropMapsUrl').value.trim();
+            const description = document.getElementById('editPropDescription').value.trim();
+            const imgsVal = document.getElementById('editPropImages').value.trim();
+            const images = imgsVal ? imgsVal.split(',').map(s => s.trim()).filter(s => s.length > 0) : ['https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=600&auto=format&fit=crop&q=80'];
+
+            if (index === -1) {
+                properties.unshift({
+                    id: 'imovel-' + Date.now(),
+                    title, type, category, status, price, features, owner, phone, address, mapsUrl, description, images
+                });
+                alert('Imóvel publicado com sucesso!');
+            } else {
+                properties[index] = {
+                    ...properties[index],
+                    title, type, category, status, price, features, owner, phone, address, mapsUrl, description, images
+                };
+                alert('Imóvel atualizado com sucesso!');
+            }
+
+            localStorage.setItem(PROP_DB_KEY, JSON.stringify(properties));
+            closeEditPropertyModal();
+            renderProperties();
+        }
+
+        function deleteProperty(index) {
+            if (confirm('Deseja realmente remover este imóvel?')) {
+                properties.splice(index, 1);
+                localStorage.setItem(PROP_DB_KEY, JSON.stringify(properties));
+                switchAdminTab('properties');
             }
         }
 
