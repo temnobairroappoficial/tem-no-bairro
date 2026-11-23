@@ -233,14 +233,17 @@
                         <p class="text-xs text-slate-300 font-medium">O seu comércio local a um clique de distância</p>
                     </div>
                 </div>
-                <div class="flex items-center gap-2 sm:hidden">
-                    <a href="#muralImoveis" class="bg-white/10 hover:bg-white/20 text-white font-bold text-xs px-3 py-2.5 rounded-xl transition border border-white/15 flex items-center gap-1">
+                <div class="flex items-center gap-1.5 sm:hidden">
+                    <button type="button" onclick="triggerInstallApp()" class="install-app-btn bg-emerald-500 hover:bg-emerald-600 text-navy-950 font-extrabold text-xs px-2.5 py-2.5 rounded-xl transition shadow-md flex items-center gap-1 cursor-pointer" title="Baixar Aplicativo">
+                        <i class="fa-solid fa-download"></i> App
+                    </button>
+                    <a href="#muralImoveis" class="bg-white/10 hover:bg-white/20 text-white font-bold text-xs px-2.5 py-2.5 rounded-xl transition border border-white/15 flex items-center gap-1">
                         <i class="fa-solid fa-house-flag text-brand-500"></i> Imóveis
                     </a>
-                    <a href="https://tally.so/r/VpjbRy" target="_blank" class="bg-brand-500 hover:bg-brand-600 text-navy-950 font-bold text-xs px-3 py-2.5 rounded-xl transition shadow-md flex items-center gap-1 cursor-pointer">
+                    <a href="https://tally.so/r/VpjbRy" target="_blank" class="bg-brand-500 hover:bg-brand-600 text-navy-950 font-bold text-xs px-2.5 py-2.5 rounded-xl transition shadow-md flex items-center gap-1 cursor-pointer">
                         <i class="fa-solid fa-plus"></i> Anunciar
                     </a>
-                    <button type="button" onclick="openAdminLoginModal()" class="bg-navy-900 hover:bg-navy-800 text-slate-300 hover:text-white text-xs px-3 py-2.5 rounded-xl transition border border-white/10 flex items-center gap-1 cursor-pointer" title="Painel Administrativo">
+                    <button type="button" onclick="openAdminLoginModal()" class="bg-navy-900 hover:bg-navy-800 text-slate-300 hover:text-white text-xs px-2.5 py-2.5 rounded-xl transition border border-white/10 flex items-center gap-1 cursor-pointer" title="Painel Administrativo">
                         <i class="fa-solid fa-lock"></i>
                     </button>
                 </div>
@@ -248,6 +251,9 @@
 
             <!-- Menu do Topo -->
             <div class="flex items-center gap-2.5 overflow-x-auto w-full sm:w-auto justify-start sm:justify-end pb-1 sm:pb-0 hide-scrollbar">
+                <button type="button" onclick="triggerInstallApp()" class="install-app-btn hidden sm:flex bg-emerald-500 hover:bg-emerald-600 text-navy-950 font-extrabold text-xs px-3.5 py-2.5 rounded-xl shadow-md transition items-center gap-1.5 whitespace-nowrap cursor-pointer flex-shrink-0">
+                    <i class="fa-solid fa-download"></i> Baixar Aplicativo
+                </button>
                 <a href="#muralImoveis" class="hidden sm:flex bg-white/10 hover:bg-white/20 text-white border border-white/15 font-semibold text-xs px-3.5 py-2.5 rounded-xl transition items-center gap-1.5 whitespace-nowrap cursor-pointer flex-shrink-0">
                     <i class="fa-solid fa-house-flag text-brand-500"></i> Imóveis do Bairro
                 </a>
@@ -293,6 +299,9 @@
                         <a href="#vitrineComercios" class="bg-brand-500 hover:bg-brand-600 text-navy-950 font-extrabold text-xs sm:text-sm px-6 py-3.5 rounded-xl shadow-lg shadow-brand-500/25 transition transform hover:-translate-y-0.5 flex items-center gap-2">
                             <i class="fa-solid fa-magnifying-glass"></i> Explorar Comércios
                         </a>
+                        <button type="button" onclick="triggerInstallApp()" class="install-app-btn bg-emerald-500 hover:bg-emerald-600 text-navy-950 font-extrabold text-xs sm:text-sm px-5 py-3.5 rounded-xl shadow-lg transition transform hover:-translate-y-0.5 flex items-center gap-2 cursor-pointer">
+                            <i class="fa-solid fa-download"></i> Baixar Aplicativo
+                        </button>
                         <a href="#muralImoveis" class="bg-white/10 hover:bg-white/20 text-white border border-white/20 font-semibold text-xs sm:text-sm px-5 py-3.5 rounded-xl transition flex items-center gap-2">
                             <i class="fa-solid fa-house-flag text-brand-400"></i> Ver Imóveis
                         </a>
@@ -709,6 +718,8 @@
             <div class="flex flex-wrap justify-center items-center gap-4 py-2 text-slate-300 font-semibold">
                 <a href="https://instagram.com/temnobairro_oficial" target="_blank" class="hover:text-brand-500 transition flex items-center gap-1.5"><i class="fa-brands fa-instagram text-base text-brand-500"></i> @temnobairro_oficial</a>
                 <span class="text-white/20">•</span>
+                <button type="button" onclick="triggerInstallApp()" class="hover:text-emerald-400 transition flex items-center gap-1.5 cursor-pointer text-emerald-400 font-bold"><i class="fa-solid fa-download text-base"></i> Instalar Aplicativo</button>
+                <span class="text-white/20">•</span>
                 <a href="https://g.page/r/CRK_11do12bRECE/review" target="_blank" class="hover:text-brand-400 transition flex items-center gap-1.5 text-brand-400 font-bold"><i class="fa-solid fa-star text-base"></i> Avaliar no Google</a>
                 <span class="text-white/20">•</span>
                 <button type="button" onclick="openIndicateModal()" class="hover:text-brand-400 transition flex items-center gap-1.5 cursor-pointer text-brand-400 font-semibold"><i class="fa-solid fa-gift text-base"></i> Indicar Comércio</button>
@@ -727,6 +738,47 @@
             </div>
         </div>
     </footer>
+
+    <!-- MODAL: COMO INSTALAR O APLICATIVO (IPHONE / NAVEGADORES) -->
+    <div id="installAppModal" class="fixed inset-0 bg-navy-950/85 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-md w-full p-6 sm:p-7 shadow-2xl relative border border-slate-100 space-y-5">
+            <button type="button" onclick="closeInstallAppModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 bg-slate-100 p-2 rounded-full w-8 h-8 flex items-center justify-center transition cursor-pointer">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="text-center space-y-2">
+                <div class="w-14 h-14 rounded-2xl overflow-hidden border-2 border-brand-500 mx-auto shadow-md bg-navy-950">
+                    <img src="logo-casa-pino.jpeg" alt="Tem No Bairro" class="w-full h-full object-cover">
+                </div>
+                <h3 class="text-xl font-extrabold text-navy-950">Instalar o App TEM NO BAIRRO</h3>
+                <p class="text-xs text-slate-500">Tenha acesso rápido na tela inicial do seu celular, leve e sem ocupar memória.</p>
+            </div>
+
+            <!-- Passo a passo iPhone (iOS / Safari) -->
+            <div class="bg-slate-50 border border-slate-200 rounded-2xl p-4 space-y-3 text-xs text-slate-700">
+                <div class="font-extrabold text-navy-950 flex items-center gap-2">
+                    <i class="fa-brands fa-apple text-base"></i> No iPhone (Safari):
+                </div>
+                <ol class="list-decimal pl-5 space-y-1.5">
+                    <li>Toque no ícone de <strong>Compartilhar</strong> <i class="fa-solid fa-arrow-up-from-bracket text-blue-600"></i> na barra inferior do Safari.</li>
+                    <li>Role para baixo e toque em <strong>"Adicionar à Tela de Início"</strong> <i class="fa-regular fa-square-plus text-navy-900"></i>.</li>
+                    <li>Toque em <strong>Adicionar</strong> no canto superior direito.</li>
+                </ol>
+            </div>
+
+            <!-- Passo a passo Android (Chrome) -->
+            <div class="bg-emerald-50/70 border border-emerald-200 rounded-2xl p-4 space-y-2 text-xs text-slate-700">
+                <div class="font-extrabold text-emerald-900 flex items-center gap-2">
+                    <i class="fa-brands fa-android text-emerald-600 text-base"></i> No Android (Chrome):
+                </div>
+                <p>Toque nos <strong>3 pontinhos (⋮)</strong> no canto superior direito do navegador e selecione <strong>"Instalar aplicativo"</strong> ou <strong>"Adicionar à tela inicial"</strong>.</p>
+            </div>
+
+            <button type="button" onclick="closeInstallAppModal()" class="w-full bg-navy-900 hover:bg-navy-800 text-white font-bold py-3 rounded-xl text-xs transition cursor-pointer">
+                Entendi
+            </button>
+        </div>
+    </div>
 
     <!-- MODAL DE DETALHES DO COMÉRCIO -->
     <div id="detailModal" class="fixed inset-0 bg-navy-950/85 backdrop-blur-md z-50 hidden flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
@@ -1468,6 +1520,56 @@
         let currentAdminTab = 'businesses';
 
         let splashTimerId = null;
+
+        // --- INSTALAÇÃO DO APLICATIVO (PWA + SERVICE WORKER) ---
+        let deferredInstallPrompt = null;
+
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./service-worker.js').catch((err) => {
+                    console.log('Erro ao registrar Service Worker:', err);
+                });
+            });
+        }
+
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredInstallPrompt = e;
+        });
+
+        window.addEventListener('appinstalled', () => {
+            deferredInstallPrompt = null;
+            document.querySelectorAll('.install-app-btn').forEach(btn => {
+                btn.innerHTML = '<i class="fa-solid fa-circle-check"></i> App Instalado';
+            });
+        });
+
+        async function triggerInstallApp() {
+            const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
+            if (isStandalone) {
+                alert('O aplicativo TEM NO BAIRRO já está instalado e aberto no seu aparelho!');
+                return;
+            }
+
+            if (deferredInstallPrompt) {
+                deferredInstallPrompt.prompt();
+                const { outcome } = await deferredInstallPrompt.userChoice;
+                if (outcome === 'accepted') {
+                    deferredInstallPrompt = null;
+                }
+                return;
+            }
+
+            openInstallAppModal();
+        }
+
+        function openInstallAppModal() {
+            document.getElementById('installAppModal').classList.remove('hidden');
+        }
+
+        function closeInstallAppModal() {
+            document.getElementById('installAppModal').classList.add('hidden');
+        }
 
         function buildWhatsAppUrl(phone, message) {
             let digits = phone ? String(phone).replace(/\D/g, '') : '';
