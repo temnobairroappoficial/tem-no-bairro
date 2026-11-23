@@ -1,11 +1,13 @@
-self.addEventListener('install', function(event) {
-  self.skipWaiting();
+self.addEventListener('install', (event) => {
+    self.skipWaiting();
 });
 
-self.addEventListener('activate', function(event) {
-  event.waitUntil(self.clients.claim());
+self.addEventListener('activate', (event) => {
+    event.waitUntil(self.clients.claim());
 });
 
-self.addEventListener('fetch', function(event) {
-  // O mínimo necessário para autorizar a instalação do app
+self.addEventListener('fetch', (event) => {
+    event.respondWith(
+        fetch(event.request).catch(() => caches.match(event.request))
+    );
 });
