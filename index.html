@@ -1580,7 +1580,7 @@
                         <div class="relative h-52 w-full bg-slate-100 overflow-hidden cursor-pointer" onclick="openDetailModal('${item.id}')">
                             <img src="${imgList[0]}" alt="${item.name}" class="parceiro-capa">
                             ${activePromo ? `<span class="absolute top-3.5 left-3.5 bg-brand-500 text-navy-950 text-[10px] font-black uppercase px-2.5 py-1 rounded-full shadow"><i class="fa-solid fa-ticket mr-1"></i>Cupom Ativo</span>` : ''}
-                            ${imgList.length > 1 ? `<span class="absolute bottom-3 left-3 bg-navy-950/80 text-white text-[10px] font-bold px-2.5 py-1 rounded-full"><i class="fa-regular fa-images mr-1"></i>+${imgList.length - 1} fotos</span>` : ''}
+                            ${imgList.length > 1 ? `<span class="absolute bottom-3 right-3 bg-navy-950/80 text-white text-[10px] font-bold px-2.5 py-1 rounded-full"><i class="fa-regular fa-images mr-1"></i>+${imgList.length - 1} fotos</span>` : ''}
                             <div class="absolute top-3.5 right-3.5 flex items-center gap-1.5">
                                 <a href="${shareUrl}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()" title="Compartilhar no WhatsApp" class="w-9 h-9 rounded-full bg-navy-950/75 hover:bg-emerald-600 text-white flex items-center justify-center transition">
                                     <i class="fa-solid fa-share-nodes text-xs"></i>
@@ -1681,7 +1681,7 @@
                                     <i class="fa-solid fa-share-nodes text-xs"></i>
                                 </a>
                             </div>
-                            ${imgList.length > 1 ? `<span class="absolute bottom-3 left-3 bg-navy-950/80 text-white text-[10px] font-bold px-2.5 py-1 rounded-full"><i class="fa-regular fa-images mr-1"></i>+${imgList.length - 1} fotos</span>` : ''}
+                            ${imgList.length > 1 ? `<span class="absolute bottom-3 right-3 bg-navy-950/80 text-white text-[10px] font-bold px-2.5 py-1 rounded-full"><i class="fa-regular fa-images mr-1"></i>+${imgList.length - 1} fotos</span>` : ''}
                         </div>
                         <div class="p-6 pt-0 flex-grow flex flex-col justify-between">
                             <div>
