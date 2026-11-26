@@ -785,6 +785,9 @@
                     <p class="text-xs text-slate-500">Gerencie lojistas (Grupo A), imóveis/espaços (Grupo B) e cupons/promoções.</p>
                 </div>
                 <div class="flex items-center gap-2">
+                    <button type="button" onclick="syncWithGoogleSheets()" class="bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold px-3.5 py-2.5 rounded-xl cursor-pointer" title="Sincronizar agora com a planilha">
+                        <i class="fa-solid fa-rotate mr-1"></i> Sincronizar Planilha
+                    </button>
                     <button type="button" id="adminAddActionBtn" onclick="openAddBusinessModal()" class="bg-brand-500 hover:bg-brand-600 text-navy-950 text-xs font-extrabold px-4 py-2.5 rounded-xl cursor-pointer">
                         <i class="fa-solid fa-plus"></i> Adicionar Novo Lojista
                     </button>
@@ -809,8 +812,8 @@
                     <thead>
                         <tr class="bg-slate-100 text-navy-950 uppercase text-[10px]">
                             <th class="p-3">Estabelecimento</th>
-                            <th class="p-3">Plano</th>
-                            <th class="p-3">WhatsApp / Insta</th>
+                            <th class="p-3">Categoria</th>
+                            <th class="p-3">WhatsApp</th>
                             <th class="p-3 text-center">Estado</th>
                             <th class="p-3 text-right">Ações</th>
                         </tr>
@@ -998,6 +1001,7 @@
     </div>
 
     <script>
+        const SHEETS_API_URL = 'https://script.google.com/macros/s/AKfycbYMkLiouBTDiAv8uiy6KosOEHwQjRQz7udL7853V_e7h9y2THZD6bjkeUUd4rzGsI7A6A/exec';
         const DB_KEY = 'tem_no_bairro_db_v32';
         const PROP_DB_KEY = 'tem_no_bairro_imoveis_v2';
         const COUPON_DB_KEY = 'tem_no_bairro_cupons_v1';
@@ -1006,7 +1010,7 @@
         const defaultBusinesses = [
             {
                 id: 'barbearia-dcristo-1',
-                name: "Barbearia d'cristo",
+                name: "Barbearia D Cristo",
                 category: 'Saúde e Beleza',
                 phone: '85992352042',
                 social: '@barbearia_dcristo',
@@ -1025,7 +1029,7 @@
             {
                 id: 'bruna-boutique-1',
                 name: 'Bruna Boutique',
-                category: 'Comércio e Serviços',
+                category: 'Outros',
                 phone: '85984190491',
                 social: '@brunaboutique.ofc',
                 address: 'Rua Flor do Lírio 175, Lameirao Maranguape',
@@ -1039,7 +1043,7 @@
             },
             {
                 id: 'delicias-dely-1',
-                name: 'Delícias da Dely',
+                name: 'Delicias da Dely',
                 category: 'Comércio e Serviços',
                 phone: '85989305017',
                 social: '@delicias.delyoficial',
@@ -1076,7 +1080,7 @@
             {
                 id: 'cupom-deli-1',
                 businessId: 'delicias-dely-1',
-                businessName: 'Delícias da Dely',
+                businessName: 'Delicias da Dely',
                 phone: '85989305017',
                 title: '10% de Desconto na 1ª Compra pelo App',
                 code: 'DELY10',
@@ -1224,14 +1228,14 @@
             const text = document.getElementById('liveSocialProofText');
             if (!badge || !text) return;
             const activeBus = businesses.length;
-            const activeProps = properties.filter(p => (p.status || 'disponivel') === 'disponivel').length;
+            const activeProps = properties.filter(p => (p.status || 'disponivel').toLowerCase() === 'disponivel').length;
             text.textContent = `${activeBus} comércios ativos • ${activeProps} imóveis/espaços direto c/ dono`;
             badge.classList.remove('hidden');
         }
 
         function getActiveCouponsList() {
             const activeFromDB = coupons
-                .filter(c => (c.status || 'ativa') === 'ativa' && c.title && c.title.trim())
+                .filter(c => (c.status || 'ativa').toLowerCase() === 'ativa' && c.title && c.title.trim())
                 .map(c => {
                     const matchedBiz = businesses.find(b => b.id === c.businessId || b.name.toLowerCase() === (c.businessName || '').toLowerCase());
                     return {
@@ -1266,7 +1270,7 @@
         }
 
         function getBusinessActivePromo(biz) {
-            const match = coupons.find(c => (c.status || 'ativa') === 'ativa' && c.title && c.title.trim() && (
+            const match = coupons.find(c => (c.status || 'ativa').toLowerCase() === 'ativa' && c.title && c.title.trim() && (
                 c.businessId === biz.id || (c.businessName || '').toLowerCase() === biz.name.toLowerCase()
             ));
             if (match) return match.title.trim();
@@ -1318,6 +1322,47 @@
             if (target) target.scrollIntoView({ behavior: 'smooth' });
         }
 
+        async function syncWithGoogleSheets() {
+            if (!SHEETS_API_URL || SHEETS_API_URL.includes('COLE_AQUI')) return;
+
+            try {
+                const res = await fetch(SHEETS_API_URL, { cache: 'no-store' });
+                if (!res.ok) return;
+                const data = await res.json();
+
+                if (Array.isArray(data.comercios) && data.comercios.length > 0) {
+                    const activeBiz = data.comercios.filter(b => {
+                        const st = (b.status || 'ativo').toLowerCase();
+                        return st === 'ativo' || st === 'convidado';
+                    });
+                    if (activeBiz.length > 0) {
+                        businesses = activeBiz;
+                        localStorage.setItem(DB_KEY, JSON.stringify(businesses));
+                    }
+                }
+
+                if (Array.isArray(data.imoveis) && data.imoveis.length > 0) {
+                    properties = data.imoveis;
+                    localStorage.setItem(PROP_DB_KEY, JSON.stringify(properties));
+                }
+
+                if (Array.isArray(data.cupons)) {
+                    coupons = data.cupons;
+                    localStorage.setItem(COUPON_DB_KEY, JSON.stringify(coupons));
+                }
+
+                updateLiveSocialProof();
+                renderDailyCoupons();
+                renderBusinesses();
+                renderProperties();
+                if (!document.getElementById('adminPanelModal').classList.contains('hidden')) {
+                    switchAdminTab(currentAdminTab);
+                }
+            } catch (err) {
+                console.warn('Sem conexão com a planilha no momento; exibindo cache local:', err);
+            }
+        }
+
         function initApp() {
             splashTimerId = setTimeout(dismissSplashScreen, 1100);
             try { businesses = JSON.parse(localStorage.getItem(DB_KEY)) || defaultBusinesses; } catch (e) { businesses = defaultBusinesses; }
@@ -1338,6 +1383,7 @@
             renderBusinesses();
             renderProperties();
             switchServiceTab('emergencia');
+            syncWithGoogleSheets();
         }
 
         if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initApp);
@@ -1457,9 +1503,9 @@
                     if (st.isOpen !== true) return false;
                 }
                 if (currentCategory === 'Fundadores' && !item.isFounder) return false;
-                if (currentCategory !== 'Todos' && currentCategory !== 'Fundadores' && item.category !== currentCategory) return false;
-                if (currentCity !== 'Todas' && !item.address.toLowerCase().includes(currentCity.toLowerCase())) return false;
-                return item.name.toLowerCase().includes(searchVal) || item.description.toLowerCase().includes(searchVal) || item.address.toLowerCase().includes(searchVal);
+                if (currentCategory !== 'Todos' && currentCategory !== 'Fundadores' && (item.category || '').toLowerCase() !== currentCategory.toLowerCase()) return false;
+                if (currentCity !== 'Todas' && !(item.address || '').toLowerCase().includes(currentCity.toLowerCase())) return false;
+                return (item.name || '').toLowerCase().includes(searchVal) || (item.description || '').toLowerCase().includes(searchVal) || (item.address || '').toLowerCase().includes(searchVal);
             });
 
             document.getElementById('resultsCount').textContent = `Mostrando ${filtered.length} ${filtered.length === 1 ? 'comércio' : 'comércios'}${currentCity !== 'Todas' ? ' em ' + currentCity : ''}`;
@@ -1562,9 +1608,9 @@
             grid.innerHTML = '';
 
             const filtered = properties.filter(item => {
-                if ((item.status || 'disponivel') !== 'disponivel') return false;
-                if (currentPropertyType !== 'Todos' && item.type !== currentPropertyType) return false;
-                if (currentPropertyCity !== 'Todas' && !item.address.toLowerCase().includes(currentPropertyCity.toLowerCase())) return false;
+                if ((item.status || 'disponivel').toLowerCase() !== 'disponivel') return false;
+                if (currentPropertyType !== 'Todos' && (item.type || '').toLowerCase() !== currentPropertyType.toLowerCase()) return false;
+                if (currentPropertyCity !== 'Todas' && !(item.address || '').toLowerCase().includes(currentPropertyCity.toLowerCase())) return false;
                 return true;
             });
 
@@ -1793,7 +1839,7 @@
                 tbody.innerHTML += `
                     <tr>
                         <td class="p-3 font-bold text-navy-950">${item.name}</td>
-                        <td class="p-3">${item.plan || 'Parceiro Fundador'}</td>
+                        <td class="p-3">${item.category || 'Comércio e Serviços'}</td>
                         <td class="p-3">${item.phone}</td>
                         <td class="p-3 text-center">${item.status || 'ativo'}</td>
                         <td class="p-3 text-right space-x-1">
@@ -1815,8 +1861,8 @@
                         <td class="p-3 max-w-[180px] truncate" title="${item.address}">${item.address}</td>
                         <td class="p-3">${item.owner || 'Proprietário'}<span class="block text-slate-500">${item.phone}</span></td>
                         <td class="p-3 text-center">
-                            <span class="px-2 py-1 rounded-full text-[10px] font-bold ${(item.status || 'disponivel') === 'disponivel' ? 'bg-emerald-100 text-emerald-800' : 'bg-slate-200 text-slate-700'}">
-                                ${(item.status || 'disponivel') === 'disponivel' ? 'Disponível' : 'Encerrado'}
+                            <span class="px-2 py-1 rounded-full text-[10px] font-bold ${(item.status || 'disponivel').toLowerCase() === 'disponivel' ? 'bg-emerald-100 text-emerald-800' : 'bg-slate-200 text-slate-700'}">
+                                ${(item.status || 'disponivel').toLowerCase() === 'disponivel' ? 'Disponível' : 'Encerrado'}
                             </span>
                         </td>
                         <td class="p-3 text-right space-x-1 whitespace-nowrap">
@@ -1831,7 +1877,7 @@
             const tbody = document.getElementById('adminCouponsTableBody');
             tbody.innerHTML = '';
             coupons.forEach((item, index) => {
-                const isActive = (item.status || 'ativa') === 'ativa';
+                const isActive = (item.status || 'ativa').toLowerCase() === 'ativa';
                 tbody.innerHTML += `
                     <tr>
                         <td class="p-3 font-bold text-navy-950">${item.businessName}<span class="block text-[10px] text-slate-500 font-normal">${item.phone || ''}</span></td>
@@ -1927,7 +1973,7 @@
         }
 
         function toggleCouponStatus(index) {
-            const cur = coupons[index].status || 'ativa';
+            const cur = (coupons[index].status || 'ativa').toLowerCase();
             coupons[index].status = cur === 'ativa' ? 'pausada' : 'ativa';
             localStorage.setItem(COUPON_DB_KEY, JSON.stringify(coupons));
             switchAdminTab('coupons');
