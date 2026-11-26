@@ -1003,7 +1003,7 @@
 
     <script>
         const SHEETS_API_URL = 'https://script.google.com/macros/s/AKfycbyMkLioUBTDiAv8uIy6KosQEHwQjRQz7udL7853V_e7h9y2THZD6bjKeUUd4rzGsl7A6A/exec';
-        const ADMIN_SECRET_TOKEN = 'tnb_admin_2026_robinson';
+        const ADMIN_SECRET_TOKEN = 'tnb_admin_258963_robinson';
         const DB_KEY = 'tem_no_bairro_db_v32';
         const PROP_DB_KEY = 'tem_no_bairro_imoveis_v2';
         const COUPON_DB_KEY = 'tem_no_bairro_cupons_v1';
@@ -1850,7 +1850,7 @@
         function closeAdminLoginModal() { document.getElementById('adminLoginModal').classList.add('hidden'); }
         function handleAdminLogin(e) {
             e.preventDefault();
-            if (document.getElementById('adminPassword').value === 'admin123') { closeAdminLoginModal(); openAdminPanel(); }
+            if (document.getElementById('adminPassword').value === 'temnobairro..') { closeAdminLoginModal(); openAdminPanel(); }
             else alert('Senha incorreta!');
         }
         function openAdminPanel() { switchAdminTab(currentAdminTab); document.getElementById('adminPanelModal').classList.remove('hidden'); }
