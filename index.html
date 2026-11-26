@@ -224,7 +224,7 @@
                 <a href="#muralImoveis" class="bg-white/10 hover:bg-white/20 text-white border border-white/15 font-semibold text-xs px-3 py-2.5 rounded-xl transition flex items-center gap-1.5 whitespace-nowrap flex-shrink-0">
                     <i class="fa-solid fa-house-flag text-brand-500"></i> Imóveis & Espaços
                 </a>
-                <a href="https://g.page/r/CRK_11do12bRECE/review" target="_blank" class="bg-white/10 hover:bg-white/20 text-amber-300 border border-white/15 font-semibold text-xs px-3 py-2.5 rounded-xl transition flex items-center gap-1.5 whitespace-nowrap flex-shrink-0">
+                <a href="https://g.page/r/CRK_11do12bRECE/review" target="_blank" rel="noopener noreferrer" class="bg-white/10 hover:bg-white/20 text-amber-300 border border-white/15 font-semibold text-xs px-3 py-2.5 rounded-xl transition flex items-center gap-1.5 whitespace-nowrap flex-shrink-0">
                     <i class="fa-solid fa-star text-brand-500"></i> Avaliar no Google
                 </a>
                 <button type="button" onclick="openIndicateModal()" class="bg-white/10 hover:bg-white/20 text-white border border-white/15 text-xs px-3 py-2.5 rounded-xl transition flex items-center gap-1.5 cursor-pointer font-semibold whitespace-nowrap flex-shrink-0">
@@ -398,10 +398,10 @@
                     <span class="text-xs font-bold text-navy-900 px-1.5 flex items-center gap-1">
                         <i class="fa-solid fa-map-location-dot text-brand-500"></i> Cidade:
                     </span>
-                    <button onclick="selectCity('Todas')" id="cityBtn-Todas" class="city-btn px-3 py-1.5 rounded-xl text-xs font-bold bg-navy-900 text-white shadow-sm transition cursor-pointer">Todas</button>
-                    <button onclick="selectCity('Maracanaú')" id="cityBtn-Maracanaú" class="city-btn px-3 py-1.5 rounded-xl text-xs font-semibold bg-slate-100 hover:bg-slate-200 text-slate-700 transition cursor-pointer">Maracanaú</button>
-                    <button onclick="selectCity('Pacatuba')" id="cityBtn-Pacatuba" class="city-btn px-3 py-1.5 rounded-xl text-xs font-semibold bg-slate-100 hover:bg-slate-200 text-slate-700 transition cursor-pointer">Pacatuba</button>
-                    <button onclick="selectCity('Maranguape')" id="cityBtn-Maranguape" class="city-btn px-3 py-1.5 rounded-xl text-xs font-semibold bg-slate-100 hover:bg-slate-200 text-slate-700 transition cursor-pointer">Maranguape</button>
+                    <button type="button" onclick="selectCity('Todas')" id="cityBtn-Todas" class="city-btn px-3 py-1.5 rounded-xl text-xs font-bold bg-navy-900 text-white shadow-sm transition cursor-pointer">Todas</button>
+                    <button type="button" onclick="selectCity('Maracanaú')" id="cityBtn-Maracanaú" class="city-btn px-3 py-1.5 rounded-xl text-xs font-semibold bg-slate-100 hover:bg-slate-200 text-slate-700 transition cursor-pointer">Maracanaú</button>
+                    <button type="button" onclick="selectCity('Pacatuba')" id="cityBtn-Pacatuba" class="city-btn px-3 py-1.5 rounded-xl text-xs font-semibold bg-slate-100 hover:bg-slate-200 text-slate-700 transition cursor-pointer">Pacatuba</button>
+                    <button type="button" onclick="selectCity('Maranguape')" id="cityBtn-Maranguape" class="city-btn px-3 py-1.5 rounded-xl text-xs font-semibold bg-slate-100 hover:bg-slate-200 text-slate-700 transition cursor-pointer">Maranguape</button>
                 </div>
             </div>
 
@@ -410,42 +410,42 @@
                     <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-base"></i>
                     <input type="text" id="searchInput" oninput="filterBusinesses()" placeholder="Buscar por nome da loja, produto, bairro ou serviço..." 
                         class="w-full pl-12 pr-10 py-3.5 bg-slate-50 border border-slate-200 rounded-2xl text-slate-800 text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-500 transition">
-                    <button id="clearSearch" onclick="clearSearchInput()" class="hidden absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 p-1 cursor-pointer">
+                    <button type="button" id="clearSearch" onclick="clearSearchInput()" class="hidden absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 p-1 cursor-pointer">
                         <i class="fa-solid fa-xmark"></i>
                     </button>
                 </div>
 
                 <div class="flex items-center justify-between gap-3 overflow-x-auto pb-1 hide-scrollbar">
                     <div class="flex items-center gap-2">
-                        <button onclick="selectCategory('Todos')" class="category-btn active bg-navy-900 text-white px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold whitespace-nowrap shadow-sm transition cursor-pointer">
+                        <button type="button" onclick="selectCategory('Todos')" class="category-btn active bg-navy-900 text-white px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold whitespace-nowrap shadow-sm transition cursor-pointer">
                             <i class="fa-solid fa-border-all mr-1.5"></i> Todos
                         </button>
-                        <button onclick="toggleOpenNowFilter()" id="openNowBtn" class="bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-200 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold whitespace-nowrap transition flex items-center gap-1.5 cursor-pointer">
+                        <button type="button" onclick="toggleOpenNowFilter()" id="openNowBtn" class="bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-200 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold whitespace-nowrap transition flex items-center gap-1.5 cursor-pointer">
                             <span class="w-2 h-2 rounded-full bg-emerald-500"></span> Abertos Agora
                         </button>
-                        <button onclick="selectCategory('Fundadores')" class="category-btn bg-slate-100 text-slate-700 hover:bg-slate-200 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap transition cursor-pointer">
+                        <button type="button" onclick="selectCategory('Fundadores')" class="category-btn bg-slate-100 text-slate-700 hover:bg-slate-200 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap transition cursor-pointer">
                             <i class="fa-solid fa-award text-brand-500 mr-1.5"></i> Parceiros Fundadores
                         </button>
-                        <button onclick="selectCategory('Comércio e Serviços')" class="category-btn bg-slate-100 text-slate-700 hover:bg-slate-200 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap transition cursor-pointer">
+                        <button type="button" onclick="selectCategory('Comércio e Serviços')" class="category-btn bg-slate-100 text-slate-700 hover:bg-slate-200 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap transition cursor-pointer">
                             <i class="fa-solid fa-store text-brand-600 mr-1.5"></i> Comércio e Serviços
                         </button>
-                        <button onclick="selectCategory('Saúde e Beleza')" class="category-btn bg-slate-100 text-slate-700 hover:bg-slate-200 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap transition cursor-pointer">
+                        <button type="button" onclick="selectCategory('Saúde e Beleza')" class="category-btn bg-slate-100 text-slate-700 hover:bg-slate-200 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap transition cursor-pointer">
                             <i class="fa-solid fa-scissors text-pink-500 mr-1.5"></i> Saúde e Beleza
                         </button>
-                        <button onclick="selectCategory('Pet Shop')" class="category-btn bg-slate-100 text-slate-700 hover:bg-slate-200 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap transition cursor-pointer">
+                        <button type="button" onclick="selectCategory('Pet Shop')" class="category-btn bg-slate-100 text-slate-700 hover:bg-slate-200 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap transition cursor-pointer">
                             <i class="fa-solid fa-paw text-amber-700 mr-1.5"></i> Pet Shop
                         </button>
-                        <button onclick="selectCategory('Construção e Reparos')" class="category-btn bg-slate-100 text-slate-700 hover:bg-slate-200 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap transition cursor-pointer">
+                        <button type="button" onclick="selectCategory('Construção e Reparos')" class="category-btn bg-slate-100 text-slate-700 hover:bg-slate-200 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap transition cursor-pointer">
                             <i class="fa-solid fa-hammer text-navy-700 mr-1.5"></i> Construção e Reparos
                         </button>
-                        <button onclick="selectCategory('Serviços Rápidos')" class="category-btn bg-slate-100 text-slate-700 hover:bg-slate-200 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap transition cursor-pointer">
+                        <button type="button" onclick="selectCategory('Serviços Rápidos')" class="category-btn bg-slate-100 text-slate-700 hover:bg-slate-200 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap transition cursor-pointer">
                             <i class="fa-solid fa-bolt text-brand-500 mr-1.5"></i> Serviços Rápidos
                         </button>
-                        <button onclick="selectCategory('Outros')" class="category-btn bg-slate-100 text-slate-700 hover:bg-slate-200 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap transition cursor-pointer">
+                        <button type="button" onclick="selectCategory('Outros')" class="category-btn bg-slate-100 text-slate-700 hover:bg-slate-200 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap transition cursor-pointer">
                             <i class="fa-solid fa-folder-open text-purple-600 mr-1.5"></i> Outros
                         </button>
                     </div>
-                    <button onclick="toggleFavoritesTab()" id="favTabBtn" class="bg-rose-50 hover:bg-rose-100 text-rose-600 border border-rose-200 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold whitespace-nowrap transition flex items-center gap-1.5 cursor-pointer">
+                    <button type="button" onclick="toggleFavoritesTab()" id="favTabBtn" class="bg-rose-50 hover:bg-rose-100 text-rose-600 border border-rose-200 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold whitespace-nowrap transition flex items-center gap-1.5 cursor-pointer">
                         <i class="fa-solid fa-heart"></i> Favoritos (<span id="favCount">0</span>)
                     </button>
                 </div>
@@ -464,7 +464,7 @@
                 <i class="fa-solid fa-store-slash text-slate-300 text-5xl mb-4"></i>
                 <h3 class="text-lg font-bold text-navy-950">Nenhum comércio encontrado</h3>
                 <p class="text-sm text-slate-500 mt-1 max-w-md mx-auto">Não encontramos negócios para os filtros selecionados.</p>
-                <button onclick="resetFilters()" class="mt-5 bg-navy-900 hover:bg-navy-800 text-white font-bold text-xs px-6 py-3 rounded-xl transition cursor-pointer">
+                <button type="button" onclick="resetFilters()" class="mt-5 bg-navy-900 hover:bg-navy-800 text-white font-bold text-xs px-6 py-3 rounded-xl transition cursor-pointer">
                     Ver todos os comércios
                 </button>
             </div>
@@ -574,19 +574,19 @@
                 </div>
 
                 <div class="flex flex-wrap gap-2">
-                    <button onclick="switchServiceTab('emergencia')" id="tabBtn-emergencia" class="service-tab-btn px-4 py-2.5 rounded-xl text-xs font-bold bg-navy-900 text-white shadow transition flex items-center gap-1.5 cursor-pointer">
+                    <button type="button" onclick="switchServiceTab('emergencia')" id="tabBtn-emergencia" class="service-tab-btn px-4 py-2.5 rounded-xl text-xs font-bold bg-navy-900 text-white shadow transition flex items-center gap-1.5 cursor-pointer">
                         <i class="fa-solid fa-phone-volume text-brand-500"></i> Emergência
                     </button>
-                    <button onclick="switchServiceTab('maracanau')" id="tabBtn-maracanau" class="service-tab-btn px-4 py-2.5 rounded-xl text-xs font-semibold bg-white border border-slate-200 hover:bg-slate-100 text-slate-700 transition flex items-center gap-1.5 cursor-pointer">
+                    <button type="button" onclick="switchServiceTab('maracanau')" id="tabBtn-maracanau" class="service-tab-btn px-4 py-2.5 rounded-xl text-xs font-semibold bg-white border border-slate-200 hover:bg-slate-100 text-slate-700 transition flex items-center gap-1.5 cursor-pointer">
                         Maracanaú
                     </button>
-                    <button onclick="switchServiceTab('pacatuba')" id="tabBtn-pacatuba" class="service-tab-btn px-4 py-2.5 rounded-xl text-xs font-semibold bg-white border border-slate-200 hover:bg-slate-100 text-slate-700 transition flex items-center gap-1.5 cursor-pointer">
+                    <button type="button" onclick="switchServiceTab('pacatuba')" id="tabBtn-pacatuba" class="service-tab-btn px-4 py-2.5 rounded-xl text-xs font-semibold bg-white border border-slate-200 hover:bg-slate-100 text-slate-700 transition flex items-center gap-1.5 cursor-pointer">
                         Pacatuba
                     </button>
-                    <button onclick="switchServiceTab('maranguape')" id="tabBtn-maranguape" class="service-tab-btn px-4 py-2.5 rounded-xl text-xs font-semibold bg-white border border-slate-200 hover:bg-slate-100 text-slate-700 transition flex items-center gap-1.5 cursor-pointer">
+                    <button type="button" onclick="switchServiceTab('maranguape')" id="tabBtn-maranguape" class="service-tab-btn px-4 py-2.5 rounded-xl text-xs font-semibold bg-white border border-slate-200 hover:bg-slate-100 text-slate-700 transition flex items-center gap-1.5 cursor-pointer">
                         Maranguape
                     </button>
-                    <button onclick="switchServiceTab('beneficios')" id="tabBtn-beneficios" class="service-tab-btn px-4 py-2.5 rounded-xl text-xs font-semibold bg-white border border-slate-200 hover:bg-slate-100 text-slate-700 transition flex items-center gap-1.5 cursor-pointer">
+                    <button type="button" onclick="switchServiceTab('beneficios')" id="tabBtn-beneficios" class="service-tab-btn px-4 py-2.5 rounded-xl text-xs font-semibold bg-white border border-slate-200 hover:bg-slate-100 text-slate-700 transition flex items-center gap-1.5 cursor-pointer">
                         Bolsa Família & FGTS
                     </button>
                 </div>
@@ -599,6 +599,7 @@
     <!-- BOTÃO FLUTUANTE WHATSAPP -->
     <a href="https://wa.me/5585921033841?text=Olá%20Robinson!%20Tenho%20dúvidas%20sobre%20o%20cadastro%20no%20Tem%20No%20Bairro." 
        target="_blank" 
+       rel="noopener noreferrer"
        class="fixed bottom-4 right-4 bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 px-4 rounded-full shadow-2xl flex items-center gap-2 z-40 transition text-xs border border-emerald-400/30">
        <i class="fa-brands fa-whatsapp text-lg"></i> Falar com o Fundador
     </a>
@@ -614,7 +615,7 @@
             </p>
             <div class="flex flex-wrap justify-center items-center gap-4 py-2 text-slate-300 font-semibold">
                 <a href="https://temnobairro.app.br/parceiros.html" class="hover:text-brand-400 transition flex items-center gap-1.5 text-brand-400 font-bold"><i class="fa-solid fa-handshake"></i> Parceiros & Divulgação</a>
-                <a href="https://instagram.com/temnobairro_oficial" target="_blank" class="hover:text-brand-500 transition flex items-center gap-1.5"><i class="fa-brands fa-instagram text-base text-brand-500"></i> @temnobairro_oficial</a>
+                <a href="https://instagram.com/temnobairro_oficial" target="_blank" rel="noopener noreferrer" class="hover:text-brand-500 transition flex items-center gap-1.5"><i class="fa-brands fa-instagram text-base text-brand-500"></i> @temnobairro_oficial</a>
                 <button type="button" onclick="triggerInstallApp()" class="hover:text-emerald-400 transition flex items-center gap-1.5 cursor-pointer text-emerald-400 font-bold"><i class="fa-solid fa-download text-base"></i> Instalar Aplicativo</button>
                 <button type="button" onclick="openIndicateModal()" class="hover:text-brand-400 transition flex items-center gap-1.5 cursor-pointer text-brand-400 font-semibold"><i class="fa-solid fa-gift text-base"></i> Indicar Comércio</button>
                 <button type="button" onclick="openTermsModal()" class="hover:text-white transition cursor-pointer underline">Termos de Uso</button>
@@ -686,17 +687,17 @@
                 </div>
             </div>
             <div class="pt-2 space-y-2.5">
-                <a id="detailWhatsApp" href="#" target="_blank" class="w-full bg-brand-500 hover:bg-brand-600 text-navy-950 font-extrabold py-3.5 px-4 rounded-xl shadow-md text-xs sm:text-sm flex items-center justify-center gap-2">
+                <a id="detailWhatsApp" href="#" target="_blank" rel="noopener noreferrer" class="w-full bg-brand-500 hover:bg-brand-600 text-navy-950 font-extrabold py-3.5 px-4 rounded-xl shadow-md text-xs sm:text-sm flex items-center justify-center gap-2">
                     <i class="fa-brands fa-whatsapp text-lg"></i> Chamar no WhatsApp
                 </a>
-                <a id="detailCouponWa" href="#" target="_blank" class="w-full bg-navy-900 hover:bg-navy-800 text-white font-bold py-3 px-4 rounded-xl text-xs flex items-center justify-center gap-2">
+                <a id="detailCouponWa" href="#" target="_blank" rel="noopener noreferrer" class="w-full bg-navy-900 hover:bg-navy-800 text-white font-bold py-3 px-4 rounded-xl text-xs flex items-center justify-center gap-2">
                     <i class="fa-solid fa-ticket text-brand-500"></i> Resgatar Cupom Exclusivo no WhatsApp
                 </a>
                 <div class="grid grid-cols-2 gap-2.5">
-                    <a id="detailShareWa" href="#" target="_blank" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2.5 px-3 rounded-xl text-xs flex items-center justify-center gap-1.5">
+                    <a id="detailShareWa" href="#" target="_blank" rel="noopener noreferrer" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2.5 px-3 rounded-xl text-xs flex items-center justify-center gap-1.5">
                         <i class="fa-solid fa-share-nodes"></i> Compartilhar
                     </a>
-                    <a id="detailMaps" href="#" target="_blank" class="bg-slate-100 hover:bg-slate-200 text-navy-950 font-bold py-2.5 px-3 rounded-xl text-xs flex items-center justify-center gap-1.5">
+                    <a id="detailMaps" href="#" target="_blank" rel="noopener noreferrer" class="bg-slate-100 hover:bg-slate-200 text-navy-950 font-bold py-2.5 px-3 rounded-xl text-xs flex items-center justify-center gap-1.5">
                         <i class="fa-solid fa-map-location-dot text-brand-600"></i> Como Chegar
                     </a>
                 </div>
@@ -732,14 +733,14 @@
                 <div id="propDetailFeaturesRow" class="flex items-center gap-2"><i class="fa-solid fa-house text-navy-700"></i><span id="propDetailFeatures"></span></div>
             </div>
             <div class="pt-2 space-y-2.5">
-                <a id="propDetailWhatsApp" href="#" target="_blank" class="w-full bg-navy-900 hover:bg-brand-500 text-white hover:text-navy-950 font-extrabold py-3.5 px-4 rounded-xl shadow-md text-xs sm:text-sm flex items-center justify-center gap-2 transition">
+                <a id="propDetailWhatsApp" href="#" target="_blank" rel="noopener noreferrer" class="w-full bg-navy-900 hover:bg-brand-500 text-white hover:text-navy-950 font-extrabold py-3.5 px-4 rounded-xl shadow-md text-xs sm:text-sm flex items-center justify-center gap-2 transition">
                     <i class="fa-brands fa-whatsapp text-lg"></i> Chamar no WhatsApp
                 </a>
                 <div class="grid grid-cols-2 gap-2.5">
-                    <a id="propDetailShareWa" href="#" target="_blank" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2.5 px-3 rounded-xl text-xs flex items-center justify-center gap-1.5">
+                    <a id="propDetailShareWa" href="#" target="_blank" rel="noopener noreferrer" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2.5 px-3 rounded-xl text-xs flex items-center justify-center gap-1.5">
                         <i class="fa-solid fa-share-nodes"></i> Compartilhar
                     </a>
-                    <a id="propDetailMaps" href="#" target="_blank" class="bg-slate-100 hover:bg-slate-200 text-navy-950 font-bold py-2.5 px-3 rounded-xl text-xs flex items-center justify-center gap-1.5">
+                    <a id="propDetailMaps" href="#" target="_blank" rel="noopener noreferrer" class="bg-slate-100 hover:bg-slate-200 text-navy-950 font-bold py-2.5 px-3 rounded-xl text-xs flex items-center justify-center gap-1.5">
                         <i class="fa-solid fa-map-location-dot text-brand-600"></i> Como Chegar
                     </a>
                 </div>
@@ -752,7 +753,7 @@
             <button type="button" onclick="closeTermsModal()" class="absolute top-4 right-4 text-slate-400 bg-slate-100 p-2 rounded-full w-8 h-8 flex items-center justify-center cursor-pointer"><i class="fa-solid fa-xmark"></i></button>
             <h3 class="text-lg font-extrabold text-navy-950">Termos de Uso</h3>
             <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">O diretório <strong>Tem No Bairro</strong> (CNPJ 69.805.020/0001-36) atua na divulgação comunitária em Maracanaú, Pacatuba e Maranguape. Não somos imobiliária nem corretor; negociações ocorrem diretamente entre as partes.</p>
-            <button onclick="closeTermsModal()" class="bg-navy-900 text-white font-bold px-5 py-2.5 rounded-xl text-xs cursor-pointer">Fechar</button>
+            <button type="button" onclick="closeTermsModal()" class="bg-navy-900 text-white font-bold px-5 py-2.5 rounded-xl text-xs cursor-pointer">Fechar</button>
         </div>
     </div>
 
@@ -761,7 +762,7 @@
             <button type="button" onclick="closePrivacyModal()" class="absolute top-4 right-4 text-slate-400 bg-slate-100 p-2 rounded-full w-8 h-8 flex items-center justify-center cursor-pointer"><i class="fa-solid fa-xmark"></i></button>
             <h3 class="text-lg font-extrabold text-navy-950">Política de Privacidade (LGPD)</h3>
             <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">Respeitamos a Lei nº 13.709/2018 (LGPD). Os dados informados destinam-se à divulgação local e contato direto via WhatsApp.</p>
-            <button onclick="closePrivacyModal()" class="bg-navy-900 text-white font-bold px-5 py-2.5 rounded-xl text-xs cursor-pointer">Fechar</button>
+            <button type="button" onclick="closePrivacyModal()" class="bg-navy-900 text-white font-bold px-5 py-2.5 rounded-xl text-xs cursor-pointer">Fechar</button>
         </div>
     </div>
 
@@ -782,10 +783,10 @@
             <div class="flex items-center justify-between pb-4 border-b border-slate-200 mb-4 flex-wrap gap-3">
                 <div>
                     <h3 class="text-lg font-extrabold text-navy-950">Painel Administrativo — TEM NO BAIRRO</h3>
-                    <p class="text-xs text-slate-500">Gerencie lojistas (Grupo A), imóveis/espaços (Grupo B) e cupons/promoções.</p>
+                    <p id="adminSyncStatusText" class="text-xs text-slate-500">Gerencie lojistas (Grupo A), imóveis/espaços (Grupo B) e cupons/promoções.</p>
                 </div>
-                <div class="flex items-center gap-2">
-                    <button type="button" onclick="syncWithGoogleSheets()" class="bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold px-3.5 py-2.5 rounded-xl cursor-pointer" title="Sincronizar agora com a planilha">
+                <div class="flex items-center gap-2 flex-wrap">
+                    <button type="button" id="syncSheetsBtn" onclick="syncWithGoogleSheets({ manual: true })" class="bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold px-3.5 py-2.5 rounded-xl cursor-pointer" title="Sincronizar agora com a planilha">
                         <i class="fa-solid fa-rotate mr-1"></i> Sincronizar Planilha
                     </button>
                     <button type="button" id="adminAddActionBtn" onclick="openAddBusinessModal()" class="bg-brand-500 hover:bg-brand-600 text-navy-950 text-xs font-extrabold px-4 py-2.5 rounded-xl cursor-pointer">
@@ -852,7 +853,7 @@
             </div>
             <div class="pt-4 border-t border-slate-200 mt-4 flex justify-between items-center text-xs text-slate-500">
                 <span>Total nesta aba: <strong id="adminTotalCount" class="text-navy-950">0</strong></span>
-                <button onclick="closeAdminPanel()" class="bg-navy-900 text-white px-5 py-2.5 rounded-xl font-bold cursor-pointer">Fechar</button>
+                <button type="button" onclick="closeAdminPanel()" class="bg-navy-900 text-white px-5 py-2.5 rounded-xl font-bold cursor-pointer">Fechar</button>
             </div>
         </div>
     </div>
@@ -1001,7 +1002,7 @@
     </div>
 
     <script>
-        const SHEETS_API_URL = 'https://script.google.com/macros/s/AKfycbYMkLiouBTDiAv8uiy6KosOEHwQjRQz7udL7853V_e7h9y2THZD6bjkeUUd4rzGsl7A6A/exec';
+        const SHEETS_API_URL = 'https://script.google.com/macros/s/AKfycbyMkLioUBTDiAv8uIy6KosQEHwQjRQz7udL7853V_e7h9y2THZD6bjKeUUd4rzGsl7A6A/exec';
         const DB_KEY = 'tem_no_bairro_db_v32';
         const PROP_DB_KEY = 'tem_no_bairro_imoveis_v2';
         const COUPON_DB_KEY = 'tem_no_bairro_cupons_v1';
@@ -1108,6 +1109,7 @@
         let currentAdminTab = 'businesses';
         let splashTimerId = null;
         let deferredInstallPrompt = null;
+        let isSyncingSheets = false;
 
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
@@ -1322,15 +1324,47 @@
             if (target) target.scrollIntoView({ behavior: 'smooth' });
         }
 
-        async function syncWithGoogleSheets() {
+        function setAdminSyncFeedback(message, isError = false) {
+            const el = document.getElementById('adminSyncStatusText');
+            if (!el) return;
+            el.textContent = message;
+            el.className = isError ? 'text-xs text-rose-600 font-semibold' : 'text-xs text-emerald-700 font-semibold';
+        }
+
+        async function syncWithGoogleSheets(options = {}) {
+            const isManual = Boolean(options && options.manual);
             if (!SHEETS_API_URL || SHEETS_API_URL.includes('COLE_AQUI')) return;
+            if (isSyncingSheets) return;
+
+            isSyncingSheets = true;
+            const syncBtn = document.getElementById('syncSheetsBtn');
+            if (syncBtn) {
+                syncBtn.disabled = true;
+                syncBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-1"></i> Sincronizando...';
+            }
 
             try {
-                const res = await fetch(SHEETS_API_URL, { cache: 'no-store' });
-                if (!res.ok) return;
-                const data = await res.json();
+                const sep = SHEETS_API_URL.includes('?') ? '&' : '?';
+                const requestUrl = `${SHEETS_API_URL}${sep}_t=${Date.now()}`;
+                const res = await fetch(requestUrl, {
+                    method: 'GET',
+                    cache: 'no-store',
+                    redirect: 'follow'
+                });
 
-                if (Array.isArray(data.comercios) && data.comercios.length > 0) {
+                if (!res.ok) {
+                    throw new Error(`HTTP ${res.status} ao consultar a planilha`);
+                }
+
+                const rawText = await res.text();
+                let data;
+                try {
+                    data = JSON.parse(rawText);
+                } catch (parseErr) {
+                    throw new Error('Resposta da API não está em formato JSON válido (verifique a permissão "Qualquer pessoa" no Apps Script)');
+                }
+
+                if (Array.isArray(data.comercios)) {
                     const activeBiz = data.comercios.filter(b => {
                         const st = (b.status || 'ativo').toLowerCase();
                         return st === 'ativo' || st === 'convidado';
@@ -1358,8 +1392,21 @@
                 if (!document.getElementById('adminPanelModal').classList.contains('hidden')) {
                     switchAdminTab(currentAdminTab);
                 }
+
+                const horaAtual = new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+                setAdminSyncFeedback(`Planilha sincronizada com sucesso às ${horaAtual}.`);
+                if (isManual) {
+                    console.info(`[Tem No Bairro] Sincronização concluída às ${horaAtual}.`);
+                }
             } catch (err) {
                 console.warn('Sem conexão com a planilha no momento; exibindo cache local:', err);
+                setAdminSyncFeedback('Sem conexão com a planilha no momento; exibindo cache local.', true);
+            } finally {
+                isSyncingSheets = false;
+                if (syncBtn) {
+                    syncBtn.disabled = false;
+                    syncBtn.innerHTML = '<i class="fa-solid fa-rotate mr-1"></i> Sincronizar Planilha';
+                }
             }
         }
 
@@ -1383,7 +1430,7 @@
             renderBusinesses();
             renderProperties();
             switchServiceTab('emergencia');
-            syncWithGoogleSheets();
+            syncWithGoogleSheets({ manual: false });
         }
 
         if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initApp);
@@ -1535,10 +1582,10 @@
                             ${activePromo ? `<span class="absolute top-3.5 left-3.5 bg-brand-500 text-navy-950 text-[10px] font-black uppercase px-2.5 py-1 rounded-full shadow"><i class="fa-solid fa-ticket mr-1"></i>Cupom Ativo</span>` : ''}
                             ${imgList.length > 1 ? `<span class="absolute bottom-3 left-3 bg-navy-950/80 text-white text-[10px] font-bold px-2.5 py-1 rounded-full"><i class="fa-regular fa-images mr-1"></i>+${imgList.length - 1} fotos</span>` : ''}
                             <div class="absolute top-3.5 right-3.5 flex items-center gap-1.5">
-                                <a href="${shareUrl}" target="_blank" onclick="event.stopPropagation()" title="Compartilhar no WhatsApp" class="w-9 h-9 rounded-full bg-navy-950/75 hover:bg-emerald-600 text-white flex items-center justify-center transition">
+                                <a href="${shareUrl}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()" title="Compartilhar no WhatsApp" class="w-9 h-9 rounded-full bg-navy-950/75 hover:bg-emerald-600 text-white flex items-center justify-center transition">
                                     <i class="fa-solid fa-share-nodes text-xs"></i>
                                 </a>
-                                <button onclick="toggleFavorite('${item.id}', event)" title="Favoritar" class="w-9 h-9 rounded-full bg-navy-950/75 text-white flex items-center justify-center cursor-pointer">
+                                <button type="button" onclick="toggleFavorite('${item.id}', event)" title="Favoritar" class="w-9 h-9 rounded-full bg-navy-950/75 text-white flex items-center justify-center cursor-pointer">
                                     <i class="${isFav ? 'fa-solid fa-heart text-rose-500' : 'fa-regular fa-heart'} text-sm"></i>
                                 </button>
                             </div>
@@ -1555,7 +1602,7 @@
                                 </div>
                                 <div class="flex items-center flex-wrap gap-1.5 mt-2">
                                     ${statusBadgeHtml}
-                                    ${insta ? `<a href="${insta.url}" target="_blank" class="inline-flex items-center gap-1 text-[11px] font-bold text-pink-600 bg-pink-50 border border-pink-200 px-2.5 py-0.5 rounded-full"><i class="fa-brands fa-instagram"></i> ${insta.handle}</a>` : ''}
+                                    ${insta ? `<a href="${insta.url}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-[11px] font-bold text-pink-600 bg-pink-50 border border-pink-200 px-2.5 py-0.5 rounded-full"><i class="fa-brands fa-instagram"></i> ${insta.handle}</a>` : ''}
                                 </div>
                                 <p class="text-xs sm:text-sm text-slate-600 mt-2.5 line-clamp-2">${item.description}</p>
                             </div>
@@ -1572,7 +1619,7 @@
                                         <i class="fa-regular fa-images text-navy-700"></i> Ver Fotos
                                     </button>
                                 </div>
-                                <a href="${waUrl}" target="_blank" class="w-full bg-navy-900 hover:bg-brand-500 text-white hover:text-navy-950 font-extrabold py-3 px-4 rounded-xl text-xs sm:text-sm flex items-center justify-center gap-2 transition">
+                                <a href="${waUrl}" target="_blank" rel="noopener noreferrer" class="w-full bg-navy-900 hover:bg-brand-500 text-white hover:text-navy-950 font-extrabold py-3 px-4 rounded-xl text-xs sm:text-sm flex items-center justify-center gap-2 transition">
                                     <i class="fa-brands fa-whatsapp text-base"></i> Chamar no WhatsApp
                                 </a>
                             </div>
@@ -1630,7 +1677,7 @@
                             <span class="absolute top-3.5 left-3.5 bg-brand-500 text-navy-950 text-[11px] font-extrabold px-3 py-1 rounded-full uppercase shadow">${item.type}</span>
                             <div class="absolute top-3.5 right-3.5 flex items-center gap-1.5">
                                 <span class="bg-emerald-600 text-white text-[10px] font-extrabold px-2.5 py-1 rounded-full shadow">Direto c/ Dono</span>
-                                <a href="${shareUrl}" target="_blank" onclick="event.stopPropagation()" title="Compartilhar no WhatsApp" class="w-8 h-8 rounded-full bg-navy-950/75 hover:bg-emerald-600 text-white flex items-center justify-center transition">
+                                <a href="${shareUrl}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()" title="Compartilhar no WhatsApp" class="w-8 h-8 rounded-full bg-navy-950/75 hover:bg-emerald-600 text-white flex items-center justify-center transition">
                                     <i class="fa-solid fa-share-nodes text-xs"></i>
                                 </a>
                             </div>
@@ -1662,7 +1709,7 @@
                                         <i class="fa-regular fa-images text-navy-700"></i> Ver Fotos
                                     </button>
                                 </div>
-                                <a href="${waUrl}" target="_blank" class="w-full bg-navy-900 hover:bg-brand-500 text-white hover:text-navy-950 font-extrabold py-3 px-4 rounded-xl text-xs sm:text-sm flex items-center justify-center gap-2 transition">
+                                <a href="${waUrl}" target="_blank" rel="noopener noreferrer" class="w-full bg-navy-900 hover:bg-brand-500 text-white hover:text-navy-950 font-extrabold py-3 px-4 rounded-xl text-xs sm:text-sm flex items-center justify-center gap-2 transition">
                                     <i class="fa-brands fa-whatsapp text-base"></i> Chamar no WhatsApp
                                 </a>
                             </div>
@@ -1843,8 +1890,8 @@
                         <td class="p-3">${item.phone}</td>
                         <td class="p-3 text-center">${item.status || 'ativo'}</td>
                         <td class="p-3 text-right space-x-1">
-                            <button onclick="openEditModal(${index})" class="bg-blue-50 text-navy-900 p-2 rounded-lg cursor-pointer" title="Editar"><i class="fa-solid fa-pen"></i></button>
-                            <button onclick="deleteBusiness(${index})" class="bg-red-50 text-red-600 p-2 rounded-lg cursor-pointer" title="Excluir"><i class="fa-solid fa-trash-can"></i></button>
+                            <button type="button" onclick="openEditModal(${index})" class="bg-blue-50 text-navy-900 p-2 rounded-lg cursor-pointer" title="Editar"><i class="fa-solid fa-pen"></i></button>
+                            <button type="button" onclick="deleteBusiness(${index})" class="bg-red-50 text-red-600 p-2 rounded-lg cursor-pointer" title="Excluir"><i class="fa-solid fa-trash-can"></i></button>
                         </td>
                     </tr>`;
             });
@@ -1866,8 +1913,8 @@
                             </span>
                         </td>
                         <td class="p-3 text-right space-x-1 whitespace-nowrap">
-                            <button onclick="openEditPropertyModal(${index})" class="bg-blue-50 text-navy-900 p-2 rounded-lg cursor-pointer" title="Editar"><i class="fa-solid fa-pen"></i></button>
-                            <button onclick="deleteProperty(${index})" class="bg-red-50 text-red-600 p-2 rounded-lg cursor-pointer" title="Excluir"><i class="fa-solid fa-trash-can"></i></button>
+                            <button type="button" onclick="openEditPropertyModal(${index})" class="bg-blue-50 text-navy-900 p-2 rounded-lg cursor-pointer" title="Editar"><i class="fa-solid fa-pen"></i></button>
+                            <button type="button" onclick="deleteProperty(${index})" class="bg-red-50 text-red-600 p-2 rounded-lg cursor-pointer" title="Excluir"><i class="fa-solid fa-trash-can"></i></button>
                         </td>
                     </tr>`;
             });
@@ -1887,13 +1934,13 @@
                             ${item.validity ? `<span class="block text-[10px] text-slate-500 mt-0.5">${item.validity}</span>` : ''}
                         </td>
                         <td class="p-3 text-center">
-                            <button onclick="toggleCouponStatus(${index})" class="px-2.5 py-1 rounded-full text-[10px] font-extrabold cursor-pointer ${isActive ? 'bg-emerald-100 text-emerald-800' : 'bg-slate-200 text-slate-700'}" title="Clique para alternar status">
+                            <button type="button" onclick="toggleCouponStatus(${index})" class="px-2.5 py-1 rounded-full text-[10px] font-extrabold cursor-pointer ${isActive ? 'bg-emerald-100 text-emerald-800' : 'bg-slate-200 text-slate-700'}" title="Clique para alternar status">
                                 ${isActive ? 'Ativa' : 'Pausada'}
                             </button>
                         </td>
                         <td class="p-3 text-right space-x-1 whitespace-nowrap">
-                            <button onclick="openEditCouponModal(${index})" class="bg-blue-50 text-navy-900 p-2 rounded-lg cursor-pointer" title="Editar"><i class="fa-solid fa-pen"></i></button>
-                            <button onclick="deleteCoupon(${index})" class="bg-red-50 text-red-600 p-2 rounded-lg cursor-pointer" title="Excluir"><i class="fa-solid fa-trash-can"></i></button>
+                            <button type="button" onclick="openEditCouponModal(${index})" class="bg-blue-50 text-navy-900 p-2 rounded-lg cursor-pointer" title="Editar"><i class="fa-solid fa-pen"></i></button>
+                            <button type="button" onclick="deleteCoupon(${index})" class="bg-red-50 text-red-600 p-2 rounded-lg cursor-pointer" title="Excluir"><i class="fa-solid fa-trash-can"></i></button>
                         </td>
                     </tr>`;
             });
