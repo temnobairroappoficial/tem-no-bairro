@@ -1423,8 +1423,22 @@
             maracanau: `<div class="bg-white border border-slate-200 p-4 rounded-2xl"><strong class="text-navy-950">Prefeitura de Maracanaú</strong><p class="text-slate-500 text-xs mt-1">Av. II, 150 - Jereissati I • Tel: (85) 3718-6840</p></div>`,
             pacatuba: `<div class="bg-white border border-slate-200 p-4 rounded-2xl"><strong class="text-navy-950">Prefeitura de Pacatuba</strong><p class="text-slate-500 text-xs mt-1">Rua Major Crisanto, 180 - Centro • Tel: (85) 93618-2138</p></div>`,
             maranguape: `<div class="bg-white border border-slate-200 p-4 rounded-2xl"><strong class="text-navy-950">Prefeitura de Maranguape</strong><p class="text-slate-500 text-xs mt-1">Rua Dr. João Bezerra, 139 - Preguiça • Tel: (85) 3369-9230</p></div>`,
-            beneficios: `<div class="bg-white border border-slate-200 p-4 rounded-2xl"><strong class="text-navy-950">Bolsa Família & FGTS</strong><p class="text-slate-500 text-xs mt-1">Consultas oficiais em gov.br e no app FGTS.</p></div>`
-        };
+beneficios: `
+    <div class="bg-white border border-slate-200 p-4 rounded-2xl flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+        <div>
+            <strong class="text-navy-950 text-xs block">Bolsa Família & FGTS</strong>
+            <p class="text-slate-500 text-xs mt-1">Acesse os canais oficiais para consultas, extratos e regras de benefício.</p>
+        </div>
+        <div class="flex flex-wrap gap-2">
+            <a href="https://www.gov.br/mds/pt-br/acoes-e-programas/bolsa-familia" target="_blank" rel="noopener noreferrer" class="bg-navy-900 hover:bg-navy-800 text-white font-bold px-3.5 py-2 rounded-xl text-xs inline-flex items-center gap-1.5 transition">
+                <i class="fa-solid fa-up-right-from-square text-brand-400"></i> Acessar gov.br
+            </a>
+            <a href="https://www.caixa.gov.br/beneficios-trabalhador/fgts/Paginas/default.aspx" target="_blank" rel="noopener noreferrer" class="bg-brand-500 hover:bg-brand-600 text-navy-950 font-extrabold px-3.5 py-2 rounded-xl text-xs inline-flex items-center gap-1.5 transition">
+                <i class="fa-solid fa-up-right-from-square"></i> Portal FGTS
+            </a>
+        </div>
+    </div>
+`,        };
 
         function switchServiceTab(tabKey) {
             document.querySelectorAll('.service-tab-btn').forEach(btn => {
