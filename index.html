@@ -3,509 +3,418 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#0F172A">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="Tem No Bairro">
-    <link rel="manifest" href="manifest.json">
-    <link rel="apple-touch-icon" href="logo-casa-pino.jpeg">
-    <link rel="icon" type="image/jpeg" href="logo-casa-pino.jpeg">
-    <title>TEM NO BAIRRO | Guia Comercial, Imóveis &amp; Serviços Locais</title>
-    <meta name="description" content="Guia comunitário hiperlocal para Maracanaú, Pacatuba e Maranguape. Encontre comércios, imóveis e espaços direto com o proprietário.">
-
+    <title>TEM NO BAIRRO — Diretório Comercial, Imóveis &amp; Serviços Locais</title>
+    <meta name="description" content="Encontre comércios, serviços, cupons, imóveis e espaços direto com o proprietário em Maracanaú, Pacatuba e Maranguape.">
+    <meta name="theme-color" content="#0b1d3a">
+    <link rel="manifest" href="./manifest.json">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
     <script>
         tailwind.config = {
             theme: {
                 extend: {
-                    fontFamily: { sans: ['Plus Jakarta Sans', 'sans-serif'] },
                     colors: {
-                        navy: { 950: '#090D16', 900: '#0F172A', 800: '#1E293B', 700: '#334155' },
-                        brand: { 50: '#FFFBEB', 100: '#FEF3C7', 200: '#FDE68A', 400: '#FBBF24', 500: '#F59E0B', 600: '#D97706', 700: '#B45309', 800: '#92400E', 900: '#78350F' }
+                        navy: {
+                            50: '#f0f5ff',
+                            100: '#e0ebff',
+                            700: '#173a73',
+                            800: '#102954',
+                            900: '#0b1d3a',
+                            950: '#061124'
+                        },
+                        brand: {
+                            50: '#fffbeb',
+                            100: '#fef3c7',
+                            200: '#fde68a',
+                            400: '#fbbf24',
+                            500: '#f59e0b',
+                            600: '#d97706',
+                            700: '#b45309',
+                            800: '#92400e'
+                        }
                     }
                 }
             }
-        }
+        };
     </script>
     <style>
         html { scroll-behavior: smooth; }
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-        .parceiro-capa { width: 100%; height: 100%; object-fit: cover; object-position: center; }
-        .detalhe-foto { width: 100%; height: 100%; object-fit: contain; background-color: #090D16; }
-        #splashScreen { transition: opacity 0.25s ease-out; }
+        .parceiro-capa {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.35s ease;
+        }
+        .group:hover .parceiro-capa {
+            transform: scale(1.04);
+        }
+        @keyframes splashPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        .splash-logo-pulse {
+            animation: splashPulse 2.2s ease-in-out infinite;
+        }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-900 font-sans antialiased selection:bg-brand-500 selection:text-navy-950">
+<body class="bg-slate-50 text-slate-800 antialiased selection:bg-brand-500 selection:text-navy-950">
 
-    <!-- TELA DE ABERTURA EM VÍDEO (8 SEGUNDOS) -->
-    <div id="splashScreen" onclick="dismissSplashScreen()" class="fixed inset-0 bg-navy-950 z-50 flex flex-col items-center justify-center overflow-hidden cursor-pointer">
-        <video id="splashVideo" autoplay muted playsinline preload="auto" onended="dismissSplashScreen()" onerror="dismissSplashScreen()" class="w-full h-full object-cover sm:object-contain bg-navy-950">
-            <source src="abertura.mp4" type="video/mp4">
-        </video>
-        <button type="button" onclick="event.stopPropagation(); dismissSplashScreen();" class="absolute top-4 right-4 bg-navy-950/80 hover:bg-brand-500 text-white hover:text-navy-950 border border-white/20 text-xs font-extrabold px-4 py-2 rounded-full shadow-lg transition cursor-pointer z-10">
-            Pular <i class="fa-solid fa-forward-step ml-1"></i>
+    <!-- ABERTURA ANIMADA (SPLASH) -->
+    <div id="splashScreen" class="fixed inset-0 z-50 bg-gradient-to-br from-navy-950 via-navy-900 to-navy-800 text-white flex flex-col items-center justify-center p-6 transition-opacity duration-300">
+        <button type="button" onclick="dismissSplashScreen()" class="absolute top-5 right-5 bg-white/15 hover:bg-white/25 text-white text-xs font-bold px-4 py-2 rounded-full backdrop-blur-sm transition cursor-pointer">
+            Pular <i class="fa-solid fa-forward ml-1"></i>
         </button>
+        <div class="text-center max-w-sm space-y-4">
+            <div class="splash-logo-pulse w-24 h-24 mx-auto rounded-3xl bg-brand-500 text-navy-950 shadow-2xl border-4 border-white/20 flex flex-col items-center justify-center font-black">
+                <i class="fa-solid fa-store text-3xl"></i>
+                <span class="text-[10px] tracking-wider uppercase mt-0.5">TNB</span>
+            </div>
+            <div>
+                <h1 class="text-2xl sm:text-3xl font-black tracking-tight">TEM NO BAIRRO</h1>
+                <p class="text-xs sm:text-sm text-brand-200 mt-1">Maracanaú • Pacatuba • Maranguape</p>
+            </div>
+            <div class="w-48 h-1.5 bg-white/15 rounded-full mx-auto overflow-hidden">
+                <div class="h-full w-full bg-brand-500 animate-pulse"></div>
+            </div>
+            <button type="button" onclick="dismissSplashScreen()" class="mt-2 bg-brand-500 hover:bg-brand-600 text-navy-950 font-extrabold text-xs px-6 py-2.5 rounded-xl shadow-lg transition cursor-pointer">
+                Entrar na Vitrine
+            </button>
+        </div>
     </div>
 
-    <!-- CABEÇALHO SUPERIOR -->
-    <header class="bg-navy-950 text-white sticky top-0 z-40 shadow-lg border-b border-white/10">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between gap-2">
-            <a href="#" class="flex items-center gap-2.5 group flex-shrink-0">
-                <div class="w-10 h-10 sm:w-11 sm:h-11 rounded-xl overflow-hidden border border-brand-500/40 shadow-md flex-shrink-0 bg-navy-900">
-                    <img src="logo-casa-pino.jpeg" alt="Logo TEM NO BAIRRO" class="w-full h-full object-cover">
+    <!-- BARRA SUPERIOR -->
+    <header class="bg-navy-950 text-white sticky top-0 z-40 border-b border-white/10 shadow-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-3">
+            <a href="#" class="flex items-center gap-2.5 flex-shrink-0">
+                <div class="w-10 h-10 rounded-xl bg-brand-500 text-navy-950 flex items-center justify-center font-black text-lg shadow">
+                    <i class="fa-solid fa-store"></i>
                 </div>
-                <div>
-                    <span class="font-extrabold text-base sm:text-xl tracking-tight text-white block leading-none">
-                        TEM NO <span class="text-brand-500">BAIRRO</span>
-                    </span>
-                    <span class="text-[10px] sm:text-[11px] font-medium text-slate-400 tracking-wider uppercase block mt-0.5">
-                        Comércios, Imóveis &amp; Serviços
-                    </span>
+                <div class="leading-tight">
+                    <span class="font-black text-sm sm:text-base tracking-tight block">TEM NO BAIRRO</span>
+                    <span class="text-[10px] text-brand-300 font-semibold hidden sm:block">Diretório Local • WhatsApp Direto</span>
                 </div>
             </a>
 
-            <div class="flex items-center gap-2 sm:gap-2.5">
-                <button type="button" onclick="triggerInstallApp()" class="install-app-btn bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs px-3 py-2 sm:px-3.5 sm:py-2.5 rounded-xl transition flex items-center gap-1.5 shadow cursor-pointer" title="Instalar Aplicativo no Celular">
-                    <i class="fa-solid fa-download"></i>
+            <!-- SELETOR DE CIDADE NO TOPO -->
+            <div class="hidden md:flex items-center gap-1.5 bg-white/5 p-1 rounded-full border border-white/10">
+                <button type="button" id="topCityBtn-Todas" onclick="selectCity('Todas')" class="top-city-btn px-3 py-1 rounded-full text-[11px] font-extrabold bg-brand-500 text-navy-950 shadow-sm transition cursor-pointer whitespace-nowrap">Todas</button>
+                <button type="button" id="topCityBtn-Maracanaú" onclick="selectCity('Maracanaú')" class="top-city-btn px-3 py-1 rounded-full text-[11px] font-semibold bg-white/10 hover:bg-white/20 text-white transition cursor-pointer whitespace-nowrap">Maracanaú</button>
+                <button type="button" id="topCityBtn-Pacatuba" onclick="selectCity('Pacatuba')" class="top-city-btn px-3 py-1 rounded-full text-[11px] font-semibold bg-white/10 hover:bg-white/20 text-white transition cursor-pointer whitespace-nowrap">Pacatuba</button>
+                <button type="button" id="topCityBtn-Maranguape" onclick="selectCity('Maranguape')" class="top-city-btn px-3 py-1 rounded-full text-[11px] font-semibold bg-white/10 hover:bg-white/20 text-white transition cursor-pointer whitespace-nowrap">Maranguape</button>
+            </div>
+
+            <div class="flex items-center gap-2">
+                <button type="button" onclick="triggerInstallApp()" class="install-app-btn bg-white/10 hover:bg-white/20 text-white text-xs font-bold px-3 py-2 rounded-xl border border-white/15 transition flex items-center gap-1.5 cursor-pointer">
+                    <i class="fa-solid fa-download text-brand-400"></i>
                     <span class="hidden sm:inline">Instalar App</span>
                 </button>
-                <a href="https://temnobairro.app.br/parceiros.html" class="bg-brand-500 hover:bg-brand-600 text-navy-950 font-extrabold text-xs sm:text-sm px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-xl shadow-md transition flex items-center gap-1.5">
-                    <i class="fa-solid fa-handshake"></i>
-                    <span>Seja Parceiro</span>
-                </a>
-                <button type="button" onclick="openAdminLoginModal()" title="Acesso Administrativo" class="text-slate-400 hover:text-brand-500 p-2 rounded-xl border border-white/10 hover:border-brand-500/30 transition cursor-pointer">
-                    <i class="fa-solid fa-lock text-sm"></i>
+                <button type="button" onclick="openIndicateModal()" class="bg-brand-500 hover:bg-brand-600 text-navy-950 text-xs font-extrabold px-3.5 py-2 rounded-xl shadow transition flex items-center gap-1.5 cursor-pointer">
+                    <i class="fa-solid fa-plus"></i>
+                    <span>Indicar</span>
                 </button>
-            </div>
-        </div>
-
-        <!-- BARRA RÁPIDA DE CIDADE -->
-        <div class="bg-navy-900/95 border-t border-white/5 py-2 px-4">
-            <div class="max-w-7xl mx-auto flex items-center justify-between gap-2 overflow-x-auto no-scrollbar">
-                <div class="flex items-center gap-1.5 text-[11px] text-slate-300 font-semibold whitespace-nowrap">
-                    <i class="fa-solid fa-location-dot text-brand-500"></i>
-                    <span>Região:</span>
-                </div>
-                <div class="flex items-center gap-1.5">
-                    <button type="button" onclick="selectCity('Todas')" id="topCityBtn-Todas" class="top-city-btn px-3 py-1 rounded-full text-[11px] font-extrabold bg-brand-500 text-navy-950 shadow-sm transition cursor-pointer whitespace-nowrap">Todas</button>
-                    <button type="button" onclick="selectCity('Maracanaú')" id="topCityBtn-Maracanaú" class="top-city-btn px-3 py-1 rounded-full text-[11px] font-semibold bg-white/10 hover:bg-white/20 text-white transition cursor-pointer whitespace-nowrap">Maracanaú</button>
-                    <button type="button" onclick="selectCity('Pacatuba')" id="topCityBtn-Pacatuba" class="top-city-btn px-3 py-1 rounded-full text-[11px] font-semibold bg-white/10 hover:bg-white/20 text-white transition cursor-pointer whitespace-nowrap">Pacatuba</button>
-                    <button type="button" onclick="selectCity('Maranguape')" id="topCityBtn-Maranguape" class="top-city-btn px-3 py-1 rounded-full text-[11px] font-semibold bg-white/10 hover:bg-white/20 text-white transition cursor-pointer whitespace-nowrap">Maranguape</button>
-                </div>
+                <button type="button" onclick="openAdminLoginModal()" title="Acesso Administrativo" class="w-9 h-9 rounded-xl bg-white/10 hover:bg-white/20 text-brand-300 flex items-center justify-center transition cursor-pointer">
+                    <i class="fa-solid fa-lock text-xs"></i>
+                </button>
             </div>
         </div>
     </header>
 
-    <!-- HERO SECTION -->
-    <section class="bg-gradient-to-b from-navy-950 via-navy-900 to-navy-800 text-white pt-10 pb-14 sm:pt-14 sm:pb-16 relative overflow-hidden">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 text-center relative z-10 space-y-5">
-            <div class="flex flex-wrap items-center justify-center gap-2">
-                <div class="inline-flex items-center gap-2 bg-white/10 border border-white/15 rounded-full px-4 py-1.5 text-xs sm:text-sm font-medium text-brand-400">
-                    <span class="w-2 h-2 rounded-full bg-brand-500 animate-pulse"></span>
-                    Guia Hiperlocal • Maracanaú, Pacatuba &amp; Maranguape
-                </div>
-                <div id="liveSocialProofBadge" class="hidden inline-flex items-center gap-2 bg-emerald-500/15 border border-emerald-400/30 rounded-full px-3.5 py-1.5 text-xs font-bold text-emerald-300">
-                    <i class="fa-solid fa-store text-emerald-400"></i>
-                    <span id="liveSocialProofText">0 comércios ativos</span>
-                </div>
+    <!-- HERO PRINCIPAL AZUL -->
+    <section class="bg-gradient-to-br from-navy-950 via-navy-900 to-navy-800 text-white py-10 sm:py-14 px-4 sm:px-6 border-b border-navy-800">
+        <div class="max-w-5xl mx-auto text-center space-y-5">
+            <div id="liveSocialProofBadge" class="hidden inline-flex items-center gap-2 bg-white/10 border border-white/15 text-brand-200 text-xs font-bold px-4 py-1.5 rounded-full">
+                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                <span id="liveSocialProofText">Carregando dados...</span>
             </div>
 
-            <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight leading-tight">
-                Tudo o que você precisa no <span class="text-brand-500">seu bairro</span>, a um clique.
-            </h1>
-
-            <p class="text-slate-300 text-sm sm:text-lg max-w-2xl mx-auto font-normal leading-relaxed">
-                Encontre comércios locais, prestadores de serviços e imóveis ou espaços disponíveis para aluguel e venda direto com o proprietário.
+            <h2 class="text-2xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-tight">
+                Tudo o que você precisa <span class="text-brand-400">perto de você</span>
+            </h2>
+            <p class="text-xs sm:text-base text-slate-300 max-w-2xl mx-auto">
+                Comércios, serviços locais, cupons ativos, imóveis e espaços direto com o proprietário em Maracanaú, Pacatuba e Maranguape.
             </p>
 
-            <!-- Barra de Busca -->
-            <div class="max-w-2xl mx-auto pt-2">
-                <div class="relative flex items-center bg-white rounded-2xl shadow-2xl p-1.5 sm:p-2 border border-slate-200 focus-within:ring-4 focus-within:ring-brand-500/30 transition">
-                    <i class="fa-solid fa-magnifying-glass text-slate-400 ml-3 sm:ml-4 text-base sm:text-lg"></i>
-                    <input type="text" id="searchInput" onkeyup="filterBusinesses()" placeholder="Buscar loja, barbearia, lanche, entrega, serviço..." class="w-full px-3 sm:px-4 py-2.5 sm:py-3 text-slate-900 text-sm sm:text-base font-medium bg-transparent focus:outline-none placeholder:text-slate-400">
-                    <button type="button" onclick="clearSearchInput()" id="clearSearch" class="hidden text-slate-400 hover:text-slate-600 px-3 cursor-pointer">
-                        <i class="fa-solid fa-xmark"></i>
+            <!-- BARRA DE BUSCA -->
+            <div class="max-w-2xl mx-auto relative">
+                <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                <input type="text" id="searchInput" oninput="filterBusinesses()" placeholder="Buscar comércio, serviço, bairro ou produto..." class="w-full pl-11 pr-11 py-3.5 sm:py-4 rounded-2xl bg-white text-navy-950 placeholder-slate-400 text-sm font-medium shadow-xl focus:outline-none focus:ring-4 focus:ring-brand-500/40">
+                <button type="button" id="clearSearch" onclick="clearSearchInput()" class="hidden absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-navy-950 p-1 cursor-pointer" title="Limpar busca">
+                    <i class="fa-solid fa-circle-xmark"></i>
+                </button>
+            </div>
+
+            <!-- ATALHOS RÁPIDOS -->
+            <div class="flex flex-wrap items-center justify-center gap-2 pt-1">
+                <button type="button" onclick="quickJumpCategory('Todos')" class="bg-white/10 hover:bg-brand-500 text-white hover:text-navy-950 text-xs font-bold px-3.5 py-2 rounded-xl transition cursor-pointer">
+                    <i class="fa-solid fa-store mr-1"></i> Ver Comércios
+                </button>
+                <button type="button" onclick="quickJumpCategory('Saúde e Beleza')" class="bg-white/10 hover:bg-brand-500 text-white hover:text-navy-950 text-xs font-bold px-3.5 py-2 rounded-xl transition cursor-pointer">
+                    <i class="fa-solid fa-scissors mr-1"></i> Saúde &amp; Beleza
+                </button>
+                <a href="#vitrineImoveis" class="bg-brand-500/20 hover:bg-brand-500 text-brand-200 hover:text-navy-950 border border-brand-400/30 text-xs font-extrabold px-3.5 py-2 rounded-xl transition">
+                    <i class="fa-solid fa-house-flag mr-1"></i> Imóveis &amp; Espaços
+                </a>
+                <a href="#utilidadePublica" class="bg-white/10 hover:bg-brand-500 text-white hover:text-navy-950 text-xs font-bold px-3.5 py-2 rounded-xl transition">
+                    <i class="fa-solid fa-landmark mr-1"></i> Utilidade Pública
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CUPONS E PROMOÇÕES ATIVAS -->
+    <section id="dailyCouponsSection" class="hidden max-w-7xl mx-auto px-4 sm:px-6 pt-8">
+        <div class="bg-brand-50/80 border border-brand-200 rounded-3xl p-4 sm:p-6 shadow-sm">
+            <div class="flex items-center justify-between gap-2 mb-4">
+                <div class="flex items-center gap-2">
+                    <span class="w-8 h-8 rounded-xl bg-brand-500 text-navy-950 flex items-center justify-center font-black">
+                        <i class="fa-solid fa-ticket"></i>
+                    </span>
+                    <div>
+                        <h3 class="text-sm sm:text-base font-extrabold text-navy-950">Cupons &amp; Ofertas Ativas</h3>
+                        <p class="text-[11px] text-slate-600">Aproveite condições especiais dos parceiros locais</p>
+                    </div>
+                </div>
+            </div>
+            <div id="dailyCouponsGrid" class="flex gap-3.5 overflow-x-auto no-scrollbar pb-1"></div>
+        </div>
+    </section>
+
+    <!-- VITRINE DE COMÉRCIOS -->
+    <section id="vitrineComercios" class="max-w-7xl mx-auto px-4 sm:px-6 py-8 sm:py-10 space-y-6">
+        <div class="bg-white rounded-3xl border border-slate-200/80 p-4 sm:p-5 shadow-sm space-y-4">
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-3">
+                <div class="flex items-center gap-1.5 flex-wrap">
+                    <span class="text-xs font-bold text-slate-500 mr-1"><i class="fa-solid fa-location-dot text-brand-500"></i> Cidade:</span>
+                    <button type="button" id="cityBtn-Todas" onclick="selectCity('Todas')" class="city-btn px-3 py-1.5 rounded-xl text-xs font-bold bg-navy-900 text-white shadow-sm transition cursor-pointer">Todas</button>
+                    <button type="button" id="cityBtn-Maracanaú" onclick="selectCity('Maracanaú')" class="city-btn px-3 py-1.5 rounded-xl text-xs font-semibold bg-slate-100 hover:bg-slate-200 text-slate-700 transition cursor-pointer">Maracanaú</button>
+                    <button type="button" id="cityBtn-Pacatuba" onclick="selectCity('Pacatuba')" class="city-btn px-3 py-1.5 rounded-xl text-xs font-semibold bg-slate-100 hover:bg-slate-200 text-slate-700 transition cursor-pointer">Pacatuba</button>
+                    <button type="button" id="cityBtn-Maranguape" onclick="selectCity('Maranguape')" class="city-btn px-3 py-1.5 rounded-xl text-xs font-semibold bg-slate-100 hover:bg-slate-200 text-slate-700 transition cursor-pointer">Maranguape</button>
+                </div>
+
+                <div class="flex items-center gap-2 flex-wrap">
+                    <button type="button" id="openNowBtn" onclick="toggleOpenNowFilter()" class="bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-200 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold whitespace-nowrap transition flex items-center gap-1.5 cursor-pointer">
+                        <i class="fa-regular fa-clock"></i> Abertos Agora
+                    </button>
+                    <button type="button" id="favTabBtn" onclick="toggleFavoritesTab()" class="bg-rose-50 hover:bg-rose-100 text-rose-600 border border-rose-200 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold whitespace-nowrap transition flex items-center gap-1.5 cursor-pointer">
+                        <i class="fa-solid fa-heart"></i> Favoritos (<span id="favCount">0</span>)
                     </button>
                 </div>
             </div>
 
-            <!-- Atalhos Rápidos -->
-            <div class="flex flex-wrap justify-center gap-2 pt-1">
-                <button type="button" onclick="quickJumpCategory('Comércio e Serviços')" class="bg-white/10 hover:bg-white/20 text-white border border-white/15 px-3.5 py-1.5 rounded-full text-xs font-semibold transition cursor-pointer flex items-center gap-1.5">
-                    <i class="fa-solid fa-utensils text-brand-400"></i> Lanches &amp; Comércio
-                </button>
-                <button type="button" onclick="quickJumpCategory('Saúde e Beleza')" class="bg-white/10 hover:bg-white/20 text-white border border-white/15 px-3.5 py-1.5 rounded-full text-xs font-semibold transition cursor-pointer flex items-center gap-1.5">
-                    <i class="fa-solid fa-scissors text-brand-400"></i> Beleza &amp; Barbearia
-                </button>
-                <button type="button" onclick="quickJumpCategory('Construção e Reparos')" class="bg-white/10 hover:bg-white/20 text-white border border-white/15 px-3.5 py-1.5 rounded-full text-xs font-semibold transition cursor-pointer flex items-center gap-1.5">
-                    <i class="fa-solid fa-screwdriver-wrench text-brand-400"></i> Reparos &amp; Serviços
-                </button>
-                <a href="#muralImoveis" class="bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-300 border border-emerald-400/30 px-3.5 py-1.5 rounded-full text-xs font-bold transition flex items-center gap-1.5">
-                    <i class="fa-solid fa-house-flag text-emerald-400"></i> Ver Imóveis &amp; Espaços
-                </a>
-                <a href="#utilidadePublica" class="bg-sky-500/20 hover:bg-sky-500/30 text-sky-200 border border-sky-400/30 px-3.5 py-1.5 rounded-full text-xs font-bold transition flex items-center gap-1.5">
-                    <i class="fa-solid fa-id-card text-sky-300"></i> Detran-CE &amp; Consultas
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- VITRINE DE OFERTAS E CUPONS DO DIA -->
-    <section id="dailyCouponsSection" class="hidden bg-gradient-to-r from-brand-50 via-amber-50 to-brand-50 border-b border-brand-200 py-5">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-3">
-            <div class="flex items-center justify-between flex-wrap gap-2">
-                <div class="flex items-center gap-2">
-                    <span class="bg-brand-500 text-navy-950 text-[11px] font-black uppercase px-2.5 py-1 rounded-lg shadow-sm">
-                        <i class="fa-solid fa-ticket mr-1"></i> Vantagens no Bairro
-                    </span>
-                    <h2 class="text-sm sm:text-base font-extrabold text-navy-950">Ofertas &amp; Cupons Ativos Hoje</h2>
-                </div>
-                <span class="text-[11px] font-semibold text-brand-900">Toque para resgatar direto no WhatsApp da loja</span>
-            </div>
-            <div id="dailyCouponsGrid" class="flex gap-3 overflow-x-auto no-scrollbar pb-1"></div>
-        </div>
-    </section>
-
-    <!-- NAVEGAÇÃO DE CATEGORIAS -->
-    <nav class="bg-white border-b border-slate-200 sticky top-[96px] sm:top-[112px] z-30 shadow-sm">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center gap-2 py-3 overflow-x-auto no-scrollbar" id="categoryTabs">
-                <button type="button" onclick="selectCategory('Todos')" class="category-btn active bg-navy-900 text-white px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold whitespace-nowrap shadow-sm transition cursor-pointer">
-                    Todos os Comércios
-                </button>
-                <button type="button" onclick="toggleOpenNowFilter()" id="openNowBtn" class="bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-200 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold whitespace-nowrap transition flex items-center gap-1.5 cursor-pointer">
-                    <span class="w-2 h-2 rounded-full bg-emerald-500"></span> Abertos Agora
-                </button>
-                <button type="button" onclick="toggleFavoritesTab()" id="favTabBtn" class="bg-rose-50 hover:bg-rose-100 text-rose-600 border border-rose-200 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold whitespace-nowrap transition flex items-center gap-1.5 cursor-pointer">
-                    <i class="fa-solid fa-heart"></i> Meus Favoritos (<span id="favCount">0</span>)
-                </button>
-                <button type="button" onclick="selectCategory('Fundadores')" class="category-btn bg-brand-100 text-brand-900 hover:bg-brand-200 border border-brand-300 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-extrabold whitespace-nowrap transition flex items-center gap-1.5 cursor-pointer">
-                    <i class="fa-solid fa-crown text-brand-600"></i> Fundadores
-                </button>
-                <button type="button" onclick="selectCategory('Comércio e Serviços')" class="category-btn bg-slate-100 text-slate-700 hover:bg-slate-200 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap transition cursor-pointer">
-                    Comércio e Serviços
-                </button>
-                <button type="button" onclick="selectCategory('Saúde e Beleza')" class="category-btn bg-slate-100 text-slate-700 hover:bg-slate-200 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap transition cursor-pointer">
-                    Saúde e Beleza
-                </button>
-                <button type="button" onclick="selectCategory('Pet Shop')" class="category-btn bg-slate-100 text-slate-700 hover:bg-slate-200 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap transition cursor-pointer">
-                    Pet Shop
-                </button>
-                <button type="button" onclick="selectCategory('Construção e Reparos')" class="category-btn bg-slate-100 text-slate-700 hover:bg-slate-200 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap transition cursor-pointer">
-                    Construção e Reparos
-                </button>
-                <button type="button" onclick="selectCategory('Serviços Rápidos')" class="category-btn bg-slate-100 text-slate-700 hover:bg-slate-200 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap transition cursor-pointer">
-                    Serviços Rápidos
-                </button>
-                <button type="button" onclick="selectCategory('Outros')" class="category-btn bg-slate-100 text-slate-700 hover:bg-slate-200 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap transition cursor-pointer">
-                    Outros
-                </button>
-            </div>
-        </div>
-    </nav>
-
-    <!-- VITRINE DE COMÉRCIOS -->
-    <main id="vitrineComercios" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
-        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
-            <div>
-                <h2 class="text-xl sm:text-2xl font-extrabold text-navy-950 tracking-tight">Destaques do Bairro</h2>
-                <p id="resultsCount" class="text-xs sm:text-sm text-slate-500 mt-0.5">Carregando estabelecimentos...</p>
-            </div>
-            <div class="flex items-center gap-2 flex-wrap">
-                <span class="text-xs font-bold text-slate-500">Cidade:</span>
-                <button type="button" onclick="selectCity('Todas')" id="cityBtn-Todas" class="city-btn px-3 py-1.5 rounded-xl text-xs font-bold bg-navy-900 text-white shadow-sm transition cursor-pointer">Todas</button>
-                <button type="button" onclick="selectCity('Maracanaú')" id="cityBtn-Maracanaú" class="city-btn px-3 py-1.5 rounded-xl text-xs font-semibold bg-slate-100 hover:bg-slate-200 text-slate-700 transition cursor-pointer">Maracanaú</button>
-                <button type="button" onclick="selectCity('Pacatuba')" id="cityBtn-Pacatuba" class="city-btn px-3 py-1.5 rounded-xl text-xs font-semibold bg-slate-100 hover:bg-slate-200 text-slate-700 transition cursor-pointer">Pacatuba</button>
-                <button type="button" onclick="selectCity('Maranguape')" id="cityBtn-Maranguape" class="city-btn px-3 py-1.5 rounded-xl text-xs font-semibold bg-slate-100 hover:bg-slate-200 text-slate-700 transition cursor-pointer">Maranguape</button>
+            <!-- CATEGORIAS -->
+            <div class="flex items-center gap-2 overflow-x-auto no-scrollbar pb-1">
+                <button type="button" onclick="selectCategory('Todos')" class="category-btn active bg-navy-900 text-white px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold whitespace-nowrap shadow-sm transition cursor-pointer">Todos</button>
+                <button type="button" onclick="selectCategory('Fundadores')" class="category-btn bg-slate-100 text-slate-700 hover:bg-slate-200 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap transition cursor-pointer">Parceiros Fundadores</button>
+                <button type="button" onclick="selectCategory('Comércio e Serviços')" class="category-btn bg-slate-100 text-slate-700 hover:bg-slate-200 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap transition cursor-pointer">Comércio e Serviços</button>
+                <button type="button" onclick="selectCategory('Saúde e Beleza')" class="category-btn bg-slate-100 text-slate-700 hover:bg-slate-200 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap transition cursor-pointer">Saúde e Beleza</button>
+                <button type="button" onclick="selectCategory('Pet Shop')" class="category-btn bg-slate-100 text-slate-700 hover:bg-slate-200 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap transition cursor-pointer">Pet Shop</button>
+                <button type="button" onclick="selectCategory('Construção e Reparos')" class="category-btn bg-slate-100 text-slate-700 hover:bg-slate-200 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap transition cursor-pointer">Construção e Reparos</button>
+                <button type="button" onclick="selectCategory('Serviços Rápidos')" class="category-btn bg-slate-100 text-slate-700 hover:bg-slate-200 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap transition cursor-pointer">Serviços Rápidos</button>
+                <button type="button" onclick="selectCategory('Outros')" class="category-btn bg-slate-100 text-slate-700 hover:bg-slate-200 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap transition cursor-pointer">Outros</button>
             </div>
         </div>
 
-        <div id="businessGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7"></div>
+        <div class="flex items-center justify-between">
+            <p id="resultsCount" class="text-xs sm:text-sm font-bold text-slate-600">Carregando comércios...</p>
+        </div>
 
-        <div id="emptyState" class="hidden text-center py-16 px-4 bg-white rounded-3xl border border-slate-200/80 shadow-sm max-w-lg mx-auto my-8">
-            <h3 class="text-lg font-bold text-navy-950">Nenhum estabelecimento encontrado</h3>
-            <p class="text-sm text-slate-500 mt-1 mb-5">Tente buscar com outro termo ou selecione outra cidade/categoria.</p>
-            <button type="button" onclick="resetFilters()" class="bg-navy-900 hover:bg-navy-800 text-white text-sm font-semibold px-5 py-2.5 rounded-xl transition cursor-pointer">
-                Limpar filtros
+        <div id="businessGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+
+        <div id="emptyState" class="hidden bg-white rounded-3xl border border-slate-200 p-10 text-center space-y-3">
+            <i class="fa-solid fa-store-slash text-3xl text-slate-400"></i>
+            <h3 class="text-base font-extrabold text-navy-950">Nenhum comércio encontrado com esses filtros</h3>
+            <p class="text-xs text-slate-500">Tente limpar a busca ou alterar a cidade e categoria selecionadas.</p>
+            <button type="button" onclick="resetFilters()" class="bg-navy-900 hover:bg-navy-800 text-white text-xs font-bold px-5 py-2.5 rounded-xl transition cursor-pointer">
+                Limpar Filtros
             </button>
         </div>
-    </main>
-
-    <!-- MURAL DE IMÓVEIS & ESPAÇOS (GRUPO B - DIRETO COM O PROPRIETÁRIO) -->
-    <section id="muralImoveis" class="bg-slate-100/90 border-t border-slate-200 py-14 sm:py-16">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
-            <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-4">
-                <div class="space-y-2">
-                    <span class="inline-flex items-center gap-1.5 bg-emerald-100 text-emerald-900 border border-emerald-200 text-xs font-extrabold px-3.5 py-1 rounded-full uppercase tracking-wider">
-                        <i class="fa-solid fa-house-flag text-emerald-600"></i> Grupo B • Direto com o Proprietário
-                    </span>
-                    <h2 class="text-2xl sm:text-3xl font-extrabold text-navy-950 tracking-tight">
-                        Imóveis &amp; Espaços no Bairro
-                    </h2>
-                    <p class="text-xs sm:text-sm text-slate-600 max-w-2xl">
-                        Casas, salas comerciais, pontos e terrenos para <strong>aluguel ou venda</strong>. Negociação direta com o dono, sem intermediação de imobiliária.
-                    </p>
-                </div>
-                <a href="https://temnobairro.app.br/parceiros.html#secaoGrupoB" class="bg-navy-900 hover:bg-brand-500 text-white hover:text-navy-950 font-extrabold text-xs sm:text-sm px-5 py-3 rounded-xl shadow-md transition inline-flex items-center gap-2 self-start lg:self-auto">
-                    <i class="fa-solid fa-plus"></i> Anunciar Meu Imóvel / Espaço
-                </a>
-            </div>
-
-            <!-- Filtros do Mural de Imóveis -->
-            <div class="flex flex-wrap items-center justify-between gap-3 bg-white p-3.5 rounded-2xl border border-slate-200/90 shadow-sm">
-                <div class="flex flex-wrap items-center gap-2">
-                    <button type="button" onclick="selectPropertyType('Todos')" id="propTypeBtn-Todos" class="prop-type-btn px-4 py-2 rounded-xl text-xs font-bold bg-navy-900 text-white shadow-sm transition cursor-pointer">Todos</button>
-                    <button type="button" onclick="selectPropertyType('Aluguel')" id="propTypeBtn-Aluguel" class="prop-type-btn px-4 py-2 rounded-xl text-xs font-semibold bg-white border border-slate-200 hover:bg-slate-100 text-slate-700 transition cursor-pointer">Aluguel</button>
-                    <button type="button" onclick="selectPropertyType('Venda')" id="propTypeBtn-Venda" class="prop-type-btn px-4 py-2 rounded-xl text-xs font-semibold bg-white border border-slate-200 hover:bg-slate-100 text-slate-700 transition cursor-pointer">Venda</button>
-                </div>
-                <div class="flex flex-wrap items-center gap-2">
-                    <span class="text-xs font-bold text-slate-500">Cidade:</span>
-                    <button type="button" onclick="selectPropertyCity('Todas')" id="propCityBtn-Todas" class="prop-city-btn px-3.5 py-2 rounded-xl text-xs font-bold bg-navy-900 text-white shadow-sm transition cursor-pointer">Todas</button>
-                    <button type="button" onclick="selectPropertyCity('Maracanaú')" id="propCityBtn-Maracanaú" class="prop-city-btn px-3.5 py-2 rounded-xl text-xs font-semibold bg-white border border-slate-200 hover:bg-slate-100 text-slate-700 transition cursor-pointer">Maracanaú</button>
-                    <button type="button" onclick="selectPropertyCity('Pacatuba')" id="propCityBtn-Pacatuba" class="prop-city-btn px-3.5 py-2 rounded-xl text-xs font-semibold bg-white border border-slate-200 hover:bg-slate-100 text-slate-700 transition cursor-pointer">Pacatuba</button>
-                    <button type="button" onclick="selectPropertyCity('Maranguape')" id="propCityBtn-Maranguape" class="prop-city-btn px-3.5 py-2 rounded-xl text-xs font-semibold bg-white border border-slate-200 hover:bg-slate-100 text-slate-700 transition cursor-pointer">Maranguape</button>
-                </div>
-            </div>
-
-            <p id="propertiesResultsCount" class="text-xs sm:text-sm text-slate-500">Carregando imóveis e espaços...</p>
-
-            <div id="propertiesGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7"></div>
-
-            <div id="propertiesEmptyState" class="hidden text-center py-12 px-4 bg-white rounded-3xl border border-slate-200/80 shadow-sm max-w-lg mx-auto">
-                <h3 class="text-lg font-bold text-navy-950">Nenhum imóvel ou espaço nesta seleção</h3>
-                <p class="text-sm text-slate-500 mt-1 mb-4">Altere o filtro acima ou veja todas as cidades disponíveis.</p>
-                <button type="button" onclick="resetPropertyFilters()" class="bg-navy-900 hover:bg-navy-800 text-white text-xs font-bold px-5 py-2.5 rounded-xl transition cursor-pointer">
-                    Ver Todos os Imóveis
-                </button>
-            </div>
-
-            <div class="bg-amber-50 border border-amber-200 rounded-2xl p-4 text-xs text-amber-950 flex items-start gap-3">
-                <i class="fa-solid fa-circle-info text-amber-600 text-base mt-0.5"></i>
-                <p>
-                    <strong>Aviso Legal:</strong> O <strong>Tem No Bairro</strong> atua exclusivamente como mural de divulgação publicitária local, não realizando intermediação imobiliária, corretagem, avaliação ou cobrança de comissão. Toda negociação ocorre diretamente entre o interessado e o proprietário anunciante.
-                </p>
-            </div>
-        </div>
     </section>
 
-    <!-- CHAMADA PARA PÁGINA DE PARCEIROS -->
-    <section class="bg-navy-950 py-14 sm:py-16 border-t border-white/10 relative overflow-hidden">
-        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-5 relative z-10">
-            <span class="bg-brand-500/20 text-brand-400 border border-brand-500/30 text-xs font-extrabold px-4 py-1.5 rounded-full uppercase tracking-wider inline-block">
-                Divulgação Direcionada
-            </span>
-            <h3 class="text-2xl sm:text-4xl font-extrabold text-white tracking-tight">
-                Lojistas (Grupo A) e Proprietários de Espaços (Grupo B) têm página dedicada
-            </h3>
-            <p class="text-sm sm:text-base text-slate-300 max-w-2xl mx-auto">
-                Veja os planos mensais para comércios ou os pacotes de 30, 60 e 90 dias (taxa única, zero comissão) para divulgar seu imóvel, sala ou espaço direto com o proprietário.
-            </p>
-            <div class="pt-2 flex flex-wrap justify-center gap-3">
-                <a href="https://temnobairro.app.br/parceiros.html#secaoGrupoA" class="bg-brand-500 hover:bg-brand-600 text-navy-950 font-extrabold text-xs sm:text-sm px-6 py-3.5 rounded-xl shadow-lg transition flex items-center gap-2">
-                    <i class="fa-solid fa-store"></i> Ver Planos para Comércio (Grupo A)
-                </a>
-                <a href="https://temnobairro.app.br/parceiros.html#secaoGrupoB" class="bg-emerald-500 hover:bg-emerald-400 text-navy-950 font-extrabold text-xs sm:text-sm px-6 py-3.5 rounded-xl shadow-lg transition flex items-center gap-2">
-                    <i class="fa-solid fa-house-flag"></i> Anunciar Imóvel / Espaço (Grupo B)
-                </a>
+    <!-- VITRINE DE IMÓVEIS E ESPAÇOS -->
+    <section id="vitrineImoveis" class="max-w-7xl mx-auto px-4 sm:px-6 py-8 sm:py-10 space-y-6 border-t border-slate-200">
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+            <div>
+                <span class="inline-flex items-center gap-1.5 bg-brand-100 text-brand-800 text-[11px] font-extrabold px-3 py-1 rounded-full uppercase">
+                    <i class="fa-solid fa-house-flag"></i> Negociação Direta
+                </span>
+                <h2 class="text-xl sm:text-3xl font-black text-navy-950 mt-2">Imóveis &amp; Espaços no Bairro</h2>
+                <p class="text-xs sm:text-sm text-slate-600 mt-1">Casas, salas comerciais, pontos e terrenos anunciados direto com o proprietário.</p>
             </div>
+
+            <div class="flex flex-wrap items-center gap-2">
+                <button type="button" id="propTypeBtn-Todos" onclick="selectPropertyType('Todos')" class="prop-type-btn px-4 py-2 rounded-xl text-xs font-bold bg-navy-900 text-white shadow-sm transition cursor-pointer">Todos</button>
+                <button type="button" id="propTypeBtn-Aluguel" onclick="selectPropertyType('Aluguel')" class="prop-type-btn px-4 py-2 rounded-xl text-xs font-semibold bg-white border border-slate-200 hover:bg-slate-100 text-slate-700 transition cursor-pointer">Aluguel</button>
+                <button type="button" id="propTypeBtn-Venda" onclick="selectPropertyType('Venda')" class="prop-type-btn px-4 py-2 rounded-xl text-xs font-semibold bg-white border border-slate-200 hover:bg-slate-100 text-slate-700 transition cursor-pointer">Venda</button>
+            </div>
+        </div>
+
+        <div class="flex items-center gap-1.5 flex-wrap">
+            <span class="text-xs font-bold text-slate-500 mr-1">Filtrar cidade:</span>
+            <button type="button" id="propCityBtn-Todas" onclick="selectPropertyCity('Todas')" class="prop-city-btn px-3.5 py-2 rounded-xl text-xs font-bold bg-navy-900 text-white shadow-sm transition cursor-pointer">Todas</button>
+            <button type="button" id="propCityBtn-Maracanaú" onclick="selectPropertyCity('Maracanaú')" class="prop-city-btn px-3.5 py-2 rounded-xl text-xs font-semibold bg-white border border-slate-200 hover:bg-slate-100 text-slate-700 transition cursor-pointer">Maracanaú</button>
+            <button type="button" id="propCityBtn-Pacatuba" onclick="selectPropertyCity('Pacatuba')" class="prop-city-btn px-3.5 py-2 rounded-xl text-xs font-semibold bg-white border border-slate-200 hover:bg-slate-100 text-slate-700 transition cursor-pointer">Pacatuba</button>
+            <button type="button" id="propCityBtn-Maranguape" onclick="selectPropertyCity('Maranguape')" class="prop-city-btn px-3.5 py-2 rounded-xl text-xs font-semibold bg-white border border-slate-200 hover:bg-slate-100 text-slate-700 transition cursor-pointer">Maranguape</button>
+        </div>
+
+        <p id="propertiesResultsCount" class="text-xs sm:text-sm font-bold text-slate-600">Carregando imóveis...</p>
+
+        <div id="propertiesGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+
+        <div id="propertiesEmptyState" class="hidden bg-white rounded-3xl border border-slate-200 p-10 text-center space-y-3">
+            <i class="fa-solid fa-house-circle-xmark text-3xl text-slate-400"></i>
+            <h3 class="text-base font-extrabold text-navy-950">Nenhum imóvel ou espaço disponível nesse filtro</h3>
+            <button type="button" onclick="resetPropertyFilters()" class="bg-navy-900 hover:bg-navy-800 text-white text-xs font-bold px-5 py-2.5 rounded-xl transition cursor-pointer">
+                Ver Todos os Imóveis
+            </button>
         </div>
     </section>
 
     <!-- UTILIDADE PÚBLICA -->
-    <section id="utilidadePublica" class="bg-white py-14 sm:py-16 border-t border-slate-200">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
-            <div class="bg-slate-50 rounded-3xl p-6 sm:p-8 border border-slate-200/90 shadow-sm space-y-6">
-                <div class="flex items-center justify-between flex-wrap gap-3 border-b border-slate-200 pb-4">
-                    <div class="flex items-center gap-3.5">
-                        <div class="w-11 h-11 rounded-2xl bg-brand-500 text-navy-950 flex items-center justify-center text-lg shadow">
-                            <i class="fa-solid fa-city"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-base sm:text-lg font-extrabold text-navy-950">Guia de Utilidade &amp; Serviços Públicos</h3>
-                            <p class="text-xs text-slate-500">Emergências, Prefeituras, Detran-CE, Enel, Cagece, Bolsa Família e FGTS</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="flex flex-wrap gap-2">
-                    <button type="button" onclick="switchServiceTab('emergencia')" id="tabBtn-emergencia" class="service-tab-btn px-4 py-2.5 rounded-xl text-xs font-bold bg-navy-900 text-white shadow transition flex items-center gap-1.5 cursor-pointer">
-                        <i class="fa-solid fa-phone-volume text-brand-500"></i> Emergência
-                    </button>
-                    <button type="button" onclick="switchServiceTab('consultas')" id="tabBtn-consultas" class="service-tab-btn px-4 py-2.5 rounded-xl text-xs font-semibold bg-white border border-slate-200 hover:bg-slate-100 text-slate-700 transition flex items-center gap-1.5 cursor-pointer">
-                        <i class="fa-solid fa-car text-brand-500"></i> Detran-CE &amp; Consultas
-                    </button>
-                    <button type="button" onclick="switchServiceTab('beneficios')" id="tabBtn-beneficios" class="service-tab-btn px-4 py-2.5 rounded-xl text-xs font-semibold bg-white border border-slate-200 hover:bg-slate-100 text-slate-700 transition flex items-center gap-1.5 cursor-pointer">
-                        <i class="fa-solid fa-hand-holding-dollar text-brand-500"></i> Bolsa Família &amp; FGTS
-                    </button>
-                    <button type="button" onclick="switchServiceTab('maracanau')" id="tabBtn-maracanau" class="service-tab-btn px-4 py-2.5 rounded-xl text-xs font-semibold bg-white border border-slate-200 hover:bg-slate-100 text-slate-700 transition flex items-center gap-1.5 cursor-pointer">
-                        Maracanaú
-                    </button>
-                    <button type="button" onclick="switchServiceTab('pacatuba')" id="tabBtn-pacatuba" class="service-tab-btn px-4 py-2.5 rounded-xl text-xs font-semibold bg-white border border-slate-200 hover:bg-slate-100 text-slate-700 transition flex items-center gap-1.5 cursor-pointer">
-                        Pacatuba
-                    </button>
-                    <button type="button" onclick="switchServiceTab('maranguape')" id="tabBtn-maranguape" class="service-tab-btn px-4 py-2.5 rounded-xl text-xs font-semibold bg-white border border-slate-200 hover:bg-slate-100 text-slate-700 transition flex items-center gap-1.5 cursor-pointer">
-                        Maranguape
-                    </button>
-                </div>
-
-                <div id="serviceTabContent" class="pt-2 text-xs text-slate-700"></div>
-            </div>
+    <section id="utilidadePublica" class="max-w-7xl mx-auto px-4 sm:px-6 py-8 sm:py-10 space-y-5 border-t border-slate-200">
+        <div>
+            <h2 class="text-xl sm:text-2xl font-black text-navy-950">Utilidade Pública &amp; Serviços</h2>
+            <p class="text-xs sm:text-sm text-slate-600 mt-1">Emergências, consultas oficiais e atendimento das prefeituras.</p>
         </div>
+
+        <div class="flex items-center gap-2 overflow-x-auto no-scrollbar pb-1">
+            <button type="button" id="tabBtn-emergencia" onclick="switchServiceTab('emergencia')" class="service-tab-btn px-4 py-2.5 rounded-xl text-xs font-bold bg-navy-900 text-white shadow transition flex items-center gap-1.5 cursor-pointer">
+                <i class="fa-solid fa-phone-volume"></i> Emergências
+            </button>
+            <button type="button" id="tabBtn-consultas" onclick="switchServiceTab('consultas')" class="service-tab-btn px-4 py-2.5 rounded-xl text-xs font-semibold bg-white border border-slate-200 hover:bg-slate-100 text-slate-700 transition flex items-center gap-1.5 cursor-pointer">
+                <i class="fa-solid fa-file-lines"></i> Consultas &amp; Contas
+            </button>
+            <button type="button" id="tabBtn-beneficios" onclick="switchServiceTab('beneficios')" class="service-tab-btn px-4 py-2.5 rounded-xl text-xs font-semibold bg-white border border-slate-200 hover:bg-slate-100 text-slate-700 transition flex items-center gap-1.5 cursor-pointer">
+                <i class="fa-solid fa-id-card"></i> Benefícios Sociais
+            </button>
+            <button type="button" id="tabBtn-maracanau" onclick="switchServiceTab('maracanau')" class="service-tab-btn px-4 py-2.5 rounded-xl text-xs font-semibold bg-white border border-slate-200 hover:bg-slate-100 text-slate-700 transition flex items-center gap-1.5 cursor-pointer">
+                Maracanaú
+            </button>
+            <button type="button" id="tabBtn-pacatuba" onclick="switchServiceTab('pacatuba')" class="service-tab-btn px-4 py-2.5 rounded-xl text-xs font-semibold bg-white border border-slate-200 hover:bg-slate-100 text-slate-700 transition flex items-center gap-1.5 cursor-pointer">
+                Pacatuba
+            </button>
+            <button type="button" id="tabBtn-maranguape" onclick="switchServiceTab('maranguape')" class="service-tab-btn px-4 py-2.5 rounded-xl text-xs font-semibold bg-white border border-slate-200 hover:bg-slate-100 text-slate-700 transition flex items-center gap-1.5 cursor-pointer">
+                Maranguape
+            </button>
+        </div>
+
+        <div id="serviceTabContent"></div>
     </section>
 
-    <!-- BOTÃO FLUTUANTE WHATSAPP -->
-    <a href="https://wa.me/5585921033841?text=Olá%20Robinson!%20Tenho%20dúvidas%20sobre%20o%20cadastro%20no%20Tem%20No%20Bairro." 
-       target="_blank" 
-       rel="noopener noreferrer"
-       class="fixed bottom-4 right-4 bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 px-4 rounded-full shadow-2xl flex items-center gap-2 z-40 transition text-xs border border-emerald-400/30">
-       <i class="fa-brands fa-whatsapp text-lg"></i> Falar com o Fundador
-    </a>
-
     <!-- RODAPÉ -->
-    <footer class="bg-navy-950 text-slate-400 text-xs py-12 border-t border-white/10">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
-            <div class="flex items-center justify-center gap-2.5 text-white font-extrabold text-xl tracking-tight">
-                <i class="fa-solid fa-store text-brand-500"></i> TEM NO <span class="text-brand-500">BAIRRO</span>
+    <footer class="bg-navy-950 text-slate-300 py-10 px-4 sm:px-6 mt-8 border-t border-white/10">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-xs">
+            <div>
+                <strong class="text-white font-black text-sm block">TEM NO BAIRRO</strong>
+                <span class="text-slate-400">Maracanaú • Pacatuba • Maranguape — CNPJ 69.805.020/0001-36</span>
             </div>
-            <p class="max-w-xl mx-auto text-slate-300 leading-relaxed text-xs sm:text-sm">
-                Iniciativa de apoio e fortalecimento da economia comunitária em Maracanaú, Pacatuba e Maranguape - CE.
-            </p>
-            <div class="flex flex-wrap justify-center items-center gap-4 py-2 text-slate-300 font-semibold">
-                <a href="https://temnobairro.app.br/parceiros.html" class="hover:text-brand-400 transition flex items-center gap-1.5 text-brand-400 font-bold"><i class="fa-solid fa-handshake"></i> Parceiros &amp; Divulgação</a>
-                <a href="https://instagram.com/temnobairro_oficial" target="_blank" rel="noopener noreferrer" class="hover:text-brand-500 transition flex items-center gap-1.5"><i class="fa-brands fa-instagram text-base text-brand-500"></i> @temnobairro_oficial</a>
-                <button type="button" onclick="triggerInstallApp()" class="hover:text-emerald-400 transition flex items-center gap-1.5 cursor-pointer text-emerald-400 font-bold"><i class="fa-solid fa-download text-base"></i> Instalar Aplicativo</button>
-                <button type="button" onclick="openIndicateModal()" class="hover:text-brand-400 transition flex items-center gap-1.5 cursor-pointer text-brand-400 font-semibold"><i class="fa-solid fa-gift text-base"></i> Indicar Comércio</button>
-                <button type="button" onclick="openTermsModal()" class="hover:text-white transition cursor-pointer underline">Termos de Uso</button>
-                <button type="button" onclick="openPrivacyModal()" class="hover:text-white transition cursor-pointer underline">Privacidade (LGPD)</button>
-            </div>
-            <div class="bg-navy-900/80 rounded-2xl p-4 max-w-2xl mx-auto border border-white/10 text-xs text-slate-400">
-                <strong class="text-slate-300">CNPJ:</strong> 69.805.020/0001-36 | Maracanaú - CE
+            <div class="flex items-center gap-4">
+                <button type="button" onclick="openTermsModal()" class="hover:text-brand-400 transition cursor-pointer">Termos de Uso</button>
+                <button type="button" onclick="openPrivacyModal()" class="hover:text-brand-400 transition cursor-pointer">Privacidade (LGPD)</button>
+                <button type="button" onclick="openAdminLoginModal()" class="hover:text-brand-400 transition cursor-pointer">Admin</button>
             </div>
         </div>
     </footer>
 
-    <!-- MODAIS -->
+    <!-- MODAL INSTALAR APP -->
     <div id="installAppModal" class="fixed inset-0 bg-navy-950/85 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
-        <div class="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl relative border border-slate-100 space-y-5">
-            <button type="button" onclick="closeInstallAppModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 bg-slate-100 p-2 rounded-full w-8 h-8 flex items-center justify-center cursor-pointer">
-                <i class="fa-solid fa-xmark"></i>
-            </button>
-            <div class="text-center space-y-2">
-                <div class="w-14 h-14 rounded-2xl overflow-hidden border-2 border-brand-500 mx-auto shadow-md bg-navy-950">
-                    <img src="logo-casa-pino.jpeg" alt="Tem No Bairro" class="w-full h-full object-cover">
-                </div>
-                <h3 class="text-xl font-extrabold text-navy-950">Instalar o App TEM NO BAIRRO</h3>
-                <p class="text-xs text-slate-500">Adicione à tela inicial do seu smartphone.</p>
-            </div>
-            <div class="bg-slate-50 border border-slate-200 rounded-2xl p-4 space-y-2 text-xs text-slate-700">
-                <div class="font-extrabold text-navy-950">No iPhone (Safari):</div>
-                <p>Toque em <strong>Compartilhar</strong> e depois em <strong>Adicionar à Tela de Início</strong>.</p>
-                <div class="font-extrabold text-emerald-900 pt-2">No Android (Chrome):</div>
-                <p>Toque nos <strong>3 pontinhos (⋮)</strong> e escolha <strong>Instalar aplicativo</strong>.</p>
-            </div>
-            <button type="button" onclick="closeInstallAppModal()" class="w-full bg-navy-900 hover:bg-navy-800 text-white font-bold py-3 rounded-xl text-xs cursor-pointer">
-                Entendi
-            </button>
+        <div class="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl relative space-y-4">
+            <button type="button" onclick="closeInstallAppModal()" class="absolute top-4 right-4 text-slate-400 bg-slate-100 p-2 rounded-full w-8 h-8 flex items-center justify-center cursor-pointer"><i class="fa-solid fa-xmark"></i></button>
+            <h3 class="text-lg font-extrabold text-navy-950">Instalar TEM NO BAIRRO</h3>
+            <p class="text-xs text-slate-600 leading-relaxed">
+                No Android (Chrome): toque nos <strong>três pontos</strong> no canto superior e escolha <strong>Adicionar à tela inicial</strong> ou <strong>Instalar aplicativo</strong>.<br>
+                No iPhone (Safari): toque em <strong>Compartilhar</strong> e depois em <strong>Adicionar à Tela de Início</strong>.
+            </p>
+            <button type="button" onclick="closeInstallAppModal()" class="w-full bg-navy-900 text-white font-bold py-2.5 rounded-xl text-xs cursor-pointer">Entendi</button>
         </div>
     </div>
 
-    <div id="detailModal" class="fixed inset-0 bg-navy-950/85 backdrop-blur-md z-50 hidden flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
-        <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-7 shadow-2xl relative my-8 border border-slate-100 space-y-5">
-            <button type="button" onclick="closeDetailModal()" class="absolute top-4 right-4 text-slate-500 hover:text-navy-950 bg-slate-100 p-2 rounded-full w-9 h-9 flex items-center justify-center cursor-pointer z-10">
-                <i class="fa-solid fa-xmark"></i>
-            </button>
-            <div class="relative h-72 w-full bg-navy-950 rounded-2xl overflow-hidden">
-                <img id="detailImage" src="" alt="Foto" class="detalhe-foto">
-                <div id="carouselNav" class="absolute inset-0 flex items-center justify-between p-3 hidden">
-                    <button type="button" onclick="prevImage()" class="bg-navy-950/80 text-white w-9 h-9 rounded-full flex items-center justify-center cursor-pointer"><i class="fa-solid fa-chevron-left"></i></button>
-                    <button type="button" onclick="nextImage()" class="bg-navy-950/80 text-white w-9 h-9 rounded-full flex items-center justify-center cursor-pointer"><i class="fa-solid fa-chevron-right"></i></button>
+    <!-- MODAL DETALHES DO COMÉRCIO -->
+    <div id="detailModal" class="fixed inset-0 bg-navy-950/85 backdrop-blur-md z-50 hidden flex items-center justify-center p-4 overflow-y-auto">
+        <div class="bg-white rounded-3xl max-w-lg w-full overflow-hidden shadow-2xl relative my-8">
+            <button type="button" onclick="closeDetailModal()" class="absolute top-4 right-4 z-20 bg-navy-950/80 text-white p-2 rounded-full w-9 h-9 flex items-center justify-center cursor-pointer"><i class="fa-solid fa-xmark"></i></button>
+            <div class="relative h-60 bg-slate-100">
+                <img id="detailImage" src="" alt="" class="w-full h-full object-cover">
+                <span id="detailPhotoCounter" class="hidden absolute bottom-3 left-3 bg-navy-950/80 text-white text-[11px] font-bold px-2.5 py-1 rounded-full">1 / 1</span>
+                <div id="carouselNav" class="hidden absolute inset-x-3 top-1/2 -translate-y-1/2 flex justify-between pointer-events-none">
+                    <button type="button" onclick="prevImage()" class="pointer-events-auto w-9 h-9 rounded-full bg-navy-950/75 text-white flex items-center justify-center cursor-pointer"><i class="fa-solid fa-chevron-left text-xs"></i></button>
+                    <button type="button" onclick="nextImage()" class="pointer-events-auto w-9 h-9 rounded-full bg-navy-950/75 text-white flex items-center justify-center cursor-pointer"><i class="fa-solid fa-chevron-right text-xs"></i></button>
                 </div>
-                <span id="detailCategoryBadge" class="absolute top-3 left-3 bg-navy-950/85 text-white text-xs font-bold px-3 py-1.5 rounded-xl"></span>
-                <span id="detailPhotoCounter" class="hidden absolute bottom-3 right-3 bg-navy-950/85 text-white text-[11px] font-bold px-3 py-1 rounded-full"></span>
             </div>
-            <div class="space-y-2">
+            <div class="p-6 space-y-4">
                 <div class="flex items-center justify-between gap-2 flex-wrap">
-                    <h3 id="detailName" class="text-2xl font-extrabold text-navy-950"></h3>
-                    <a id="detailInstagram" href="#" target="_blank" rel="noopener noreferrer" class="hidden inline-flex items-center gap-1.5 text-xs font-extrabold text-pink-600 bg-pink-50 border border-pink-200 px-3 py-1.5 rounded-xl">
+                    <span id="detailCategoryBadge" class="bg-brand-50 text-brand-800 border border-brand-200 text-xs font-extrabold px-3 py-1 rounded-full"></span>
+                    <div id="detailStatusBadge"></div>
+                </div>
+                <h3 id="detailName" class="text-xl font-black text-navy-950"></h3>
+                <p id="detailDescription" class="text-xs sm:text-sm text-slate-600 leading-relaxed"></p>
+                <div id="detailPromoBox" class="hidden bg-brand-50 border border-brand-300 rounded-2xl p-3.5 space-y-2">
+                    <p class="text-xs font-extrabold text-brand-800"><i class="fa-solid fa-ticket mr-1"></i> <span id="detailPromoText"></span></p>
+                    <a id="detailCouponWa" href="#" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 bg-brand-500 hover:bg-brand-600 text-navy-950 font-extrabold text-xs px-3.5 py-2 rounded-xl transition">
+                        <i class="fa-brands fa-whatsapp"></i> Resgatar Oferta
+                    </a>
+                </div>
+                <div class="space-y-2 text-xs text-slate-600 border-t border-slate-100 pt-3">
+                    <div class="flex items-start gap-2"><i class="fa-solid fa-location-dot text-brand-500 mt-0.5"></i><span id="detailAddress" class="font-semibold text-navy-950"></span></div>
+                    <div class="flex items-center gap-2"><i class="fa-regular fa-clock text-navy-700"></i><span id="detailHours"></span></div>
+                    <a id="detailInstagram" href="#" target="_blank" rel="noopener noreferrer" class="hidden inline-flex items-center gap-1.5 text-pink-600 font-bold pt-1">
                         <i class="fa-brands fa-instagram"></i> <span id="detailInstagramHandle"></span>
                     </a>
                 </div>
-                <p id="detailDescription" class="text-xs sm:text-sm text-slate-600 leading-relaxed"></p>
-            </div>
-            <div id="detailPromoBox" class="hidden bg-brand-50 border border-brand-200 rounded-2xl p-4 flex items-center gap-3 text-xs text-navy-950">
-                <i class="fa-solid fa-gift text-brand-600 text-lg"></i>
-                <div><span class="font-extrabold block">Vantagem no App!</span><span id="detailPromoText" class="font-semibold text-brand-900"></span></div>
-            </div>
-            <div class="bg-slate-50 border border-slate-200/80 rounded-2xl p-4 space-y-2 text-xs text-slate-600">
-                <div class="flex items-center gap-2"><i class="fa-solid fa-location-dot text-brand-600"></i><span id="detailAddress" class="font-medium text-slate-800"></span></div>
-                <div class="flex items-center justify-between flex-wrap gap-2">
-                    <div class="flex items-center gap-2"><i class="fa-solid fa-clock text-navy-700"></i><span id="detailHours"></span></div>
-                    <span id="detailStatusBadge"></span>
-                </div>
-            </div>
-            <div class="pt-2 space-y-2.5">
-                <a id="detailWhatsApp" href="#" target="_blank" rel="noopener noreferrer" class="w-full bg-brand-500 hover:bg-brand-600 text-navy-950 font-extrabold py-3.5 px-4 rounded-xl shadow-md text-xs sm:text-sm flex items-center justify-center gap-2">
-                    <i class="fa-brands fa-whatsapp text-lg"></i> Chamar no WhatsApp
-                </a>
-                <a id="detailCouponWa" href="#" target="_blank" rel="noopener noreferrer" class="w-full bg-navy-900 hover:bg-navy-800 text-white font-bold py-3 px-4 rounded-xl text-xs flex items-center justify-center gap-2">
-                    <i class="fa-solid fa-ticket text-brand-500"></i> Resgatar Cupom Exclusivo no WhatsApp
-                </a>
-                <div class="grid grid-cols-2 gap-2.5">
-                    <a id="detailShareWa" href="#" target="_blank" rel="noopener noreferrer" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2.5 px-3 rounded-xl text-xs flex items-center justify-center gap-1.5">
-                        <i class="fa-solid fa-share-nodes"></i> Compartilhar
+                <div class="pt-2 space-y-2.5">
+                    <a id="detailWhatsApp" href="#" target="_blank" rel="noopener noreferrer" class="w-full bg-navy-900 hover:bg-brand-500 text-white hover:text-navy-950 font-extrabold py-3.5 px-4 rounded-xl shadow-md text-xs sm:text-sm flex items-center justify-center gap-2 transition">
+                        <i class="fa-brands fa-whatsapp text-lg"></i> Chamar no WhatsApp
                     </a>
-                    <a id="detailMaps" href="#" target="_blank" rel="noopener noreferrer" class="bg-slate-100 hover:bg-slate-200 text-navy-950 font-bold py-2.5 px-3 rounded-xl text-xs flex items-center justify-center gap-1.5">
-                        <i class="fa-solid fa-map-location-dot text-brand-600"></i> Como Chegar
-                    </a>
+                    <div class="grid grid-cols-2 gap-2.5">
+                        <a id="detailShareWa" href="#" target="_blank" rel="noopener noreferrer" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2.5 px-3 rounded-xl text-xs flex items-center justify-center gap-1.5">
+                            <i class="fa-solid fa-share-nodes"></i> Compartilhar
+                        </a>
+                        <a id="detailMaps" href="#" target="_blank" rel="noopener noreferrer" class="bg-slate-100 hover:bg-slate-200 text-navy-950 font-bold py-2.5 px-3 rounded-xl text-xs flex items-center justify-center gap-1.5">
+                            <i class="fa-solid fa-map-location-dot text-brand-600"></i> Como Chegar
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <div id="propertyDetailModal" class="fixed inset-0 bg-navy-950/85 backdrop-blur-md z-50 hidden flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
-        <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-7 shadow-2xl relative my-8 border border-slate-100 space-y-5">
-            <button type="button" onclick="closePropertyDetailModal()" class="absolute top-4 right-4 text-slate-500 hover:text-navy-950 bg-slate-100 p-2 rounded-full w-9 h-9 flex items-center justify-center cursor-pointer z-10">
-                <i class="fa-solid fa-xmark"></i>
-            </button>
-            <div class="relative h-72 w-full bg-navy-950 rounded-2xl overflow-hidden">
-                <img id="propDetailImage" src="" alt="Foto" class="detalhe-foto">
-                <div id="propCarouselNav" class="absolute inset-0 flex items-center justify-between p-3 hidden">
-                    <button type="button" onclick="prevPropImage()" class="bg-navy-950/80 text-white w-9 h-9 rounded-full flex items-center justify-center cursor-pointer"><i class="fa-solid fa-chevron-left"></i></button>
-                    <button type="button" onclick="nextPropImage()" class="bg-navy-950/80 text-white w-9 h-9 rounded-full flex items-center justify-center cursor-pointer"><i class="fa-solid fa-chevron-right"></i></button>
+    <!-- MODAL DETALHES DO IMÓVEL -->
+    <div id="propertyDetailModal" class="fixed inset-0 bg-navy-950/85 backdrop-blur-md z-50 hidden flex items-center justify-center p-4 overflow-y-auto">
+        <div class="bg-white rounded-3xl max-w-lg w-full overflow-hidden shadow-2xl relative my-8">
+            <button type="button" onclick="closePropertyDetailModal()" class="absolute top-4 right-4 z-20 bg-navy-950/80 text-white p-2 rounded-full w-9 h-9 flex items-center justify-center cursor-pointer"><i class="fa-solid fa-xmark"></i></button>
+            <div class="relative h-60 bg-slate-100">
+                <img id="propDetailImage" src="" alt="" class="w-full h-full object-cover">
+                <span id="propDetailPhotoCounter" class="hidden absolute bottom-3 left-3 bg-navy-950/80 text-white text-[11px] font-bold px-2.5 py-1 rounded-full">1 / 1</span>
+                <div id="propCarouselNav" class="hidden absolute inset-x-3 top-1/2 -translate-y-1/2 flex justify-between pointer-events-none">
+                    <button type="button" onclick="prevPropImage()" class="pointer-events-auto w-9 h-9 rounded-full bg-navy-950/75 text-white flex items-center justify-center cursor-pointer"><i class="fa-solid fa-chevron-left text-xs"></i></button>
+                    <button type="button" onclick="nextPropImage()" class="pointer-events-auto w-9 h-9 rounded-full bg-navy-950/75 text-white flex items-center justify-center cursor-pointer"><i class="fa-solid fa-chevron-right text-xs"></i></button>
                 </div>
-                <span id="propDetailTypeBadge" class="absolute top-3 left-3 bg-brand-500 text-navy-950 text-xs font-extrabold px-3 py-1.5 rounded-xl uppercase"></span>
-                <span id="propDetailPhotoCounter" class="hidden absolute bottom-3 right-3 bg-navy-950/85 text-white text-[11px] font-bold px-3 py-1 rounded-full"></span>
             </div>
-            <div class="space-y-2">
-                <div class="flex items-center justify-between gap-2 flex-wrap">
-                    <span class="text-[11px] font-extrabold text-emerald-700 bg-emerald-50 border border-emerald-200 px-2.5 py-1 rounded-lg">Direto com o Proprietário</span>
-                    <span id="propDetailPrice" class="text-xl font-black text-brand-600"></span>
+            <div class="p-6 space-y-4">
+                <div class="flex items-center justify-between gap-2">
+                    <span id="propDetailTypeBadge" class="bg-brand-500 text-navy-950 text-xs font-extrabold px-3 py-1 rounded-full uppercase"></span>
+                    <span id="propDetailPrice" class="text-sm font-black text-brand-700"></span>
                 </div>
-                <h3 id="propDetailTitle" class="text-2xl font-extrabold text-navy-950"></h3>
+                <h3 id="propDetailTitle" class="text-xl font-black text-navy-950"></h3>
                 <p id="propDetailDescription" class="text-xs sm:text-sm text-slate-600 leading-relaxed"></p>
-            </div>
-            <div class="bg-slate-50 border border-slate-200/80 rounded-2xl p-4 space-y-2 text-xs text-slate-600">
-                <div class="flex items-start gap-2"><i class="fa-solid fa-location-dot text-brand-600 mt-0.5"></i><span id="propDetailAddress" class="font-medium text-slate-800"></span></div>
-                <div class="flex items-center gap-2"><i class="fa-solid fa-user text-navy-700"></i><span>Proprietário: <strong id="propDetailOwner" class="text-navy-950"></strong></span></div>
-                <div id="propDetailFeaturesRow" class="flex items-center gap-2"><i class="fa-solid fa-house text-navy-700"></i><span id="propDetailFeatures"></span></div>
-            </div>
-            <div class="pt-2 space-y-2.5">
-                <a id="propDetailWhatsApp" href="#" target="_blank" rel="noopener noreferrer" class="w-full bg-navy-900 hover:bg-brand-500 text-white hover:text-navy-950 font-extrabold py-3.5 px-4 rounded-xl shadow-md text-xs sm:text-sm flex items-center justify-center gap-2 transition">
-                    <i class="fa-brands fa-whatsapp text-lg"></i> Chamar no WhatsApp
-                </a>
-                <div class="grid grid-cols-2 gap-2.5">
-                    <a id="propDetailShareWa" href="#" target="_blank" rel="noopener noreferrer" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2.5 px-3 rounded-xl text-xs flex items-center justify-center gap-1.5">
-                        <i class="fa-solid fa-share-nodes"></i> Compartilhar
+                <div class="space-y-2 text-xs text-slate-600 border-t border-slate-100 pt-3">
+                    <div class="flex items-start gap-2"><i class="fa-solid fa-location-dot text-brand-500 mt-0.5"></i><span id="propDetailAddress" class="font-semibold text-navy-950"></span></div>
+                    <div class="flex items-center gap-2"><i class="fa-solid fa-user text-navy-700"></i><span>Contato: <strong id="propDetailOwner" class="text-navy-950"></strong></span></div>
+                    <div id="propDetailFeaturesRow" class="flex items-center gap-2"><i class="fa-solid fa-house text-navy-700"></i><span id="propDetailFeatures"></span></div>
+                </div>
+                <div class="pt-2 space-y-2.5">
+                    <a id="propDetailWhatsApp" href="#" target="_blank" rel="noopener noreferrer" class="w-full bg-navy-900 hover:bg-brand-500 text-white hover:text-navy-950 font-extrabold py-3.5 px-4 rounded-xl shadow-md text-xs sm:text-sm flex items-center justify-center gap-2 transition">
+                        <i class="fa-brands fa-whatsapp text-lg"></i> Chamar no WhatsApp
                     </a>
-                    <a id="propDetailMaps" href="#" target="_blank" rel="noopener noreferrer" class="bg-slate-100 hover:bg-slate-200 text-navy-950 font-bold py-2.5 px-3 rounded-xl text-xs flex items-center justify-center gap-1.5">
-                        <i class="fa-solid fa-map-location-dot text-brand-600"></i> Como Chegar
-                    </a>
+                    <div class="grid grid-cols-2 gap-2.5">
+                        <a id="propDetailShareWa" href="#" target="_blank" rel="noopener noreferrer" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2.5 px-3 rounded-xl text-xs flex items-center justify-center gap-1.5">
+                            <i class="fa-solid fa-share-nodes"></i> Compartilhar
+                        </a>
+                        <a id="propDetailMaps" href="#" target="_blank" rel="noopener noreferrer" class="bg-slate-100 hover:bg-slate-200 text-navy-950 font-bold py-2.5 px-3 rounded-xl text-xs flex items-center justify-center gap-1.5">
+                            <i class="fa-solid fa-map-location-dot text-brand-600"></i> Como Chegar
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1197,7 +1106,7 @@
         }
 
         function initApp() {
-            splashTimerId = setTimeout(dismissSplashScreen, 8000);
+            splashTimerId = setTimeout(dismissSplashScreen, 3500);
             try { businesses = JSON.parse(localStorage.getItem(DB_KEY)) || defaultBusinesses; } catch (e) { businesses = defaultBusinesses; }
             try { properties = JSON.parse(localStorage.getItem(PROP_DB_KEY)) || defaultProperties; } catch (e) { properties = defaultProperties; }
             try { coupons = JSON.parse(localStorage.getItem(COUPON_DB_KEY)) || defaultCoupons; } catch (e) { coupons = defaultCoupons; }
