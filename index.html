@@ -1,454 +1,271 @@
 <!DOCTYPE html>
-<html lang="pt-BR" class="overflow-x-hidden">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TEM NO BAIRRO - O seu comércio local a um clique de distância</title>
-    
-    <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#0D134B">
+    <meta name="theme-color" content="#0F172A">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="Tem No Bairro">
-    <link rel="apple-touch-icon" href="icone-192.png">
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="logo-casa-pino.jpeg">
+    <link rel="icon" type="image/jpeg" href="logo-casa-pino.jpeg">
+    <title>TEM NO BAIRRO | Guia Comercial, Imóveis &amp; Serviços Locais</title>
+    <meta name="description" content="Guia comunitário hiperlocal para Maracanaú, Pacatuba e Maranguape. Encontre comércios, imóveis e espaços direto com o proprietário.">
 
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
     <script>
         tailwind.config = {
             theme: {
                 extend: {
+                    fontFamily: { sans: ['Plus Jakarta Sans', 'sans-serif'] },
                     colors: {
-                        brand: {
-                            50: '#FFF3E0',
-                            100: '#FFE0B2',
-                            400: '#FFA726',
-                            500: '#FF9800',
-                            600: '#FB8C00',
-                            700: '#F57C00',
-                            800: '#EF6C00',
-                            900: '#E65100',
-                        },
-                        navy: {
-                            700: '#283593',
-                            800: '#1F2A8A',
-                            900: '#1A237E',
-                            950: '#0D134B',
-                        }
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        display: ['Plus Jakarta Sans', 'Inter', 'sans-serif'],
+                        navy: { 950: '#090D16', 900: '#0F172A', 800: '#1E293B', 700: '#334155' },
+                        brand: { 50: '#FFFBEB', 100: '#FEF3C7', 200: '#FDE68A', 400: '#FBBF24', 500: '#F59E0B', 600: '#D97706', 700: '#B45309', 800: '#92400E', 900: '#78350F' }
                     }
                 }
             }
         }
     </script>
     <style>
-        html, body {
-            font-family: 'Inter', sans-serif;
-            scroll-behavior: smooth;
-            overflow-x: hidden;
-            max-width: 100vw;
-        }
-        h1, h2, h3, h4, .font-editorial { font-family: 'Plus Jakarta Sans', 'Inter', sans-serif; }
-        .hide-scrollbar::-webkit-scrollbar { display: none; }
-        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-
-        #splashScreen {
-            position: fixed;
-            inset: 0;
-            z-index: 9999;
-            background: linear-gradient(180deg, #0D134B 0%, #1A237E 55%, #0D134B 100%);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 24px;
-            text-align: center;
-            transition: opacity 0.25s ease-out;
-        }
-
-        #skipSplashBtn {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            z-index: 20;
-            font-size: 12px;
-            font-weight: 700;
-            color: #e2e8f0;
-            background: rgba(255, 255, 255, 0.14);
-            border: 1px solid rgba(255, 255, 255, 0.22);
-            padding: 8px 16px;
-            border-radius: 9999px;
-            cursor: pointer;
-        }
-
-        .splash-content {
-            position: relative;
-            z-index: 10;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            max-width: 420px;
-            width: 100%;
-        }
-
-        .splash-subtitle {
-            font-size: 13px;
-            color: #cbd5e1;
-            font-weight: 500;
-            margin: 14px 0 0 0;
-        }
-
-        .parceiro-capa {
-            width: 100%;
-            height: 210px;
-            object-fit: cover;
-            object-position: center 25%;
-            background-color: #f1f5f9;
-            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .group:hover .parceiro-capa { transform: scale(1.06); }
-
-        .detalhe-foto {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            background-color: #0D134B;
-        }
+        html { scroll-behavior: smooth; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .parceiro-capa { width: 100%; height: 100%; object-fit: cover; object-position: center; }
+        .detalhe-foto { width: 100%; height: 100%; object-fit: contain; background-color: #090D16; }
+        #splashScreen { transition: opacity 0.25s ease-out; }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col antialiased selection:bg-brand-500 selection:text-white overflow-x-hidden">
+<body class="bg-slate-50 text-slate-900 font-sans antialiased selection:bg-brand-500 selection:text-navy-950">
 
-    <!-- ABERTURA ANIMADA COM VÍDEO -->
-    <div id="splashScreen">
-        <button id="skipSplashBtn" type="button" onclick="dismissSplashScreen()">Pular</button>
-        <div class="splash-content">
-            <div style="width: 100%; max-width: 340px; aspect-ratio: 16 / 9; border-radius: 24px; overflow: hidden; border: 2px solid rgba(255, 152, 0, 0.55); box-shadow: 0 20px 45px rgba(0, 0, 0, 0.5); background: #0D134B;">
-                <video id="splashVideo" src="abertura-tem-no-bairro.mp4" autoplay muted playsinline preload="auto" onended="dismissSplashScreen()" style="width: 100%; height: 100%; object-fit: cover; display: block;"></video>
-            </div>
-            <p class="splash-subtitle">O seu comércio local a um clique de distância</p>
-        </div>
+    <!-- TELA DE ABERTURA EM VÍDEO (8 SEGUNDOS) -->
+    <div id="splashScreen" onclick="dismissSplashScreen()" class="fixed inset-0 bg-navy-950 z-50 flex flex-col items-center justify-center overflow-hidden cursor-pointer">
+        <video id="splashVideo" autoplay muted playsinline preload="auto" onended="dismissSplashScreen()" onerror="dismissSplashScreen()" class="w-full h-full object-cover sm:object-contain bg-navy-950">
+            <source src="abertura.mp4" type="video/mp4">
+        </video>
+        <button type="button" onclick="event.stopPropagation(); dismissSplashScreen();" class="absolute top-4 right-4 bg-navy-950/80 hover:bg-brand-500 text-white hover:text-navy-950 border border-white/20 text-xs font-extrabold px-4 py-2 rounded-full shadow-lg transition cursor-pointer z-10">
+            Pular <i class="fa-solid fa-forward-step ml-1"></i>
+        </button>
     </div>
 
-    <!-- HEADER / TOPO -->
-    <header class="bg-navy-950 text-white shadow-lg border-b border-white/10 sticky top-0 z-30 w-full">
-        <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-3 flex flex-col xl:flex-row items-center justify-between gap-3">
-            <div class="flex items-center justify-between w-full xl:w-auto gap-2">
-                <div class="flex items-center gap-2.5 min-w-0">
-                    <div class="w-10 h-10 sm:w-11 sm:h-11 rounded-2xl overflow-hidden shadow-lg border-2 border-brand-500/60 bg-navy-900 flex items-center justify-center flex-shrink-0">
-                        <img src="logo-casa-pino.jpeg" alt="Logo Tem No Bairro" class="w-full h-full object-cover">
-                    </div>
-                    <div class="min-w-0">
-                        <h1 class="text-base sm:text-xl font-extrabold tracking-tight text-white whitespace-nowrap">
-                            TEM NO <span class="text-brand-500">BAIRRO</span>
-                        </h1>
-                        <p class="text-[11px] text-slate-300 font-medium truncate">Comércio local a um clique</p>
-                    </div>
+    <!-- CABEÇALHO SUPERIOR -->
+    <header class="bg-navy-950 text-white sticky top-0 z-40 shadow-lg border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between gap-2">
+            <a href="#" class="flex items-center gap-2.5 group flex-shrink-0">
+                <div class="w-10 h-10 sm:w-11 sm:h-11 rounded-xl overflow-hidden border border-brand-500/40 shadow-md flex-shrink-0 bg-navy-900">
+                    <img src="logo-casa-pino.jpeg" alt="Logo TEM NO BAIRRO" class="w-full h-full object-cover">
                 </div>
-
-                <!-- Ações rápidas no celular -->
-                <div class="flex items-center gap-1.5 sm:hidden flex-shrink-0">
-                    <button type="button" onclick="triggerInstallApp()" class="install-app-btn bg-emerald-500 hover:bg-emerald-600 text-navy-950 font-extrabold text-[11px] px-2.5 py-2 rounded-xl transition flex items-center gap-1 whitespace-nowrap cursor-pointer">
-                        <i class="fa-solid fa-download"></i> App
-                    </button>
-                    <a href="https://temnobairro.app.br/parceiros.html" class="bg-brand-500 hover:bg-brand-600 text-navy-950 font-bold text-[11px] px-2.5 py-2 rounded-xl transition flex items-center gap-1 whitespace-nowrap">
-                        <i class="fa-solid fa-plus"></i> Anunciar
-                    </a>
-                    <button type="button" onclick="openAdminLoginModal()" class="bg-navy-900 text-slate-300 text-xs px-2.5 py-2 rounded-xl border border-white/10 cursor-pointer" title="Admin">
-                        <i class="fa-solid fa-lock"></i>
-                    </button>
+                <div>
+                    <span class="font-extrabold text-base sm:text-xl tracking-tight text-white block leading-none">
+                        TEM NO <span class="text-brand-500">BAIRRO</span>
+                    </span>
+                    <span class="text-[10px] sm:text-[11px] font-medium text-slate-400 tracking-wider uppercase block mt-0.5">
+                        Comércios, Imóveis &amp; Serviços
+                    </span>
                 </div>
-            </div>
+            </a>
 
-            <!-- Menu Desktop / Tablet -->
-            <div class="hidden sm:flex items-center flex-wrap gap-2 justify-end">
-                <button type="button" onclick="triggerInstallApp()" class="install-app-btn bg-emerald-500 hover:bg-emerald-600 text-navy-950 font-extrabold text-xs px-3.5 py-2.5 rounded-xl shadow-md transition flex items-center gap-1.5 whitespace-nowrap flex-shrink-0 cursor-pointer">
-                    <i class="fa-solid fa-download"></i> Baixar Aplicativo
+            <div class="flex items-center gap-2 sm:gap-2.5">
+                <button type="button" onclick="triggerInstallApp()" class="install-app-btn bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs px-3 py-2 sm:px-3.5 sm:py-2.5 rounded-xl transition flex items-center gap-1.5 shadow cursor-pointer" title="Instalar Aplicativo no Celular">
+                    <i class="fa-solid fa-download"></i>
+                    <span class="hidden sm:inline">Instalar App</span>
                 </button>
-                <a href="#muralImoveis" class="bg-white/10 hover:bg-white/20 text-white border border-white/15 font-semibold text-xs px-3 py-2.5 rounded-xl transition flex items-center gap-1.5 whitespace-nowrap flex-shrink-0">
-                    <i class="fa-solid fa-house-flag text-brand-500"></i> Imóveis & Espaços
+                <a href="https://temnobairro.app.br/parceiros.html" class="bg-brand-500 hover:bg-brand-600 text-navy-950 font-extrabold text-xs sm:text-sm px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-xl shadow-md transition flex items-center gap-1.5">
+                    <i class="fa-solid fa-handshake"></i>
+                    <span>Seja Parceiro</span>
                 </a>
-                <a href="https://g.page/r/CRK_11do12bRECE/review" target="_blank" rel="noopener noreferrer" class="bg-white/10 hover:bg-white/20 text-amber-300 border border-white/15 font-semibold text-xs px-3 py-2.5 rounded-xl transition flex items-center gap-1.5 whitespace-nowrap flex-shrink-0">
-                    <i class="fa-solid fa-star text-brand-500"></i> Avaliar no Google
-                </a>
-                <button type="button" onclick="openIndicateModal()" class="bg-white/10 hover:bg-white/20 text-white border border-white/15 text-xs px-3 py-2.5 rounded-xl transition flex items-center gap-1.5 cursor-pointer font-semibold whitespace-nowrap flex-shrink-0">
-                    <i class="fa-solid fa-gift text-brand-500"></i> Indicar Comércio
+                <button type="button" onclick="openAdminLoginModal()" title="Acesso Administrativo" class="text-slate-400 hover:text-brand-500 p-2 rounded-xl border border-white/10 hover:border-brand-500/30 transition cursor-pointer">
+                    <i class="fa-solid fa-lock text-sm"></i>
                 </button>
-                <button type="button" onclick="openAdminLoginModal()" class="bg-navy-900 hover:bg-navy-800 text-slate-300 hover:text-white text-xs px-3 py-2.5 rounded-xl transition border border-white/10 flex items-center gap-1.5 whitespace-nowrap flex-shrink-0 cursor-pointer">
-                    <i class="fa-solid fa-lock text-brand-500"></i> Admin
-                </button>
-                <a href="https://temnobairro.app.br/parceiros.html" class="flex items-center gap-1.5 bg-brand-500 hover:bg-brand-600 text-navy-950 font-extrabold text-xs px-4 py-2.5 rounded-xl shadow-lg transition whitespace-nowrap flex-shrink-0">
-                    <i class="fa-solid fa-star"></i> Seja Parceiro / Anuncie
-                </a>
             </div>
         </div>
 
-        <!-- BARRA RÁPIDA DE CIDADE (1 TOQUE + MEMÓRIA AUTOMÁTICA) -->
-        <div class="bg-navy-900/95 border-t border-white/10">
-            <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-2 flex items-center justify-between gap-2 overflow-x-auto hide-scrollbar">
-                <div class="flex items-center gap-1.5 flex-shrink-0">
-                    <span class="text-[11px] font-bold text-brand-400 flex items-center gap-1 mr-1">
-                        <i class="fa-solid fa-location-dot"></i> Sua cidade:
-                    </span>
+        <!-- BARRA RÁPIDA DE CIDADE -->
+        <div class="bg-navy-900/95 border-t border-white/5 py-2 px-4">
+            <div class="max-w-7xl mx-auto flex items-center justify-between gap-2 overflow-x-auto no-scrollbar">
+                <div class="flex items-center gap-1.5 text-[11px] text-slate-300 font-semibold whitespace-nowrap">
+                    <i class="fa-solid fa-location-dot text-brand-500"></i>
+                    <span>Região:</span>
+                </div>
+                <div class="flex items-center gap-1.5">
                     <button type="button" onclick="selectCity('Todas')" id="topCityBtn-Todas" class="top-city-btn px-3 py-1 rounded-full text-[11px] font-extrabold bg-brand-500 text-navy-950 shadow-sm transition cursor-pointer whitespace-nowrap">Todas</button>
                     <button type="button" onclick="selectCity('Maracanaú')" id="topCityBtn-Maracanaú" class="top-city-btn px-3 py-1 rounded-full text-[11px] font-semibold bg-white/10 hover:bg-white/20 text-white transition cursor-pointer whitespace-nowrap">Maracanaú</button>
                     <button type="button" onclick="selectCity('Pacatuba')" id="topCityBtn-Pacatuba" class="top-city-btn px-3 py-1 rounded-full text-[11px] font-semibold bg-white/10 hover:bg-white/20 text-white transition cursor-pointer whitespace-nowrap">Pacatuba</button>
                     <button type="button" onclick="selectCity('Maranguape')" id="topCityBtn-Maranguape" class="top-city-btn px-3 py-1 rounded-full text-[11px] font-semibold bg-white/10 hover:bg-white/20 text-white transition cursor-pointer whitespace-nowrap">Maranguape</button>
                 </div>
-                <span id="liveSocialProofBadge" class="hidden md:inline-flex items-center gap-1.5 text-[11px] text-slate-300 font-medium whitespace-nowrap">
-                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                    <span id="liveSocialProofText">Guia hiperlocal atualizado</span>
-                </span>
             </div>
         </div>
     </header>
 
-    <!-- HERO SECTION + ATALHOS RÁPIDOS ESTILO APP -->
-    <section class="bg-navy-900 border-b border-navy-800 py-8 sm:py-12 relative overflow-hidden">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-6">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 items-stretch">
-                <div class="bg-navy-950/90 backdrop-blur-sm rounded-3xl p-6 sm:p-8 text-white shadow-2xl border border-white/10 flex flex-col justify-between">
-                    <div class="space-y-3.5">
-                        <span class="bg-white/10 text-brand-400 border border-brand-500/30 text-xs font-extrabold px-3.5 py-1.5 rounded-full uppercase tracking-wider inline-flex items-center gap-2">
-                            <i class="fa-solid fa-house-chimney text-brand-500"></i> Para o Morador
-                        </span>
-                        <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight leading-snug">
-                            O guia definitivo do seu bairro em <span class="text-brand-500">Maracanaú, Pacatuba e Maranguape.</span>
-                        </h2>
-                        <p class="text-slate-300 text-sm leading-relaxed">
-                            Encontre comércios, serviços e cupons de desconto direto no WhatsApp, além de imóveis e salas comerciais anunciados diretamente pelo dono e utilidade pública.
-                        </p>
-                    </div>
-                    <div class="pt-6 flex flex-wrap gap-2.5">
-                        <a href="#vitrineComercios" class="bg-brand-500 hover:bg-brand-600 text-navy-950 font-extrabold text-xs sm:text-sm px-5 py-3 rounded-xl shadow-lg transition flex items-center gap-2">
-                            <i class="fa-solid fa-magnifying-glass"></i> Explorar Comércios
-                        </a>
-                        <a href="#muralImoveis" class="bg-white/10 hover:bg-white/20 text-white border border-white/20 font-semibold text-xs sm:text-sm px-4 py-3 rounded-xl transition flex items-center gap-2">
-                            <i class="fa-solid fa-house-flag text-emerald-400"></i> Imóveis & Espaços
-                        </a>
-                        <button type="button" onclick="triggerInstallApp()" class="install-app-btn bg-emerald-500 hover:bg-emerald-600 text-navy-950 font-extrabold text-xs sm:text-sm px-4 py-3 rounded-xl shadow-lg transition flex items-center gap-2 cursor-pointer">
-                            <i class="fa-solid fa-download"></i> Baixar App
-                        </button>
-                    </div>
+    <!-- HERO SECTION -->
+    <section class="bg-gradient-to-b from-navy-950 via-navy-900 to-navy-800 text-white pt-10 pb-14 sm:pt-14 sm:pb-16 relative overflow-hidden">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 text-center relative z-10 space-y-5">
+            <div class="flex flex-wrap items-center justify-center gap-2">
+                <div class="inline-flex items-center gap-2 bg-white/10 border border-white/15 rounded-full px-4 py-1.5 text-xs sm:text-sm font-medium text-brand-400">
+                    <span class="w-2 h-2 rounded-full bg-brand-500 animate-pulse"></span>
+                    Guia Hiperlocal • Maracanaú, Pacatuba &amp; Maranguape
                 </div>
-
-                <div class="bg-gradient-to-br from-brand-500 via-brand-600 to-brand-700 rounded-3xl p-6 sm:p-8 text-navy-950 shadow-2xl border border-brand-400 flex flex-col justify-between">
-                    <div class="space-y-3.5">
-                        <span class="bg-navy-950 text-brand-400 text-xs font-extrabold px-3.5 py-1.5 rounded-full uppercase tracking-wider inline-flex items-center gap-2 shadow-sm">
-                            <i class="fa-solid fa-arrow-up-right-from-square text-brand-500"></i> Divulgação Direcionada
-                        </span>
-                        <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight leading-snug text-navy-950">
-                            Quer divulgar comércio ou <span class="text-white drop-shadow-sm">anunciar imóvel ou espaço?</span>
-                        </h2>
-                        <p class="text-navy-950/90 font-medium text-sm leading-relaxed">
-                            Acesse nossa página dedicada para escolher entre o <strong class="underline decoration-navy-950 font-extrabold">Grupo A (Comércio)</strong> ou <strong class="underline decoration-navy-950 font-extrabold">Grupo B (Imóvel / Espaço direto com o dono, sem comissão)</strong>.
-                        </p>
-                    </div>
-                    <div class="pt-6 flex flex-wrap gap-2.5">
-                        <a href="https://temnobairro.app.br/parceiros.html#secaoGrupoA" class="bg-navy-950 hover:bg-navy-900 text-white font-extrabold text-xs sm:text-sm px-5 py-3 rounded-xl shadow-xl transition flex items-center gap-2">
-                            <i class="fa-solid fa-store text-brand-500"></i> Grupo A: Comércio
-                        </a>
-                        <a href="https://temnobairro.app.br/parceiros.html#secaoGrupoB" class="bg-white/95 hover:bg-white text-navy-950 font-bold text-xs sm:text-sm px-4 py-3 rounded-xl shadow transition flex items-center gap-2">
-                            <i class="fa-solid fa-house-flag text-emerald-600 text-base"></i> Grupo B: Imóvel / Espaço
-                        </a>
-                    </div>
+                <div id="liveSocialProofBadge" class="hidden inline-flex items-center gap-2 bg-emerald-500/15 border border-emerald-400/30 rounded-full px-3.5 py-1.5 text-xs font-bold text-emerald-300">
+                    <i class="fa-solid fa-store text-emerald-400"></i>
+                    <span id="liveSocialProofText">0 comércios ativos</span>
                 </div>
             </div>
 
-            <!-- GRADE DE ATALHOS VISUAIS ESTILO APP (1 TOQUE) -->
-            <div class="grid grid-cols-3 sm:grid-cols-6 gap-2.5 sm:gap-3">
-                <button type="button" onclick="quickJumpCategory('Comércio e Serviços')" class="bg-navy-950/85 hover:bg-navy-950 border border-white/10 hover:border-brand-500/60 rounded-2xl p-3 text-center transition group cursor-pointer">
-                    <div class="w-10 h-10 rounded-xl bg-brand-500/20 text-brand-400 group-hover:bg-brand-500 group-hover:text-navy-950 flex items-center justify-center mx-auto mb-1.5 transition">
-                        <i class="fa-solid fa-utensils text-base"></i>
-                    </div>
-                    <span class="block text-[11px] font-bold text-white leading-tight">Lojas & Comida</span>
-                </button>
+            <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight leading-tight">
+                Tudo o que você precisa no <span class="text-brand-500">seu bairro</span>, a um clique.
+            </h1>
 
-                <button type="button" onclick="quickJumpCategory('Saúde e Beleza')" class="bg-navy-950/85 hover:bg-navy-950 border border-white/10 hover:border-brand-500/60 rounded-2xl p-3 text-center transition group cursor-pointer">
-                    <div class="w-10 h-10 rounded-xl bg-pink-500/20 text-pink-400 group-hover:bg-pink-500 group-hover:text-white flex items-center justify-center mx-auto mb-1.5 transition">
-                        <i class="fa-solid fa-scissors text-base"></i>
-                    </div>
-                    <span class="block text-[11px] font-bold text-white leading-tight">Barbearia & Beleza</span>
-                </button>
+            <p class="text-slate-300 text-sm sm:text-lg max-w-2xl mx-auto font-normal leading-relaxed">
+                Encontre comércios locais, prestadores de serviços e imóveis ou espaços disponíveis para aluguel e venda direto com o proprietário.
+            </p>
 
-                <button type="button" onclick="quickJumpCategory('Pet Shop')" class="bg-navy-950/85 hover:bg-navy-950 border border-white/10 hover:border-brand-500/60 rounded-2xl p-3 text-center transition group cursor-pointer">
-                    <div class="w-10 h-10 rounded-xl bg-amber-500/20 text-amber-300 group-hover:bg-amber-500 group-hover:text-navy-950 flex items-center justify-center mx-auto mb-1.5 transition">
-                        <i class="fa-solid fa-paw text-base"></i>
-                    </div>
-                    <span class="block text-[11px] font-bold text-white leading-tight">Pet Shop</span>
-                </button>
-
-                <button type="button" onclick="quickJumpCategory('Construção e Reparos')" class="bg-navy-950/85 hover:bg-navy-950 border border-white/10 hover:border-brand-500/60 rounded-2xl p-3 text-center transition group cursor-pointer">
-                    <div class="w-10 h-10 rounded-xl bg-sky-500/20 text-sky-400 group-hover:bg-sky-500 group-hover:text-navy-950 flex items-center justify-center mx-auto mb-1.5 transition">
-                        <i class="fa-solid fa-hammer text-base"></i>
-                    </div>
-                    <span class="block text-[11px] font-bold text-white leading-tight">Reparos & Obras</span>
-                </button>
-
-                <a href="#muralImoveis" class="bg-navy-950/85 hover:bg-navy-950 border border-emerald-400/30 hover:border-emerald-400 rounded-2xl p-3 text-center transition group">
-                    <div class="w-10 h-10 rounded-xl bg-emerald-500/20 text-emerald-400 group-hover:bg-emerald-500 group-hover:text-navy-950 flex items-center justify-center mx-auto mb-1.5 transition">
-                        <i class="fa-solid fa-house-flag text-base"></i>
-                    </div>
-                    <span class="block text-[11px] font-bold text-emerald-300 leading-tight">Imóveis & Salas</span>
-                </a>
-
-                <a href="#utilidadePublica" class="bg-navy-950/85 hover:bg-navy-950 border border-white/10 hover:border-brand-500/60 rounded-2xl p-3 text-center transition group">
-                    <div class="w-10 h-10 rounded-xl bg-rose-500/20 text-rose-400 group-hover:bg-rose-500 group-hover:text-white flex items-center justify-center mx-auto mb-1.5 transition">
-                        <i class="fa-solid fa-truck-medical text-base"></i>
-                    </div>
-                    <span class="block text-[11px] font-bold text-white leading-tight">UBS & Emergência</span>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- VITRINE DE COMÉRCIOS -->
-    <section id="vitrineComercios" class="bg-slate-50 py-10 sm:py-14 border-b border-slate-200/80">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-7">
-
-            <!-- FAIXA DE CUPONS & OFERTAS DO DIA (CARROSSEL HORIZONTAL) -->
-            <div id="dailyCouponsSection" class="hidden bg-gradient-to-r from-brand-50 via-amber-50 to-brand-50 border border-brand-200 rounded-3xl p-4 sm:p-6 shadow-sm space-y-3.5">
-                <div class="flex items-center justify-between flex-wrap gap-2">
-                    <div class="flex items-center gap-2.5">
-                        <div class="w-9 h-9 rounded-xl bg-brand-500 text-navy-950 flex items-center justify-center shadow">
-                            <i class="fa-solid fa-ticket text-base"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-sm sm:text-base font-extrabold text-navy-950">Cupons & Vantagens Exclusivas no App</h3>
-                            <p class="text-[11px] text-slate-600">Toque para resgatar seu desconto direto no WhatsApp do lojista</p>
-                        </div>
-                    </div>
-                    <span class="text-[11px] font-extrabold text-brand-800 bg-brand-100 border border-brand-300 px-3 py-1 rounded-full">
-                        Vantagens Ativas Hoje
-                    </span>
-                </div>
-                <div id="dailyCouponsGrid" class="flex gap-3.5 overflow-x-auto pb-1 hide-scrollbar"></div>
-            </div>
-
-            <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
-                <div class="space-y-2">
-                    <span class="text-xs font-extrabold uppercase tracking-widest text-brand-600 flex items-center gap-2">
-                        <span class="w-2 h-2 rounded-full bg-brand-500"></span> Vitrine Local
-                    </span>
-                    <h2 class="text-2xl sm:text-4xl font-extrabold text-navy-950 tracking-tight">
-                        Comércios & Serviços em Destaque
-                    </h2>
-                    <p class="text-sm text-slate-600 max-w-2xl">
-                        Apoie quem faz a economia do seu bairro girar. Clique em qualquer estabelecimento para ver fotos, Instagram, horários e cupons exclusivos.
-                    </p>
-                </div>
-
-                <div class="flex flex-wrap items-center gap-1.5 bg-white p-2 rounded-2xl border border-slate-200 shadow-sm max-w-full">
-                    <span class="text-xs font-bold text-navy-900 px-1.5 flex items-center gap-1">
-                        <i class="fa-solid fa-map-location-dot text-brand-500"></i> Cidade:
-                    </span>
-                    <button type="button" onclick="selectCity('Todas')" id="cityBtn-Todas" class="city-btn px-3 py-1.5 rounded-xl text-xs font-bold bg-navy-900 text-white shadow-sm transition cursor-pointer">Todas</button>
-                    <button type="button" onclick="selectCity('Maracanaú')" id="cityBtn-Maracanaú" class="city-btn px-3 py-1.5 rounded-xl text-xs font-semibold bg-slate-100 hover:bg-slate-200 text-slate-700 transition cursor-pointer">Maracanaú</button>
-                    <button type="button" onclick="selectCity('Pacatuba')" id="cityBtn-Pacatuba" class="city-btn px-3 py-1.5 rounded-xl text-xs font-semibold bg-slate-100 hover:bg-slate-200 text-slate-700 transition cursor-pointer">Pacatuba</button>
-                    <button type="button" onclick="selectCity('Maranguape')" id="cityBtn-Maranguape" class="city-btn px-3 py-1.5 rounded-xl text-xs font-semibold bg-slate-100 hover:bg-slate-200 text-slate-700 transition cursor-pointer">Maranguape</button>
-                </div>
-            </div>
-
-            <div class="bg-white p-5 sm:p-6 rounded-3xl border border-slate-200/90 shadow-sm space-y-4">
-                <div class="relative">
-                    <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-base"></i>
-                    <input type="text" id="searchInput" oninput="filterBusinesses()" placeholder="Buscar por nome da loja, produto, bairro ou serviço..." 
-                        class="w-full pl-12 pr-10 py-3.5 bg-slate-50 border border-slate-200 rounded-2xl text-slate-800 text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-500 transition">
-                    <button type="button" id="clearSearch" onclick="clearSearchInput()" class="hidden absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 p-1 cursor-pointer">
+            <!-- Barra de Busca -->
+            <div class="max-w-2xl mx-auto pt-2">
+                <div class="relative flex items-center bg-white rounded-2xl shadow-2xl p-1.5 sm:p-2 border border-slate-200 focus-within:ring-4 focus-within:ring-brand-500/30 transition">
+                    <i class="fa-solid fa-magnifying-glass text-slate-400 ml-3 sm:ml-4 text-base sm:text-lg"></i>
+                    <input type="text" id="searchInput" onkeyup="filterBusinesses()" placeholder="Buscar loja, barbearia, lanche, entrega, serviço..." class="w-full px-3 sm:px-4 py-2.5 sm:py-3 text-slate-900 text-sm sm:text-base font-medium bg-transparent focus:outline-none placeholder:text-slate-400">
+                    <button type="button" onclick="clearSearchInput()" id="clearSearch" class="hidden text-slate-400 hover:text-slate-600 px-3 cursor-pointer">
                         <i class="fa-solid fa-xmark"></i>
                     </button>
                 </div>
-
-                <div class="flex items-center justify-between gap-3 overflow-x-auto pb-1 hide-scrollbar">
-                    <div class="flex items-center gap-2">
-                        <button type="button" onclick="selectCategory('Todos')" class="category-btn active bg-navy-900 text-white px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold whitespace-nowrap shadow-sm transition cursor-pointer">
-                            <i class="fa-solid fa-border-all mr-1.5"></i> Todos
-                        </button>
-                        <button type="button" onclick="toggleOpenNowFilter()" id="openNowBtn" class="bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-200 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold whitespace-nowrap transition flex items-center gap-1.5 cursor-pointer">
-                            <span class="w-2 h-2 rounded-full bg-emerald-500"></span> Abertos Agora
-                        </button>
-                        <button type="button" onclick="selectCategory('Fundadores')" class="category-btn bg-slate-100 text-slate-700 hover:bg-slate-200 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap transition cursor-pointer">
-                            <i class="fa-solid fa-award text-brand-500 mr-1.5"></i> Parceiros Fundadores
-                        </button>
-                        <button type="button" onclick="selectCategory('Comércio e Serviços')" class="category-btn bg-slate-100 text-slate-700 hover:bg-slate-200 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap transition cursor-pointer">
-                            <i class="fa-solid fa-store text-brand-600 mr-1.5"></i> Comércio e Serviços
-                        </button>
-                        <button type="button" onclick="selectCategory('Saúde e Beleza')" class="category-btn bg-slate-100 text-slate-700 hover:bg-slate-200 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap transition cursor-pointer">
-                            <i class="fa-solid fa-scissors text-pink-500 mr-1.5"></i> Saúde e Beleza
-                        </button>
-                        <button type="button" onclick="selectCategory('Pet Shop')" class="category-btn bg-slate-100 text-slate-700 hover:bg-slate-200 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap transition cursor-pointer">
-                            <i class="fa-solid fa-paw text-amber-700 mr-1.5"></i> Pet Shop
-                        </button>
-                        <button type="button" onclick="selectCategory('Construção e Reparos')" class="category-btn bg-slate-100 text-slate-700 hover:bg-slate-200 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap transition cursor-pointer">
-                            <i class="fa-solid fa-hammer text-navy-700 mr-1.5"></i> Construção e Reparos
-                        </button>
-                        <button type="button" onclick="selectCategory('Serviços Rápidos')" class="category-btn bg-slate-100 text-slate-700 hover:bg-slate-200 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap transition cursor-pointer">
-                            <i class="fa-solid fa-bolt text-brand-500 mr-1.5"></i> Serviços Rápidos
-                        </button>
-                        <button type="button" onclick="selectCategory('Outros')" class="category-btn bg-slate-100 text-slate-700 hover:bg-slate-200 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap transition cursor-pointer">
-                            <i class="fa-solid fa-folder-open text-purple-600 mr-1.5"></i> Outros
-                        </button>
-                    </div>
-                    <button type="button" onclick="toggleFavoritesTab()" id="favTabBtn" class="bg-rose-50 hover:bg-rose-100 text-rose-600 border border-rose-200 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold whitespace-nowrap transition flex items-center gap-1.5 cursor-pointer">
-                        <i class="fa-solid fa-heart"></i> Favoritos (<span id="favCount">0</span>)
-                    </button>
-                </div>
             </div>
 
-            <div class="flex items-center justify-between flex-wrap gap-2">
-                <span id="resultsCount" class="text-xs sm:text-sm text-slate-600 font-semibold">Mostrando todos os comércios</span>
-                <span class="text-xs text-navy-900 font-bold bg-navy-900/5 border border-navy-900/10 px-3 py-1.5 rounded-lg">
-                    <i class="fa-solid fa-location-dot text-brand-500 mr-1"></i> Região Metropolitana: Maracanaú, Pacatuba e Maranguape - CE
-                </span>
-            </div>
-
-            <div id="businessGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7"></div>
-
-            <div id="emptyState" class="hidden text-center py-16 bg-white rounded-3xl border border-dashed border-slate-300 p-8">
-                <i class="fa-solid fa-store-slash text-slate-300 text-5xl mb-4"></i>
-                <h3 class="text-lg font-bold text-navy-950">Nenhum comércio encontrado</h3>
-                <p class="text-sm text-slate-500 mt-1 max-w-md mx-auto">Não encontramos negócios para os filtros selecionados.</p>
-                <button type="button" onclick="resetFilters()" class="mt-5 bg-navy-900 hover:bg-navy-800 text-white font-bold text-xs px-6 py-3 rounded-xl transition cursor-pointer">
-                    Ver todos os comércios
+            <!-- Atalhos Rápidos -->
+            <div class="flex flex-wrap justify-center gap-2 pt-1">
+                <button type="button" onclick="quickJumpCategory('Comércio e Serviços')" class="bg-white/10 hover:bg-white/20 text-white border border-white/15 px-3.5 py-1.5 rounded-full text-xs font-semibold transition cursor-pointer flex items-center gap-1.5">
+                    <i class="fa-solid fa-utensils text-brand-400"></i> Lanches &amp; Comércio
                 </button>
+                <button type="button" onclick="quickJumpCategory('Saúde e Beleza')" class="bg-white/10 hover:bg-white/20 text-white border border-white/15 px-3.5 py-1.5 rounded-full text-xs font-semibold transition cursor-pointer flex items-center gap-1.5">
+                    <i class="fa-solid fa-scissors text-brand-400"></i> Beleza &amp; Barbearia
+                </button>
+                <button type="button" onclick="quickJumpCategory('Construção e Reparos')" class="bg-white/10 hover:bg-white/20 text-white border border-white/15 px-3.5 py-1.5 rounded-full text-xs font-semibold transition cursor-pointer flex items-center gap-1.5">
+                    <i class="fa-solid fa-screwdriver-wrench text-brand-400"></i> Reparos &amp; Serviços
+                </button>
+                <a href="#muralImoveis" class="bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-300 border border-emerald-400/30 px-3.5 py-1.5 rounded-full text-xs font-bold transition flex items-center gap-1.5">
+                    <i class="fa-solid fa-house-flag text-emerald-400"></i> Ver Imóveis &amp; Espaços
+                </a>
+                <a href="#utilidadePublica" class="bg-sky-500/20 hover:bg-sky-500/30 text-sky-200 border border-sky-400/30 px-3.5 py-1.5 rounded-full text-xs font-bold transition flex items-center gap-1.5">
+                    <i class="fa-solid fa-id-card text-sky-300"></i> Detran-CE &amp; Consultas
+                </a>
             </div>
         </div>
     </section>
 
-    <!-- MURAL SEPARADO DE IMÓVEIS, SALAS E ESPAÇOS -->
-    <section id="muralImoveis" class="bg-white py-12 sm:py-16 border-b border-slate-200">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
-            <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-5">
-                <div class="space-y-2">
-                    <span class="text-xs font-extrabold uppercase tracking-widest text-emerald-700 bg-emerald-50 border border-emerald-200 px-3 py-1 rounded-full inline-flex items-center gap-2">
-                        <i class="fa-solid fa-handshake"></i> Direto com o Proprietário • Não somos imobiliária nem corretor
+    <!-- VITRINE DE OFERTAS E CUPONS DO DIA -->
+    <section id="dailyCouponsSection" class="hidden bg-gradient-to-r from-brand-50 via-amber-50 to-brand-50 border-b border-brand-200 py-5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-3">
+            <div class="flex items-center justify-between flex-wrap gap-2">
+                <div class="flex items-center gap-2">
+                    <span class="bg-brand-500 text-navy-950 text-[11px] font-black uppercase px-2.5 py-1 rounded-lg shadow-sm">
+                        <i class="fa-solid fa-ticket mr-1"></i> Vantagens no Bairro
                     </span>
-                    <h2 class="text-2xl sm:text-4xl font-extrabold text-navy-950 tracking-tight">
-                        Imóveis, Salas & Espaços no Bairro
+                    <h2 class="text-sm sm:text-base font-extrabold text-navy-950">Ofertas &amp; Cupons Ativos Hoje</h2>
+                </div>
+                <span class="text-[11px] font-semibold text-brand-900">Toque para resgatar direto no WhatsApp da loja</span>
+            </div>
+            <div id="dailyCouponsGrid" class="flex gap-3 overflow-x-auto no-scrollbar pb-1"></div>
+        </div>
+    </section>
+
+    <!-- NAVEGAÇÃO DE CATEGORIAS -->
+    <nav class="bg-white border-b border-slate-200 sticky top-[96px] sm:top-[112px] z-30 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center gap-2 py-3 overflow-x-auto no-scrollbar" id="categoryTabs">
+                <button type="button" onclick="selectCategory('Todos')" class="category-btn active bg-navy-900 text-white px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold whitespace-nowrap shadow-sm transition cursor-pointer">
+                    Todos os Comércios
+                </button>
+                <button type="button" onclick="toggleOpenNowFilter()" id="openNowBtn" class="bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-200 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold whitespace-nowrap transition flex items-center gap-1.5 cursor-pointer">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500"></span> Abertos Agora
+                </button>
+                <button type="button" onclick="toggleFavoritesTab()" id="favTabBtn" class="bg-rose-50 hover:bg-rose-100 text-rose-600 border border-rose-200 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold whitespace-nowrap transition flex items-center gap-1.5 cursor-pointer">
+                    <i class="fa-solid fa-heart"></i> Meus Favoritos (<span id="favCount">0</span>)
+                </button>
+                <button type="button" onclick="selectCategory('Fundadores')" class="category-btn bg-brand-100 text-brand-900 hover:bg-brand-200 border border-brand-300 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-extrabold whitespace-nowrap transition flex items-center gap-1.5 cursor-pointer">
+                    <i class="fa-solid fa-crown text-brand-600"></i> Fundadores
+                </button>
+                <button type="button" onclick="selectCategory('Comércio e Serviços')" class="category-btn bg-slate-100 text-slate-700 hover:bg-slate-200 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap transition cursor-pointer">
+                    Comércio e Serviços
+                </button>
+                <button type="button" onclick="selectCategory('Saúde e Beleza')" class="category-btn bg-slate-100 text-slate-700 hover:bg-slate-200 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap transition cursor-pointer">
+                    Saúde e Beleza
+                </button>
+                <button type="button" onclick="selectCategory('Pet Shop')" class="category-btn bg-slate-100 text-slate-700 hover:bg-slate-200 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap transition cursor-pointer">
+                    Pet Shop
+                </button>
+                <button type="button" onclick="selectCategory('Construção e Reparos')" class="category-btn bg-slate-100 text-slate-700 hover:bg-slate-200 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap transition cursor-pointer">
+                    Construção e Reparos
+                </button>
+                <button type="button" onclick="selectCategory('Serviços Rápidos')" class="category-btn bg-slate-100 text-slate-700 hover:bg-slate-200 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap transition cursor-pointer">
+                    Serviços Rápidos
+                </button>
+                <button type="button" onclick="selectCategory('Outros')" class="category-btn bg-slate-100 text-slate-700 hover:bg-slate-200 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap transition cursor-pointer">
+                    Outros
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- VITRINE DE COMÉRCIOS -->
+    <main id="vitrineComercios" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+            <div>
+                <h2 class="text-xl sm:text-2xl font-extrabold text-navy-950 tracking-tight">Destaques do Bairro</h2>
+                <p id="resultsCount" class="text-xs sm:text-sm text-slate-500 mt-0.5">Carregando estabelecimentos...</p>
+            </div>
+            <div class="flex items-center gap-2 flex-wrap">
+                <span class="text-xs font-bold text-slate-500">Cidade:</span>
+                <button type="button" onclick="selectCity('Todas')" id="cityBtn-Todas" class="city-btn px-3 py-1.5 rounded-xl text-xs font-bold bg-navy-900 text-white shadow-sm transition cursor-pointer">Todas</button>
+                <button type="button" onclick="selectCity('Maracanaú')" id="cityBtn-Maracanaú" class="city-btn px-3 py-1.5 rounded-xl text-xs font-semibold bg-slate-100 hover:bg-slate-200 text-slate-700 transition cursor-pointer">Maracanaú</button>
+                <button type="button" onclick="selectCity('Pacatuba')" id="cityBtn-Pacatuba" class="city-btn px-3 py-1.5 rounded-xl text-xs font-semibold bg-slate-100 hover:bg-slate-200 text-slate-700 transition cursor-pointer">Pacatuba</button>
+                <button type="button" onclick="selectCity('Maranguape')" id="cityBtn-Maranguape" class="city-btn px-3 py-1.5 rounded-xl text-xs font-semibold bg-slate-100 hover:bg-slate-200 text-slate-700 transition cursor-pointer">Maranguape</button>
+            </div>
+        </div>
+
+        <div id="businessGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7"></div>
+
+        <div id="emptyState" class="hidden text-center py-16 px-4 bg-white rounded-3xl border border-slate-200/80 shadow-sm max-w-lg mx-auto my-8">
+            <h3 class="text-lg font-bold text-navy-950">Nenhum estabelecimento encontrado</h3>
+            <p class="text-sm text-slate-500 mt-1 mb-5">Tente buscar com outro termo ou selecione outra cidade/categoria.</p>
+            <button type="button" onclick="resetFilters()" class="bg-navy-900 hover:bg-navy-800 text-white text-sm font-semibold px-5 py-2.5 rounded-xl transition cursor-pointer">
+                Limpar filtros
+            </button>
+        </div>
+    </main>
+
+    <!-- MURAL DE IMÓVEIS & ESPAÇOS (GRUPO B - DIRETO COM O PROPRIETÁRIO) -->
+    <section id="muralImoveis" class="bg-slate-100/90 border-t border-slate-200 py-14 sm:py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+            <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-4">
+                <div class="space-y-2">
+                    <span class="inline-flex items-center gap-1.5 bg-emerald-100 text-emerald-900 border border-emerald-200 text-xs font-extrabold px-3.5 py-1 rounded-full uppercase tracking-wider">
+                        <i class="fa-solid fa-house-flag text-emerald-600"></i> Grupo B • Direto com o Proprietário
+                    </span>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-navy-950 tracking-tight">
+                        Imóveis &amp; Espaços no Bairro
                     </h2>
-                    <p class="text-sm text-slate-600 max-w-2xl">
-                        Espaço separado para divulgação de casas, salas comerciais, pontos e espaços anunciados diretamente pelos próprios donos. Veja fotos, endereço completo, rota no mapa e fale direto no WhatsApp.
+                    <p class="text-xs sm:text-sm text-slate-600 max-w-2xl">
+                        Casas, salas comerciais, pontos e terrenos para <strong>aluguel ou venda</strong>. Negociação direta com o dono, sem intermediação de imobiliária.
                     </p>
                 </div>
-
-                <a href="https://temnobairro.app.br/parceiros.html#secaoGrupoB" class="bg-emerald-500 hover:bg-emerald-600 text-navy-950 font-extrabold text-xs sm:text-sm px-5 py-3.5 rounded-2xl shadow-lg transition flex items-center gap-2 self-start lg:self-auto whitespace-nowrap">
-                    <i class="fa-solid fa-house-medical"></i> Anunciar Meu Imóvel / Espaço (Grupo B)
+                <a href="https://temnobairro.app.br/parceiros.html#secaoGrupoB" class="bg-navy-900 hover:bg-brand-500 text-white hover:text-navy-950 font-extrabold text-xs sm:text-sm px-5 py-3 rounded-xl shadow-md transition inline-flex items-center gap-2 self-start lg:self-auto">
+                    <i class="fa-solid fa-plus"></i> Anunciar Meu Imóvel / Espaço
                 </a>
             </div>
 
-            <div class="bg-slate-50 p-4 sm:p-5 rounded-3xl border border-slate-200/90 flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4">
+            <!-- Filtros do Mural de Imóveis -->
+            <div class="flex flex-wrap items-center justify-between gap-3 bg-white p-3.5 rounded-2xl border border-slate-200/90 shadow-sm">
                 <div class="flex flex-wrap items-center gap-2">
-                    <span class="text-xs font-bold text-navy-900 mr-1"><i class="fa-solid fa-tag text-brand-500 mr-1"></i> Finalidade:</span>
                     <button type="button" onclick="selectPropertyType('Todos')" id="propTypeBtn-Todos" class="prop-type-btn px-4 py-2 rounded-xl text-xs font-bold bg-navy-900 text-white shadow-sm transition cursor-pointer">Todos</button>
                     <button type="button" onclick="selectPropertyType('Aluguel')" id="propTypeBtn-Aluguel" class="prop-type-btn px-4 py-2 rounded-xl text-xs font-semibold bg-white border border-slate-200 hover:bg-slate-100 text-slate-700 transition cursor-pointer">Aluguel</button>
                     <button type="button" onclick="selectPropertyType('Venda')" id="propTypeBtn-Venda" class="prop-type-btn px-4 py-2 rounded-xl text-xs font-semibold bg-white border border-slate-200 hover:bg-slate-100 text-slate-700 transition cursor-pointer">Venda</button>
                 </div>
-
                 <div class="flex flex-wrap items-center gap-2">
-                    <span class="text-xs font-bold text-navy-900 mr-1"><i class="fa-solid fa-location-dot text-brand-500 mr-1"></i> Cidade:</span>
+                    <span class="text-xs font-bold text-slate-500">Cidade:</span>
                     <button type="button" onclick="selectPropertyCity('Todas')" id="propCityBtn-Todas" class="prop-city-btn px-3.5 py-2 rounded-xl text-xs font-bold bg-navy-900 text-white shadow-sm transition cursor-pointer">Todas</button>
                     <button type="button" onclick="selectPropertyCity('Maracanaú')" id="propCityBtn-Maracanaú" class="prop-city-btn px-3.5 py-2 rounded-xl text-xs font-semibold bg-white border border-slate-200 hover:bg-slate-100 text-slate-700 transition cursor-pointer">Maracanaú</button>
                     <button type="button" onclick="selectPropertyCity('Pacatuba')" id="propCityBtn-Pacatuba" class="prop-city-btn px-3.5 py-2 rounded-xl text-xs font-semibold bg-white border border-slate-200 hover:bg-slate-100 text-slate-700 transition cursor-pointer">Pacatuba</button>
@@ -456,33 +273,29 @@
                 </div>
             </div>
 
-            <div class="flex items-center justify-between flex-wrap gap-2">
-                <span id="propertiesResultsCount" class="text-xs sm:text-sm text-slate-600 font-semibold">Mostrando imóveis e espaços disponíveis</span>
-                <span class="text-[11px] text-slate-600 bg-amber-50 border border-amber-200 px-3 py-1.5 rounded-lg font-medium">
-                    <i class="fa-solid fa-shield-halved text-brand-600 mr-1"></i> Plataforma comunitária: negociação 100% direta entre interessado e proprietário.
-                </span>
+            <p id="propertiesResultsCount" class="text-xs sm:text-sm text-slate-500">Carregando imóveis e espaços...</p>
+
+            <div id="propertiesGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7"></div>
+
+            <div id="propertiesEmptyState" class="hidden text-center py-12 px-4 bg-white rounded-3xl border border-slate-200/80 shadow-sm max-w-lg mx-auto">
+                <h3 class="text-lg font-bold text-navy-950">Nenhum imóvel ou espaço nesta seleção</h3>
+                <p class="text-sm text-slate-500 mt-1 mb-4">Altere o filtro acima ou veja todas as cidades disponíveis.</p>
+                <button type="button" onclick="resetPropertyFilters()" class="bg-navy-900 hover:bg-navy-800 text-white text-xs font-bold px-5 py-2.5 rounded-xl transition cursor-pointer">
+                    Ver Todos os Imóveis
+                </button>
             </div>
 
-            <div id="propertiesGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7"></div>
-
-            <div id="propertiesEmptyState" class="hidden text-center py-14 bg-slate-50 rounded-3xl border border-dashed border-slate-300 p-8">
-                <i class="fa-solid fa-house-circle-xmark text-slate-300 text-5xl mb-3"></i>
-                <h3 class="text-lg font-bold text-navy-950">Nenhum imóvel ou espaço encontrado neste filtro</h3>
-                <p class="text-xs sm:text-sm text-slate-500 mt-1">Tente limpar os filtros ou cadastre o seu espaço na página de divulgação.</p>
-                <div class="mt-5 flex justify-center gap-3 flex-wrap">
-                    <button type="button" onclick="resetPropertyFilters()" class="bg-navy-900 hover:bg-navy-800 text-white font-bold text-xs px-5 py-3 rounded-xl transition cursor-pointer">
-                        Ver todos os imóveis e espaços
-                    </button>
-                    <a href="https://temnobairro.app.br/parceiros.html#secaoGrupoB" class="bg-emerald-500 hover:bg-emerald-600 text-navy-950 font-extrabold text-xs px-5 py-3 rounded-xl transition">
-                        Anunciar Meu Espaço (Grupo B)
-                    </a>
-                </div>
+            <div class="bg-amber-50 border border-amber-200 rounded-2xl p-4 text-xs text-amber-950 flex items-start gap-3">
+                <i class="fa-solid fa-circle-info text-amber-600 text-base mt-0.5"></i>
+                <p>
+                    <strong>Aviso Legal:</strong> O <strong>Tem No Bairro</strong> atua exclusivamente como mural de divulgação publicitária local, não realizando intermediação imobiliária, corretagem, avaliação ou cobrança de comissão. Toda negociação ocorre diretamente entre o interessado e o proprietário anunciante.
+                </p>
             </div>
         </div>
     </section>
 
-    <!-- CHAMADA PARA PÁGINA DE PARCEIROS / DIVULGAÇÃO -->
-    <section id="secaoPlanos" class="bg-navy-950 text-white py-14 sm:py-16 relative overflow-hidden">
+    <!-- CHAMADA PARA PÁGINA DE PARCEIROS -->
+    <section class="bg-navy-950 py-14 sm:py-16 border-t border-white/10 relative overflow-hidden">
         <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-5 relative z-10">
             <span class="bg-brand-500/20 text-brand-400 border border-brand-500/30 text-xs font-extrabold px-4 py-1.5 rounded-full uppercase tracking-wider inline-block">
                 Divulgação Direcionada
@@ -514,8 +327,8 @@
                             <i class="fa-solid fa-city"></i>
                         </div>
                         <div>
-                            <h3 class="text-base sm:text-lg font-extrabold text-navy-950">Guia de Utilidade & Serviços Municipais</h3>
-                            <p class="text-xs text-slate-500">Telefones de emergência, Prefeituras, Postos de Saúde (UBS) e Benefícios</p>
+                            <h3 class="text-base sm:text-lg font-extrabold text-navy-950">Guia de Utilidade &amp; Serviços Públicos</h3>
+                            <p class="text-xs text-slate-500">Emergências, Prefeituras, Detran-CE, Enel, Cagece, Bolsa Família e FGTS</p>
                         </div>
                     </div>
                 </div>
@@ -523,6 +336,12 @@
                 <div class="flex flex-wrap gap-2">
                     <button type="button" onclick="switchServiceTab('emergencia')" id="tabBtn-emergencia" class="service-tab-btn px-4 py-2.5 rounded-xl text-xs font-bold bg-navy-900 text-white shadow transition flex items-center gap-1.5 cursor-pointer">
                         <i class="fa-solid fa-phone-volume text-brand-500"></i> Emergência
+                    </button>
+                    <button type="button" onclick="switchServiceTab('consultas')" id="tabBtn-consultas" class="service-tab-btn px-4 py-2.5 rounded-xl text-xs font-semibold bg-white border border-slate-200 hover:bg-slate-100 text-slate-700 transition flex items-center gap-1.5 cursor-pointer">
+                        <i class="fa-solid fa-car text-brand-500"></i> Detran-CE &amp; Consultas
+                    </button>
+                    <button type="button" onclick="switchServiceTab('beneficios')" id="tabBtn-beneficios" class="service-tab-btn px-4 py-2.5 rounded-xl text-xs font-semibold bg-white border border-slate-200 hover:bg-slate-100 text-slate-700 transition flex items-center gap-1.5 cursor-pointer">
+                        <i class="fa-solid fa-hand-holding-dollar text-brand-500"></i> Bolsa Família &amp; FGTS
                     </button>
                     <button type="button" onclick="switchServiceTab('maracanau')" id="tabBtn-maracanau" class="service-tab-btn px-4 py-2.5 rounded-xl text-xs font-semibold bg-white border border-slate-200 hover:bg-slate-100 text-slate-700 transition flex items-center gap-1.5 cursor-pointer">
                         Maracanaú
@@ -532,9 +351,6 @@
                     </button>
                     <button type="button" onclick="switchServiceTab('maranguape')" id="tabBtn-maranguape" class="service-tab-btn px-4 py-2.5 rounded-xl text-xs font-semibold bg-white border border-slate-200 hover:bg-slate-100 text-slate-700 transition flex items-center gap-1.5 cursor-pointer">
                         Maranguape
-                    </button>
-                    <button type="button" onclick="switchServiceTab('beneficios')" id="tabBtn-beneficios" class="service-tab-btn px-4 py-2.5 rounded-xl text-xs font-semibold bg-white border border-slate-200 hover:bg-slate-100 text-slate-700 transition flex items-center gap-1.5 cursor-pointer">
-                        Bolsa Família & FGTS
                     </button>
                 </div>
 
@@ -561,7 +377,7 @@
                 Iniciativa de apoio e fortalecimento da economia comunitária em Maracanaú, Pacatuba e Maranguape - CE.
             </p>
             <div class="flex flex-wrap justify-center items-center gap-4 py-2 text-slate-300 font-semibold">
-                <a href="https://temnobairro.app.br/parceiros.html" class="hover:text-brand-400 transition flex items-center gap-1.5 text-brand-400 font-bold"><i class="fa-solid fa-handshake"></i> Parceiros & Divulgação</a>
+                <a href="https://temnobairro.app.br/parceiros.html" class="hover:text-brand-400 transition flex items-center gap-1.5 text-brand-400 font-bold"><i class="fa-solid fa-handshake"></i> Parceiros &amp; Divulgação</a>
                 <a href="https://instagram.com/temnobairro_oficial" target="_blank" rel="noopener noreferrer" class="hover:text-brand-500 transition flex items-center gap-1.5"><i class="fa-brands fa-instagram text-base text-brand-500"></i> @temnobairro_oficial</a>
                 <button type="button" onclick="triggerInstallApp()" class="hover:text-emerald-400 transition flex items-center gap-1.5 cursor-pointer text-emerald-400 font-bold"><i class="fa-solid fa-download text-base"></i> Instalar Aplicativo</button>
                 <button type="button" onclick="openIndicateModal()" class="hover:text-brand-400 transition flex items-center gap-1.5 cursor-pointer text-brand-400 font-semibold"><i class="fa-solid fa-gift text-base"></i> Indicar Comércio</button>
@@ -749,10 +565,10 @@
                     <i class="fa-solid fa-store mr-1"></i> Comércios (<span id="adminBusTabCount">0</span>)
                 </button>
                 <button type="button" id="adminTab-properties" onclick="switchAdminTab('properties')" class="px-4 py-2 rounded-xl text-xs font-bold bg-slate-100 text-slate-700 cursor-pointer">
-                    <i class="fa-solid fa-house-flag mr-1"></i> Imóveis & Espaços (<span id="adminPropTabCount">0</span>)
+                    <i class="fa-solid fa-house-flag mr-1"></i> Imóveis &amp; Espaços (<span id="adminPropTabCount">0</span>)
                 </button>
                 <button type="button" id="adminTab-coupons" onclick="switchAdminTab('coupons')" class="px-4 py-2 rounded-xl text-xs font-bold bg-slate-100 text-slate-700 cursor-pointer">
-                    <i class="fa-solid fa-ticket mr-1"></i> Cupons & Promoções (<span id="adminCouponTabCount">0</span>)
+                    <i class="fa-solid fa-ticket mr-1"></i> Cupons &amp; Promoções (<span id="adminCouponTabCount">0</span>)
                 </button>
             </div>
             <div id="adminBusinessesSection" class="overflow-y-auto flex-grow">
@@ -774,7 +590,7 @@
                     <thead>
                         <tr class="bg-slate-100 text-navy-950 uppercase text-[10px]">
                             <th class="p-3">Imóvel / Espaço</th>
-                            <th class="p-3">Finalidade & Valor</th>
+                            <th class="p-3">Finalidade &amp; Valor</th>
                             <th class="p-3">Endereço Completo</th>
                             <th class="p-3">Proprietário / WhatsApp</th>
                             <th class="p-3 text-center">Situação</th>
@@ -1299,7 +1115,6 @@
                 }
                 const horaAtual = new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
                 setAdminSyncFeedback(`Salvo na planilha (${sheet}) às ${horaAtual}.`);
-                console.info(`[Tem No Bairro] Gravado na planilha (${sheet} / ${action}) às ${horaAtual}.`);
             } catch (err) {
                 console.error('Falha ao gravar na planilha:', err);
                 setAdminSyncFeedback('Salvo apenas localmente (verifique a nova versão do Apps Script).', true);
@@ -1307,7 +1122,6 @@
         }
 
         async function syncWithGoogleSheets(options = {}) {
-            const isManual = Boolean(options && options.manual);
             if (!SHEETS_API_URL || SHEETS_API_URL.includes('COLE_AQUI')) return;
             if (isSyncingSheets) return;
 
@@ -1336,7 +1150,7 @@
                 try {
                     data = JSON.parse(rawText);
                 } catch (parseErr) {
-                    throw new Error('Resposta da API não está em formato JSON válido (verifique a permissão "Qualquer pessoa" no Apps Script)');
+                    throw new Error('Resposta da API não está em formato JSON válido');
                 }
 
                 if (Array.isArray(data.comercios)) {
@@ -1370,9 +1184,6 @@
 
                 const horaAtual = new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
                 setAdminSyncFeedback(`Planilha sincronizada com sucesso às ${horaAtual}.`);
-                if (isManual) {
-                    console.info(`[Tem No Bairro] Sincronização concluída às ${horaAtual}.`);
-                }
             } catch (err) {
                 console.warn('Sem conexão com a planilha no momento; exibindo cache local:', err);
                 setAdminSyncFeedback('Sem conexão com a planilha no momento; exibindo cache local.', true);
@@ -1414,31 +1225,125 @@
         const serviceData = {
             emergencia: `
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                    <a href="tel:190" class="bg-white border border-rose-200 p-4 rounded-2xl flex items-center gap-3.5"><div><strong class="block text-navy-950 text-xs">Polícia Militar</strong><span class="text-rose-700 font-black text-base">190</span></div></a>
-                    <a href="tel:192" class="bg-white border border-emerald-200 p-4 rounded-2xl flex items-center gap-3.5"><div><strong class="block text-navy-950 text-xs">SAMU</strong><span class="text-emerald-700 font-black text-base">192</span></div></a>
-                    <a href="tel:193" class="bg-white border border-brand-200 p-4 rounded-2xl flex items-center gap-3.5"><div><strong class="block text-navy-950 text-xs">Bombeiros</strong><span class="text-brand-700 font-black text-base">193</span></div></a>
-                    <a href="tel:199" class="bg-white border border-navy-900/20 p-4 rounded-2xl flex items-center gap-3.5"><div><strong class="block text-navy-950 text-xs">Defesa Civil</strong><span class="text-navy-900 font-black text-base">199</span></div></a>
+                    <a href="tel:190" class="bg-white border border-rose-200 hover:border-rose-400 p-4 rounded-2xl flex items-center justify-between transition shadow-sm">
+                        <div><strong class="block text-navy-950 text-xs">Polícia Militar</strong><span class="text-rose-700 font-black text-base">190</span></div>
+                        <i class="fa-solid fa-phone text-rose-600"></i>
+                    </a>
+                    <a href="tel:192" class="bg-white border border-emerald-200 hover:border-emerald-400 p-4 rounded-2xl flex items-center justify-between transition shadow-sm">
+                        <div><strong class="block text-navy-950 text-xs">SAMU</strong><span class="text-emerald-700 font-black text-base">192</span></div>
+                        <i class="fa-solid fa-phone text-emerald-600"></i>
+                    </a>
+                    <a href="tel:193" class="bg-white border border-brand-200 hover:border-brand-400 p-4 rounded-2xl flex items-center justify-between transition shadow-sm">
+                        <div><strong class="block text-navy-950 text-xs">Corpo de Bombeiros</strong><span class="text-brand-700 font-black text-base">193</span></div>
+                        <i class="fa-solid fa-phone text-brand-600"></i>
+                    </a>
+                    <a href="tel:199" class="bg-white border border-navy-900/20 hover:border-navy-900 p-4 rounded-2xl flex items-center justify-between transition shadow-sm">
+                        <div><strong class="block text-navy-950 text-xs">Defesa Civil</strong><span class="text-navy-900 font-black text-base">199</span></div>
+                        <i class="fa-solid fa-phone text-brand-900"></i>
+                    </a>
                 </div>
             `,
-            maracanau: `<div class="bg-white border border-slate-200 p-4 rounded-2xl"><strong class="text-navy-950">Prefeitura de Maracanaú</strong><p class="text-slate-500 text-xs mt-1">Av. II, 150 - Jereissati I • Tel: (85) 3718-6840</p></div>`,
-            pacatuba: `<div class="bg-white border border-slate-200 p-4 rounded-2xl"><strong class="text-navy-950">Prefeitura de Pacatuba</strong><p class="text-slate-500 text-xs mt-1">Rua Major Crisanto, 180 - Centro • Tel: (85) 93618-2138</p></div>`,
-            maranguape: `<div class="bg-white border border-slate-200 p-4 rounded-2xl"><strong class="text-navy-950">Prefeitura de Maranguape</strong><p class="text-slate-500 text-xs mt-1">Rua Dr. João Bezerra, 139 - Preguiça • Tel: (85) 3369-9230</p></div>`,
-beneficios: `
-    <div class="bg-white border border-slate-200 p-4 rounded-2xl flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-        <div>
-            <strong class="text-navy-950 text-xs block">Bolsa Família & FGTS</strong>
-            <p class="text-slate-500 text-xs mt-1">Acesse os canais oficiais para consultas, extratos e regras de benefício.</p>
-        </div>
-        <div class="flex flex-wrap gap-2">
-            <a href="https://www.gov.br/mds/pt-br/acoes-e-programas/bolsa-familia" target="_blank" rel="noopener noreferrer" class="bg-navy-900 hover:bg-navy-800 text-white font-bold px-3.5 py-2 rounded-xl text-xs inline-flex items-center gap-1.5 transition">
-                <i class="fa-solid fa-up-right-from-square text-brand-400"></i> Acessar gov.br
-            </a>
-            <a href="https://www.caixa.gov.br/beneficios-trabalhador/fgts/Paginas/default.aspx" target="_blank" rel="noopener noreferrer" class="bg-brand-500 hover:bg-brand-600 text-navy-950 font-extrabold px-3.5 py-2 rounded-xl text-xs inline-flex items-center gap-1.5 transition">
-                <i class="fa-solid fa-up-right-from-square"></i> Portal FGTS
-            </a>
-        </div>
-    </div>
-`,        };
+            consultas: `
+                <div class="space-y-3">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5">
+                        <a href="https://www.detran.ce.gov.br/" target="_blank" rel="noopener noreferrer" class="bg-white border border-slate-200 hover:border-brand-500 p-4 rounded-2xl flex items-center justify-between gap-3 transition shadow-sm group">
+                            <div>
+                                <strong class="block text-navy-950 text-xs group-hover:text-brand-700">Detran-CE (Placas, Multas e CNH)</strong>
+                                <span class="text-[11px] text-slate-500 block mt-0.5">Consulta de veículos, infrações e IPVA</span>
+                            </div>
+                            <i class="fa-solid fa-up-right-from-square text-brand-600 flex-shrink-0"></i>
+                        </a>
+                        <a href="https://www.enel.com.br/pt-ceara.html" target="_blank" rel="noopener noreferrer" class="bg-white border border-slate-200 hover:border-brand-500 p-4 rounded-2xl flex items-center justify-between gap-3 transition shadow-sm group">
+                            <div>
+                                <strong class="block text-navy-950 text-xs group-hover:text-brand-700">Enel Ceará (Energia)</strong>
+                                <span class="text-[11px] text-slate-500 block mt-0.5">2ª via de conta e falta de luz</span>
+                            </div>
+                            <i class="fa-solid fa-up-right-from-square text-brand-600 flex-shrink-0"></i>
+                        </a>
+                        <a href="https://www.cagece.com.br/" target="_blank" rel="noopener noreferrer" class="bg-white border border-slate-200 hover:border-brand-500 p-4 rounded-2xl flex items-center justify-between gap-3 transition shadow-sm group">
+                            <div>
+                                <strong class="block text-navy-950 text-xs group-hover:text-brand-700">Cagece (Água e Esgoto)</strong>
+                                <span class="text-[11px] text-slate-500 block mt-0.5">2ª via de fatura e serviços</span>
+                            </div>
+                            <i class="fa-solid fa-up-right-from-square text-brand-600 flex-shrink-0"></i>
+                        </a>
+                        <a href="https://www.cearadigital.ce.gov.br/" target="_blank" rel="noopener noreferrer" class="bg-white border border-slate-200 hover:border-brand-500 p-4 rounded-2xl flex items-center justify-between gap-3 transition shadow-sm group">
+                            <div>
+                                <strong class="block text-navy-950 text-xs group-hover:text-brand-700">Ceará Digital / Vapt Vupt</strong>
+                                <span class="text-[11px] text-slate-500 block mt-0.5">Agendamento de RG e serviços estaduais</span>
+                            </div>
+                            <i class="fa-solid fa-up-right-from-square text-brand-600 flex-shrink-0"></i>
+                        </a>
+                        <a href="https://www.gov.br/receitafederal/pt-br" target="_blank" rel="noopener noreferrer" class="bg-white border border-slate-200 hover:border-brand-500 p-4 rounded-2xl flex items-center justify-between gap-3 transition shadow-sm group">
+                            <div>
+                                <strong class="block text-navy-950 text-xs group-hover:text-brand-700">Receita Federal (CPF / CNPJ)</strong>
+                                <span class="text-[11px] text-slate-500 block mt-0.5">Situação cadastral e comprovantes</span>
+                            </div>
+                            <i class="fa-solid fa-up-right-from-square text-brand-600 flex-shrink-0"></i>
+                        </a>
+                        <a href="https://meususdigital.saude.gov.br/" target="_blank" rel="noopener noreferrer" class="bg-white border border-slate-200 hover:border-brand-500 p-4 rounded-2xl flex items-center justify-between gap-3 transition shadow-sm group">
+                            <div>
+                                <strong class="block text-navy-950 text-xs group-hover:text-brand-700">Meu SUS Digital</strong>
+                                <span class="text-[11px] text-slate-500 block mt-0.5">Cartão do SUS, vacinas e atendimentos</span>
+                            </div>
+                            <i class="fa-solid fa-up-right-from-square text-brand-600 flex-shrink-0"></i>
+                        </a>
+                    </div>
+                    <p class="text-[11px] text-slate-500">
+                        <i class="fa-solid fa-shield-halved text-emerald-600 mr-1"></i> Links diretos para os portais oficiais dos órgãos públicos e concessionárias.
+                    </p>
+                </div>
+            `,
+            beneficios: `
+                <div class="bg-white border border-slate-200 p-4 sm:p-5 rounded-2xl flex flex-col sm:flex-row sm:items-center justify-between gap-4 shadow-sm">
+                    <div>
+                        <strong class="text-navy-950 text-xs sm:text-sm block">Bolsa Família, CadÚnico &amp; FGTS</strong>
+                        <p class="text-slate-500 text-xs mt-1">Consulte calendários, extratos e regras diretamente nos portais oficiais do Governo Federal e da Caixa.</p>
+                    </div>
+                    <div class="flex flex-wrap gap-2.5 flex-shrink-0">
+                        <a href="https://www.gov.br/mds/pt-br/acoes-e-programas/bolsa-familia" target="_blank" rel="noopener noreferrer" class="bg-navy-900 hover:bg-navy-800 text-white font-bold px-4 py-2.5 rounded-xl text-xs inline-flex items-center gap-1.5 transition">
+                            <i class="fa-solid fa-up-right-from-square text-brand-400"></i> Bolsa Família (gov.br)
+                        </a>
+                        <a href="https://www.caixa.gov.br/beneficios-trabalhador/fgts/Paginas/default.aspx" target="_blank" rel="noopener noreferrer" class="bg-brand-500 hover:bg-brand-600 text-navy-950 font-extrabold px-4 py-2.5 rounded-xl text-xs inline-flex items-center gap-1.5 transition">
+                            <i class="fa-solid fa-up-right-from-square"></i> Portal FGTS (Caixa)
+                        </a>
+                    </div>
+                </div>
+            `,
+            maracanau: `
+                <div class="bg-white border border-slate-200 p-4 sm:p-5 rounded-2xl flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-sm">
+                    <div>
+                        <strong class="text-navy-950 text-xs sm:text-sm block">Prefeitura de Maracanaú</strong>
+                        <p class="text-slate-500 text-xs mt-1">Av. II, 150 - Jereissati I • Tel: (85) 3718-6840</p>
+                    </div>
+                    <a href="https://www.maracanau.ce.gov.br/" target="_blank" rel="noopener noreferrer" class="bg-navy-900 hover:bg-navy-800 text-white font-bold px-4 py-2.5 rounded-xl text-xs inline-flex items-center gap-1.5 transition self-start sm:self-auto">
+                        <i class="fa-solid fa-up-right-from-square text-brand-400"></i> Portal Oficial
+                    </a>
+                </div>
+            `,
+            pacatuba: `
+                <div class="bg-white border border-slate-200 p-4 sm:p-5 rounded-2xl flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-sm">
+                    <div>
+                        <strong class="text-navy-950 text-xs sm:text-sm block">Prefeitura de Pacatuba</strong>
+                        <p class="text-slate-500 text-xs mt-1">Rua Major Crisanto, 180 - Centro • Tel: (85) 93618-2138</p>
+                    </div>
+                    <a href="https://www.pacatuba.ce.gov.br/" target="_blank" rel="noopener noreferrer" class="bg-navy-900 hover:bg-navy-800 text-white font-bold px-4 py-2.5 rounded-xl text-xs inline-flex items-center gap-1.5 transition self-start sm:self-auto">
+                        <i class="fa-solid fa-up-right-from-square text-brand-400"></i> Portal Oficial
+                    </a>
+                </div>
+            `,
+            maranguape: `
+                <div class="bg-white border border-slate-200 p-4 sm:p-5 rounded-2xl flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-sm">
+                    <div>
+                        <strong class="text-navy-950 text-xs sm:text-sm block">Prefeitura de Maranguape</strong>
+                        <p class="text-slate-500 text-xs mt-1">Rua Dr. João Bezerra, 139 - Preguiça • Tel: (85) 3369-9230</p>
+                    </div>
+                    <a href="https://www.maranguape.ce.gov.br/" target="_blank" rel="noopener noreferrer" class="bg-navy-900 hover:bg-navy-800 text-white font-bold px-4 py-2.5 rounded-xl text-xs inline-flex items-center gap-1.5 transition self-start sm:self-auto">
+                        <i class="fa-solid fa-up-right-from-square text-brand-400"></i> Portal Oficial
+                    </a>
+                </div>
+            `
+        };
 
         function switchServiceTab(tabKey) {
             document.querySelectorAll('.service-tab-btn').forEach(btn => {
@@ -1811,8 +1716,13 @@ beneficios: `
         function closeAdminLoginModal() { document.getElementById('adminLoginModal').classList.add('hidden'); }
         function handleAdminLogin(e) {
             e.preventDefault();
-            if (document.getElementById('adminPassword').value === 'temnobairro..') { closeAdminLoginModal(); openAdminPanel(); }
-            else alert('Senha incorreta!');
+            if (document.getElementById('adminPassword').value === 'temnobairro..') {
+                document.getElementById('adminPassword').value = '';
+                closeAdminLoginModal();
+                openAdminPanel();
+            } else {
+                alert('Senha incorreta!');
+            }
         }
         function openAdminPanel() { switchAdminTab(currentAdminTab); document.getElementById('adminPanelModal').classList.remove('hidden'); }
         function closeAdminPanel() {
