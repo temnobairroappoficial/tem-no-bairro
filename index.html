@@ -299,7 +299,7 @@
                     <div class="w-10 h-10 rounded-xl bg-rose-500/20 text-rose-400 group-hover:bg-rose-500 group-hover:text-white flex items-center justify-center mx-auto mb-1.5 transition">
                         <i class="fa-solid fa-truck-medical text-base"></i>
                     </div>
-                    <span class="block text-[11px] font-bold text-white leading-tight">UBS & Emergência</span>
+                    <span class="block text-[11px] font-bold text-white leading-tight">Serviços & UBS</span>
                 </a>
             </div>
         </div>
@@ -504,25 +504,31 @@
         </div>
     </section>
 
-    <!-- UTILIDADE PÚBLICA -->
+    <!-- UTILIDADE PÚBLICA & SERVIÇOS ESSENCIAIS -->
     <section id="utilidadePublica" class="bg-white py-14 sm:py-16 border-t border-slate-200">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
             <div class="bg-slate-50 rounded-3xl p-6 sm:p-8 border border-slate-200/90 shadow-sm space-y-6">
                 <div class="flex items-center justify-between flex-wrap gap-3 border-b border-slate-200 pb-4">
                     <div class="flex items-center gap-3.5">
                         <div class="w-11 h-11 rounded-2xl bg-brand-500 text-navy-950 flex items-center justify-center text-lg shadow">
-                            <i class="fa-solid fa-city"></i>
+                            <i class="fa-solid fa-landmark"></i>
                         </div>
                         <div>
-                            <h3 class="text-base sm:text-lg font-extrabold text-navy-950">Guia de Utilidade & Serviços Municipais</h3>
-                            <p class="text-xs text-slate-500">Telefones de emergência, Prefeituras, Postos de Saúde (UBS) e Benefícios</p>
+                            <h3 class="text-base sm:text-lg font-extrabold text-navy-950">Guia de Utilidade, Serviços Essenciais & Municipais</h3>
+                            <p class="text-xs text-slate-500">Acesso rápido a Detran-CE, Enel, Cagece, Ceará Digital, Receita Federal, SUS Digital, TJCE/TRE-CE, Bolsa Família, FGTS e Emergência</p>
                         </div>
                     </div>
                 </div>
 
                 <div class="flex flex-wrap gap-2">
-                    <button type="button" onclick="switchServiceTab('emergencia')" id="tabBtn-emergencia" class="service-tab-btn px-4 py-2.5 rounded-xl text-xs font-bold bg-navy-900 text-white shadow transition flex items-center gap-1.5 cursor-pointer">
-                        <i class="fa-solid fa-phone-volume text-brand-500"></i> Emergência
+                    <button type="button" onclick="switchServiceTab('essenciais')" id="tabBtn-essenciais" class="service-tab-btn px-4 py-2.5 rounded-xl text-xs font-bold bg-navy-900 text-white shadow transition flex items-center gap-1.5 cursor-pointer">
+                        <i class="fa-solid fa-shield-halved text-brand-500"></i> Serviços Essenciais
+                    </button>
+                    <button type="button" onclick="switchServiceTab('beneficios')" id="tabBtn-beneficios" class="service-tab-btn px-4 py-2.5 rounded-xl text-xs font-semibold bg-white border border-slate-200 hover:bg-slate-100 text-slate-700 transition flex items-center gap-1.5 cursor-pointer">
+                        <i class="fa-solid fa-wallet text-emerald-600"></i> Bolsa Família & FGTS
+                    </button>
+                    <button type="button" onclick="switchServiceTab('emergencia')" id="tabBtn-emergencia" class="service-tab-btn px-4 py-2.5 rounded-xl text-xs font-semibold bg-white border border-slate-200 hover:bg-slate-100 text-slate-700 transition flex items-center gap-1.5 cursor-pointer">
+                        <i class="fa-solid fa-phone-volume text-rose-600"></i> Emergência
                     </button>
                     <button type="button" onclick="switchServiceTab('maracanau')" id="tabBtn-maracanau" class="service-tab-btn px-4 py-2.5 rounded-xl text-xs font-semibold bg-white border border-slate-200 hover:bg-slate-100 text-slate-700 transition flex items-center gap-1.5 cursor-pointer">
                         Maracanaú
@@ -532,9 +538,6 @@
                     </button>
                     <button type="button" onclick="switchServiceTab('maranguape')" id="tabBtn-maranguape" class="service-tab-btn px-4 py-2.5 rounded-xl text-xs font-semibold bg-white border border-slate-200 hover:bg-slate-100 text-slate-700 transition flex items-center gap-1.5 cursor-pointer">
                         Maranguape
-                    </button>
-                    <button type="button" onclick="switchServiceTab('beneficios')" id="tabBtn-beneficios" class="service-tab-btn px-4 py-2.5 rounded-xl text-xs font-semibold bg-white border border-slate-200 hover:bg-slate-100 text-slate-700 transition flex items-center gap-1.5 cursor-pointer">
-                        Bolsa Família & FGTS
                     </button>
                 </div>
 
@@ -1404,26 +1407,160 @@
             syncCityButtonsUI(currentCity);
             renderBusinesses();
             renderProperties();
-            switchServiceTab('emergencia');
+            switchServiceTab('essenciais');
             syncWithGoogleSheets({ manual: false });
         }
 
         if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initApp);
         else initApp();
 
+        function renderServiceCard(opts) {
+            const iconBg = opts.iconBg || 'bg-navy-900 text-brand-400';
+            const borderCls = opts.borderCls || 'border-slate-200';
+            const linksHtml = (opts.links || []).map((lnk, idx) => {
+                const btnStyle = idx === 0
+                    ? 'bg-navy-900 hover:bg-brand-500 text-white hover:text-navy-950 font-extrabold'
+                    : 'bg-slate-100 hover:bg-slate-200 text-navy-950 font-bold';
+                return `
+                    <a href="${lnk.url}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-1.5 ${btnStyle} text-[11px] px-3 py-2 rounded-xl transition">
+                        <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i> ${lnk.label}
+                    </a>
+                `;
+            }).join('');
+
+            return `
+                <div class="bg-white border ${borderCls} rounded-2xl p-4 shadow-sm flex flex-col justify-between gap-3.5">
+                    <div class="space-y-1.5">
+                        <div class="flex items-start gap-3">
+                            <div class="w-10 h-10 rounded-xl ${iconBg} flex items-center justify-center text-base flex-shrink-0 shadow-sm">
+                                <i class="fa-solid ${opts.icon}"></i>
+                            </div>
+                            <div class="min-w-0">
+                                <strong class="block text-navy-950 text-xs sm:text-sm font-extrabold leading-snug">${opts.title}</strong>
+                                <p class="text-[11px] text-slate-600 leading-relaxed mt-0.5">${opts.desc}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap gap-2 pt-1 border-t border-slate-100">
+                        ${linksHtml}
+                    </div>
+                </div>
+            `;
+        }
+
         const serviceData = {
+            essenciais: `
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    ${renderServiceCard({
+                        icon: 'fa-car',
+                        iconBg: 'bg-sky-900 text-sky-300',
+                        borderCls: 'border-sky-200',
+                        title: 'Detran-CE',
+                        desc: 'Consulta de veículos, placas, multas, IPVA e agendamento de CNH.',
+                        links: [{ label: 'Acessar detran.ce.gov.br', url: 'https://www.detran.ce.gov.br' }]
+                    })}
+                    ${renderServiceCard({
+                        icon: 'fa-bolt',
+                        iconBg: 'bg-amber-500 text-navy-950',
+                        borderCls: 'border-amber-200',
+                        title: 'Enel Ceará (Energia)',
+                        desc: 'Segunda via de conta, falta de energia e religação.',
+                        links: [{ label: 'Acessar enel.com.br', url: 'https://www.enel.com.br' }]
+                    })}
+                    ${renderServiceCard({
+                        icon: 'fa-droplet',
+                        iconBg: 'bg-cyan-700 text-white',
+                        borderCls: 'border-cyan-200',
+                        title: 'Cagece (Água e Esgoto)',
+                        desc: 'Segunda via de fatura e comunicação de vazamentos.',
+                        links: [{ label: 'Acessar cagece.com.br', url: 'https://www.cagece.com.br' }]
+                    })}
+                    ${renderServiceCard({
+                        icon: 'fa-id-card',
+                        iconBg: 'bg-emerald-700 text-white',
+                        borderCls: 'border-emerald-200',
+                        title: 'Ceará Digital / Vapt Vupt',
+                        desc: 'Agendamento de RG (Carteira de Identidade Nacional) e serviços estaduais.',
+                        links: [{ label: 'Acessar cearadigital.ce.gov.br', url: 'https://cearadigital.ce.gov.br' }]
+                    })}
+                    ${renderServiceCard({
+                        icon: 'fa-building-columns',
+                        iconBg: 'bg-navy-900 text-brand-400',
+                        borderCls: 'border-slate-200',
+                        title: 'Receita Federal',
+                        desc: 'Consulta de situação cadastral do CPF e comprovante de CNPJ.',
+                        links: [{ label: 'Acessar gov.br/receitafederal', url: 'https://www.gov.br/receitafederal' }]
+                    })}
+                    ${renderServiceCard({
+                        icon: 'fa-heart-pulse',
+                        iconBg: 'bg-rose-600 text-white',
+                        borderCls: 'border-rose-200',
+                        title: 'SUS Digital / Meu SUS',
+                        desc: 'Cartão do SUS, vacinas e histórico de atendimento.',
+                        links: [{ label: 'Acessar meususdigital.saude.gov.br', url: 'https://meususdigital.saude.gov.br' }]
+                    })}
+                    ${renderServiceCard({
+                        icon: 'fa-scale-balanced',
+                        iconBg: 'bg-indigo-900 text-indigo-200',
+                        borderCls: 'border-indigo-200',
+                        title: 'Tribunal de Justiça (TJCE) / TRE-CE',
+                        desc: 'Consulta de título de eleitor, local de votação e certidões negativas.',
+                        links: [
+                            { label: 'TRE-CE (tre-ce.jus.br)', url: 'https://www.tre-ce.jus.br' },
+                            { label: 'TJCE (tjce.jus.br)', url: 'https://www.tjce.jus.br' }
+                        ]
+                    })}
+                </div>
+            `,
+            beneficios: `
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    ${renderServiceCard({
+                        icon: 'fa-people-roof',
+                        iconBg: 'bg-emerald-700 text-white',
+                        borderCls: 'border-emerald-200',
+                        title: 'Bolsa Família & Cadastro Único',
+                        desc: 'Consulta de parcelas, calendário de pagamentos, regras do programa e orientação oficial.',
+                        links: [
+                            { label: 'Portal gov.br (Bolsa Família)', url: 'https://www.gov.br/mds/pt-br/acoes-e-programas/bolsa-familia' },
+                            { label: 'App CAIXA / Gov.br', url: 'https://www.gov.br/pt-br' }
+                        ]
+                    })}
+                    ${renderServiceCard({
+                        icon: 'fa-piggy-bank',
+                        iconBg: 'bg-navy-900 text-brand-400',
+                        borderCls: 'border-slate-200',
+                        title: 'FGTS & Saques',
+                        desc: 'Consulta de saldo, extrato, saque-aniversário e movimentações diretamente nos canais oficiais.',
+                        links: [
+                            { label: 'Portal FGTS (Caixa)', url: 'https://www.caixa.gov.br/beneficios-trabalhador/fgts' },
+                            { label: 'Portal gov.br', url: 'https://www.gov.br/pt-br' }
+                        ]
+                    })}
+                </div>
+            `,
             emergencia: `
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                    <a href="tel:190" class="bg-white border border-rose-200 p-4 rounded-2xl flex items-center gap-3.5"><div><strong class="block text-navy-950 text-xs">Polícia Militar</strong><span class="text-rose-700 font-black text-base">190</span></div></a>
-                    <a href="tel:192" class="bg-white border border-emerald-200 p-4 rounded-2xl flex items-center gap-3.5"><div><strong class="block text-navy-950 text-xs">SAMU</strong><span class="text-emerald-700 font-black text-base">192</span></div></a>
-                    <a href="tel:193" class="bg-white border border-brand-200 p-4 rounded-2xl flex items-center gap-3.5"><div><strong class="block text-navy-950 text-xs">Bombeiros</strong><span class="text-brand-700 font-black text-base">193</span></div></a>
-                    <a href="tel:199" class="bg-white border border-navy-900/20 p-4 rounded-2xl flex items-center gap-3.5"><div><strong class="block text-navy-950 text-xs">Defesa Civil</strong><span class="text-navy-900 font-black text-base">199</span></div></a>
+                    <a href="tel:190" class="bg-white border border-rose-200 hover:border-rose-400 p-4 rounded-2xl flex items-center gap-3.5 transition">
+                        <div class="w-10 h-10 rounded-xl bg-rose-100 text-rose-700 flex items-center justify-center font-extrabold"><i class="fa-solid fa-shield"></i></div>
+                        <div><strong class="block text-navy-950 text-xs">Polícia Militar</strong><span class="text-rose-700 font-black text-base">190</span></div>
+                    </a>
+                    <a href="tel:192" class="bg-white border border-emerald-200 hover:border-emerald-400 p-4 rounded-2xl flex items-center gap-3.5 transition">
+                        <div class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center font-extrabold"><i class="fa-solid fa-truck-medical"></i></div>
+                        <div><strong class="block text-navy-950 text-xs">SAMU</strong><span class="text-emerald-700 font-black text-base">192</span></div>
+                    </a>
+                    <a href="tel:193" class="bg-white border border-brand-200 hover:border-brand-400 p-4 rounded-2xl flex items-center gap-3.5 transition">
+                        <div class="w-10 h-10 rounded-xl bg-brand-100 text-brand-700 flex items-center justify-center font-extrabold"><i class="fa-solid fa-fire-extinguisher"></i></div>
+                        <div><strong class="block text-navy-950 text-xs">Bombeiros</strong><span class="text-brand-700 font-black text-base">193</span></div>
+                    </a>
+                    <a href="tel:199" class="bg-white border border-navy-900/20 hover:border-navy-900/40 p-4 rounded-2xl flex items-center gap-3.5 transition">
+                        <div class="w-10 h-10 rounded-xl bg-slate-200 text-navy-900 flex items-center justify-center font-extrabold"><i class="fa-solid fa-triangle-exclamation"></i></div>
+                        <div><strong class="block text-navy-950 text-xs">Defesa Civil</strong><span class="text-navy-900 font-black text-base">199</span></div>
+                    </a>
                 </div>
             `,
             maracanau: `<div class="bg-white border border-slate-200 p-4 rounded-2xl"><strong class="text-navy-950">Prefeitura de Maracanaú</strong><p class="text-slate-500 text-xs mt-1">Av. II, 150 - Jereissati I • Tel: (85) 3718-6840</p></div>`,
             pacatuba: `<div class="bg-white border border-slate-200 p-4 rounded-2xl"><strong class="text-navy-950">Prefeitura de Pacatuba</strong><p class="text-slate-500 text-xs mt-1">Rua Major Crisanto, 180 - Centro • Tel: (85) 93618-2138</p></div>`,
-            maranguape: `<div class="bg-white border border-slate-200 p-4 rounded-2xl"><strong class="text-navy-950">Prefeitura de Maranguape</strong><p class="text-slate-500 text-xs mt-1">Rua Dr. João Bezerra, 139 - Preguiça • Tel: (85) 3369-9230</p></div>`,
-            beneficios: `<div class="bg-white border border-slate-200 p-4 rounded-2xl"><strong class="text-navy-950">Bolsa Família & FGTS</strong><p class="text-slate-500 text-xs mt-1">Consultas oficiais em gov.br e no app FGTS.</p></div>`
+            maranguape: `<div class="bg-white border border-slate-200 p-4 rounded-2xl"><strong class="text-navy-950">Prefeitura de Maranguape</strong><p class="text-slate-500 text-xs mt-1">Rua Dr. João Bezerra, 139 - Preguiça • Tel: (85) 3369-9230</p></div>`
         };
 
         function switchServiceTab(tabKey) {
@@ -1431,8 +1568,13 @@
                 btn.className = 'service-tab-btn px-4 py-2.5 rounded-xl text-xs font-semibold bg-white border border-slate-200 hover:bg-slate-100 text-slate-700 transition flex items-center gap-1.5 cursor-pointer';
             });
             const activeBtn = document.getElementById('tabBtn-' + tabKey);
-            if (activeBtn) activeBtn.className = 'service-tab-btn px-4 py-2.5 rounded-xl text-xs font-bold bg-navy-900 text-white shadow transition flex items-center gap-1.5 cursor-pointer';
-            document.getElementById('serviceTabContent').innerHTML = serviceData[tabKey] || '';
+            if (activeBtn) {
+                activeBtn.className = 'service-tab-btn px-4 py-2.5 rounded-xl text-xs font-bold bg-navy-900 text-white shadow transition flex items-center gap-1.5 cursor-pointer';
+            }
+            const contentEl = document.getElementById('serviceTabContent');
+            if (contentEl) {
+                contentEl.innerHTML = serviceData[tabKey] || serviceData.essenciais;
+            }
         }
 
         function toggleFavorite(id, event) {
